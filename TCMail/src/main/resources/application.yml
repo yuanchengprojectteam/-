@@ -15,12 +15,12 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-    # 第一次使用后请将该行注释
-      ddl-auto: create
+    # 第一次使用后请将该行注释,该配置为自动建表，如不小心使用会导致数据库表数据全部被删除
+      #ddl-auto: create
       naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy 
     properties: 
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
       
      

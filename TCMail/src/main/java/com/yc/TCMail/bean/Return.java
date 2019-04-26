@@ -11,6 +11,7 @@ public class Return {
 	private Integer money;
 	private String date;
 	private String statu;
+	private Order order;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",unique=true,nullable=false)
@@ -54,6 +55,14 @@ public class Return {
 	}
 	public void setStatu(String statu) {
 		this.statu = statu;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	
 }

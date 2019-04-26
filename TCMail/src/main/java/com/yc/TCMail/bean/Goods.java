@@ -1,5 +1,8 @@
 package com.yc.TCMail.bean;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,17 +19,23 @@ public class Goods {
 	private Integer point;
 	private Integer commnum;
 	private String image;
-	private GType type;
+	private String intime;
+	private Gtype type;
+	private Shop shop;
+	private Car car;
+	private Favorite favorite;
+	private Set<Image> images;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",nullable=false,unique=true)
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@Transient
+	@Column(name="tid",length=11)
 	public Integer getTid() {
 		return tid;
 	}
@@ -96,13 +105,51 @@ public class Goods {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public GType getType() {
+	@ManyToOne
+	@JoinColumn(name="id",updatable=false,insertable=false)
+	public Gtype getType() {
 		return type;
 	}
-	public void setType(GType type) {
+	public void setType(Gtype type) {
 		this.type = type;
+	}
+	@ManyToOne
+	@JoinColumn(name="id",updatable=false,insertable=false)
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
+	}
+	@ManyToOne
+	@JoinColumn(name="id",updatable=false,insertable=false)
+	public Favorite getFavorite() {
+		return favorite;
+	}
+	public void setFavorite(Favorite favorite) {
+		this.favorite = favorite;
+	}
+	@OneToMany(mappedBy="goods",cascade={CascadeType.REMOVE})
+	public Set<Image> getImages() {
+		return images;
+	}
+	public void setImages(Set<Image> images) {
+		this.images = images;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	@Column(name="intime",length=20)
+	public String getIntime() {
+		return intime;
+	}
+	public void setIntime(String intime) {
+		this.intime = intime;
 	}
 	
 	

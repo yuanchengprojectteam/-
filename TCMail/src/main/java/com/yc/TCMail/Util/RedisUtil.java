@@ -1,4 +1,4 @@
-package com.yc.TCMail.Util;
+package com.yc.TCMail.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

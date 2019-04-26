@@ -1,5 +1,8 @@
 package com.yc.TCMail.bean;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +11,8 @@ public class Car {
 	private Integer id;
 	private Integer gid;
 	private Integer uid;
-	private Goods goods;
+	private Set<Goods> goods;
+	private Goods good;
 	private User user;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,21 +37,31 @@ public class Car {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Goods getGoods() {
+	@OneToMany(mappedBy="car",cascade= {CascadeType.REMOVE})
+	public Set<Goods> getGoods() {
 		return goods;
 	}
-	public void setGoods(Goods goods) {
+	
+	
+	public void setGoods(Set<Goods> goods) {
 		this.goods = goods;
 	}
+	@OneToOne
+	@JoinColumn(name="id")
 	public User getUser() {
 		return user;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
+	
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Goods getGood() {
+		return good;
+	}
+	public void setGood(Goods good) {
+		this.good = good;
 	}
 	
 	

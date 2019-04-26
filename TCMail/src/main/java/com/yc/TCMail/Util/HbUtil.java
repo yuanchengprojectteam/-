@@ -1,4 +1,4 @@
-package com.yc.TCMail.Util;
+package com.yc.TCMail.util;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class HbUtil {
 		return emf.unwrap(SessionFactory.class).openSession();
 	}
 
-	public void Bofore() {
+	public void Before() {
 		emf.unwrap(SessionFactory.class).openSession().beginTransaction();
 	}
 	

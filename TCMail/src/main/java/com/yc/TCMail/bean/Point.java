@@ -8,6 +8,7 @@ public class Point {
 	private Integer id;
 	private Integer uid;
 	private Integer num;
+	private User user;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",nullable=false,unique=true)
@@ -30,6 +31,14 @@ public class Point {
 	}
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

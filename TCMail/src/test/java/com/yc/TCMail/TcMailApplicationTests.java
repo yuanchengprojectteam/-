@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.yc.TCMail.Util.RedisUtil;
+import com.yc.TCMail.util.RedisUtil;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,8 +21,8 @@ public class TcMailApplicationTests {
 	
 	@Test
 	public void contextLoads() {
-        ru.set("a", "value");
-        System.out.println("==============="+ru.get("a"));
+		/*
+		 * ru.set("a", "value"); System.out.println("==============="+ru.get("a"));
+		 */
 	}
-
 }

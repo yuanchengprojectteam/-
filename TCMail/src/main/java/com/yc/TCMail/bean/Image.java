@@ -1,5 +1,6 @@
 package com.yc.TCMail.bean;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +9,7 @@ public class Image {
 	private Integer id;
 	private Integer gid;
 	private String path;
+	private Goods goods;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",nullable=false,unique=true)
@@ -30,6 +32,14 @@ public class Image {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	@ManyToOne
+	@JoinColumn(name="id",insertable=false,updatable=false)
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 	
 }

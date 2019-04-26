@@ -12,6 +12,7 @@ public class Comment {
 	private Integer speed;
 	private Integer watti;
 	private Integer satisf;
+	private String see;
 	private String msg;
 	private String img;
 	private User user;
@@ -87,6 +88,13 @@ public class Comment {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@Column(name="see",length=10)
+	public String getSee() {
+		return see;
+	}
+	public void setSee(String see) {
+		this.see = see;
 	}
 	
 }

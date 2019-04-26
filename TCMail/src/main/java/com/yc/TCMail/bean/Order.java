@@ -8,11 +8,15 @@ public class Order {
 	private Integer id;
 	private Integer uid;
 	private Integer gid;
+	private Integer aid;
 	private String paytype;
 	private Integer num;
 	private String paystatu;
 	private String orderstatu;
 	private String tcomp;
+	private User user;
+	private Goods goods;
+	private Address addre;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",nullable=false,unique=true)
@@ -71,5 +75,39 @@ public class Order {
 	public void setTcomp(String tcomp) {
 		this.tcomp = tcomp;
 	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+	
+	@Column(name="aid",length=11)
+	public Integer getAid() {
+		return aid;
+	}
+	public void setAid(Integer aid) {
+		this.aid = aid;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Address getAddre() {
+		return addre;
+	}
+	public void setAddre(Address addre) {
+		this.addre = addre;
+	}
+	
+	
 	
 }

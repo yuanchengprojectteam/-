@@ -1,5 +1,7 @@
 package com.yc.TCMail.bean;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class User {
 	private String type;
 	private String job;
 	private String edu;
+	private Set<Address> addrs;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",nullable=false,unique=true)
@@ -119,6 +122,13 @@ public class User {
 	}
 	public void setEdu(String edu) {
 		this.edu = edu;
+	}
+	@OneToMany(mappedBy="user",cascade= {CascadeType.REMOVE})
+	public Set<Address> getAddrs() {
+		return addrs;
+	}
+	public void setAddrs(Set<Address> addrs) {
+		this.addrs = addrs;
 	}
 	
 	

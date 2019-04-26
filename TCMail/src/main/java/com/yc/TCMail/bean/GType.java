@@ -1,16 +1,16 @@
 package com.yc.TCMail.bean;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="gtype",catalog="tcmail")
-public class GType {
+public class Gtype {
 	private Integer id;
 	private Integer name;
 	private Integer pid;
-	private List<Goods> goods;
+	private Set<Goods> goods;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id",unique=true,nullable=false)
@@ -34,11 +34,11 @@ public class GType {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
-	@OneToMany(mappedBy="")
-	public List<Goods> getGoods() {
+	@OneToMany(mappedBy="type",cascade= {CascadeType.REMOVE})
+	public Set<Goods> getGoods() {
 		return goods;
 	}
-	public void setGoods(List<Goods> goods) {
+	public void setGoods(Set<Goods> goods) {
 		this.goods = goods;
 	}
 	

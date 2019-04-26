@@ -49,8 +49,8 @@ public class Address {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
+	@ManyToOne
+	@JoinColumn(name="id",insertable=false,updatable=false)
 	public User getUser() {
 		return user;
 	}

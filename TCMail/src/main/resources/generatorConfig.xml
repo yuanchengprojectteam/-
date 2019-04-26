@@ -25,13 +25,40 @@
 		<table tableName="car">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
-		<table tableName="driver">
+		<table tableName="address">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
-		<table tableName="user_info">
+		<table tableName="comment">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
 		<table tableName="order">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="favorite">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="goods">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="goodsmsg">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="gtype">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="image">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="return">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="point">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="shop">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		<table tableName="user">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
 

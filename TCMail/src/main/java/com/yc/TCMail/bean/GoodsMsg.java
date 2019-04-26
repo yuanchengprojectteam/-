@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="goodsmsg",catalog="tcmail")
-public class GoodsMsg {
+public class Goodsmsg {
 	private Integer id;
 	private Integer tid;
 	private Integer sid;
 	private String color;
 	private String size;
-	private GType type;
+	private Gtype type;
 	private Shop shop;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -49,12 +49,17 @@ public class GoodsMsg {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public GType getType() {
+	@OneToOne
+	@JoinColumn(name="id")
+	public Gtype getType() {
 		return type;
 	}
-	public void setType(GType type) {
+	
+	public void setType(Gtype type) {
 		this.type = type;
 	}
+	@OneToOne
+	@JoinColumn(name="id")
 	public Shop getShop() {
 		return shop;
 	}
