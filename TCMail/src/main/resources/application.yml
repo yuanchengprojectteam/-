@@ -1,0 +1,72 @@
+spring:
+  # Spring数据源配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1/car
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: a
+  session:
+    store-type: none
+
+
+  # jpa持久层框架 配置  
+  jpa: 
+    database: MYSQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+    # 第一次使用后请将该行注释
+      ddl-auto: create
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy 
+    properties: 
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+      
+     
+  
+  # SpringMVC配置
+  mvc:
+    view:
+      prefix: WEB-INF/jsp/
+      suffix: .jsp
+      
+  # 发送邮件配置
+  mail: 
+    # 邮件服务器地址
+    host: smtp.qq.com
+    username: 1371490392@qq.com
+    password: pcxzfldpeqtsgifb
+    default-encoding: UTF-8
+    formMail:
+      addr: 1371490392@qq.com
+   
+  # log4j配置 
+logging:
+  level:
+    root: ERROR
+    com.yc.TCMail: DEBUG
+    
+  #redis配置  
+redis:
+  hostname: 127.0.0.1
+  port: 6379
+  password:
+  timeout: 10000
+  maxIdle: 300
+  maxTotal: 1000
+  maxWaitMillis: 1000
+  minEvictableIdleTimeMillis: 300000
+  numTestsPerEvictionRun: 1024
+  timeBetweenEvictionRunsMillis: 30000
+  testOnBorrow: true
+  testWhileIdle: true
+
+  #短信验证码配置
+alMsg:
+  product: Dysmsapi
+  domail: dysmsapi.aliyuncs.com
+  accessKeyId: 
+  accessKeySecret: 
+  endpoint: http://31269193.mns.cn-beijing.aliyuncs.com/
+

@@ -1,0 +1,72 @@
+package com.yc.TCMail.bean;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="favorite",catalog="tcmail")
+public class Favorite {
+	private Integer id;
+	private Integer uid;
+	private Integer shopid;
+	private Integer goodsid;
+	private User user;
+	private Shop shop;
+	private Goods goods;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id",unique=true,nullable=false)
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	@Column(name="uid",length=11)
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+	@Column(name="shopid",length=11)
+	public Integer getShopid() {
+		return shopid;
+	}
+	public void setShopid(Integer shopid) {
+		this.shopid = shopid;
+	}
+	@Column(name="goodsid",length=11)
+	public Integer getGoodsid() {
+		return goodsid;
+	}
+	public void setGoodsid(Integer goodsid) {
+		this.goodsid = goodsid;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	@OneToOne
+	@JoinColumn(name="id")
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+	
+	
+	
+}
