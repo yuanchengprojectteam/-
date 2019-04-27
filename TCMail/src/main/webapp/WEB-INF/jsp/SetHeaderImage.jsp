@@ -125,6 +125,7 @@
 			</div>
 			<!--左边内容-->
 			<div class="mod_main">
+			<form action="imgHeader" id="imgform" method="post" enctype="multipart/form-data">
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
@@ -136,15 +137,19 @@
 					<div class="wd">
 						 <div class="up_avater">
 						 	<div class="warp_tip">
-						 		<div id="up_avater_btn" class="avater_btn">+上传头像</div>
+						 	
+						 		<div id="up_avater_btn" class="avater_btn" onclick="img.click()"  >+上传头像
+						 			<input type="file" id="img" name="head" onchange="setSrc(this)" style="display:none" />
+						 		</div>
+						 			
 						 		<div class="upload_tip">
 						 			<p class="upload_text">仅支持JPG、JPEG、PNG图片文件，且文件小于2M</p>
 						 		</div>
 						 		<div class="upload_main">
 						 			<div class="up-left">
 							 			<div class="pic-show">
-								 			<div class="pic-wrap ">
-								 				<img src="images/7_170312181624_2.jpg">
+								 			<div class="pic-wrap " >
+								 				<img id="show0" src="images/7_170312181624_2.jpg">
 								 			</div>
 							 			</div>
 						 			</div>
@@ -156,7 +161,7 @@
 						 				<div class="up-top">
 							 				<div class="pic-100-box">
 								 				<div class="pic-100 ">
-								 					<img src="images/7_170312181624_2.jpg">
+								 					<img id="show1" src="images/7_170312181624_2.jpg">
 								 				</div>
 								 				<span class="pic-tip">100X100像素</span>
 							 				</div>
@@ -165,7 +170,7 @@
 							 				<div class="up-bottom uc-pic-img">
 								 				<div class="pic-60-box">
 									 				<div class="pic-60 ">
-									 					<img src="images/7_170312181624_2.jpg">
+									 					<img id="show2" src="images/7_170312181624_2.jpg">
 									 				</div>
 									 				<span class="pic-tip">60X60像素</span>
 								 				</div>
@@ -173,7 +178,7 @@
 							 				<div class="uc-min uc-pic-img">
 								 				<div class="pic-30-box">
 								 					<div class="pic-30 ">
-								 						<img src="images/7_170312181624_2.jpg">
+								 						<img id="show3" src="images/7_170312181624_2.jpg">
 								 					</div>
 								 					<span class="pic-tip">30X30像素</span>
 								 				</div>
@@ -183,16 +188,34 @@
 						 		</div>
 						 	</div>
 						 	<div class="upload_btn_box">
-						 		<input type="button" value="保存" class="save-btn">
+						 		<input type="button" value="保存" id="btn" class="save-btn" onclick="imgform.submit()" >
 						 	</div>
 						 </div>
 					</div>
 				</div>
+				</form>
 			</div> 
 		</div>
 	</div>
 </div>
- 
+<script type="text/javascript">
+ 	
+ 	function setSrc(obj){
+ 		var src1=obj.value;
+ 		alert(src1);
+ 		if(src1!=null){	
+ 			document.getElementById("btn").setAttribute('style', 'background-color:red');
+ 		}
+ 		var e0= document.getElementById("show0");
+ 		var e1=document.getElementById("show1");
+ 		var e2=document.getElementById("show2");
+ 		var e3=document.getElementById("show3");
+ 		$.ajax({
+ 			url:"Headerimg",
+ 			
+ 			
+ 		})
+ 	}
  
 </script>
 <%@ include file="AfterFoot.jsp"%>

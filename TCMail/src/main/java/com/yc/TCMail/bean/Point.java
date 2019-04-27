@@ -10,7 +10,7 @@ public class Point {
 	private Integer num;
 	private User user;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;

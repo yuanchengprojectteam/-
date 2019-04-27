@@ -21,9 +21,10 @@ public class User {
 	private String type;
 	private String job;
 	private String edu;
+	private String regtime;
 	private Set<Address> addrs;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;

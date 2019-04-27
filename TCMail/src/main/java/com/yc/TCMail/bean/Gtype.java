@@ -12,7 +12,7 @@ public class Gtype {
 	private Integer pid;
 	private Set<Goods> goods;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;

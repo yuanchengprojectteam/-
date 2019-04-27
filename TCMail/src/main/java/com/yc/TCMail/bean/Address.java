@@ -10,10 +10,11 @@ public class Address {
 	private String name;
 	private String phone;
 	private String addr;
+	private String level;
 	private User user;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;
@@ -56,6 +57,12 @@ public class Address {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
 	}
 	
 	

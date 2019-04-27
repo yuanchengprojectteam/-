@@ -12,13 +12,14 @@ public class Favorite {
 	private Integer uid;
 	private Integer shopid;
 	private Integer goodsid;
+	private String ftime;
 	private User user;
 	private Shop shop;
 	private Goods good;
 	private Set<Shop> shops;
 	private Set<Goods> goods;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;
@@ -84,6 +85,13 @@ public class Favorite {
 	}
 	public void setGood(Goods good) {
 		this.good = good;
+	}
+	@Column(name="ftime",length=20)
+	public String getFtime() {
+		return ftime;
+	}
+	public void setFtime(String ftime) {
+		this.ftime = ftime;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class Goods {
 	private Favorite favorite;
 	private Set<Image> images;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	
 	public Integer getId() {

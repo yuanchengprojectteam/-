@@ -13,7 +13,7 @@ public class Goodsmsg {
 	private Gtype type;
 	private Shop shop;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;

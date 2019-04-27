@@ -31,7 +31,7 @@
 		<table tableName="comment">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
-		<table tableName="order">
+		<table tableName="uorder">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
 		<table tableName="favorite">
