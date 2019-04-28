@@ -201,8 +201,7 @@
 <script type="text/javascript">
  	
  	function setSrc(obj){
- 		var src1=obj.value;
- 		alert(src1);
+ 		var src1=getObjectURL(obj);
  		if(src1!=null){	
  			document.getElementById("btn").setAttribute('style', 'background-color:red');
  		}
@@ -210,12 +209,20 @@
  		var e1=document.getElementById("show1");
  		var e2=document.getElementById("show2");
  		var e3=document.getElementById("show3");
- 		$.ajax({
- 			url:"Headerimg",
- 			
- 			
- 		})
+ 		
  	}
- 
+ 	function getObjectURL(file) {  
+ 	     var url = null;  
+ 	     if (window.createObjcectURL != undefined) {  
+ 	         url = window.createOjcectURL(file);  
+ 	     } else if (window.URL != undefined) {  
+ 	         url = window.URL.createObjectURL(file);  
+ 	     } else if (window.webkitURL != undefined) {  
+ 	         url = window.webkitURL.createObjectURL(file);  
+ 	     }  
+ 	     return url;  
+ 	 }
+ 	
+ 	
 </script>
 <%@ include file="AfterFoot.jsp"%>
