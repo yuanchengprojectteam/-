@@ -8,8 +8,10 @@ spring:
   session:
     store-type: none
     
+       #    文件上传配置
   resources: 
     staticLocations:
+    	# 将上传的文件保存到D://rcvFile中
       - file:/d:/rcvFile/
       - classpath:/static/
       - classpath:/public/
