@@ -7,6 +7,12 @@ spring:
     password: a
   session:
     store-type: none
+    #    文件上传配置
+  resources: 
+    staticLocations:
+      - file:/d:/rcvFile/
+      - classpath:/static/
+      - classpath:/public/
 
 
   # jpa持久层框架 配置  

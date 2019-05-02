@@ -354,7 +354,7 @@
       paytype = #{paytype,jdbcType=VARCHAR},
       tcomp = #{tcomp,jdbcType=VARCHAR},
       uid = #{uid,jdbcType=INTEGER},
-      num = #{num,jdbcType=INTEGER}
+      num = #{num,jdbcType=INTEGER
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

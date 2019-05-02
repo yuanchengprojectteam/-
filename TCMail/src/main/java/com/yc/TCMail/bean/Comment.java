@@ -82,6 +82,7 @@ public class Comment {
 		this.uid = uid;
 	}
 	
+
 	@Column(name="see",length=10)
 	public String getSee() {
 		return see;

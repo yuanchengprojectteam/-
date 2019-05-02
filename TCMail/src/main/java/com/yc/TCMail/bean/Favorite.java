@@ -13,6 +13,7 @@ public class Favorite {
 	private Integer shopid;
 	private Integer goodsid;
 	private String ftime;
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,7 +46,7 @@ public class Favorite {
 		this.goodsid = goodsid;
 	}
 	
-	
+
 	@Column(name="ftime",length=20)
 	public String getFtime() {
 		return ftime;

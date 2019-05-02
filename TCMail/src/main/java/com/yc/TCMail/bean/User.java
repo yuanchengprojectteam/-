@@ -22,6 +22,7 @@ public class User {
 	private String job;
 	private String edu;
 	private String regtime;
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -137,5 +138,6 @@ public class User {
 				+ ", image=" + image + ", type=" + type + ", job=" + job + ", edu=" + edu + ", regtime=" + regtime
 				+ "]";
 	}
+
 	
 }

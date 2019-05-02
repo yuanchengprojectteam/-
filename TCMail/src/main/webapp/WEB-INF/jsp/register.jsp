@@ -288,13 +288,12 @@
    	 for(var i=0;i<4;i++){
    	    code+=Math.floor(Math.random()*10);
    	 }
-   	 alert(code);
    	 $.ajax({
    		 url:"send", 					//url地址
    		 data:"code="+code+"&phone="+str,   			 // 将uname=张三传递给后台
    		 method:"post",   				 //传输方式，get / post
    		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据	
-   	      	 alter(result);
+   	      	 
    	    }
    	 });
    	

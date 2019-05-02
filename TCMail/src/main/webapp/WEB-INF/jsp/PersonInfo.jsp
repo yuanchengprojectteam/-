@@ -213,7 +213,6 @@ if(""==sexvalue){
 }else{
 	document.getElementById("unknow").checked=true;
 }
-alert(sexvalue);
 
 $(function(){
 	

@@ -19,6 +19,7 @@ public class Goods {
 	private Integer point;
 	private Integer commnum;
 	private String image;
+
 	//private String intime;
 	
 	private Shop shop;
@@ -118,5 +119,6 @@ public class Goods {
 				+ size + ", price=" + price + ", num=" + num + ", point=" + point + ", commnum=" + commnum + ", image="
 				+ image + "]";
 	}
+
 	
 }

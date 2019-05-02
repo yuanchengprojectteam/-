@@ -31,6 +31,7 @@ public class Point {
 	}
 	public void setNum(Integer num) {
 		this.num = num;
+
 	}
 	
 }

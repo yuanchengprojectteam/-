@@ -11,6 +11,7 @@ public class Car {
 	private Integer id;
 	private Integer gid;
 	private Integer uid;
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,5 +36,6 @@ public class Car {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
+
 	
 }

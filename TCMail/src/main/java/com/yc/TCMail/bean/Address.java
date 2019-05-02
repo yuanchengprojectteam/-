@@ -61,6 +61,7 @@ public class Address {
 	public String toString() {
 		return "Address [id=" + id + ", uid=" + uid + ", name=" + name + ", phone=" + phone + ", addr=" + addr
 				+ ", level=" + level + "]";
+
 	}
 	
 	

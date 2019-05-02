@@ -120,6 +120,7 @@ public class Uorder {
 		return "Uorder [id=" + id + ", uid=" + uid + ", aid=" + aid + ", paytype=" + paytype + ", paystatu=" + paystatu
 				+ ", orderstatu=" + orderstatu + ", tcomp=" + tcomp + ", ordertime=" + ordertime + ", details="
 				+ details + "]";
+
 	}
 	
 	

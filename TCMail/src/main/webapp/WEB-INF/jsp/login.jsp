@@ -180,7 +180,7 @@ function  send(){
 		 data:"code="+code,   			 // 将uname=张三传递给后台
 		 method:"post",   				 //传输方式，get / post
 		 success:function(result){   			//success为服务器响应成功后传回的数据。  result为后台传回来的数据								
-	      	 alert(result);
+	      	
 	    }
 	 });
 	
