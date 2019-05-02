@@ -21,7 +21,7 @@
 		<ul class="header-right">
 			<li class="denglu dengl_hou">
 				<div>
-					<a class="red" href="dengl.html">Hi~山的那边是海</a>
+					<a class="red">${loginedUser.name }</a>
 					<i class="icon_plus_nickname"></i>
 					<i class="ci-leftll">
 						<s class="jt">◇</s>
@@ -32,12 +32,12 @@
 						<a href="shez_toux.html"><img src="images/toux.png"></a>
 					</div>
 					<div class="huiy_dengj"> 
-						<a class="tuic_" href="index.html">退出</a>
+						<a class="tuic_" href="index">退出</a>
 					</div>
 					<div class="toub_zil_daoh">
 						<a href="wod_dingd.html">待处理订单</a>
 						<a href="wod_shouc.html">我的收藏</a>
-						<a href="ger_xinx.html">个人资料</a> 
+						<a href="toPersonmessage">个人资料</a> 
 					</div>
 				</div>
 				</li> 
@@ -75,16 +75,17 @@
 	<div class="beij_center">
 		<div class="wode_tongc_logo">
 			<a class="tongc_logo" href="#"></a>
-			<a class="fanh_shouy" href="index.html" target="_blank">返回首页</a>
+			<a class="fanh_shouy" href="PersonCenter" target="_blank">返回首页</a>
+			<a class="fanh_shouy" href="index" target="_blank">返回商城</a>
 		</div>
 		<div class="navitems">
 			<ul>
-				<li><a href="ger_zhongx.html"><span>首页</span> </a></li>
+				<li><a href="PersonCenter"><span>首页</span> </a></li>
 				<li>
 					<div class="zhangh_dl">
 						<div class="zhangh_dt"><span>账号设置</span><i>◇</i></div>
 						<div class="zhangh_dd">
-							<a href="ger_xinx.html">个人信息</a>
+							<a href="toPersonmessage">个人信息</a>
 							<a href="zhangh_anq.html">账户安全</a>
 							<a href="shouh_diz.html">收货地址</a>
 						</div>
@@ -92,11 +93,10 @@
 				</li>
 			</ul>
 		</div>
-		<div class="nav_r">
-			<div id="search_2014"> 
+		<div id="search_2014"> 
 				<div class="form">
 					<input type="text" class="gerzx_text">
-					<button class="button1"></button>
+					<button class="button1"><tton>
 				</div>
 		    </div>
 		    <div id="settleup_2014">
@@ -106,6 +106,7 @@
 						<s class="jt">◇</s>
 					</i>
 		    	</div>
+
 		    	<div class="dorpdown-layer">
 		    		<div class="smt"><h4 class="fl">最新加入的商品</h4></div>
 					<ul>

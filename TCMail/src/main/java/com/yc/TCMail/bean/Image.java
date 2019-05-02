@@ -9,9 +9,9 @@ public class Image {
 	private Integer id;
 	private Integer gid;
 	private String path;
-	private Goods goods;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -32,14 +32,6 @@ public class Image {
 	}
 	public void setPath(String path) {
 		this.path = path;
-	}
-	@ManyToOne
-	@JoinColumn(name="id",insertable=false,updatable=false)
-	public Goods getGoods() {
-		return goods;
-	}
-	public void setGoods(Goods goods) {
-		this.goods = goods;
 	}
 	
 }

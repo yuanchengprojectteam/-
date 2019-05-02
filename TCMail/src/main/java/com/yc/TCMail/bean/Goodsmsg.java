@@ -10,10 +10,9 @@ public class Goodsmsg {
 	private Integer sid;
 	private String color;
 	private String size;
-	private Gtype type;
-	private Shop shop;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -48,23 +47,6 @@ public class Goodsmsg {
 	}
 	public void setSize(String size) {
 		this.size = size;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Gtype getType() {
-		return type;
-	}
-	
-	public void setType(Gtype type) {
-		this.type = type;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Shop getShop() {
-		return shop;
-	}
-	public void setShop(Shop shop) {
-		this.shop = shop;
 	}
 	
 }

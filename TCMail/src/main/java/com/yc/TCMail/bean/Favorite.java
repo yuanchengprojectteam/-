@@ -12,13 +12,10 @@ public class Favorite {
 	private Integer uid;
 	private Integer shopid;
 	private Integer goodsid;
-	private User user;
-	private Shop shop;
-	private Goods good;
-	private Set<Shop> shops;
-	private Set<Goods> goods;
+	private String ftime;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;
@@ -47,43 +44,14 @@ public class Favorite {
 	public void setGoodsid(Integer goodsid) {
 		this.goodsid = goodsid;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public User getUser() {
-		return user;
+	
+	
+	@Column(name="ftime",length=20)
+	public String getFtime() {
+		return ftime;
 	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	@OneToMany(mappedBy="favorite",cascade= {CascadeType.REMOVE})
-	public Set<Shop> getShops() {
-		return shops;
-	}
-	public void setShops(Set<Shop> shop) {
-		this.shops = shop;
-	}
-	@OneToMany(mappedBy="favorite",cascade= {CascadeType.REMOVE})
-	public Set<Goods> getGoods() {
-		return goods;
-	}
-	public void setGoods(Set<Goods> goods) {
-		this.goods=goods;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Shop getShop() {
-		return shop;
-	}
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Goods getGood() {
-		return good;
-	}
-	public void setGood(Goods good) {
-		this.good = good;
+	public void setFtime(String ftime) {
+		this.ftime = ftime;
 	}
 	
 	

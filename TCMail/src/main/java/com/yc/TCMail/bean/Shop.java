@@ -12,13 +12,12 @@ public class Shop {
 	private Integer level;
 	private String bustime;
 	private String type;
-	private Favorite favorite;
-	private User user;
+
 	
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -68,20 +67,10 @@ public class Shop {
 	public void setType(String type) {
 		this.type = type;
 	}
-	@ManyToOne
-	@JoinColumn(name="id",updatable=false,insertable=false)
-	public Favorite getFavorite() {
-		return favorite;
+	@Override
+	public String toString() {
+		return "Shop [id=" + id + ", uid=" + uid + ", name=" + name + ", addr=" + addr + ", level=" + level
+				+ ", bustime=" + bustime + ", type=" + type + "]";
 	}
-	public void setFavorite(Favorite favorite) {
-		this.favorite = favorite;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 }

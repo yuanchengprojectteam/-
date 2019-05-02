@@ -3,6 +3,7 @@ package com.yc.TCMail;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpUtils;
 
 import org.apache.http.HttpResponse;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HttpUtil;
 import com.yc.TCMail.util.RedisUtil;
 
@@ -25,6 +27,8 @@ public class TcMailApplicationTests {
     
     @Autowired
     RedisUtil ru;
+    @Resource
+    private  UserMapper  userMapper;
 	
 	@Test
 	public void contextLoads() {
@@ -36,5 +40,14 @@ public class TcMailApplicationTests {
 	@Test 
 	public void SMS() {
 		HttpUtil.SMS("12345","15773283676");
+	}
+	
+	@Test
+	public void  query() {
+		
+		
+		//查询所有
+		userMapper.selectByExample(null);
+		
 	}
 }

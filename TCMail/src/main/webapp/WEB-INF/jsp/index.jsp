@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<%@ include file="BoforeHeader.jsp" %>
+<%@ include file="BeforeHeader.jsp" %>
 
 
 		<!--左边导航-->
@@ -2383,4 +2383,4 @@
 		jQuery(".picScroll_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:2 ,trigger:"click"});
 		</script>
 
-<%@ include file="BoforeFoot.jsp"%>
+<%@ include file="BeforeFoot.jsp"%>

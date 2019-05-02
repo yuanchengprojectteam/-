@@ -21,9 +21,10 @@ public class User {
 	private String type;
 	private String job;
 	private String edu;
-	private Set<Address> addrs;
+	private String regtime;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -123,13 +124,18 @@ public class User {
 	public void setEdu(String edu) {
 		this.edu = edu;
 	}
-	@OneToMany(mappedBy="user",cascade= {CascadeType.REMOVE})
-	public Set<Address> getAddrs() {
-		return addrs;
+	public String getRegtime() {
+		return regtime;
 	}
-	public void setAddrs(Set<Address> addrs) {
-		this.addrs = addrs;
+	public void setRegtime(String regtime) {
+		this.regtime = regtime;
 	}
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", account=" + account + ", realname=" + realname + ", sex=" + sex
+				+ ", age=" + age + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + ", marry=" + marry
+				+ ", image=" + image + ", type=" + type + ", job=" + job + ", edu=" + edu + ", regtime=" + regtime
+				+ "]";
+	}
 	
 }

@@ -10,10 +10,11 @@ public class Address {
 	private String name;
 	private String phone;
 	private String addr;
-	private User user;
+	private String level;
+	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;
@@ -49,13 +50,17 @@ public class Address {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	@ManyToOne
-	@JoinColumn(name="id",insertable=false,updatable=false)
-	public User getUser() {
-		return user;
+	
+	public String getLevel() {
+		return level;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", uid=" + uid + ", name=" + name + ", phone=" + phone + ", addr=" + addr
+				+ ", level=" + level + "]";
 	}
 	
 	

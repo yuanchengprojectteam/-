@@ -1,7 +1,7 @@
 spring:
   # Spring数据源配置
   datasource:
-    url: jdbc:mysql://127.0.0.1/car
+    url: jdbc:mysql://127.0.0.1/tcmail
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: a

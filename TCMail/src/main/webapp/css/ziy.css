@@ -1,6 +1,6 @@
  
 
-/*商品列表1*/
+/*鍟嗗搧鍒楄〃1*/
 
 .navv_ziy{ 
 	border-bottom: solid 2px #e10601; 
@@ -23,7 +23,7 @@
 /*.subpage .prosul{display:none;} */
 #proinfo{display: none;}
 
-/*商品列表1内容*/
+/*鍟嗗搧鍒楄〃1鍐呭*/
 .nSearchWarp {
     clear: both;
     width: 1200px;
@@ -112,15 +112,15 @@
     color: #e10601; 
 }
 
-.lujing_ziy{width: 1200px; padding: 15px 0; height: 20px; margin:0 auto; font-family: "宋体";}
-.lujing_ziy a{padding:0 8px;font: 14px/20px "宋体";}
+.lujing_ziy{width: 1200px; padding: 15px 0; height: 20px; margin:0 auto; font-family: "瀹嬩綋";}
+.lujing_ziy a{padding:0 8px;font: 14px/20px "瀹嬩綋";}
 
 .shangp_lieb_jvz{
     width: 1210px;
     margin: 0 auto;
 }
 
-/*******************选项*********************************************/
+/*******************閫夐」*********************************************/
 .selector {
     border-top: 1px solid #DDD;
     background: #FFF;
@@ -347,7 +347,7 @@
     font-size: 0;
 }
 
-/*********************************列表*******************************/
+/*********************************鍒楄〃*******************************/
 
  .shangp_lieb_yi{
  	padding: 10px 0;
@@ -893,7 +893,7 @@ margin-right: 24px;
 }
  
 .shnagp_list_v1 .shangp_biaot_ a{
-	font:14px/20px "微软雅黑";
+	font:14px/20px "寰蒋闆呴粦";
 }
 .shnagp_list_v1 .shangp_biaot_ a:hover{
 	color: #e3101e;
@@ -1250,7 +1250,7 @@ margin-right: 24px;
 
 
 
-/*<!--商品详情-->*/
+/*<!--鍟嗗搧璇︽儏-->*/
 
  
 
@@ -1577,7 +1577,7 @@ margin-right: 24px;
     line-height: 32px;
     color: rgb(204, 204, 204);
     margin-right: 3px;
-    font-family: 宋体;
+    font-family: 瀹嬩綋;
 }
 .prd_firstscreen_center .prd_price_line, .prd_firstscreen_center .prd_price_lineright {
     float: left;
@@ -1840,7 +1840,7 @@ margin-right: 24px;
  background:#999; 
  border-radius:5px;
 -moz-border-radius: 5px; /* Firefox */
-  -webkit-border-radius: 5px; /* Safari 和 Chrome */ 
+  -webkit-border-radius: 5px; /* Safari 鍜� Chrome */ 
 
 }
 .multipleColumn .hd ul li.on{ background:#FFF;width: 9px; height: 9px; border: solid 1px #df3033;}
@@ -1857,7 +1857,7 @@ margin-right: 24px;
 	color: #df3033; 
 }
 
-/*详情*/
+/*璇︽儏*/
 
 /******************/
 .shangp_xiangq_neir_beij{
@@ -2549,7 +2549,7 @@ a.redlink {
 }
 
 
-/*帮助中心开始了*/
+/*甯姪涓績寮�濮嬩簡*/
 .bangz_zhongx_beij{
 	border-top:solid 5px #e1e1e1;
 
@@ -2571,7 +2571,7 @@ font:normal 14px/32px "Microsoft YaHei";
 }
 .sideMenu h3 em{ float:right; display:block; width:40px; height:32px;   background:url(../images/icoAdd.png) 16px 12px no-repeat; cursor:pointer; }
 .sideMenu h3.on em{ background-position:16px -57px; }
-.sideMenu ul{ padding:20px 25px; color:#999; display:none; /* 默认都隐藏 */ text-align: center;}
+.sideMenu ul{ padding:20px 25px; color:#999; display:none; /* 榛樿閮介殣钘� */ text-align: center;}
 .sideMenu ul li{
 	height: 39px;
 	line-height: 39px;
@@ -2611,7 +2611,7 @@ font:normal 14px/32px "Microsoft YaHei";
 }
 .bangz_dangq_weiz p{
 	padding-left:20px; 
-	font-family: "宋体";
+	font-family: "瀹嬩綋";
 }
 
 .bangz_zhongx_neir_kuang{
@@ -2628,7 +2628,7 @@ font:normal 14px/32px "Microsoft YaHei";
 
 
 
-/*本地生活*/
+/*鏈湴鐢熸椿*/
 
 .focus .focus-a .fouc_font_bend_shengh{
 	background: #e10601; 
@@ -2669,7 +2669,7 @@ font:normal 14px/32px "Microsoft YaHei";
 }
 .bend_shengh_haoh .bengd_daoh .bengd_daoh_ann i{
 	float: right;
-	font-family: "宋体";
+	font-family: "瀹嬩綋";
 	margin-right: 8px;
 }
 .bend_shengh_haoh .bengd_daoh:hover{
@@ -2793,7 +2793,7 @@ font:normal 14px/32px "Microsoft YaHei";
 	color: #e10601;
 }
 
-/*美食*/
+/*缇庨*/
 
 .meis_kuang{
 	margin: 20px 0; 
@@ -2809,7 +2809,7 @@ font:normal 14px/32px "Microsoft YaHei";
 	padding-left: 40px;
 	background: url(../images/sanye.png) 0 center no-repeat;
 	float: left;
-	font:18px/30px "微软雅黑";
+	font:18px/30px "寰蒋闆呴粦";
 }
 .meis_biaot ul{
 	float: right;
@@ -2872,7 +2872,7 @@ font:normal 14px/32px "Microsoft YaHei";
 }
 
 
-/*登录开始了*/
+/*鐧诲綍寮�濮嬩簡*/
 .dengl_logo{
 	margin: 30px 0;
 	overflow:hidden;
@@ -2884,7 +2884,7 @@ font:normal 14px/32px "Microsoft YaHei";
 }
 .dengl_logo h1{
 	margin:50px 0 0 30px;
-	font:24px/24px "微软雅黑";
+	font:24px/24px "寰蒋闆呴粦";
 	color: #4c4d50 ;
 	float: left;
 }
@@ -3051,7 +3051,7 @@ font:normal 14px/32px "Microsoft YaHei";
 	float: left;
 }
 .corp_login .mingb_shoq a{
-	font:16px/20px "微软雅黑";
+	font:16px/20px "寰蒋闆呴粦";
 }
 
 .jianj_dib{
@@ -3150,7 +3150,7 @@ font:normal 14px/32px "Microsoft YaHei";
 	float: left; 
 }
 
-/*我的通城*/
+/*鎴戠殑閫氬煄*/
 
 .hongs_beij{
 	height: 145px;
@@ -3205,7 +3205,7 @@ font:normal 14px/32px "Microsoft YaHei";
 .navitems li span{
 	color:#fff;
 	font-size: 16px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	cursor:pointer;
 }
 
@@ -3630,7 +3630,7 @@ em.myGome_onActive {
 	transform:translateY(-5px);
 	-ms-transform:translateY(-5px); /* Internet Explorer */
 	-moz-transform:translateY(-5px); /* Firefox */
-	-webkit-transform:translateY(-5px); /* Safari 和 Chrome */
+	-webkit-transform:translateY(-5px); /* Safari 鍜� Chrome */
 	-o-transform:translateY(-5px); /* Opera */
 }
 .user_counts .count_item em {
@@ -3671,7 +3671,7 @@ em.myGome_onActive {
 .wod_tongc_daoh_lieb li a:hover{
 	color: #df3033;
 }
-/*左边内容*/
+/*宸﹁竟鍐呭*/
 
 .mod_main{
 	background: #fff; 
@@ -3781,7 +3781,7 @@ em.myGome_onActive {
 	color:#df3033;
 }
 
-/*订单详情开始了*/
+/*璁㈠崟璇︽儏寮�濮嬩簡*/
 
 
 .D_sj{
@@ -4196,7 +4196,7 @@ a.btn-again {
     color: #e4393c;
 }
 
-/*基本消息*/
+/*鍩烘湰娑堟伅*/
 .jib_xinx_kuang{
 	padding:20px;
 	min-height: 876px;
@@ -4331,7 +4331,7 @@ a.btn-again {
 	background: #d21417;
 }
 
-/*更多个人信息*/
+/*鏇村涓汉淇℃伅*/
 .user_set .item_meic .fl_e .form_select {
     width: 170px;
     height: 28px;
@@ -4363,7 +4363,7 @@ a.btn-again {
 }
  
 
- /*头像*/
+ /*澶村儚*/
  
 .up_avater {
     padding: 40px;
@@ -4531,7 +4531,7 @@ a.btn-again {
 }
 
 
-/*个人注册*/
+/*涓汉娉ㄥ唽*/
 .yiny{
 	box-shadow: 0 0 3px #999;
 	overflow: auto;
@@ -4568,7 +4568,7 @@ a.btn-again {
 	display: block;
 }
 .ger_zhuc_biaot ul li a{ 
-	font: 24px/50px "微软雅黑";
+	font: 24px/50px "寰蒋闆呴粦";
 	color: #515151;
 }
 
@@ -4700,14 +4700,14 @@ a.btn-again {
 	float: right;
 }
 
-/*申请入驻*/
+/*鐢宠鍏ラ┗*/
 .zhuc_biaod_liuy{
 	overflow: hidden;
 }
 .messages{padding:15px 0; width:545px;float: left;}
 .messages h2{
 	margin:10px 0 30px 30px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-weight: 600;
 }
 .messages input,.messages select,.messages textarea{margin:0;padding:0; background:none; border:0; font-family:"Microsoft Yahei";}
@@ -4733,7 +4733,7 @@ a.btn-again {
     padding-left: 60px;
 }
 .fuw_teh_kuang h2{
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	line-height: 50px;
 }
 .fuw_teh_kuang ul{
@@ -4742,7 +4742,7 @@ a.btn-again {
 	font-size: 14px;
 }
 
-/*购物车*/
+/*璐墿杞�*/
 .yiny_gouwc{
     box-shadow: 0 0 0 #fff;
 }
@@ -4998,7 +4998,7 @@ a.btn-again {
     text-decoration: none;
     float: left;
      font-weight: 600;
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
 }
 
 
@@ -5073,7 +5073,7 @@ a.btn-again {
 .picScroll_left_s_dsl .dfgc ul li .title{ line-height:24px; width: 185px; padding: 5px; text-align: left; }
 
 
-/*加入购物车*/
+/*鍔犲叆璐墿杞�*/
 
 .jiar_gouw_c_beij{
     height: 180px;
@@ -5284,7 +5284,7 @@ a.btn-again {
 
 
 
-/*评价*/
+/*璇勪环*/
 
 .pingj_dingd_hao{
     margin:20px 0; 
@@ -5449,7 +5449,7 @@ a.btn-again {
     margin:10px 0;
 }
 .comment_goods .zuo_jiag{
-    font:14px/20px "微软雅黑";
+    font:14px/20px "寰蒋闆呴粦";
     font-weight: 600;
 }
 .shangp_many{
@@ -5564,7 +5564,7 @@ a.btn-again {
     font: 14px/30px "Microsoft YaHei";
 }
 
-/*评价晒单*/
+/*璇勪环鏅掑崟*/
 
 .shand_piaot{
     height: 40px;
@@ -5773,12 +5773,12 @@ text-align: center;
 } 
 
 
-/*账户安全*/
+/*璐︽埛瀹夊叏*/
 
 .pi_ibox{
     position: relative;
     padding-top: 32px;
-    font: 12px "宋体";
+    font: 12px "瀹嬩綋";
     overflow: hidden;
     line-height: 18px;
 }
@@ -5967,7 +5967,7 @@ a.xiay_b{
 }
 
 
-/*收货地址*/
+/*鏀惰揣鍦板潃*/
 
 
 .shouh_diz_beij{
@@ -5988,7 +5988,7 @@ a.xiay_b{
 
 .shouh_diz_kuang .item{
      color: #757575;
-     font-family: "微软雅黑";
+     font-family: "寰蒋闆呴粦";
      height: 26px;
 }
 .shouh_diz_kuang span{
@@ -6036,7 +6036,7 @@ a.xiay_b{
     display: block;
 }
 
-/*收货地址弹出层表单*/
+/*鏀惰揣鍦板潃寮瑰嚭灞傝〃鍗�*/
 
 
 .reveal-modal-bg { position: fixed; height: 100%; width: 100%; z-index: 100; display: none;
@@ -6166,7 +6166,7 @@ a.xiay_b{
     color: #fff;
 }
 
-/*我的收藏*/
+/*鎴戠殑鏀惰棌*/
 .slideTxtBox_shouc{text-align:left;  margin: 40px 0 20px 0;}
 .slideTxtBox_shouc .hd{ height:30px; line-height:30px; padding:0 10px 0 20px;   border-bottom:1px solid #f2f2f2;  position:relative; }
 .slideTxtBox_shouc .hd ul{ float:left;height:32px;   }
@@ -6254,7 +6254,7 @@ a.xiay_b{
     padding: 0 4px;
     height: 20px;
     text-align: center;
-    font: 12px/20px "新宋体",Arial,SimSun,Tahoma;
+    font: 12px/20px "鏂板畫浣�",Arial,SimSun,Tahoma;
     border: 1px solid #ddd;
     zoom: 1;
 }
@@ -6300,7 +6300,7 @@ a.xiay_b{
     display: inline-block;
     height: 24px;
     padding: 0 10px;
-    font: 14px/24px "新宋体";
+    font: 14px/24px "鏂板畫浣�";
     color: #333;
     background: #f8f8f8;
     border: 1px solid #ddd;
@@ -6378,7 +6378,7 @@ a.xiay_b{
     margin-bottom: 20px;
 }
 
-/*购物订单*/
+/*璐墿璁㈠崟*/
 
 .tab_trigger_wod_dd{
     height: 40px;
@@ -6553,7 +6553,7 @@ input.search-btn {
     display: block;
 }
 
-/*提交订单——结算页*/
+/*鎻愪氦璁㈠崟鈥斺�旂粨绠楅〉*/
 
 
 .stepflex_2{
@@ -6694,7 +6694,7 @@ input.search-btn {
 }
 
 .addr_switch_1{ 
-    font: 14px/20px "宋体"; 
+    font: 14px/20px "瀹嬩綋"; 
     margin: 10px 0;
 }
 
@@ -6874,7 +6874,7 @@ input.search-btn {
 }
 
 .zhongf_jine{
-    font:700 16px/25px "微软雅黑";
+    font:700 16px/25px "寰蒋闆呴粦";
     color: #e10601;
 }
 
@@ -6913,7 +6913,7 @@ input.search-btn {
 }  
 
 
-/*店铺首页*/
+/*搴楅摵棣栭〉*/
 .dianp_logo_beij{
     height: 114px;
     overflow: hidden;
@@ -6989,7 +6989,7 @@ input.search-btn {
     background: #d10500;
 }
 .jingr_guanw_anniu a{
-    font:14px/42px "微软雅黑";
+    font:14px/42px "寰蒋闆呴粦";
     color: #fff;
 }
 
@@ -7025,7 +7025,7 @@ input.search-btn {
 
 
 
-/*店铺导航*/
+/*搴楅摵瀵艰埅*/
 .dianp_daoh_beij{
     height: 42px;
     background: #f84c42;
@@ -7044,7 +7044,7 @@ input.search-btn {
     color: #fff;
     position: relative;
     display: block;
-    font:16px/42px "微软雅黑";
+    font:16px/42px "寰蒋闆呴粦";
 }
 .dp_daoh_ul .dp_dh_li .lin_color:hover{
     color: #ecead9;
@@ -7150,7 +7150,7 @@ input.search-btn {
 }
 .dp_sy_biaot .biaot_minz h1{
     margin-top: 10px;
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
 
 }
 
@@ -7249,7 +7249,7 @@ input.search-btn {
     overflow: hidden;
 }
 .bianq_yv_q a{
-    font:16px/55px "微软雅黑";
+    font:16px/55px "寰蒋闆呴粦";
     color: #fff;
 }
 .bianq_yv_q span{
@@ -7272,7 +7272,7 @@ input.search-btn {
     margin-bottom: 18px;
 }
 
-/*店铺简介*/
+/*搴楅摵绠�浠�*/
 
 .shangj_dianp_jiej{
     position: relative;
@@ -7316,7 +7316,7 @@ input.search-btn {
     font-size: 18px;
     border-bottom: solid 1px #a1a1a1;
     color: #2b2b2b;
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
@@ -7487,7 +7487,7 @@ input.search-btn {
 }
 
 
-/*切换城市*/
+/*鍒囨崲鍩庡競*/
 .qieh_cs_beij{
     height: 280px;
     background: url(../images/qiehcs_beij.jpg)no-repeat center bottom;
@@ -7552,7 +7552,7 @@ input.search-btn {
 
 
 
-/***************后添加的**********/
+/***************鍚庢坊鍔犵殑**********/
 
 
 
@@ -7764,12 +7764,12 @@ h2.top_title{margin:4px 20px; padding-top:15px; padding-left:20px; padding-botto
 
 
 
-/*积分商城//*/
+/*绉垎鍟嗗煄//*/
 
 span.jifen_shagnc_zi{
     margin-left: 10px;
     font-size: 28px;
-    font-family:"微软雅黑";
+    font-family:"寰蒋闆呴粦";
 }
 
 
@@ -7777,7 +7777,7 @@ span.jifen_shagnc_zi{
 
 .jif_shangc_daoh ul{}
 .jif_shangc_daoh ul li{float: left;padding: 5px 15px; margin-left:10px; }
-.jif_shangc_daoh ul li a{font-size: 16px;font-family:"微软雅黑";}
+.jif_shangc_daoh ul li a{font-size: 16px;font-family:"寰蒋闆呴粦";}
 .jif_shangc_daoh ul li a.df{
     color: #e10601;
 }
@@ -7840,7 +7840,7 @@ p.jf_tis{
 }
 
 .jif_shangp_daoh h1{
-    font-family:"微软雅黑";
+    font-family:"寰蒋闆呴粦";
     line-height: 80px;
     height: 80px;
     color: #fff;
@@ -7895,7 +7895,7 @@ p.jf_tis{
 .slideBox_jif .bd li{ zoom:1; vertical-align:middle; }
 .slideBox_jif .bd img{ width:915px; height:382px; display:block;  }
 
-/* 下面是前/后按钮代码  */
+/* 涓嬮潰鏄墠/鍚庢寜閽唬鐮�  */
 .slideBox_jif .prev,
 .slideBox_jif .next{ position:absolute; left:3%; top:50%; margin-top:-25px; display:block; width:32px; height:40px;
     background:url(../images/web/slider-arrow.png) -110px 5px no-repeat; filter:alpha(opacity=50);opacity:0.5;   }
@@ -7919,7 +7919,7 @@ p.jf_tis{
     border-top: solid 2px #e13001;
 }
 .jif_sp_biaot h1{
-    font-family: "微软雅黑";
+    font-family: "寰蒋闆呴粦";
     padding-left:15px; 
 }
 

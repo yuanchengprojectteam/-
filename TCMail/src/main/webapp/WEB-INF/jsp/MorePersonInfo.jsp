@@ -35,28 +35,28 @@
 							</div>
 						</div>
 						<div class="user_name_Level">
-							<p class="user_name" title="山的那边是海">山的那边是海</p>
+							<p class="user_name" title="${loginedUser.name }">${loginedUser.name }</p>
 							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
 						</div>
 					</div>
 					<div class="userInfo_bar">
 						<span>资料完成度</span>
 						<span class="userInfo_process_bar"><em class="active_bar" style="width: 40px;"> 20%</em></span>
-						<a href="ger_xinx.html" target="_blank">完善</a>
+						<a href="toPersonmessage" target="_blank">完善</a>
 					</div>
 					<div class="myGome_accountSecurity">
 						<span class="fl_ee" style="margin-top:2px;">账户安全 <em class="myGome_account_level"> 低</em> </span>
 						<div class="verifiBox fl_ee">
 							<div class="shab_1">
 								<span class="myGome_mobile" val="mobile"> <em class=" myGome_onActive "></em> </span> 
-								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>182****0710</span> <a href="zhangh_anq.html" target="_blank">管理</a></p>
+								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>182****0710</span> <a href="toSecurity" target="_blank">管理</a></p>
 							</div>
 							<div class="shab_1">
 								<span class="myGome_email" val="email"> <em class=""></em> </span>
-								<p class="myGome_verifiPop"> <span>您还未绑定邮箱 </span><a href="zhangh_anq.html" target="_blank">立即绑定</a></p>
+								<p class="myGome_verifiPop"> <span>您还未绑定邮箱 </span><a href="toSecurity" target="_blank">立即绑定</a></p>
 							</div>
 						</div>
-						<a class="fl_ee" href="zhangh_anq.html" target="_blank" style="margin-top:2px;">提升</a>
+						<a class="fl_ee" href="toSecurity" target="_blank" style="margin-top:2px;">提升</a>
 					</div>
 					<div class="user_counts">
 						<ul>
@@ -114,8 +114,8 @@
 					<div class="diy_top">
 						<ul>
 							<h3>账户设置</h3>
-							<li><a href="ger_xinx.html">基本资料</a></li>
-							<li><a href="zhangh_anq.html">账户安全</a></li>
+							<li><a href="toPersonmessage">基本资料</a></li>
+							<li><a href="toSecurity">账户安全</a></li>
 							<li><a href="shouh_diz.html">收货地址</a></li>
 						</ul>
 					</div>
@@ -126,9 +126,9 @@
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
-							<li><a href="ger_xinx.html">个人信息</a></li>
+							<li class="dangq_hongx"><a href="toPersonmessage">个人信息</a></li>
 							<li><a href="shez_toux.html">设置头像</a></li>
-							<li class="dangq_hongx"><a href="gengd_ger_xinx.html">更多个人信息</a></li>
+							<li><a href="toMoreInformation">更多个人信息</a></li>
 						</ul>
 					</div>
 					<div class="wd">
@@ -137,11 +137,12 @@
                             <div class="item_meic">
                                 <span class="label_meic">婚姻状况：</span>
                                 <div class="fl_e"> 
-                                	<input type="radio" name="sex" class="jdradio" value="0">
+                                	<input type="hidden" id="marrayInformation"  value="${loginedUser.marry }" />
+                                	<input type="radio" name="marry" id="notmarry" class="jdradio" value="未婚">
                                     <label class="mr10">未婚</label>
-                                    <input type="radio" name="sex" class="jdradio" value="0">
+                                    <input type="radio" name="marry" id="married" class="jdradio" value="已婚">
                                     <label class="mr10">已婚</label>
-                                    <input type="radio" name="sex" class="jdradio" value="0">
+                                    <input type="radio" name="marry" id="unknow" class="jdradio" value="保密">
                                     <label class="mr10">保密</label>
                                 </div>
                             </div>

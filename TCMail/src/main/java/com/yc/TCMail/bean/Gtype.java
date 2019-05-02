@@ -10,9 +10,9 @@ public class Gtype {
 	private Integer id;
 	private Integer name;
 	private Integer pid;
-	private Set<Goods> goods;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
 	public Integer getId() {
 		return id;
@@ -34,12 +34,4 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
-	@OneToMany(mappedBy="type",cascade= {CascadeType.REMOVE})
-	public Set<Goods> getGoods() {
-		return goods;
-	}
-	public void setGoods(Set<Goods> goods) {
-		this.goods = goods;
-	}
-	
 }

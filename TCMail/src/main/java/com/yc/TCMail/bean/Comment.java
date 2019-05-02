@@ -14,10 +14,10 @@ public class Comment {
 	private Integer satisf;
 	private String see;
 	private String msg;
+	private String commenttime;
 	private String img;
-	private User user;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -81,20 +81,20 @@ public class Comment {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 	@Column(name="see",length=10)
 	public String getSee() {
 		return see;
 	}
 	public void setSee(String see) {
 		this.see = see;
+	}
+	@Column(name="commenttime",length=20)
+	public String getCommenttime() {
+		return commenttime;
+	}
+	public void setCommenttime(String commenttime) {
+		this.commenttime = commenttime;
 	}
 	
 }

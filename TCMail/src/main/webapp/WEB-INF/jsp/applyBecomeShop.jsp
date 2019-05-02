@@ -30,10 +30,10 @@
 	<div class="ger_zhuc_beij">
 		<div class="ger_zhuc_biaot">
 			<ul>
-				<li><a href="zhuc.html">个人注册</a></li>
+				<li><a href="toregister">个人注册</a></li>
 				<i>丨</i>
-				<li class="ger_border_color"><a href="shenq_ruz.html">申请入驻</a></li>
-				<p>我已经入驻，现在就<a class="ftx-05 ml10" href="dengl.html">登录</a></p>
+				<li class="ger_border_color"><a href="toapplybecomeshop">申请入驻</a></li>
+				<p>我已经入驻，现在就<a class="ftx-05 ml10" href="tologin">登录</a></p>
 			</ul>
 		</div>
 		<div class="zhuc_biaod zhuc_biaod_liuy">
@@ -41,7 +41,7 @@
 				<h2>联系人信息</h2>
 			     <div class="messlist">
 			      <label><em>*</em> 联系人姓名</label>
-			      <input type="text" placeholder="姓名" />
+			      <input type="text" placeholder="姓名"  />
 			      <div class="clears"></div>
 			     </div>
 			     <div class="messlist"> 

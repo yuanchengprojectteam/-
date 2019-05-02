@@ -11,11 +11,9 @@ public class Car {
 	private Integer id;
 	private Integer gid;
 	private Integer uid;
-	private Set<Goods> goods;
-	private Goods good;
-	private User user;
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
 	public Integer getId() {
 		return id;
@@ -37,32 +35,5 @@ public class Car {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-	@OneToMany(mappedBy="car",cascade= {CascadeType.REMOVE})
-	public Set<Goods> getGoods() {
-		return goods;
-	}
-	
-	
-	public void setGoods(Set<Goods> goods) {
-		this.goods = goods;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-	@OneToOne
-	@JoinColumn(name="id")
-	public Goods getGood() {
-		return good;
-	}
-	public void setGood(Goods good) {
-		this.good = good;
-	}
-	
 	
 }

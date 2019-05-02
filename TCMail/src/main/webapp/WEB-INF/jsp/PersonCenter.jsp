@@ -33,14 +33,14 @@
 							</div>
 						</div>
 						<div class="user_name_Level">
-							<p class="user_name" title="山的那边是海">山的那边是海</p>
+							<p class="user_name" title="${loginedUser.name }">${loginedUser.name }</p>
 							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
 						</div>
 					</div>
 					<div class="userInfo_bar">
 						<span>资料完成度</span>
 						<span class="userInfo_process_bar"><em class="active_bar" style="width: 40px;"> 20%</em></span>
-						<a href="ger_xinx.html" target="_blank">完善</a>
+						<a href="toPersonmessage" target="_blank">完善</a>
 					</div>
 					<div class="myGome_accountSecurity">
 						<span class="fl_ee" style="margin-top:2px;">账户安全 <em class="myGome_account_level"> 低</em> </span>
@@ -112,7 +112,7 @@
 					<div class="diy_top">
 						<ul>
 							<h3>账户设置</h3>
-							<li><a href="ger_xinx.html">基本资料</a></li>
+							<li><a href="toPersonmessage">基本资料</a></li>
 							<li><a href="zhangh_anq.html">账户安全</a></li>
 							<li><a href="shouh_diz.html">收货地址</a></li>
 						</ul>
