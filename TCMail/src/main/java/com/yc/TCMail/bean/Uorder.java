@@ -11,12 +11,25 @@ public class Uorder {
 	private Integer uid;
 	private Integer aid;
 	private String paytype;
-	
+	private String  visiable;
 	private String paystatu;
 	private String orderstatu;
 	private String tcomp;
 	private String ordertime;
 	
+	/**
+	 * @return the visiable
+	 */
+	@Column(name="visiable",length=20)
+	public String getVisiable() {
+		return visiable;
+	}
+	/**
+	 * @param visiable the visiable to set
+	 */
+	public void setVisiable(String visiable) {
+		this.visiable = visiable;
+	}
 	/*private User user;
 	private Address addr;*/
 	//private Goods goods;
@@ -109,19 +122,23 @@ public class Uorder {
 	public void setAid(Integer aid) {
 		this.aid = aid;
 	}
+	@Column(name="ordertime",length=50)
 	public String getOrdertime() {
 		return ordertime;
 	}
 	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Uorder [id=" + id + ", uid=" + uid + ", aid=" + aid + ", paytype=" + paytype + ", paystatu=" + paystatu
-				+ ", orderstatu=" + orderstatu + ", tcomp=" + tcomp + ", ordertime=" + ordertime + ", details="
-				+ details + "]";
-
+		return "Uorder [id=" + id + ", uid=" + uid + ", aid=" + aid + ", paytype=" + paytype + ", visiable=" + visiable
+				+ ", paystatu=" + paystatu + ", orderstatu=" + orderstatu + ", tcomp=" + tcomp + ", ordertime="
+				+ ordertime + ", details=" + details + "]";
 	}
+	
 	
 	
 	

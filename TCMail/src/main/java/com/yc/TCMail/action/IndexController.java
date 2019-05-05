@@ -1,17 +1,31 @@
 package com.yc.TCMail.action;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 
 @Controller
 public class IndexController {
+	
+	@Resource
+	private  GTypeBiz  gbiz;
+	
+	@ModelAttribute
+	public  void init(Model model){
+		List<Gtype> list= gbiz.AllType();	
+		model.addAttribute("types", list);
+	}
 	@RequestMapping("index")
 	public String go() {
 		return "index";

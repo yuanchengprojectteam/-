@@ -22,7 +22,34 @@ public class User {
 	private String job;
 	private String edu;
 	private String regtime;
-
+	private Integer  familynum;
+	/**
+	 * @return the familynum
+	 */
+	@Column(name="familynum",length=10)
+	public Integer getFamilynum() {
+		return familynum;
+	}
+	/**
+	 * @param familynum the familynum to set
+	 */
+	public void setFamilynum(Integer familynum) {
+		this.familynum = familynum;
+	}
+	/**
+	 * @return the income
+	 */
+	@Column(name="income",length=20)
+	public String getIncome() {
+		return income;
+	}
+	/**
+	 * @param income the income to set
+	 */
+	public void setIncome(String income) {
+		this.income = income;
+	}
+	private  String  income;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -125,19 +152,24 @@ public class User {
 	public void setEdu(String edu) {
 		this.edu = edu;
 	}
+	@Column(name="regtime",length=20)
 	public String getRegtime() {
 		return regtime;
 	}
 	public void setRegtime(String regtime) {
 		this.regtime = regtime;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", account=" + account + ", realname=" + realname + ", sex=" + sex
 				+ ", age=" + age + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + ", marry=" + marry
 				+ ", image=" + image + ", type=" + type + ", job=" + job + ", edu=" + edu + ", regtime=" + regtime
-				+ "]";
+				+ ", familynum=" + familynum + ", income=" + income + "]";
 	}
+	
 
 	
 }

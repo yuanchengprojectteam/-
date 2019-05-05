@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	//判断有没有用户列表数据，如果没有这跳转到user.s?op=query
+	/* if(request.getAttribute("types")==null){
+		
+		request.getRequestDispatcher("selectAll").forward(request, response);
+	} */
+	
+%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -176,34 +185,34 @@
                             <div class="item_meic">
                                 <span class="label_meic">学历：</span>
                                 <div class="fl_e">
-                                     <select class="form_select">                            
-		                            	<option>请选择</option>
-		                            	<option>初中及以下</option>
-		                            	<option>高中</option>
-		                            	<option>专科</option>
-		                            	<option>本科</option>
-		                            	<option>研究生及以上</option> 
+                                     <select class="form_select" id="edu">                            
+		                            	<option id="uknow"  value="uknow">请选择</option>
+		                            	<option id="junior" value="junior">初中及以下</option>
+		                            	<option id="senior" value="senior">高中</option>
+		                            	<option id="specialist" value="specialist">专科</option>
+		                            	<option id="bachelor" value="bachelor">本科</option>
+		                            	<option id="master" value="master">研究生及以上</option> 
 	                            	</select>
                                 </div>
                             </div>
                             <div class="item_meic">
                                 <span class="label_meic">职业：</span>
                                 <div class="fl_e">
-                                     <select class="form_select select_work">
-	                                     <option>请选择</option>
-	                                     <option>企业雇主/企业经营者</option>
-	                                     <option>高级行政人员(总裁、总经理、董事等)</option>
-	                                     <option>中层管理人员(总监、经理、主任等)</option>
-	                                     <option>专业人士(律师、工程师、医生、教师等)</option>
-	                                     <option>办公人员(一般文员、业务、办事员等)</option>
-	                                     <option>工人/蓝领</option>
-	                                     <option>公务员/事业单位员工</option>
-	                                     <option>自由职业者</option>
-	                                     <option>军人</option>
-	                                     <option>学生</option>
-	                                     <option>退休</option>
-	                                     <option>家庭主妇</option>
-	                                     <option>其他</option>
+                                     <select class="form_select select_work" id="job">
+	                                     <option  value="uknow">请选择</option>
+	                                     <option value="企业雇主/企业经营者">企业雇主/企业经营者</option>
+	                                     <option value="高级行政人员(总裁、总经理、董事等)">高级行政人员(总裁、总经理、董事等)</option>
+	                                     <option value="中层管理人员(总监、经理、主任等)">中层管理人员(总监、经理、主任等)</option>
+	                                     <option value="专业人士(律师、工程师、医生、教师等)">专业人士(律师、工程师、医生、教师等)</option>
+	                                     <option value="办公人员(一般文员、业务、办事员等)">办公人员(一般文员、业务、办事员等)</option>
+	                                     <option value="工人/蓝领">工人/蓝领</option>
+	                                     <option value="公务员/事业单位员工">公务员/事业单位员工</option>
+	                                     <option value="自由职业者">自由职业者</option>
+	                                     <option value="军人">军人</option>
+	                                     <option value="学生">学生</option>
+	                                     <option value="退休">退休</option>
+	                                     <option value="家庭主妇">家庭主妇</option>
+	                                     <option value="其他">其他</option>
                                      </select>
                                 </div>
                             </div>
@@ -211,16 +220,9 @@
                                 <span class="label_meic">关注的商品：</span>
                                 <div class="fl_e">
                                      <ul class="form-ul" id="dddv">
-	                                     <li>电视/影音</li>
-	                                     <li>冰箱/洗衣机/空调</li>
-	                                     <li>美食/美景/周边游</li>
-	                                     <li>丽人</li>
-	                                     <li>酒店</li>
-	                                     <li>医疗</li>
-	                                     <li>培训学校</li>
-	                                     <li>娱乐/棋牌</li>
-	                                     <li>中医养生</li>
-	                                     <li>酒吧/KTV</li>
+	                                     <c:forEach items="${types}" varStatus="t" var="t">
+									      <li>${t.name}</li>
+										 </c:forEach>
                                      </ul>
                                 </div>
                             </div>
@@ -238,6 +240,18 @@
 	</div>
 </div>
  <script type="text/javascript">
+	 var marryvalue=document.getElementById("marrayInformation").value;
+	 if(""==marryvalue){
+	 	document.getElementById("unknow").checked=true;
+	 }else if("未婚"== marryvalue){
+	 	document.getElementById("notmarry").checked=true;
+	 }else if("已婚" == sexvalue){
+	 	document.getElementById("married").checked=true;
+	 }else{
+	 	document.getElementById("unknow").checked=true;
+	 }
+
+ 
 	$(document).ready(function(){
 	  $("#dddv li").click(function(){
 	   if( $(this).hasClass("active")){
@@ -246,6 +260,22 @@
 
 	  });
 	});
-
+	
+	$(function(){
+		if(${loginedUser.edu} == null){
+			$("#edu option[value=uknow]").attr("selected", true);
+		}else{
+			$("#edu option[value="${loginedUser.edu}"]").attr("selected", true);//根据value选中
+		}
+	 	  
+	 })
+	 $(function(){
+		if(${loginedUser.job} == null){
+			$("#job option[value=uknow]").attr("selected", true);
+		}else{
+			$("#job option[value="${loginedUser.job}"]").attr("selected", true);//根据value选中
+		}
+	 	  
+	 })
 </script>
 <%@ include file="AfterFoot.jsp"%>

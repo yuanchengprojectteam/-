@@ -167,7 +167,7 @@
                                     <label class="mr10" id="man">男</label>
                                     <input type="radio" name="sex" id="woman"  class="jdradio" value="女">
                                     <label class="mr10">女</label>
-                                    <input type="radio" name="sex" id="unknow" class="jdradio" value="0">
+                                    <input type="radio" name="sex" id="unknow" class="jdradio" value="保密">
                                     <label class="mr10">保密</label>
                                 </div>
                             </div>
@@ -226,12 +226,6 @@ $(function(){
 	})
 	
 })
-	
-	var sexvalue=$("#sex:checked").val();
-	alert($("man").checked());
-	if("男"==sexvalue){
-		
-	}
 
 </script>
 <%@ include file="AfterFoot.jsp"%>
