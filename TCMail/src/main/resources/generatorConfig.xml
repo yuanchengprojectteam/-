@@ -22,6 +22,9 @@
 			targetPackage="com.yc.TCMail.dao" targetProject="src/main/java">
 		</javaClientGenerator>
 
+		<table tableName="totalreason">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
 		<table tableName="car">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>

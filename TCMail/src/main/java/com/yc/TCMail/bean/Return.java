@@ -11,7 +11,36 @@ public class Return {
 	private Integer money;
 	private String date;
 	private String statu;
+	private  String  descr;
+	private  String  rimage;
+	
 
+	/**
+	 * @return the descr
+	 */
+	@Column(name="descr",length=50)
+	public String getDescr() {
+		return descr;
+	}
+	/**
+	 * @param descr the descr to set
+	 */
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
+	/**
+	 * @return the rimage
+	 */
+	@Column(name="rimage",length=50)
+	public String getRimage() {
+		return rimage;
+	}
+	/**
+	 * @param rimage the rimage to set
+	 */
+	public void setRimage(String rimage) {
+		this.rimage = rimage;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)

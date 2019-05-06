@@ -9,9 +9,9 @@ public class Address {
 	private Integer uid;
 	private String name;
 	private String phone;
-	private String addr;
+	private String recvaddr;
 	private String level;
-	
+	private  String  detailaddr;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -43,23 +43,38 @@ public class Address {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Column(name="addr",length=50)
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	
+	@Column(name="level",length=20)
 	public String getLevel() {
 		return level;
 	}
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	
+	
+	@Column(name="recvaddr",length=50)
+	public String getRecvaddr() {
+		return recvaddr;
+	}
+
+	public void setRecvaddr(String recvaddr) {
+		this.recvaddr = recvaddr;
+	}
+
+	
+	@Column(name="detailaddr",length=50)
+	public String getDetailaddr() {
+		return detailaddr;
+	}
+	
+	
+	public void setDetailaddr(String detailaddr) {
+		this.detailaddr = detailaddr;
+	}
+	
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", uid=" + uid + ", name=" + name + ", phone=" + phone + ", addr=" + addr
+		return "detailaddress [id=" + id + ", uid=" + uid + ", name=" + name + ", phone=" + phone + ", detailaddr=" + detailaddr
 				+ ", level=" + level + "]";
 
 	}

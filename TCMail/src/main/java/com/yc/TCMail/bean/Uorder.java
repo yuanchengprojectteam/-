@@ -16,7 +16,35 @@ public class Uorder {
 	private String orderstatu;
 	private String tcomp;
 	private String ordertime;
+	private  String  recivetime;
+	private  Double totalprice;
 	
+	/**
+	 * @return the totalprice
+	 */
+	@Column(name="totalprice",length=50)
+	public Double getTotalprice() {
+		return totalprice;
+	}
+	/**
+	 * @param totalprice the totalprice to set
+	 */
+	public void setTotalprice(Double totalprice) {
+		this.totalprice = totalprice;
+	}
+	/**
+	 * @return the recivetime
+	 */
+	@Column(name="recivetime",length=50)
+	public String getRecivetime() {
+		return recivetime;
+	}
+	/**
+	 * @param recivetime the recivetime to set
+	 */
+	public void setRecivetime(String recivetime) {
+		this.recivetime = recivetime;
+	}
 	/**
 	 * @return the visiable
 	 */
@@ -132,12 +160,17 @@ public class Uorder {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Uorder [id=" + id + ", uid=" + uid + ", aid=" + aid + ", paytype=" + paytype + ", visiable=" + visiable
 				+ ", paystatu=" + paystatu + ", orderstatu=" + orderstatu + ", tcomp=" + tcomp + ", ordertime="
-				+ ordertime + ", details=" + details + "]";
+				+ ordertime + ", recivetime=" + recivetime + ", totalprice=" + totalprice + ", details=" + details
+				+ "]";
 	}
+	
 	
 	
 	

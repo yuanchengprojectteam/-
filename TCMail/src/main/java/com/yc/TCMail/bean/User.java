@@ -23,29 +23,26 @@ public class User {
 	private String edu;
 	private String regtime;
 	private Integer  familynum;
-	/**
-	 * @return the familynum
-	 */
+	private  String  FavTypeId;
+	
+	@Column(name="favtypeid",length=50)
+	public String getFavTypeId() {
+		return FavTypeId;
+	}
+	public void setFavTypeId(String favTypeId) {
+		FavTypeId = favTypeId;
+	}
 	@Column(name="familynum",length=10)
 	public Integer getFamilynum() {
 		return familynum;
 	}
-	/**
-	 * @param familynum the familynum to set
-	 */
 	public void setFamilynum(Integer familynum) {
 		this.familynum = familynum;
 	}
-	/**
-	 * @return the income
-	 */
 	@Column(name="income",length=20)
 	public String getIncome() {
 		return income;
 	}
-	/**
-	 * @param income the income to set
-	 */
 	public void setIncome(String income) {
 		this.income = income;
 	}
@@ -159,17 +156,14 @@ public class User {
 	public void setRegtime(String regtime) {
 		this.regtime = regtime;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", account=" + account + ", realname=" + realname + ", sex=" + sex
 				+ ", age=" + age + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + ", marry=" + marry
 				+ ", image=" + image + ", type=" + type + ", job=" + job + ", edu=" + edu + ", regtime=" + regtime
-				+ ", familynum=" + familynum + ", income=" + income + "]";
+				+ ", familynum=" + familynum + ", FavTypeId=" + FavTypeId + ", income=" + income + "]";
 	}
 	
-
+	
 	
 }
