@@ -71,7 +71,7 @@ public class AliOSSUtil {
                 client.shutdown();
             }
         }
-        return null;
+        return "http://"+bucketName+"."+endpoint+"/"+fileHost + "/" + (type + "/"  + file.getName());
     }
 }
 

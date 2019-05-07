@@ -24,6 +24,7 @@ public class TcMailApplication extends  SpringBootServletInitializer{
 		SpringApplication.run(TcMailApplication.class, args);
 	}
 	
+	
 /*	配置mybatis的分页插件pageHelper
     @Bean
     public PageHelper pageHelper(){
