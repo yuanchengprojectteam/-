@@ -3,16 +3,8 @@ package com.yc.TCMail.util;
 
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.spi.LoggerContextFactory;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
@@ -23,9 +15,9 @@ import com.aliyun.oss.model.PutObjectResult;
 
 
 @Component
-public class AliOSSUtil {
+public class AliOssBaseUtil {
   
-    private  final static org.slf4j.Logger logger = LoggerFactory.getLogger(AliOSSUtil.class);
+    private  final static org.slf4j.Logger logger = LoggerFactory.getLogger(AliOssBaseUtil.class);
 
     //** 上传文件*//*
     public   String upLoad(File file,int ty){
