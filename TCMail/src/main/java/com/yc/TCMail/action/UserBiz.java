@@ -120,5 +120,14 @@ public class UserBiz {
 		return  uim.selectByPrimaryKey(id);
 		
 	}
+
+	public void updatePhone(String phone, int id) {
+		UserExample example=new UserExample();
+		User  u=new User();
+		u.setPhone(phone);
+		example.createCriteria()
+			.andIdEqualTo(id);
+		uim.updateByExampleSelective(u, example);
+	}
 	
 }

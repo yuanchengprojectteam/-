@@ -113,6 +113,11 @@ public class UserAction {
 			}
 		
 	}
+	@RequestMapping(path="PhoneUpdate",produces="text/html;charset=utf-8")
+	public void  updatePhone(String  phone,int id,HttpServletResponse response) throws IOException {
+		uBiz.updatePhone(phone,id);
+		response.getWriter().write("yes".toCharArray());
+	}
 	@RequestMapping("checkAccount")
 	public  void  checkAccount(String  account ,HttpServletResponse response) throws BizException, IOException {
 		response.setCharacterEncoding("UTF-8");

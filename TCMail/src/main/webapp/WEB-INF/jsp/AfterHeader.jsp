@@ -44,7 +44,7 @@
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" href="shenq_ruz.html">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
 			<li class="shu"></li>
