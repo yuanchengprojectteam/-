@@ -63,8 +63,14 @@ public class IndexController {
 	public String  toMoreInformation() {
 		return  "MorePersonInfo";
 	}
+
 	@GetMapping("header")
 	public String setHeader(){
 		return "SetHeaderImage";
+	}
+	
+	@RequestMapping("updatephone")
+	public String  updatephone() {
+		return "alterPhoneNumber";
 	}
 }

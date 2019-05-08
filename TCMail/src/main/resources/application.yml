@@ -7,6 +7,7 @@ spring:
     password: a
   session:
     store-type: none
+    
     #    文件上传配置
   resources: 
     staticLocations:

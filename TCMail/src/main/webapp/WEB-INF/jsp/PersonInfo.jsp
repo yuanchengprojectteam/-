@@ -52,7 +52,11 @@
 						<div class="verifiBox fl_ee">
 							<div class="shab_1">
 								<span class="myGome_mobile" val="mobile"> <em class=" myGome_onActive "></em> </span> 
-								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>182****0710</span> <a href="toSecurity" target="_blank">管理</a></p>
+								<p class="myGome_verifiPop">
+							
+								 <span>您已绑定手机：</span>
+							
+								 <span>${loginedUser.phone }</span> <a href="toSecurity" target="_blank">管理</a></p>
 							</div>
 							<div class="shab_1">
 								<span class="myGome_email" val="email"> <em class=""></em> </span>

@@ -44,7 +44,7 @@
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" href="shenq_ruz.html">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
 			<li class="shu"></li>
@@ -86,7 +86,7 @@
 						<div class="zhangh_dt"><span>账号设置</span><i>◇</i></div>
 						<div class="zhangh_dd">
 							<a href="toPersonmessage">个人信息</a>
-							<a href="zhangh_anq.html">账户安全</a>
+							<a href="toSecurity">账户安全</a>
 							<a href="shouh_diz.html">收货地址</a>
 						</div>
 					</div> 

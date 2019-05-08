@@ -35,28 +35,28 @@
 							</div>
 						</div>
 						<div class="user_name_Level">
-							<p class="user_name" title="山的那边是海">山的那边是海</p>
+							<p class="user_name" title="${loginedUser.name }">${loginedUser.name }</p>
 							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
 						</div>
 					</div>
 					<div class="userInfo_bar">
 						<span>资料完成度</span>
 						<span class="userInfo_process_bar"><em class="active_bar" style="width: 40px;"> 20%</em></span>
-						<a href="ger_xinx.html" target="_blank">完善</a>
+						<a href="toPersonmessage" target="_blank">完善</a>
 					</div>
 					<div class="myGome_accountSecurity">
 						<span class="fl_ee" style="margin-top:2px;">账户安全 <em class="myGome_account_level"> 低</em> </span>
 						<div class="verifiBox fl_ee">
 							<div class="shab_1">
 								<span class="myGome_mobile" val="mobile"> <em class=" myGome_onActive "></em> </span> 
-								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>182****0710</span> <a href="zhangh_anq.html" target="_blank">管理</a></p>
+								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>${loginedUser.phone }</span> <a href="toSecurity"  target="_blank">管理</a></p>
 							</div>
 							<div class="shab_1">
 								<span class="myGome_email" val="email"> <em class=""></em> </span>
 								<p class="myGome_verifiPop"> <span>您还未绑定邮箱 </span><a href="zhangh_anq.html" target="_blank">立即绑定</a></p>
 							</div>
 						</div>
-						<a class="fl_ee" href="zhangh_anq.html" target="_blank" style="margin-top:2px;">提升</a>
+						<a class="fl_ee" href="toSecurity" target="_blank" style="margin-top:2px;">提升</a>
 					</div>
 					<div class="user_counts">
 						<ul>
@@ -114,8 +114,8 @@
 					<div class="diy_top">
 						<ul>
 							<h3>账户设置</h3>
-							<li><a href="ger_xinx.html">基本资料</a></li>
-							<li><a href="zhangh_anq.html">账户安全</a></li>
+							<li><a href="toPersonmessage">基本资料</a></li>
+							<li><a href="toSecurity">账户安全</a></li>
 							<li><a href="shouh_diz.html">收货地址</a></li>
 						</ul>
 					</div>
@@ -125,34 +125,29 @@
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
 					<div class="shand_piaot">修改手机验证</div>
-					<div class="stepflex">
-					 	<dl class="normal doing">
+					<div class="stepflex1">
+					 	<dl class="normal doing" id="1">
                             <dt class="s-num">1</dt>
-                            <dd class="s-text">验证身份<s></s><b></b></dd>
-                        </dl> 
-					 	<dl class="normal ">
-                            <dt class="s-num">2</dt>
                             <dd class="s-text">修改号码<s></s><b></b></dd>
                         </dl> 
-					 	<dl class="normal ">
-                            <dt class="s-num">3</dt>
+					 	<dl class="normal " id="2">
+                            <dt class="s-num">2</dt>
                             <dd class="s-text">完成<s></s><b></b></dd>
                         </dl>
 					</div>
 					<div class="savebox">
 						<p>
 							<span class="letit">手机号码：</span>
-							<span class="hideMobile">182****0710</span>
-							<span class="ml20">若当前号码无效或无法接收验证码，请拨打客服电话：400-6677-937</span>
+							<span class="hideMobile"><input class="itxt" id="phone" name="phone" type="text"></span>
 						</p>
 						<p>
 							<span class="letit">填写手机验证码：</span>
 							<span class="hideMobile"><input class="itxt" id="authCode" type="text"></span>
-							<span><a href="#" class="btn_10"><s></s>获取短信校验码</a></span>
+							<span><a href="#" class="btn_10" onclick="send()"><s></s>获取短信校验码</a></span>
 						</p>
 						<p>
 							<span class="letit"></span>
-							<span class="hideMobile"><a href="#" class="xiay_b">下一步</a></span> 
+							<span class="hideMobile"><a href="#" class="xiay_b" onclick="updatePhone()">确认修改</a></span> 
 						</p>
 					</div>
 				</div>
@@ -162,3 +157,42 @@
 	</div>
 </div> 
 <%@ include file="AfterFoot.jsp"%>
+</body>
+<script type="text/javascript">
+var  code='';
+function  send(){
+	code='';
+	 var str = document.getElementById('phone').value.trim(); 
+	 for(var i=0;i<4;i++){
+	    code+=Math.floor(Math.random()*10);
+	 }
+	 $.ajax({
+		 url:"send", 					//url地址
+		 data:"code="+code+"&phone="+str,   			 // 将uname=张三传递给后台
+		 method:"post",   				 //传输方式，get / post
+		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据	 	 
+	    }
+	 });
+	
+}
+function  updatePhone(){
+	var recode=document.getElementById("authCode").value.trim();
+	var str = document.getElementById('phone').value.trim(); 
+	if(recode != code){
+		alert("验证码输入错误");
+	}else{
+		$.ajax({
+			 url:"PhoneUpdate", 					//url地址
+			 data:"phone="+str+"&id="+${loginedUser.id},   			 // 将uname=张三传递给后台
+			 method:"post",   				 //传输方式，get / post
+			 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据	 	 
+				 $('#1').removeClass("normal doing").addClass("normal ");
+		    	$('#2').removeClass("normal ").addClass("normal doing");
+			 }
+		 });
+	}
+	code='';
+}
+
+</script>
+</html>

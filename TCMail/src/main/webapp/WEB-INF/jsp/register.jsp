@@ -284,6 +284,7 @@
     }
     var  code='';
     function  send(){
+    	code='';
    	 var str = document.getElementById('phone').value.trim(); 
    	 for(var i=0;i<4;i++){
    	    code+=Math.floor(Math.random()*10);

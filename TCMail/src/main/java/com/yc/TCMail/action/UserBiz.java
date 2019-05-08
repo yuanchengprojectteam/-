@@ -103,5 +103,31 @@ public class UserBiz {
 		  return   uim.selectByPrimaryKey(Integer.valueOf(id));
 		
 	}
+
+	public User updateUserMore(int id, String marrayInformation,String familynum, String income, String edu, String job, String fav) {
+		UserExample  example=new UserExample();
+		User u=new User();
+		u.setMarry(marrayInformation);
+		u.setIncome(income);
+		u.setEdu(edu);
+		u.setJob(job);
+		u.setFavtypeid(fav);
+		u.setFamilynum(Integer.valueOf(familynum));
+		
+		example.createCriteria()
+			.andIdEqualTo(id);
+		uim.updateByExampleSelective(u, example);
+		return  uim.selectByPrimaryKey(id);
+		
+	}
+
+	public void updatePhone(String phone, int id) {
+		UserExample example=new UserExample();
+		User  u=new User();
+		u.setPhone(phone);
+		example.createCriteria()
+			.andIdEqualTo(id);
+		uim.updateByExampleSelective(u, example);
+	}
 	
 }

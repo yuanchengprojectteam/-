@@ -5864,6 +5864,20 @@ text-align: center;
     top: -5px;
     border-top: 5px solid #ccc;
 }
+.stepflex1 {
+    border-top: 5px solid #ccc;
+    text-align: center;
+    margin:80px auto 50px;
+    width: 500px; 
+
+}
+.stepflex1 dl {
+    float: left;
+    position: relative;
+    width:250px;
+    top: -5px;
+    border-top: 5px solid #ccc;
+}
 
 .s-num {
     position: relative;
@@ -6578,6 +6592,30 @@ input.search-btn {
     color: #7abd54;
 }
 .stepflex .s-text {
+    color: #a5a5a5;
+}
+.stepflex_2{
+    width: 486px;
+    float: right;
+    margin: 50px 0 0 0;
+}
+
+.stepflex1_2 dl{
+    width: 162px;
+}
+.stepflex1_2 dl.done {
+    border-top-color: #caecb6;
+}
+.stepflex1_2 dl.done .s-text {
+    color: #caecb6;
+}
+.stepflex1_2 dl.done .s-num {
+    background-position: -46px 0;
+}
+.stepflex1 dl.doing .s-text {
+    color: #7abd54;
+}
+.stepflex1 .s-text {
     color: #a5a5a5;
 }
 

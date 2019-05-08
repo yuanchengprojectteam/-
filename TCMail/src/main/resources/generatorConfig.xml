@@ -21,7 +21,11 @@
 		<javaClientGenerator type="XMLMAPPER"
 			targetPackage="com.yc.TCMail.dao" targetProject="src/main/java">
 		</javaClientGenerator>
+<<<<<<< HEAD
+		
+=======
 
+>>>>>>> refs/remotes/origin/master
 		<table tableName="totalreason">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
@@ -64,6 +68,10 @@
 		<table tableName="user">
 			<generatedKey column="id" sqlStatement="mysql" />
 		</table>
+		<table tableName="totalreason">
+			<generatedKey column="id" sqlStatement="mysql" />
+		</table>
+		
 
 	</context>
 </generatorConfiguration>

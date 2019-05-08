@@ -2,10 +2,12 @@ package com.yc.TCMail.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +32,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSException;
 import com.yc.TCMail.action.BizException;
+import com.yc.TCMail.action.GTypeBiz;
 import com.yc.TCMail.action.UserBiz;
+import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HbUtil;
@@ -50,11 +54,24 @@ public class UserAction {
 	HbUtil hb;
 
 	@Resource
-	private UserBiz uBiz;
+	private  UserBiz  uBiz;
+	
 	@Resource
-	private UserMapper uMapper;
-	private Cookie cookie1;
-	private Cookie cookie2;
+	private  GTypeBiz  gbiz;
+	
+
+	@Resource
+
+	private  UserMapper   uMapper;
+	private Cookie  cookie1;
+	private Cookie  cookie2;
+	
+	@ModelAttribute
+	public  void init(Model model){
+		List<Gtype> list= gbiz.AllType();	
+		model.addAttribute("types", list);
+	}
+	
 
 	@PostMapping("login")
 	public String Login(@ModelAttribute @Valid User u, Errors errors, Model model, String isRemerber,
@@ -167,4 +184,17 @@ public class UserAction {
 		uMapper.updateByPrimaryKey(u);
 		resp.getWriter().write(path);
 	}
-}
+	@RequestMapping("saveMoreInformation")
+	public  String  saveMoreInformation(int  id,String  marry,String familynum,String  income,String  edu,String  job, String[]  favorite,Model  model) {
+		String fav="";
+		for(String  s:favorite) {
+			fav=fav+s+",";
+		}
+		System.out.println("marrayInformation====="+marry);
+		User  user =	uBiz.updateUserMore(id,marry,familynum,income,edu,job,fav);
+		model.addAttribute("loginedUser",user);
+		return "MorePersonInfo";
+	}
+
+		}
+		
