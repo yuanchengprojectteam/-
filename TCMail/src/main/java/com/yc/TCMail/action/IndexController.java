@@ -62,4 +62,8 @@ public class IndexController {
 	public String  toMoreInformation() {
 		return  "MorePersonInfo";
 	}
+	@RequestMapping("updatephone")
+	public String  updatephone() {
+		return "alterPhoneNumber";
+	}
 }

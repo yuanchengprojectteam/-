@@ -1,16 +1,19 @@
 package com.yc.TCMail.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.eclipse.jdt.internal.compiler.env.IGenericField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +22,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yc.TCMail.action.BizException;
+import com.yc.TCMail.action.GTypeBiz;
 import com.yc.TCMail.action.UserBiz;
+import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HttpUtil;
@@ -37,10 +43,20 @@ public class UserAction {
 	
 	@Resource
 	private  UserBiz  uBiz;
+	
+	@Resource
+	private  GTypeBiz  gbiz;
+	
 	@Resource
 	private  UserMapper   uMapper;
 	private Cookie  cookie1;
 	private Cookie  cookie2;
+	
+	@ModelAttribute
+	public  void init(Model model){
+		List<Gtype> list= gbiz.AllType();	
+		model.addAttribute("types", list);
+	}
 	
 	@PostMapping("login")
 	public  String   Login(@ModelAttribute  @Valid  User u ,Errors errors , Model  model,String isRemerber,HttpServletRequest  request,HttpServletResponse response) {
@@ -119,11 +135,15 @@ public class UserAction {
 	@PostMapping("register")
 	public void   Register(String  account,String  pwd,String phone,HttpServletRequest request,HttpServletResponse  response) throws ServletException, IOException {
 		int result=uBiz.addUser(account,pwd,phone);
+		cookie1=new Cookie("name", account);
+		 cookie2=new Cookie("pwd", pwd);
+		 response.addCookie(cookie1);
+			response.addCookie(cookie2);
 		request.getRequestDispatcher("tologin").forward(request, response);
 	}
 	
 	@RequestMapping("saveUser")
-	public String   saveUser(String  id,String  realname,String  account,String  name,String sex,String  age,String email,Model  model,HttpServletResponse response) {
+	public String   saveUser(String  id,String  realname,String  account,String  name,String sex,String  age,String email,Model  model,HttpServletResponse response,HttpServletRequest request) {
 		System.out.println("===========sex:"+sex);	
 		String []  str=sex.split(",");
 		sex=str[0];
@@ -135,4 +155,17 @@ public class UserAction {
 				response.addCookie(cookie2);
 			return "PersonInfo";
 	}
-}
+	@RequestMapping("saveMoreInformation")
+	public  String  saveMoreInformation(int  id,String  marry,String familynum,String  income,String  edu,String  job, String[]  favorite,Model  model) {
+		String fav="";
+		for(String  s:favorite) {
+			fav=fav+s+",";
+		}
+		System.out.println("marrayInformation====="+marry);
+		User  user =	uBiz.updateUserMore(id,marry,familynum,income,edu,job,fav);
+		model.addAttribute("loginedUser",user);
+		return "MorePersonInfo";
+	}
+
+		}
+		
