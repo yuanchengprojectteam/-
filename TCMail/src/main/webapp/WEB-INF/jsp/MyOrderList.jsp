@@ -127,7 +127,9 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">我的订单</div>
+					<div class="shand_piaot">我的订单
+						<p class="dingd_huis_zhan" style="float: right;margin-right: 5%"><a href="#">订单回收站</a></p>
+					</div>
 					
 					<div class="tab_trigger tab_trigger_wod_dd">
 					 	<p class="attrK">实物订单：</p>
@@ -138,14 +140,8 @@
 							<li><a class="text_shaid" href="OrderDetail?tabCode=waitrate&orderstatu=待评价" id="waitrate">待评价</a><c:if test="${!empty waitrate}"><p class="sup">${waitrate}</p></c:if></li> 
 						</ul>
 					</div> 
-					
-					<div class="wod_dingd_shuaix">
-						<p class="dingd_huis_zhan" ><a href="toAddrManager">我的收获地址</a></p>
-                        <p class="dingd_huis_zhan" style="margin-left: 8%"><a href="#">我的优惠信息</a></p>
-					</div>
-					
+					<br>
 					<!--************************************-->
-					
 					<table class="order-tb order-tb_1">
 						<colgroup>
 							<col class="number-col">
@@ -156,50 +152,126 @@
 						</colgroup>
 						<thead>
 							<tr>
-								<th colspan="5">我的物流</th>
+								<th>我的订单</th>
+								<th>金额/支付类型</th>
+								<th>订单状态</th>
+								<th>收货人</th>
+								<th>操作</th> 
 							</tr>
 						</thead>
+						
+						
 						<c:forEach items="${OrderList}" var="temp">
-							<tbody>
-								<tr class="sep-row"><td colspan="4"></td></tr>
-								<tr class="tr-th">
-									<td colspan="5">
-										<span class="gap"></span>
-										<span class="dealtime span_30" title="2015-1-19 10:30:42">${temp.ordertime}</span>
-										
-									</td>
-								</tr>
-								<tr class="tr-bd">
-									<td rowspan="1" colspan="3">
-										<div class="goods-item">
-											<div class="p-img">
-												<a target="_blank" href="shangp_xiangq.html">
-													<img src="images/lieb_tupi1.jpg" alt="">
-												</a>
-											</div>
-											<div class="p-msg">
-												<div class="p-name" style="margin-left: 10px">
-													<a target="_blank" href="shangp_xiangq.html">${temp.orderstatu}</a>
-													<p class="yiwanc_hui" style="margin-top: 6px"> 
-													<a href="toDetail?orderid=${temp.id}" target="_blank" class="a-link">查看订单详情</a>
-													<br></p>
-												</div>
-											</div>
+						
+ 						<tbody>
+							<tr class="sep-row"><td colspan="3"></td></tr>
+							<tr class="tr-th">
+								<td colspan="5">
+									<span class="gap"></span>
+									<span class="dealtime span_30" title="2015-1-19 10:30:42">${temp.ordertime}</span>
+									<span class="number span_30">订单号：
+										<a href="#" target="_blank" >${temp.id}
+										</a>
+									</span>
+									<span class="wod_sc_delete_beij span_30"><a href="#" class="wod_dingd_delete"></a></span>
+									
+									
+								</td>
+							</tr>
+							
+							<tr class="tr-bd">
+								<td rowspan="1">
+								<c:forEach items="${temp.details}" var="item"> 
+									<div class="goods-item" >
+										<div class="p-img">
+											<a target="_blank" href="shangp_xiangq.html">
+												<img src="images/lieb_tupi1.jpg" alt="">
+											</a>
 										</div>
-									</td>
-									<td colspan="3">
+										<div class="p-msg">
+											<div class="p-name" >
+											<span class="span_30"><a href="shagnj_dianp.html">${item.goods.shop.name}</a></span><br>
+												<a target="_blank" href="shangp_xiangq.html">${item.goods.name} ${item.goods.size} ${item.goods.color} </a>
+												<c:choose>
+													<c:when test="${temp.orderstatu == '待评价'  || temp.orderstatu == '已评价'}">
+													<p class="yiwanc_hui"><a href="toApplyService?id=${item.id}">申请售后</a></p>
+													</c:when>
+													<c:when test="${temp.orderstatu == '待收货' }">
+													<p class="yiwanc_hui"><a href="toApplyService?id=${item.id}">退款/退货</a></p>
+													</c:when>
+													<c:otherwise>
+														<p class="yiwanc_hui"><a href="shengq_shouh.html">联系卖家</a></p>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											
+										</div>
+									</div>
+									<div class="goods-number" style="text-align: center;">X${item.num}</div>
+									</c:forEach>
+								
+									
+									
+								</td>
+								
+								
+								<td rowspan="1" >
+									<div class="zhif_jine" >
+										<p >总额￥${temp.totalprice}</p>
+										<span>${temp.paytype}</span>
+									</div>
+								</td>
+								<td rowspan="1">
+									<div class="operate">
+										<c:choose>
+											<c:when test="${temp.paystatu == '待支付'}">
+												<p class="yiwanc_hui" id="wait">${temp.paystatu}</p>
+											</c:when>
+											<c:otherwise><p class="yiwanc_hui" id="wait">${temp.orderstatu}</p></c:otherwise>
+										</c:choose>
+										
+										<a href="toDetail?orderid=${temp.id}" target="_blank" class="a-link" >订单详情</a><br> 
+									</div>
+								</td>
+								<td rowspan="1">
+									<div class="txt_ren" >
+										<span>${temp.addr.name}</span>
+										<p class="ren_tub"></p>
+									</div>
+								</td> 
+								<td rowspan="1">
+								<c:choose>
+									<c:when test="${temp.paystatu == '待支付'}">
 										<div class="operate">
-											<a href="javascript:void(0)" target="_blank" class="btn-def" id="${temp.id}" 
+										<a href="tij_dingd.html" target="_blank" class="btn-def">去付款</a>
+									</div>
+									</c:when>
+									<c:when test="${temp.orderstatu == '待评价' }">
+										<div class="operate">
+											<a href="tij_dingd.html" target="_blank" class="btn-def">评价晒单</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="operate">
+											<a href="javascript:void(0)" target="_blank" id="${temp.id}" class="btn-def"
 											onclick="receive(id)">确认收货</a>
 										</div>
-									</td>
-								</tr> 
-							</tbody>
- 						
+									</c:otherwise>
+										
+									</c:choose>
+									
+								</td>
+							</tr> 
+							
+						</tbody>
+						
 						</c:forEach> 
 					</table>
+						
+						
+					
 					<div class="gerzx_fany">
-						<a href="#" class="shangxy" >上一页</a>
+						<a href="#" class="shangxy">上一页</a>
 						<a href="#">1</a>
 						<a href="#" class="shangxy">上一页</a>
 					</div>
@@ -210,18 +282,14 @@
 	</div>
 </div> 
 <script type="text/javascript">
-
- 	/* $("#AllOrder").click(function(){
-		$.post("AllOrder",function(data){
-			$("#wait").html(data.orderstatu)
-		});
-	});
- 	$("#waitpay").click(function(){
-		$.post("waitpay",function(data){
-			$("#wait").html(data.orderstatu)
-		});
-	}); */
-	function receive(id){
+	/* function toDetail(){
+		var id = $("#orderid${temp.id}").val();
+		alert(id);
+		window.location.href = 'toDetail?orderid='+id+'';
+	}
+	
+ */
+ function receive(id){
 		if(confirm("请确认此操作!")){
 			$.post("receiveGoods?id="+id+"",function(data){
 				alert(data);
@@ -229,7 +297,7 @@
 			});
 		}
 	} 
-
+ 
 </script>
 
 
