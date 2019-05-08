@@ -1,5 +1,6 @@
 package com.yc.TCMail.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,120 +21,150 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
 import com.yc.TCMail.action.BizException;
 import com.yc.TCMail.action.UserBiz;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.UserMapper;
+import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
+import com.yc.TCMail.util.OssUtil;
 
 @Controller
 @SessionAttributes("loginedUser")
-
 public class UserAction {
 	@Autowired
-    private EntityManagerFactory emf;
-	
+	private EntityManagerFactory emf;
+
+	@Autowired
+	OssUtil oss;
+
+	@Autowired
+	HbUtil hb;
+
 	@Resource
-	private  UserBiz  uBiz;
+	private UserBiz uBiz;
 	@Resource
-	private  UserMapper   uMapper;
-	private Cookie  cookie1;
-	private Cookie  cookie2;
-	
+	private UserMapper uMapper;
+	private Cookie cookie1;
+	private Cookie cookie2;
+
 	@PostMapping("login")
-	public  String   Login(@ModelAttribute  @Valid  User u ,Errors errors , Model  model,String isRemerber,HttpServletRequest  request,HttpServletResponse response) {
-		  cookie1=new Cookie("name", u.getAccount());
-		  cookie2=new Cookie("pwd", u.getPwd());
-			if("on".equals(isRemerber)) {
-			
-			cookie1.setMaxAge(60*60*24*7);	
-			cookie2.setMaxAge(60*60*24*7);	
+	public String Login(@ModelAttribute @Valid User u, Errors errors, Model model, String isRemerber,
+			HttpServletRequest request, HttpServletResponse response) {
+		cookie1 = new Cookie("name", u.getAccount());
+		cookie2 = new Cookie("pwd", u.getPwd());
+		if ("on".equals(isRemerber)) {
+
+			cookie1.setMaxAge(60 * 60 * 24 * 7);
+			cookie2.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
-			
-			}else {
-				cookie1.setMaxAge(0);
-				cookie2.setMaxAge(0);
-				response.addCookie(cookie1);
-				response.addCookie(cookie2);
-			}
-		if(errors.hasErrors()) {
+
+		} else {
+			cookie1.setMaxAge(0);
+			cookie2.setMaxAge(0);
+			response.addCookie(cookie1);
+			response.addCookie(cookie2);
+		}
+		if (errors.hasErrors()) {
 			return "login";
 		}
 		try {
-			User   dbui=uBiz.login(u);
-			model.addAttribute("loginedUser",dbui);
-			return  "PersonCenter";
+			User dbui = uBiz.login(u);
+			model.addAttribute("loginedUser", dbui);
+			return "PersonCenter";
 		} catch (BizException e) {
 			e.printStackTrace();
-			model.addAttribute("msg",e.getMessage());
-			return  "login";
+			model.addAttribute("msg", e.getMessage());
+			return "login";
 		}
 	}
-	
+
 	@RequestMapping("send")
-	public void  getIdentifyCode(String  phone,String code) {
-		System.out.println("code:"+code+"-------------");
-		System.out.println("phone:"+phone);
+	public void getIdentifyCode(String phone, String code) {
+		System.out.println("code:" + code + "-------------");
+		System.out.println("phone:" + phone);
 		HttpUtil.SMS(code, phone);
 	}
+
 	@PostMapping("getphone")
-	public  void  getphone(String  account,HttpServletResponse resp,HttpServletRequest request) throws BizException, IOException {
+	public void getphone(String account, HttpServletResponse resp, HttpServletRequest request)
+			throws BizException, IOException {
 		request.setAttribute("account", account);
-		String  phone=uBiz.selectPhone(account);
-		 resp.getWriter().write(phone.toCharArray());
+		String phone = uBiz.selectPhone(account);
+		resp.getWriter().write(phone.toCharArray());
 	}
-	
-	@RequestMapping(path="checkPhone",produces="text/html;charset=utf-8")
-	public  void  checkPhone(String  phone,HttpServletResponse  response) throws BizException, IOException {
+
+	@RequestMapping(path = "checkPhone", produces = "text/html;charset=utf-8")
+	public void checkPhone(String phone, HttpServletResponse response) throws BizException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		 if(uBiz.checkphone(phone).size()>0) {
-			 response.getWriter().write("no".toCharArray());
-		 }else {
-				response.getWriter().write("yes".toCharArray());
-			}
-		
-	}
-	@RequestMapping("checkAccount")
-	public  void  checkAccount(String  account ,HttpServletResponse response) throws BizException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");
-		if(uBiz.checkaccount(account).size()>0) {
+		if (uBiz.checkphone(phone).size() > 0) {
 			response.getWriter().write("no".toCharArray());
-		}else {
+		} else {
+			response.getWriter().write("yes".toCharArray());
+		}
+
+	}
+
+	@RequestMapping("checkAccount")
+	public void checkAccount(String account, HttpServletResponse response) throws BizException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+		if (uBiz.checkaccount(account).size() > 0) {
+			response.getWriter().write("no".toCharArray());
+		} else {
 			response.getWriter().write("yes".toCharArray());
 		}
 	}
-	@PostMapping(path="change",produces="text/html;charset=utf-8")
-	public String  change(String  phone,String nPwd,HttpServletResponse  response) {
-	
-		int  result=uBiz.updatePwd(phone,nPwd);
-		Cookie  cookie2=new Cookie("pwd",nPwd);
-		cookie2.setMaxAge(60*60*24*7);	
+
+	@PostMapping(path = "change", produces = "text/html;charset=utf-8")
+	public String change(String phone, String nPwd, HttpServletResponse response) {
+
+		int result = uBiz.updatePwd(phone, nPwd);
+		Cookie cookie2 = new Cookie("pwd", nPwd);
+		cookie2.setMaxAge(60 * 60 * 24 * 7);
 		response.addCookie(cookie2);
-		return  "PersonCenter";
+		return "PersonCenter";
 	}
+
 	@PostMapping("register")
-	public void   Register(String  account,String  pwd,String phone,HttpServletRequest request,HttpServletResponse  response) throws ServletException, IOException {
-		int result=uBiz.addUser(account,pwd,phone);
+	public void Register(String account, String pwd, String phone, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		int result = uBiz.addUser(account, pwd, phone);
 		request.getRequestDispatcher("tologin").forward(request, response);
 	}
-	
+
 	@RequestMapping("saveUser")
-	public String   saveUser(String  id,String  realname,String  account,String  name,String sex,String  age,String email,Model  model,HttpServletResponse response) {
-		System.out.println("===========sex:"+sex);	
-		String []  str=sex.split(",");
-		sex=str[0];
-		User  u=uBiz.updateUser(realname,account, name,sex, age, email,id);
-			model.addAttribute("loginedUser",u);
-			cookie1=new Cookie("name", u.getAccount());
-			 cookie2=new Cookie("pwd", u.getPwd());
-			 response.addCookie(cookie1);
-				response.addCookie(cookie2);
-			return "PersonInfo";
+	public String saveUser(String id, String realname, String account, String name, String sex, String age,
+			String email, Model model, HttpServletResponse response) {
+		System.out.println("===========sex:" + sex);
+		String[] str = sex.split(",");
+		sex = str[0];
+		User u = uBiz.updateUser(realname, account, name, sex, age, email, id);
+		model.addAttribute("loginedUser", u);
+		cookie1 = new Cookie("name", u.getAccount());
+		cookie2 = new Cookie("pwd", u.getPwd());
+		response.addCookie(cookie1);
+		response.addCookie(cookie2);
+		return "PersonInfo";
+	}
+
+	@PostMapping("saveHeader")
+	public void setHeader(@RequestParam("file") MultipartFile file, @SessionAttribute("loginedUser") User u,
+			Model model, HttpServletResponse resp) throws OSSException, ClientException, IOException {
+		String path = oss.upload(file, 1);
+		u.setImage(path);
+		model.addAttribute("loginedUser", u);
+		uMapper.updateByPrimaryKey(u);
+		resp.getWriter().write(path);
 	}
 }

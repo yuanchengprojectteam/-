@@ -130,7 +130,7 @@
 					<div class="wt">
 						<ul>
 							<li class="dangq_hongx"><a href="toPersonmessage">个人信息</a></li>
-							<li><a href="shez_toux.html">设置头像</a></li>
+							<li><a href="header">设置头像</a></li>
 							<li><a href="toMoreInformation">更多个人信息</a></li>
 						</ul>
 					</div>

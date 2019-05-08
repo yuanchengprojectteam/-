@@ -21,15 +21,16 @@ public class HbUtil {
 	}
 
 	public void Before() {
-		emf.unwrap(SessionFactory.class).openSession().beginTransaction();
+		emf.unwrap(SessionFactory.class).openSession().getSession().beginTransaction();
 	}
 	
 	public  void close() {
-		emf.unwrap(SessionFactory.class).openSession().close();
+		
+		emf.unwrap(SessionFactory.class).openSession().getSession().close();
 	}
 	
 	public Criteria getCriteria(Class<?> cls ) {
-		return emf.unwrap(SessionFactory.class).openSession().createCriteria(cls);
+		return emf.unwrap(SessionFactory.class).openSession().getSession().createCriteria(cls);
 	}
 	
 }

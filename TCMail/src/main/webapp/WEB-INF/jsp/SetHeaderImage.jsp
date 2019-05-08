@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
-<!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+ <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
 
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script> -->
 <!--  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
- 
+<
 <script type="text/javascript" src="pie.js"></script> 
  
 </head>
@@ -32,7 +32,7 @@
 					<div class="toux_kuang">
 						<div class="userImage">
 							<div class="myGome_userPhoto">
-								<img src="images/toux.png">
+								<img name="header" src="images/toux.png">
 								<a class="edit_photo_bitton" href="profile" target="_blank">编辑</a>
 							</div>
 						</div>
@@ -125,21 +125,23 @@
 			</div>
 			<!--左边内容-->
 			<div class="mod_main">
-			<form action="imgHeader" id="imgform" method="post" enctype="multipart/form-data">
+			<form  id="imgform"  method="post" enctype="multipart/form-data"  >
+			<input type="hidden"  name="id" id="uid" value="1">
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
 							<li><a href="ger_xinx.html">个人信息</a></li>
-							<li class="dangq_hongx"><a href="shez_toux.html">设置头像</a></li>
+							<li class="dangq_hongx"><a href="header">设置头像</a></li>
 							<li><a href="gengd_ger_xinx.html">更多个人信息</a></li>
 						</ul>
 					</div>
 					<div class="wd">
+					
 						 <div class="up_avater">
 						 	<div class="warp_tip">
 						 	
 						 		<div id="up_avater_btn" class="avater_btn" onclick="img.click()"  >+上传头像
-						 			<input type="file" id="img" name="head" onchange="setSrc(this)" style="display:none" />
+						 			<input type="file" id="img" name="file" onchange="setSrc(this)" style="display:none" />
 						 		</div>
 						 			
 						 		<div class="upload_tip">
@@ -188,7 +190,8 @@
 						 		</div>
 						 	</div>
 						 	<div class="upload_btn_box">
-						 		<input type="button" value="保存" id="btn" class="save-btn" onclick="imgform.submit()" >
+						 		<input type="button" value="保存" id="btn" class="save-btn" onclick="save()" >
+						 		
 						 	</div>
 						 </div>
 					</div>
@@ -200,29 +203,54 @@
 </div>
 <script type="text/javascript">
  	
+	var e0=document.getElementById("show0");
+	var e1=document.getElementById("show1");
+	var e2=document.getElementById("show2");
+	var e3=document.getElementById("show3");
+ 	
  	function setSrc(obj){
  		var src1=getObjectURL(obj);
  		if(src1!=null){	
  			document.getElementById("btn").setAttribute('style', 'background-color:red');
  		}
- 		var e0= document.getElementById("show0");
- 		var e1=document.getElementById("show1");
- 		var e2=document.getElementById("show2");
- 		var e3=document.getElementById("show3");
+ 		e0.src=src1;
+ 		e1.src=src1;
+ 		e2.src=src1;
+ 		e3.src=src1;
  		
  	}
- 	function getObjectURL(file) {  
- 	     var url = null;  
- 	     if (window.createObjcectURL != undefined) {  
- 	         url = window.createOjcectURL(file);  
- 	     } else if (window.URL != undefined) {  
- 	         url = window.URL.createObjectURL(file);  
- 	     } else if (window.webkitURL != undefined) {  
- 	         url = window.webkitURL.createObjectURL(file);  
- 	     }  
- 	     return url;  
- 	 }
  	
+ 	function getObjectURL(file) {
+ 		var url = null;  
+ 		var fileObj =file.files[0];
+ 		if (window.createObjcectURL != undefined) {  
+ 		    url = window.createOjcectURL(fileObj);  
+ 		} else if (window.URL != undefined) {  
+ 		    url = window.URL.createObjectURL(fileObj);  
+ 		} else if (window.webkitURL != undefined) {  
+ 		    url = window.webkitURL.createObjectURL(fileObj);  
+ 		}
+ 		return url;
+ 	}
+ 	
+ 	function save(){
+ 		var fdata=new FormData($("#imgform")[0]);
+ 		$.ajax({
+ 			url:'saveHeader',
+ 			type:'POST',
+ 			data:fdata,
+ 			contentType: false,
+ 			processData: false,
+ 			success:function(data){
+ 				e0.src=data;
+ 		 		e1.src=data;
+ 		 		e2.src=data;
+ 		 		e3.src=data;
+ 		 		$("img[name='header']").attr("src",data);
+ 			}
+ 		})
+ 	}
+ 		
  	
 </script>
 <%@ include file="AfterFoot.jsp"%>
