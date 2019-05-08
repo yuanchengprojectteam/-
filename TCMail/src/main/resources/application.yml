@@ -77,3 +77,17 @@ alMsg:
   accessKeySecret: 
   endpoint: http://31269193.mns.cn-beijing.aliyuncs.com/
 
+  #阿里云OSS对象存储服务
+lximage:
+  endpoint:  oss-cn-beijing.aliyuncs.com
+  keyid:  LTAIITWT4M4azCLU
+  keysecret:  9d7R60FOUvIuKAOKZDMS7nAwA7777X
+  bucketname1:  doki-l
+  filehost:  UploadFile
+  
+  #分页配置
+  pagehelper:
+    helper-dialect: mysql
+    reasonable: true
+    support-methods-arguments: true
+    params: 
