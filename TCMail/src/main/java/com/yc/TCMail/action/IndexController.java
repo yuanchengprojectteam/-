@@ -7,20 +7,28 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.imply.carImply;
 
 @Controller
 public class IndexController {
 	
 	@Resource
 	private  GTypeBiz  gbiz;
+	
+	@Autowired
+	carImply ci;
+	
 	
 	@ModelAttribute
 	public  void init(Model model){
@@ -52,7 +60,8 @@ public class IndexController {
 		return "PersonInfo";
 	}
 	@RequestMapping("PersonCenter")
-	public  String  goCenter() {
+	public  String  goCenter(@SessionAttribute("loginedUser") User user,Model model) {
+		model.addAttribute("cglist",ci.selectCarGoods(user.getId(),0));
 		return "PersonCenter";
 	}
 	@RequestMapping("toSecurity")
@@ -72,5 +81,21 @@ public class IndexController {
 	@RequestMapping("updatephone")
 	public String  updatephone() {
 		return "alterPhoneNumber";
+	}
+	
+	@RequestMapping("security")
+	public String security(){
+		return "UserSecurity";
+	}
+	
+	@RequestMapping("car")
+	public String car(@SessionAttribute("loginedUser") User user,Model model) {
+		model.addAttribute("cglist",ci.selectCarGoods(user.getId(),0));
+		return "Car";
+	}
+	
+	@RequestMapping("addOrder")
+	public String addOrder() {
+		return "addOrder";
 	}
 }
