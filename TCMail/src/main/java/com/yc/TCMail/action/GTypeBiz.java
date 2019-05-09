@@ -18,14 +18,10 @@ public class GTypeBiz {
 	private  GtypeMapper   gtm;
 	
 	public  List<Gtype>  AllType(){
-<<<<<<< HEAD
-		//GtypeExample  example=new GtypeExample();
-		return gtm.selectByExample(null);
-=======
+
 		GtypeExample  example=new GtypeExample();
 		
 		return gtm.selectByExample(example);
->>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
 	}
 
 }

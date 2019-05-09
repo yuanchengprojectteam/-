@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="shop",catalog="tcmail")
-<<<<<<< HEAD
+
 public class Shop {
 	private Integer id;
 	private Integer uid;
@@ -17,12 +17,7 @@ public class Shop {
 	
 	
 	
-=======
-public class Shop {
-    private Integer id;
->>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
 
-<<<<<<< HEAD
 	
 	
 	@Transient
@@ -31,19 +26,8 @@ public class Shop {
 	}
 	public void setUser(User user) {
 		this.user = user;
-=======
-    private String addr;
-
-    private String bustime;
-
-    private Integer level;
-
-    private String name;
-
-    private String type;
-
-    private Integer uid;
-    
+	}
+   
     private  String  describe;
    
     @Column(name="describe",length=500)
@@ -53,7 +37,6 @@ public class Shop {
 
 	public void setDescribe(String describe) {
 		this.describe = describe;
->>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

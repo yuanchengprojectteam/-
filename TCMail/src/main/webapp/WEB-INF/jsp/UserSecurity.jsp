@@ -25,7 +25,8 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
-				<%@include flie="PersonCenterLeft.jsp"%> 
+			<jsp:include page="PersonCenterLeft.jsp" ></jsp:include>
+				<%-- <%@include flie="PersonCenterLeft.jsp"%>  --%>
 			<!--左边内容-->
 			
 			
