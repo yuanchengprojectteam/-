@@ -98,4 +98,9 @@ public class IndexController {
 	public String addOrder() {
 		return "addOrder";
 	}
+	
+	@RequestMapping("goodsDetail")
+	public String goodsDetail() {
+		return "GoodsDetail";
+	}
 }

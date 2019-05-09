@@ -143,7 +143,7 @@
 				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="${g.image }" alt=""></a>
 			</div>
 			<div class="fl houj_c"> 
-				<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">${g.type.name } ${g.name } ${g.size } ${g.color }</a></div></div>
+				<div class="cart-dfsg"><div class="cart-good-name"><a href="goodsDetail" target="_blank">${g.type.name } ${g.name } ${g.size } ${g.color }</a></div></div>
 				<div class="cart-good-pro"></div>
 				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;${g.price }</div><div class="red"></div></div>
 				<div class="cart-col-5">
