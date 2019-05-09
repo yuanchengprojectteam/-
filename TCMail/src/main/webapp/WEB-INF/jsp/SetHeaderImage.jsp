@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
-<!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+ <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
 
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script> -->
 <!--  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
- 
+<
 <script type="text/javascript" src="pie.js"></script> 
  
 </head>
@@ -27,119 +27,29 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
-			<div class="tod_tongc_zuoc">
-				<div class="zuoc_toux">
-					<div class="toux_kuang">
-						<div class="userImage">
-							<div class="myGome_userPhoto">
-								<img src="images/toux.png">
-								<a class="edit_photo_bitton" href="profile" target="_blank">编辑</a>
-							</div>
-						</div>
-						<div class="user_name_Level">
-							<p class="user_name" title="山的那边是海">山的那边是海</p>
-							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
-						</div>
-					</div>
-					<div class="userInfo_bar">
-						<span>资料完成度</span>
-						<span class="userInfo_process_bar"><em class="active_bar" style="width: 40px;"> 20%</em></span>
-						<a href="ger_xinx.html" target="_blank">完善</a>
-					</div>
-					<div class="myGome_accountSecurity">
-						<span class="fl_ee" style="margin-top:2px;">账户安全 <em class="myGome_account_level"> 低</em> </span>
-						<div class="verifiBox fl_ee">
-							<div class="shab_1">
-								<span class="myGome_mobile" val="mobile"> <em class=" myGome_onActive "></em> </span> 
-								<p class="myGome_verifiPop"> <span>您已绑定手机：</span> <span>182****0710</span> <a href="zhangh_anq.html" target="_blank">管理</a></p>
-							</div>
-							<div class="shab_1">
-								<span class="myGome_email" val="email"> <em class=""></em> </span>
-								<p class="myGome_verifiPop"> <span>您还未绑定邮箱 </span><a href="zhangh_anq.html" target="_blank">立即绑定</a></p>
-							</div>
-						</div>
-						<a class="fl_ee" href="zhangh_anq.html" target="_blank" style="margin-top:2px;">提升</a>
-					</div>
-					<div class="user_counts">
-						<ul>
-							<li>
-                                <div class="count_item">
-                                    <a href="wod_dingd.html">
-                                        <i class="count_icon count_icon01"></i> 待付款
-                                        <em id="waitPay">2</em>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count_item">
-                                    <a href="wod_dingd.html">
-                                        <i class="count_icon count_icon02"></i> 待收货
-                                        <em id="waitPay">4</em>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count_item">
-                                    <a href="wod_dingd.html">
-                                        <i class="count_icon count_icon03"></i> 待提货
-                                        <em id="waitPay">0</em>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count_item">
-                                    <a href="wod_dingd.html">
-                                        <i class="count_icon count_icon04"></i> 待评价
-                                        <em id="waitPay">8</em>
-                                    </a>
-                                </div>
-                            </li>
-						</ul>
-					</div>
-				</div>
-				<div class="wod_tongc_daoh_lieb">
-					<div class="diy_top">
-						<ul>
-							<h3>订单中心</h3>
-							<li><a href="wod_dingd.html">我的订单</a></li>
-							<li><a href="shengq_shouh.html">退换货单</a></li>
-							<li><a href="pingj_shaid.html">评价晒单</a></li>
-						</ul>
-						<ul>
-							<h3>管理中心</h3>
-							<li><a href="wod_shouc.html">我的收藏</a></li>
-							<li><a href="#">我的预约</a></li>
-							<li><a href="#">我的咨询</a></li>
-							<li><a href="#">投诉管理</a></li>
-						</ul>
-					</div>
-					<div class="diy_top">
-						<ul>
-							<h3>账户设置</h3>
-							<li><a href="ger_xinx.html">基本资料</a></li>
-							<li><a href="zhangh_anq.html">账户安全</a></li>
-							<li><a href="shouh_diz.html">收货地址</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			
+	<%@include file="PersonCenterLeft.jsp" %>
+	
+			
 			<!--左边内容-->
 			<div class="mod_main">
-			<form action="imgHeader" id="imgform" method="post" enctype="multipart/form-data">
+			<form  id="imgform"  method="post" enctype="multipart/form-data"  >
+			<input type="hidden"  name="id" id="uid" value="1">
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
 							<li><a href="ger_xinx.html">个人信息</a></li>
-							<li class="dangq_hongx"><a href="shez_toux.html">设置头像</a></li>
+							<li class="dangq_hongx"><a href="header">设置头像</a></li>
 							<li><a href="gengd_ger_xinx.html">更多个人信息</a></li>
 						</ul>
 					</div>
 					<div class="wd">
+					
 						 <div class="up_avater">
 						 	<div class="warp_tip">
 						 	
 						 		<div id="up_avater_btn" class="avater_btn" onclick="img.click()"  >+上传头像
-						 			<input type="file" id="img" name="head" onchange="setSrc(this)" style="display:none" />
+						 			<input type="file" id="img" name="file" onchange="setSrc(this)" style="display:none" />
 						 		</div>
 						 			
 						 		<div class="upload_tip">
@@ -188,7 +98,8 @@
 						 		</div>
 						 	</div>
 						 	<div class="upload_btn_box">
-						 		<input type="button" value="保存" id="btn" class="save-btn" onclick="imgform.submit()" >
+						 		<input type="button" value="保存" id="btn" class="save-btn" onclick="save()" >
+						 		
 						 	</div>
 						 </div>
 					</div>
@@ -200,29 +111,54 @@
 </div>
 <script type="text/javascript">
  	
+	var e0=document.getElementById("show0");
+	var e1=document.getElementById("show1");
+	var e2=document.getElementById("show2");
+	var e3=document.getElementById("show3");
+ 	
  	function setSrc(obj){
  		var src1=getObjectURL(obj);
  		if(src1!=null){	
  			document.getElementById("btn").setAttribute('style', 'background-color:red');
  		}
- 		var e0= document.getElementById("show0");
- 		var e1=document.getElementById("show1");
- 		var e2=document.getElementById("show2");
- 		var e3=document.getElementById("show3");
+ 		e0.src=src1;
+ 		e1.src=src1;
+ 		e2.src=src1;
+ 		e3.src=src1;
  		
  	}
- 	function getObjectURL(file) {  
- 	     var url = null;  
- 	     if (window.createObjcectURL != undefined) {  
- 	         url = window.createOjcectURL(file);  
- 	     } else if (window.URL != undefined) {  
- 	         url = window.URL.createObjectURL(file);  
- 	     } else if (window.webkitURL != undefined) {  
- 	         url = window.webkitURL.createObjectURL(file);  
- 	     }  
- 	     return url;  
- 	 }
  	
+ 	function getObjectURL(file) {
+ 		var url = null;  
+ 		var fileObj =file.files[0];
+ 		if (window.createObjcectURL != undefined) {  
+ 		    url = window.createOjcectURL(fileObj);  
+ 		} else if (window.URL != undefined) {  
+ 		    url = window.URL.createObjectURL(fileObj);  
+ 		} else if (window.webkitURL != undefined) {  
+ 		    url = window.webkitURL.createObjectURL(fileObj);  
+ 		}
+ 		return url;
+ 	}
+ 	
+ 	function save(){
+ 		var fdata=new FormData($("#imgform")[0]);
+ 		$.ajax({
+ 			url:'saveHeader',
+ 			type:'POST',
+ 			data:fdata,
+ 			contentType: false,
+ 			processData: false,
+ 			success:function(data){
+ 				e0.src=data;
+ 		 		e1.src=data;
+ 		 		e2.src=data;
+ 		 		e3.src=data;
+ 		 		$("img[name='header']").attr("src",data);
+ 			}
+ 		})
+ 	}
+ 		
  	
 </script>
 <%@ include file="AfterFoot.jsp"%>

@@ -113,7 +113,7 @@ public class UserBiz {
 		u.setIncome(income);
 		u.setEdu(edu);
 		u.setJob(job);
-		u.setFavtypeid(fav);
+		u.setFavTypeId(fav);
 		u.setFamilynum(Integer.valueOf(familynum));
 		
 		example.createCriteria()
