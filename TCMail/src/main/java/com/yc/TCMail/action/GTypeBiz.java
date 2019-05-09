@@ -19,6 +19,7 @@ public class GTypeBiz {
 	
 	public  List<Gtype>  AllType(){
 		GtypeExample  example=new GtypeExample();
+		
 		return gtm.selectByExample(example);
 	}
 

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="gtype",catalog="tcmail")
 public class Gtype {
 	private Integer id;
-	private Integer name;
+	private String name;
 	private Integer pid;
 	
 	@Id
@@ -21,10 +21,10 @@ public class Gtype {
 		this.id = id;
 	}
 	@Column(name="name",length=20)
-	public Integer getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(Integer name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	@Column(name="pid",length=11)

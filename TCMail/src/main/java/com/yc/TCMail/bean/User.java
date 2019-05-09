@@ -25,27 +25,7 @@ public class User {
 	private Integer  familynum;
 	private  String  FavTypeId;
 	
-	@Column(name="favtypeid",length=50)
-	public String getFavTypeId() {
-		return FavTypeId;
-	}
-	public void setFavTypeId(String favTypeId) {
-		FavTypeId = favTypeId;
-	}
-	@Column(name="familynum",length=10)
-	public Integer getFamilynum() {
-		return familynum;
-	}
-	public void setFamilynum(Integer familynum) {
-		this.familynum = familynum;
-	}
-	@Column(name="income",length=20)
-	public String getIncome() {
-		return income;
-	}
-	public void setIncome(String income) {
-		this.income = income;
-	}
+	
 	private  String  income;
 	
 	@Id
@@ -155,6 +135,28 @@ public class User {
 	}
 	public void setRegtime(String regtime) {
 		this.regtime = regtime;
+	}
+	
+	@Column(name="favtypeid",length=50)
+	public String getFavTypeId() {
+		return FavTypeId;
+	}
+	public void setFavTypeId(String favTypeId) {
+		FavTypeId = favTypeId;
+	}
+	@Column(name="familynum",length=10)
+	public Integer getFamilynum() {
+		return familynum;
+	}
+	public void setFamilynum(Integer familynum) {
+		this.familynum = familynum;
+	}
+	@Column(name="income",length=20)
+	public String getIncome() {
+		return income;
+	}
+	public void setIncome(String income) {
+		this.income = income;
 	}
 	@Override
 	public String toString() {
