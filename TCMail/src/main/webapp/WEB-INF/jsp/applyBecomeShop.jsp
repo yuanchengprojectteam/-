@@ -37,27 +37,48 @@
 			</ul>
 		</div>
 		<div class="zhuc_biaod zhuc_biaod_liuy">
-			<form action="#" method="get" class="messages">
+			<form action="#" method="post" class="messages">
 				<h2>联系人信息</h2>
 			     <div class="messlist">
 			      <label><em>*</em> 联系人姓名</label>
-			      <input type="text" placeholder="姓名"  />
+			      <input type="text" placeholder="姓名" id="realname" name="realname" oninput="check(this.value)" />
 			      <div class="clears"></div>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message"><div>姓名不能为空</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message1"><div>请输入真实姓名</div></div>
+            	</div> 
 			     </div>
 			     <div class="messlist"> 
 			      <label><em>*</em> 手机号码</label>
-			      <input type="text" placeholder="手机号码" />
+			      <input type="text" placeholder="手机号码" id="phone" name="phone" oninput="check3(this.value)" />
 			      <div class="clears"></div>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message7"><div>手机号不能为空</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message8"><div>请输入有效的手机号码，需是11位！</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message9"><div>手机号只能是数字</div></div>
+            	</div> 
 			     </div>
 			     <div class="messlist">
 			      <label><em>*</em> 联系邮箱</label>
-			      <input type="text" placeholder="邮箱" />
+			      <input type="text" placeholder="邮箱" id="email" name="email" oninput="check1(this.value)" />
 			      <div class="clears"></div>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message2"><div>邮箱不能为空</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message3"><div>请输入有效的邮箱号！</div></div>
+            	</div> 
 			     </div>
 			     <div class="messlist">
 			      <label><em>*</em> 所属行业</label>
-			      <input type="text" placeholder="所属行业" />
+			      <input type="text" placeholder="所属行业" name="type"/>
 			      <div class="clears"></div>
+			     </div>
+			     <div class="messlist"> 
+			      <label><em>*</em> 店铺名称</label>
+			      <input type="text" placeholder="店铺名称" id="name" name="name" oninput="check2(this.value)"/>
+			      <div class="clears"></div>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message4"><div>店铺名称不能为空</div></div>
+            	</div> 
 			     </div>
 			     <div class="messlist textareas">
 			      <label><em>*</em> 详情内容</label>
@@ -102,4 +123,86 @@
 </div>
 
 </body>
+<script type="text/javascript">
+function  check(realname){
+	var  realname=realname.trim();
+	var  message=document.getElementById('message');
+	var  message1=document.getElementById('message1');
+	if(realname.length==0){
+		message.setAttribute('style','display:inline-block;');
+		message1.setAttribute('style','display:none;');
+		return;
+	}
+	var myreg =/^[\u4e00-\u9fa5]+$/; 
+   	 if(!myreg.test(realname)) 
+   	 { 
+   		message.setAttribute('style','display:none;');
+		message1.setAttribute('style','display:inline-block;');
+   	 	return ; 
+   	 }
+	message.setAttribute('style','display:none;');
+	message1.setAttribute('style','display:none;');
+}
+function  check1(email){
+	var  email=email.trim();
+	var  message2=document.getElementById('message2');
+	var  message3=document.getElementById('message3');
+	if(email.length==0){
+		message2.setAttribute('style','display:inline-block;');
+		message3.setAttribute('style','display:none;');
+		return;
+	}
+	var myreg =/^\w+@\w+(\.[a-zA-Z]{2,3}){1,2}$/; 
+   	 if(!myreg.test(email)) 
+   	 { 
+   		message2.setAttribute('style','display:none;');
+		message3.setAttribute('style','display:inline-block;');
+   	 	return ; 
+   	 }
+	message2.setAttribute('style','display:none;');
+	message3.setAttribute('style','display:none;');
+}
+function  check2(name){
+	var  name=name.trim();
+	var  message4=document.getElementById('message4');
+	if(name.length==0){
+		message4.setAttribute('style','display:inline-block;');
+		return;
+	}
+	message4.setAttribute('style','display:none;');
+}
+function  check3(phone){
+	var  phone=phone.trim();
+	var  message7=document.getElementById('message7');
+	var  message8=document.getElementById('message8');
+	var  message9=document.getElementById('message9'); 
+	if(phone.length==0){
+		message7.setAttribute('style','display:inline-block;');
+		message8.setAttribute('style','display:none;');
+		message9.setAttribute('style','display:none;');
+		return;
+	}
+	if(phone.length!=11) 
+   	 { 
+		message7.setAttribute('style','display:none;');
+		message8.setAttribute('style','display:inline-block;');
+		message9.setAttribute('style','display:none;');
+   	 	return ; 
+   	 } 
+
+   	 var myreg = /^\d{11}$/; 
+   	 if(!myreg.test(phone)) 
+   	 { 
+   		message7.setAttribute('style','display:none;');
+		message8.setAttribute('style','display:none;');
+		message9.setAttribute('style','display:inline-block;');
+   	 	return ; 
+   	 }
+	message7.setAttribute('style','display:none;');
+	message8.setAttribute('style','display:none;');
+	message9.setAttribute('style','display:none;');
+	
+	
+}
+</script>
 </html>
