@@ -124,7 +124,7 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">修改手机验证</div>
+					<div class="shand_piaot">修改密码验证</div>
 					<div class="stepflex">
 					 	<dl class="normal doing">
                             <dt class="s-num">1</dt>
