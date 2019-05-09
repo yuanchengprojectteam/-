@@ -23,7 +23,7 @@ public class User {
 	private String edu;
 	private String regtime;
 	private Integer  familynum;
-	private  String  FavTypeId;
+	private  String  favtypeid;
 	
 	
 	private  String  income;
@@ -138,11 +138,11 @@ public class User {
 	}
 	
 	@Column(name="favtypeid",length=50)
-	public String getFavTypeId() {
-		return FavTypeId;
+	public String getFavtypeid() {
+		return favtypeid;
 	}
-	public void setFavTypeId(String favTypeId) {
-		FavTypeId = favTypeId;
+	public void setFavtypeid(String favTypeId) {
+		favtypeid = favTypeId;
 	}
 	@Column(name="familynum",length=10)
 	public Integer getFamilynum() {
@@ -163,7 +163,7 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", account=" + account + ", realname=" + realname + ", sex=" + sex
 				+ ", age=" + age + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + ", marry=" + marry
 				+ ", image=" + image + ", type=" + type + ", job=" + job + ", edu=" + edu + ", regtime=" + regtime
-				+ ", familynum=" + familynum + ", FavTypeId=" + FavTypeId + ", income=" + income + "]";
+				+ ", familynum=" + familynum + ", FavTypeId=" + favtypeid + ", income=" + income + "]";
 	}
 	
 	

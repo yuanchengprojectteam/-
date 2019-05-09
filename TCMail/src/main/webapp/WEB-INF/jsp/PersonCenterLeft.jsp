@@ -91,8 +91,8 @@
 					<div class="diy_top">
 						<ul>
 							<h3>账户设置</h3>
-							<li><a href="ger_xinx.html">基本资料</a></li>
-							<li><a href="zhangh_anq.html">账户安全</a></li>
+							<li><a href="toPersonmessage">基本资料</a></li>
+							<li><a href="toSecurity">账户安全</a></li>
 							<li><a href="shouh_diz.html">收货地址</a></li>
 						</ul>
 					</div>
