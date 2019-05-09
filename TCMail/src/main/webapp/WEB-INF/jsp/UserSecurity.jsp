@@ -130,38 +130,38 @@
 							<tbody>
 								<tr>
 									<td width="15%"><span>登录密码</span></td>
-									<td width="18%"><span>强度：<em>中</em></span></td>
+									<td width="18%"><span>强度：<em>${pwdStrength > 1? '中':'弱' }</em></span></td>
 									<td width="47%">
 										<p class="newPassWord">
-											<b class="red_bg">弱</b>
-											<b class="red_bg">中</b>
-											<b>强</b>
+											<b id="pwd" class="red_bg">弱</b>
+											<b id="pwd" class="${pwdStrength > 1? 'red_bg':'' }">中</b>
+											<b id="pwd" class="${pwdStrength > 2? 'red_bg':'' }">强</b>
 											<br>为了账户更加安全，建议您定期更换密码。
 										</p>
 									</td>
-									<td width="20%"><span><a href="#">修改</a></span></td>
+									<td width="20%"><span><a href="pwdChange1" class="verification">${ zhou.pwd == null ? '立即验证' : '修改' }</a></span></td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
 									<td width="15%"><span>验证邮箱</span></td>
-									<td width="18%"><span><em class="yanz_tub ico_gth"></em>未验证</span></td>
+									<td width="18%"><span><em class="yanz_tub ${zhou.email == null ? 'ico_gth' : 'ico_bright' }"></em>${ zhou.email == "" ? '立即验证' : '修改' }</span></td>
 									<td width="47%"><p>邮箱验证方便您及时接收优惠促销信息，以及积分、等变动的提醒。</p></td>
-									<td width="20%"><span><a href="#" class="verification">立即验证</a></span></td>
+									<td width="20%"><span><a href="#" class="verification">${zhou.email == null ? '立即验证' : '修改' }</a></span></td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
 									<td width="15%"><span>手机验证</span></td>
-									<td width="18%"><span><em class="yanz_tub ico_bright"></em>已验证</span></td>
+									<td width="18%"><span><em class="yanz_tub ${zhou.phone == null ? 'ico_gth' : 'ico_bright' }"></em>${zhou.phone == null ? "未验证" : "已验证" }</span></td>
 									<td width="47%"><p> 您验证的手机：${loginedUser.phone } </p></td>
-									<td width="20%"><span><a href="updatephone">修改</a></span></span></td>
+									<td width="20%"><span><a href="updatephone" class="verification">${zhou.phone == null ? '立即验证' : '修改' }</a></span></td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
 									<td width="15%"><span>支付密码</span></td>
-									<td width="18%"><span><em class="yanz_tub ico_gth"></em>未验证</span></td>
+									<td width="18%"><span><em class="yanz_tub ico_gth"></em>${zhou.email == null ? '立即验证' : '修改' }</span></td>
 									<td width="47%"><p>设置支付密码能有效的保障账户的安全，在使用红券、蓝券、礼品卡等操作时需要输入支付密码。</p></td>
 									<td width="20%"><span><a href="#" class="verification">立即验证</a></span></td>
 								</tr>

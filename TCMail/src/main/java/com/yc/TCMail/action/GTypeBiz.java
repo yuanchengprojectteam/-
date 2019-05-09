@@ -18,8 +18,8 @@ public class GTypeBiz {
 	private  GtypeMapper   gtm;
 	
 	public  List<Gtype>  AllType(){
-		GtypeExample  example=new GtypeExample();
-		return gtm.selectByExample(example);
+		//GtypeExample  example=new GtypeExample();
+		return gtm.selectByExample(null);
 	}
 
 }

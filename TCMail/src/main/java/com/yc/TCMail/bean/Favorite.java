@@ -14,6 +14,17 @@ public class Favorite {
 	private Integer goodsid;
 	private String ftime;
 	
+	private Goods goods;
+	
+	
+	
+	@Transient
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)

@@ -12,10 +12,20 @@ public class Shop {
 	private Integer level;
 	private String bustime;
 	private String type;
+	private User user;
+	
+	
+	
 
 	
 	
-	
+	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

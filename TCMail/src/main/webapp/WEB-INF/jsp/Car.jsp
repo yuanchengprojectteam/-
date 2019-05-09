@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -125,84 +127,54 @@
 		<div class="cart-col-7">操作</div>
 	</div>
 </div>
-<div class="container">
-	<div class="cart-shop-header">
-		<div class="cart-col-1">
-			<input type="checkbox" class="jdcheckbox" >
-		</div>
-		<div class="cart-col-2"><span class="gouw_c_dianp">罗莱LOVO自营官方旗舰店 </span></div>
-	</div>
-	<div class="cart-shop-goods dangq_honh">
-		<div class="cart-shop-good">
+
+
+<c:forEach items="${carAll }" var="f">
+	<div>
+		<div class="cart-shop-header">
 			<div class="cart-col-1">
 				<input type="checkbox" class="jdcheckbox" >
 			</div>
-			<div class="cart-col-2" style="height: 82px;">
-				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="images/xiangqtu_1.jpg" alt=""></a>
-			</div>
-			<div class="fl houj_c"> 
-				<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">ThinkPad X1 Carbon(20HRA007CD)14英寸笔记本电脑(i5-7200U 8G ...</a></div></div>
-				<div class="cart-good-pro"></div>
-				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;9999.00</div><div class="red"></div></div>
-				<div class="cart-col-5">
-					<div class="gui-count cart-count" >
-						<a href="#" gui-count-sub="" class="gui-count-btn gui-count-sub gui-count-disabled">-</a>
-						<a href="#" gui-count-add="" class="gui-count-btn gui-count-add">+</a>
-						<div class="gui-count-input"><input dytest="" class="" type="text" value="1"></div>
+			<div class="cart-col-2"><span class="gouw_c_dianp">${f.good.shop.name } </span></div>
+		</div>
+		<div class="cart-shop-goods">
+			<div class="cart-shop-good">
+				<div class="cart-col-1">
+					<input type="checkbox" class="jdcheckbox" >
+				</div>
+				<div class="cart-col-2" style="height: 82px;">
+					<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="${f.good.image }" alt=""></a>
+				</div>
+				<div class="fl houj_c"> 
+					<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">${f.good.name }</a></div></div>
+					<div class="cart-good-pro"></div>
+					<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;${f.good.price }</div><div class="red"></div></div>
+					<div class="cart-col-5">
+						<div class="gui-count cart-count" >
+							<a href="#" gui-count-sub="" class="gui-count-btn gui-count-sub gui-count-disabled">-</a>
+							<a href="#" gui-count-add="" class="gui-count-btn gui-count-add">+</a>
+							<div class="gui-count-input"><input dytest="" class="" type="text" value="1"></div>
+						</div>
+					</div>
+					<div class="cart-col-6 ">
+					<div class="cart-good-amount">¥&nbsp;${f.good.price }</div><!-- 重量展示(只展示全球百货的重量) --></div>
+				</div>
+				<div class="cart-col-7">
+					<div class="cart-good-fun delfixed">
+						<a href="gouw_che.html">删除</a>
+					</div>
+					<div class="cart-good-fun">
+						<a href="gouw_che.html">移入收藏夹</a>
 					</div>
 				</div>
-				<div class="cart-col-6 ">
-				<div class="cart-good-amount">¥&nbsp;9999.00</div><!-- 重量展示(只展示全球百货的重量) --></div>
-			</div>
-			<div class="cart-col-7">
-				<div class="cart-good-fun delfixed">
-					<a href="gouw_che.html">删除</a>
-				</div>
-				<div class="cart-good-fun">
-					<a href="gouw_che.html">移入收藏夹</a>
-				</div>
 			</div>
 		</div>
 	</div>
-	<div class="cart-shop-header">
-		<div class="cart-col-1">
-			<input type="checkbox" class="jdcheckbox" >
-		</div>
-		<div class="cart-col-2"><span class="gouw_c_dianp">罗莱LOVO自营官方旗舰店 </span></div>
-	</div>
-	<div class="cart-shop-goods">
-		<div class="cart-shop-good">
-			<div class="cart-col-1">
-				<input type="checkbox" class="jdcheckbox" >
-			</div>
-			<div class="cart-col-2" style="height: 82px;">
-				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="images/xiangqtu_1.jpg" alt=""></a>
-			</div>
-			<div class="fl houj_c"> 
-				<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">ThinkPad X1 Carbon(20HRA007CD)14英寸笔记本电脑(i5-7200U 8G ...</a></div></div>
-				<div class="cart-good-pro"></div>
-				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;9999.00</div><div class="red"></div></div>
-				<div class="cart-col-5">
-					<div class="gui-count cart-count" >
-						<a href="#" gui-count-sub="" class="gui-count-btn gui-count-sub gui-count-disabled">-</a>
-						<a href="#" gui-count-add="" class="gui-count-btn gui-count-add">+</a>
-						<div class="gui-count-input"><input dytest="" class="" type="text" value="1"></div>
-					</div>
-				</div>
-				<div class="cart-col-6 ">
-				<div class="cart-good-amount">¥&nbsp;9999.00</div><!-- 重量展示(只展示全球百货的重量) --></div>
-			</div>
-			<div class="cart-col-7">
-				<div class="cart-good-fun delfixed">
-					<a href="gouw_che.html">删除</a>
-				</div>
-				<div class="cart-good-fun">
-					<a href="gouw_che.html">移入收藏夹</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+</c:forEach>
+
+
+
+
 <div class="jies_beij">
 	<div class="beij_center over_dis">
 		<div class="cart-col-1 cart_jies">

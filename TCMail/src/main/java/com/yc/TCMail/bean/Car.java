@@ -12,6 +12,16 @@ public class Car {
 	private Integer gid;
 	private Integer uid;
 	
+	private Goods goods;
+	
+	
+	@Transient
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

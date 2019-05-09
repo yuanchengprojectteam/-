@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
 <head> 
 <meta charset="utf-8">
-<title>WangID通城——评价晒单</title>
+<title>WangID通城——账户安全--立即验证</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
@@ -20,7 +18,8 @@
 </head>
 <body>
 <!--头部--> 
- <%@ include file="AfterHeader.jsp" %>
+ 
+<%@ include file="AfterHeader.jsp" %>
 <!---->
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
@@ -89,7 +88,7 @@
                                 <div class="count_item">
                                     <a href="wod_dingd.html">
                                         <i class="count_icon count_icon04"></i> 待评价
-                                        <em id="waitPay">${count}</em>
+                                        <em id="waitPay">8</em>
                                     </a>
                                 </div>
                             </li>
@@ -106,7 +105,7 @@
 						</ul>
 						<ul>
 							<h3>管理中心</h3>
-							<li><a href="MyFavorite?uid=${favorite}">我的收藏</a></li>
+							<li><a href="wod_shouc.html">我的收藏</a></li>
 							<li><a href="#">我的预约</a></li>
 							<li><a href="#">我的咨询</a></li>
 							<li><a href="#">投诉管理</a></li>
@@ -125,87 +124,34 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">评价晒单</div>
-					<div class="tab_trigger">
-						<ul>
-							<li><a class="text_shaid" href="#">待评价订单</a><p class="sup">${count}</p></li>
-							<li><a class="text_shaid" href="#">待晒单</a></li> 
-						</ul>
-					</div> 
-					<table class="order-tb">
-						<colgroup>
-							<col class="number-col">
-							<col class="consignee-col">
-							<col class="amount-col">
-							<col class="operate-col">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>订单详情</th>
-								<th>金额</th>
-								<th>收货人</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						
-						
-						
-				<c:forEach items="${orderGoods }" var="o">
-						<tbody>
-							<tr class="sep-row"><td colspan="4"></td></tr>
-							<tr class="tr-th">
-								<td colspan="4">
-									<span class="gap"></span>
-									<span class="dealtime" title="2015-1-19 10:30:42">${o.ordertime }</span>
-									<span class="number">订单号：<a href="#" target="_blank">${o.id}</a></span> 
-								</td>
-							</tr>
-					<c:forEach items="${o.details }" var="d">
-							<tr class="tr-bd">
-								<td rowspan="1">
-									<div class="goods-item">
-										<div class="p-img">
-											<a target="_blank" href="shangp_xiangq.html">
-												<img src="${d.goods.image }" alt="">
-											</a>
-										</div>
-										<div class="p-msg">
-											<div class="p-name">
-												<a target="_blank" href="shangp_xiangq.html">${d.goods.name } ${d.goods.color }${d.goods.size }</a>
-											</div>
-										</div>
-									</div>
-									<div class="goods-number">${o.num }件</div>
-								</td>
-								<td rowspan="1">
-									<div class="zhif_jine">
-										<p>${d.goods.price }</p>
-										<span>${o.paytype }</span>
-									</div>
-								</td>
-								<td rowspan="1">
-									<div class="txt_ren">
-										<span>${o.user.name }</span>
-										<p class="ren_tub"></p>
-									</div>
-								</td>
-								<td rowspan="1">
-									<div class="operate">
-										<a href="dingd_xiangq.html" target="_blank" class="a-link">订单详情</a><br>
-										<a href="comment?oid=${o.id }&id=${d.goods.id}" target="_blank" class="btn-def">评价</a>
-									</div>
-								</td>
-							</tr>
-					</c:forEach>
-						</tbody>
-				</c:forEach>
-						
-				
-					</table>
-					<div class="gerzx_fany">
-						<a href="#" class="shangxy">上一页</a>
-						<a href="#">1</a>
-						<a href="#" class="shangxy">上一页</a>
+					<div class="shand_piaot">修改手机验证</div>
+					<div class="stepflex">
+					 	<dl class="normal doing">
+                            <dt class="s-num">1</dt>
+                            <dd class="s-text">验证身份<s></s><b></b></dd>
+                        </dl> 
+					 	<dl class="normal doing">
+                            <dt class="s-num">2</dt>
+                            <dd class="s-text">修改号码<s></s><b></b></dd>
+                        </dl> 
+					 	<dl class="normal ">
+                            <dt class="s-num">3</dt>
+                            <dd class="s-text">完成<s></s><b></b></dd>
+                        </dl>
+					</div>
+					<div class="savebox">
+						<p>
+							<span class="letit">填写新密码：</span>
+							<span class="hideMobile"><input class="itxt" id="newpwd" name="pwd" type="password"></span>
+						</p>
+						<p>
+							<span class="letit">确认新密码：</span>
+							<span class="hideMobile"><input class="itxt" id="againpwd" type="password"></span>
+						</p>
+						<p>
+							<span class="letit"></span>
+							<span class="hideMobile"><a onclick="chePwd()" class="xiay_b">确认修改</a></span> 
+						</p>
 					</div>
 				</div>
 			</div>
@@ -214,3 +160,29 @@
 	</div>
 </div> 
 <%@ include file="AfterFoot.jsp"%>
+
+</body>
+<script type="text/javascript">
+	function chePwd(){
+		var a = $("#newpwd").val();
+		var b = $("#againpwd").val();
+		//alert(a+":"+b);
+		if(a != b){
+			alert("两次输入的密码不一致！！");
+			return;
+		}
+		$.ajax({
+			url:"pwdChange",
+			type:"post",
+			data:{"pwd":a},
+			cache:false,
+			success:function(data){
+				alert(data);
+			}
+		});
+	}
+
+
+</script>
+
+</html>

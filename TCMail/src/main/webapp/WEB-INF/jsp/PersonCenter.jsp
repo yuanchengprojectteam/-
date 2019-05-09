@@ -84,9 +84,9 @@
                             </li>
                             <li>
                                 <div class="count_item">
-                                    <a href="wod_dingd.html">
+                                    <a href="commentAndShowOrder">
                                         <i class="count_icon count_icon04"></i> 待评价
-                                        <em id="waitPay">8</em>
+                                        <em id="waitPay">${count}</em>
                                     </a>
                                 </div>
                             </li>
@@ -99,21 +99,22 @@
 							<h3>订单中心</h3>
 							<li><a href="wod_dingd.html">我的订单</a></li>
 							<li><a href="shengq_shouh.html">退换货单</a></li>
-							<li><a href="pingj_shaid.html">评价晒单</a></li>
+							<li><a href="commentAndShowOrder">评价晒单</a></li>
 						</ul>
 						<ul>
 							<h3>管理中心</h3>
-							<li><a href="wod_shouc.html">我的收藏</a></li>
+							<li><a href="MyFavorite">我的收藏</a></li>
 							<li><a href="#">我的预约</a></li>
 							<li><a href="#">我的咨询</a></li>
 							<li><a href="#">投诉管理</a></li>
+							<li><a href="MyScode">我的积分</a></li>
 						</ul>
 					</div>
 					<div class="diy_top">
 						<ul>
 							<h3>账户设置</h3>
 							<li><a href="toPersonmessage">基本资料</a></li>
-							<li><a href="zhangh_anq.html">账户安全</a></li>
+							<li><a href="UserSecurity">账户安全</a></li>
 							<li><a href="shouh_diz.html">收货地址</a></li>
 						</ul>
 					</div>
