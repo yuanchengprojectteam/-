@@ -12,8 +12,6 @@ public class Shop {
 	private Integer level;
 	private String bustime;
 	private String type;
-
-	
 	
 	
 	@Id
@@ -72,5 +70,4 @@ public class Shop {
 		return "Shop [id=" + id + ", uid=" + uid + ", name=" + name + ", addr=" + addr + ", level=" + level
 				+ ", bustime=" + bustime + ", type=" + type + "]";
 	}
-	
 }

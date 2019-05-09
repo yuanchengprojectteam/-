@@ -19,12 +19,8 @@ public class Goods {
 	private Integer point;
 	private Integer commnum;
 	private String image;
-
-	//private String intime;
-	
 	private Shop shop;
 	private Gtype type;
-	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,6 +32,17 @@ public class Goods {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+	@Transient
+	public Gtype getType() {
+		return type;
+	}
+
+	public void setType(Gtype type) {
+		this.type = type;
+	}
+	
 	
 	@Transient
 	public Shop getShop() {
@@ -115,23 +122,11 @@ public class Goods {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	@Transient
-	public Gtype getType() {
-		return type;
-	}
-
-	public void setType(Gtype type) {
-		this.type = type;
-	}
-
 	@Override
 	public String toString() {
 		return "Goods [id=" + id + ", tid=" + tid + ", sid=" + sid + ", name=" + name + ", color=" + color + ", size="
 				+ size + ", price=" + price + ", num=" + num + ", point=" + point + ", commnum=" + commnum + ", image="
-				+ image + ", shop=" + shop + ", type=" + type + "]";
+				+ image + "]";
 	}
-
-	
 	
 }

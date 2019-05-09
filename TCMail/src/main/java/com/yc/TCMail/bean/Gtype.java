@@ -8,10 +8,9 @@ import javax.persistence.*;
 @Table(name="gtype",catalog="tcmail")
 public class Gtype {
 	private Integer id;
-	private String name;
+	private Integer name;
 	private Integer pid;
 	
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
@@ -22,10 +21,10 @@ public class Gtype {
 		this.id = id;
 	}
 	@Column(name="name",length=20)
-	public String getName() {
+	public Integer getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(Integer name) {
 		this.name = name;
 	}
 	@Column(name="pid",length=11)
@@ -35,9 +34,4 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
-	@Override
-	public String toString() {
-		return "Gtype [id=" + id + ", name=" + name + ", pid=" + "pid ]";
-	}
-	
 }
