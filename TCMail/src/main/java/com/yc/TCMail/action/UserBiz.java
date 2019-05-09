@@ -66,6 +66,8 @@ public class UserBiz {
 		SimpleDateFormat  sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date  date=new Date();
 		user.setRegtime(sdf.format(date));
+		user.setType("普通用户");
+		user.setImage("http://doki-l.oss-cn-beijing.aliyuncs.com/UploadFile/header/h1.jpg");
 		return  uim.insertSelective(user);
 	}
 
@@ -111,7 +113,7 @@ public class UserBiz {
 		u.setIncome(income);
 		u.setEdu(edu);
 		u.setJob(job);
-		u.setFavtypeid(fav);
+		u.setFavTypeId(fav);
 		u.setFamilynum(Integer.valueOf(familynum));
 		
 		example.createCriteria()

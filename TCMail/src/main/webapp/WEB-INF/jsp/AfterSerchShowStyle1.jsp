@@ -21,7 +21,7 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head>
 <body>
-<%@ include file="BoforeHeader.jsp" %>
+<%@ include file="BeforeHeader.jsp" %>
 
 
 

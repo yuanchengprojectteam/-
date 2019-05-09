@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
 <head>  
 <meta charset="utf-8">
 <title>WangID通城——我的通城（个人中心首页）</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
-<!--  <script src="js/jquery-1.11.3.min.js" ></script>
-<script src="js/index.js" ></script>  -->
-<!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
-<!-- 
+<!--   <script src="js/jquery-1.11.3.min.js" ></script> -->
+<script src="js/index.js" ></script>
+<script type="text/javascript" src="js/jquery1.42.min.js"></script> 
+
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
- <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
+ <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> 
  
 </head>
 <body>
@@ -23,6 +23,7 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
+<<<<<<< HEAD
 			<div class="tod_tongc_zuoc">
 				<div class="zuoc_toux">
 					<div class="toux_kuang">
@@ -120,6 +121,11 @@
 					</div>
 				</div>
 			</div>
+=======
+			
+				<%@ include file="PersonCenterLeft.jsp" %> 
+				
+>>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="mt">
@@ -179,31 +185,17 @@
             </div>
             <div class="mod_main mod_main1 mod_main2">
 				<div class="mt">
-                    <h3>我收藏的商品</h3>
-                    <div class="extra-r"><a href="wod_shouc.html">查看更多</a></div>
+                    <h3>我的购物车</h3>
+                    <div class="extra-r"><a href="car">查看更多</a></div>
                 </div>
                	<div class="follow">
                		<ul>
+               		<c:forEach items="${cglist }" var="g">
                			<li>
                				<a class="follow_tup_kuang" href="shangp_xiangq.html"><img src="images/xiangqtu_1.jpg"></a>
-               				<p><a href="shangp_xiangq.html">MI手机 小米Note3 全网通版 6GB+128GB 亮蓝 移动联通电信4G手机 双卡双待<span>(已有100+人评价)</span></a><p class="p_color_1">￥52.00</p></p>
+               				<p><a href="shangp_xiangq.html">${g.type.name } ${g.name } ${g.size } ${g.color }<span>(已有${g.commnum }人评价)</span></a><p class="p_color_1">￥${g.price }</p></p>
                			</li>
-               			<li>
-               				<a class="follow_tup_kuang" href="shangp_xiangq.html"><img src="images/yic_003.jpg"></a>
-               				<p><a href="shangp_xiangq.html">MI手机 小米Note3 全网通版 6GB+128GB 亮蓝 移动联通电信4G手机 双卡双待<span>(已有100+人评价)</span></a><p class="p_color_1">￥52.00</p></p>
-               			</li>
-               			<li>
-               				<a class="follow_tup_kuang" href="shangp_xiangq.html"><img src="images/shangq_1.jpg"></a>
-               				<p><a href="shangp_xiangq.html">MI手机 小米Note3 全网通版 6GB+128GB 亮蓝 移动联通电信4G手机 双卡双待<span>(已有100+人评价)</span></a><p class="p_color_1">￥52.00</p></p>
-               			</li>
-               			<li>
-               				<a class="follow_tup_kuang" href="shangp_xiangq.html"><img src="images/shangq_3.jpg"></a>
-               				<p><a href="shangp_xiangq.html">MI手机 小米Note3 全网通版 6GB+128GB 亮蓝 移动联通电信4G手机 双卡双待<span>(已有100+人评价)</span></a><p class="p_color_1">￥52.00</p></p>
-               			</li>
-               			<li>
-               				<a class="follow_tup_kuang" href="shangp_xiangq.html"><img src="images/rem_shangp.jpg"></a>
-               				<p><a href="shangp_xiangq.html">MI手机 小米Note3 全网通版 6GB+128GB 亮蓝 移动联通电信4G手机 双卡双待<span>(已有100+人评价)</span></a><p class="p_color_1">￥52.00</p></p>
-               			</li>
+               		</c:forEach>	
                		</ul>
                	</div>
             </div>
