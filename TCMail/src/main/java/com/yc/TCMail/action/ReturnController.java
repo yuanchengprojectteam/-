@@ -1,44 +1,85 @@
 package com.yc.TCMail.action;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
 import com.yc.TCMail.bean.Orderdetail;
-import com.yc.TCMail.bean.Return;
+import com.yc.TCMail.bean.Retgoods;
 import com.yc.TCMail.bean.Totalreason;
-import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
-import com.yc.TCMail.imply.ReturnBiz;
-import com.yc.TCMail.imply.UorderBiz;
+import com.yc.TCMail.imply.BizException;
+import com.yc.TCMail.imply.RetgoodsBiz;
+import com.yc.TCMail.util.OssUtil;
 
 @Controller
 public class ReturnController {
 	
 	@Resource
-	private ReturnBiz retBiz;
+	private RetgoodsBiz retBiz;
+	
+	
 	
 	@RequestMapping("toApplyService")
 	public String toApplyService(Orderdetail detail,@SessionAttribute("LoginedUser") User user,Model model) {
-		model.addAttribute("ReturnList",retBiz.findAddress(user, detail));
-		model.addAttribute("ReturnList1",retBiz.findGoods(detail));
+		model.addAttribute("IsRetGoods",retBiz.isRetGoods(detail));
+		model.addAttribute("RetGoodsList",retBiz.findGoods(detail));
 		return "applyAfterService";
 	}
 	
 	@PostMapping("retReason")
 	@ResponseBody
-	public List<Totalreason> retReason(Return ret,Integer odetailid) {
-		System.out.println("========================================detailid========================");
+	public List<Totalreason> retReason(Retgoods ret,Integer odetailid) {
 		Orderdetail detail = new Orderdetail();
 		detail.setId(odetailid);
 		return retBiz.findReason(ret,detail);
 	}
+	
+	@PostMapping("applyRet")             
+	@ResponseBody
+	public String applyRet(@RequestParam("file") MultipartFile file,Retgoods ret) {
+		try {
+			return retBiz.appleRet(ret,file);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+	}
+	/*@PostMapping("applyRet")
+	public String applyRet(@RequestParam("file") MultipartFile file,@Valid Retgoods ret ,Errors errors,Model model) throws Exception {
+		if(errors.hasErrors()) {
+			System.out.println("==================================");
+			return "applyAfterService?id=3";
+		}
+		String rimage = oss.upload(file, 0);
+		ret.setRimage(rimage);
+		ret.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		ret.setStatu("已申请");
+		try {
+			 model.addAttribute("handleRetMsg", retBiz.appleRet(ret)) ;
+		} catch (BizException e) {
+			e.printStackTrace();
+			 model.addAttribute("handleRetMsg", e.getMessage()) ;
+		}
+		
+		return "applyAfterServiceHandle";
+	}*/
 	
 }

@@ -200,7 +200,13 @@
 													<p class="yiwanc_hui"><a href="toApplyService?id=${item.id}">退款/退货</a></p>
 													</c:when>
 													<c:otherwise>
-														<p class="yiwanc_hui"><a href="shengq_shouh.html">联系卖家</a></p>
+														<p class="yiwanc_hui">
+														<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1371490392&site=qq&menu=yes">
+														  <img border="0" src="http://wpa.qq.com/pa?p=2:1371490392:51" 
+														  alt="点击这里给我发消息" title="联系卖家"/>
+														  </a>
+														</p>
+														
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -229,7 +235,6 @@
 											</c:when>
 											<c:otherwise><p class="yiwanc_hui" id="wait">${temp.orderstatu}</p></c:otherwise>
 										</c:choose>
-										
 										<a href="toDetail?orderid=${temp.id}" target="_blank" class="a-link" >订单详情</a><br> 
 									</div>
 								</td>
@@ -240,25 +245,27 @@
 									</div>
 								</td> 
 								<td rowspan="1">
-								<c:choose>
-									<c:when test="${temp.paystatu == '待支付'}">
-										<div class="operate">
-										<a href="tij_dingd.html" target="_blank" class="btn-def">去付款</a>
-									</div>
-									</c:when>
-									<c:when test="${temp.orderstatu == '待评价' }">
-										<div class="operate">
-											<a href="tij_dingd.html" target="_blank" class="btn-def">评价晒单</a>
+								<%-- <c:forEach items="${temp.details}" var="item">  --%>
+									<c:choose>
+										<c:when test="${temp.paystatu == '待支付'}">
+											<div class="operate">
+											<a href="tij_dingd.html" target="_blank" class="btn-def">去付款</a>
 										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="operate">
-											<a href="javascript:void(0)" target="_blank" id="${temp.id}" class="btn-def"
-											onclick="receive(id)">确认收货</a>
-										</div>
-									</c:otherwise>
-										
-									</c:choose>
+										</c:when>
+										<c:when test="${temp.orderstatu == '待评价' }">
+											<div class="operate">
+												<a href="tij_dingd.html" target="_blank" class="btn-def">评价晒单</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="operate">
+												<a href="javascript:void(0)" target="_blank" id="${temp.id}" class="btn-def"
+												onclick="receive(id)">确认收货</a>
+											</div>
+										</c:otherwise>
+											
+										</c:choose>
+									<%-- </c:forEach> --%>
 									
 								</td>
 							</tr> 

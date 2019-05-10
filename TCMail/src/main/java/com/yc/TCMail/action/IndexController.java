@@ -73,4 +73,13 @@ public class IndexController {
 	public String  updatephone() {
 		return "alterPhoneNumber";
 	}
+	
+	@RequestMapping("shopIntroduce")
+	public String toShopIntroduce() {
+		return "shopIntroduce";
+	}
+	@RequestMapping("HelpCenter")
+	public String HelpCenter() {
+		return "HelpCenter";
+	}
 }

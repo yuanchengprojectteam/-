@@ -124,149 +124,18 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">申请售后 <p class="dingd_huis_zhan" style="float: right;">
-						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1371490392&site=qq&menu=yes">
-						  <img border="0" src="http://wpa.qq.com/pa?p=2:1371490392:51" 
-						  alt="点击这里给我发消息" title="联系卖家"/>
-						  </a>
-					</div> 
-					
-					<!--************************************-->
-					
-					
-					<form action="post" enctype="multipart/form-data" id="form">
+					<div class="shand_piaot">申请售后 <p class="dingd_huis_zhan" style="float: right;"><a href="#">联系卖家</a></p></div> 
 					<br>
-					<c:if test="${! empty RetGoodsList}">
-					<table class="order-tb order-tb_1">
-						<colgroup>
-							<col class="number-col">
-							<col class="consignee-col">
-							<col class="amount-col">
-							<col class="operate-col">
-							<col class="dis_col">
-						</colgroup> 
+					<div class="shengq_waik" id="success">
+						${data}
 						
-						<tbody>
-						
-							<tr class="sep-row"><td colspan="4"><p class="p">退货商品：</p><br/></td></tr>
-							<tr class="tr-th span_30_1">
-								<td colspan="2"> 
-									<span class="dealtime span_30" >商品名称</span> 
-								</td>
-								<td colspan="1">
-									<span class="dealtime span_30" >购买价格</span> 
-								</td>
-								<td colspan="1"> 
-									<span class="dealtime span_30" >购买数量</span> 
-								</td>
-							</tr>
-							<tr class="tr-bd">
-								<td rowspan="1" colspan="2">
-									<div class="goods-item">
-										<div class="p-img">
-											<a target="_blank" href="shangp_xiangq.html">
-												<img src="images/lieb_tupi1.jpg" alt="">
-											</a>
-										</div>
-										<div class="p-msg">
-											<div class="p-name">
-											<input type="hidden" name="odetailid" value="${RetGoodsList.id}" id="odetailid">
-												<span class="span_30"><a href="shagnj_dianp.html">${RetGoodsList.goods.shop.name }</a></span><br>
-												<a target="_blank" href="shangp_xiangq.html">${RetGoodsList.goods.name } ${RetGoodsList.goods.size } ${RetGoodsList.goods.color }</a>
-												
-											</div>
-										</div>
-									</div>  
-								</td>
-								
-								<td rowspan="1">
-									<div class="operate">
-										<p class="yiwanc_hui">¥ ${RetGoodsList.goods.price}</p> 
-									</div>
-								</td>
-								
-								<td rowspan="1">
-									<div class="txt_ren">
-										<span>x${RetGoodsList.num }</span> 
-									</div>
-								</td> 
-								
-								
-							</tr> 
-						</tbody> 
-					</table>
-					
-					<div class="shengq_waik" >
-						<div class="shengq_qingd">
-							<div class="shengq_tis_1">
-								<p><em><c:if test="${! empty IsRetGoods}">${IsRetGoods}</c:if></em> </p>
-								<p><em>* 温馨提示：</em> 本次售后服务将由 第三方卖家 <em>杭州宏文电子商务有限公司</em> 为您提供 </p>
-							</div>
-							<div class="shengq_liang"> 
-								
-								<div class="shengs_li_1">
-									<p class="p"><em>*</em>	货物状态：</p>
-									<div class="yocu">
-										<ul>
-											<li id="dsg1">
-												<div class="dangq_xuanz_diz" onclick="change1()" id="change1">未收到货</div>
-											</li>
-											<li id="dsg2">
-												<div class="dangq_xuanz_diz" onclick="change2()" id="change2">已收到货</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="shengs_li_1">
-									<p class="p"><em>*</em> 提交原因：</p>
-									<div class="yocu">
-										 <select class="select" id="select" name="reason">
-											 <option>请选择</option>
-										 </select>
-									</div>
-								</div>
-								
-								<div class="shengs_li_1">
-									<p class="p"><em>*</em> 退款金额：</p>
-									<div class="yocu">
-										<ul>
-											<li>
-												<div class="dangq_xuanz_diz" >¥ ${RetGoodsList.retPrice}</div>
-												<input type="hidden" id="money" name="money" value="${RetGoodsList.retPrice}" >
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="shengs_li_1">
-									<p class="p"><em>*</em> 问题描述：</p>
-									<div class="yocu">
-										<div class="sdg"><textarea cols="" name="descr" rows="" class="area" id="area"></textarea><p>10-500字</p></div> 
-									</div>
-								</div>
-								<div class="shengs_li_1">
-									<p class="p">上传凭证：&nbsp;&nbsp;&nbsp;&nbsp;</p>
-									<div class="yocu">
-										<input type="file" style="display: none" name="file" id="file" onchange="setsrc(this)">
-							 			<div class="pinj_shangc_tup">
-											<img class="btn_upload" alt="" src="" onclick="file.click()" id="img" >
-										</div>
-									</div>
-								</div> 
-							</div>
-							</div>
-							</div>
-								</c:if>
-								
-								</form>
-								<div class="shangsd">
-									<button onclick="ret1()">提交</button>
-								</div>
-							</div>
-						</div>
 					</div>
-				</div>
+					</div>
 			</div>
 			<!--左边内容结束-->
+	</div>
+</div>
+			
 
 <script type="text/javascript">
 
@@ -290,7 +159,7 @@ function ret1(){
 		contentType:false,
 		success: function(data){
 			alert(data);
-			window.location.reload();
+			$("#success").html(data);
 		}
 	})
 	}else{
@@ -346,7 +215,7 @@ function change1(){
 	$("#dsg1").addClass("dsg");
 	$("#dsg2").removeClass("dsg");
 	var orderstatu = $("#change1").html();
-	var detailid = $("#odetailid").val();
+	var detailid = $("#detailid").val();
 	var data={
 		statu:orderstatu,
 		odetailid:detailid

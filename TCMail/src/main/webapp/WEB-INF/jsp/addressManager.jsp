@@ -218,6 +218,7 @@
 			</div>
 		</div>
 		<div class="biaod_1">
+			<!-- <input type="checkbox" name="level" id="level" value="1">&nbsp;&nbsp;设为默认地址 -->
 			<a href="javascript:void(0)" class="diz_baoc" onclick="save()">保存</a>
 		</div>
 		
@@ -289,10 +290,10 @@
 			detailaddr: detailaddr,
 			phone: phone
 		};
-		
+		//alert($("#level").val());
 		$.post("addAddress",data,function(data){
 			alert(data);
-		});
+		}); 
 	}
 	function update(){
 		var id = $("#addrid").val();
