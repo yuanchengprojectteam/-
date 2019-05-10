@@ -12,6 +12,8 @@ public class Car {
 	private Integer id;
 	private Integer gid;
 	private Integer uid;
+	private Integer num;
+	private Integer sid;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,6 +37,20 @@ public class Car {
 	}
 	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+	@Column(name="num",length=11)
+	public Integer getNum() {
+		return num;
+	}
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+	@Column(name="sid",length=11)
+	public Integer getSid() {
+		return sid;
+	}
+	public void setSid(Integer sid) {
+		this.sid = sid;
 	}
 	
 }

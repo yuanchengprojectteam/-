@@ -101,6 +101,7 @@ public class UserAction {
 			User dbui = uBiz.login(u);
 			model.addAttribute("loginedUser", dbui);
 			model.addAttribute("cglist",ci.selectCarGoods(dbui.getId(),0));
+			System.out.println(ci.selectCarGoods(dbui.getId(),0));
 			return "PersonCenter";
 		} catch (BizException e) {
 			e.printStackTrace();

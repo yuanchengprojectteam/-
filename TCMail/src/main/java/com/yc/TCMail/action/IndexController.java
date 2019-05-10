@@ -90,7 +90,8 @@ public class IndexController {
 	
 	@RequestMapping("car")
 	public String car(@SessionAttribute("loginedUser") User user,Model model) {
-		model.addAttribute("cglist",ci.selectCarGoods(user.getId(),0));
+		model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
+		System.out.println("---"+ci.selectCarGoods(user.getId(),1));
 		return "Car";
 	}
 	
