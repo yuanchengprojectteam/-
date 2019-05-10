@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ import com.yc.TCMail.action.UserBiz;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.UserMapper;
+import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
 import com.yc.TCMail.util.OssUtil;
@@ -52,26 +54,27 @@ public class UserAction {
 
 	@Autowired
 	HbUtil hb;
+	
+	@Autowired
+	carImply ci;
 
 	@Resource
-	private  UserBiz  uBiz;
-	
-	@Resource
-	private  GTypeBiz  gbiz;
-	
+	private UserBiz uBiz;
 
 	@Resource
+	private GTypeBiz gbiz;
 
-	private  UserMapper   uMapper;
-	private Cookie  cookie1;
-	private Cookie  cookie2;
-	
+	@Resource
+	private UserMapper uMapper;
+	private Cookie cookie1;
+	private Cookie cookie2;
+
 	@ModelAttribute
-	public  void init(Model model){
-		List<Gtype> list= gbiz.AllType();	
+	public void init(Model model) {
+		List<Gtype> list = gbiz.AllType();
 		model.addAttribute("types", list);
-	}
 	
+	}
 
 	@PostMapping("login")
 	public String Login(@ModelAttribute @Valid User u, Errors errors, Model model, String isRemerber,
@@ -97,6 +100,7 @@ public class UserAction {
 		try {
 			User dbui = uBiz.login(u);
 			model.addAttribute("loginedUser", dbui);
+			model.addAttribute("cglist",ci.selectCarGoods(dbui.getId(),0));
 			return "PersonCenter";
 		} catch (BizException e) {
 			e.printStackTrace();
@@ -163,7 +167,6 @@ public class UserAction {
 	@RequestMapping("saveUser")
 	public String saveUser(String id, String realname, String account, String name, String sex, String age,
 			String email, Model model, HttpServletResponse response) {
-		System.out.println("===========sex:" + sex);
 		String[] str = sex.split(",");
 		sex = str[0];
 		User u = uBiz.updateUser(realname, account, name, sex, age, email, id);
@@ -180,21 +183,26 @@ public class UserAction {
 			Model model, HttpServletResponse resp) throws OSSException, ClientException, IOException {
 		String path = oss.upload(file, 1);
 		u.setImage(path);
-		model.addAttribute("loginedUser", u);
-		uMapper.updateByPrimaryKey(u);
+		hb.Before();
+		User user = hb.getSession().get(User.class, u.getId());
+		user.setImage(path);
+		hb.getSession().save(user);
+		hb.getTransaction().commit();
+		model.addAttribute("loginedUser", user);
 		resp.getWriter().write(path);
 	}
+
 	@RequestMapping("saveMoreInformation")
-	public  String  saveMoreInformation(int  id,String  marry,String familynum,String  income,String  edu,String  job, String[]  favorite,Model  model) {
-		String fav="";
-		for(String  s:favorite) {
-			fav=fav+s+",";
+	public String saveMoreInformation(int id, String marry, String familynum, String income, String edu, String job,
+			String[] favorite, Model model) {
+		String fav = "";
+		for (String s : favorite) {
+			fav = fav + s + ",";
 		}
-		System.out.println("marrayInformation====="+marry);
-		User  user =	uBiz.updateUserMore(id,marry,familynum,income,edu,job,fav);
-		model.addAttribute("loginedUser",user);
+		System.out.println("marrayInformation=====" + marry);
+		User user = uBiz.updateUserMore(id, marry, familynum, income, edu, job, fav);
+		model.addAttribute("loginedUser", user);
 		return "MorePersonInfo";
 	}
 
-		}
-		
+}

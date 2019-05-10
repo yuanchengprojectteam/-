@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="car",catalog="tcmail")
 public class Car {
+	
 	private Integer id;
 	private Integer gid;
 	private Integer uid;

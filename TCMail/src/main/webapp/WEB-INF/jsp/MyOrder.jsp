@@ -144,7 +144,6 @@
                         <p class="dingd_huis_zhan" style="margin-left: 8%"><a href="#">我的优惠信息</a></p>
 					</div>
 					
-					<!--************************************-->
 					
 					<table class="order-tb order-tb_1">
 						<colgroup>

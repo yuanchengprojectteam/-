@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -62,9 +63,9 @@
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" href="shenq_ruz.html">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
+			<li class="denglu"><a class="ing_ps ps2"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1371490392&site=qq&menu=yes">客户服务</a></li>
 			<li class="shu"></li>
 			<li class="shouji bj">
 				<a class="ing_ps ps3" href="#">手机通城</a>
@@ -111,9 +112,9 @@
 <div class="beij_center">
 	<div class="cart-main-header clearfix">
 		<div class="cart-col-1">
-			<input type="checkbox" class="jdcheckbox" >
+			<input type="checkbox" id="up" onclick="checkAll()" class="jdcheckbox" >
 		</div>
-		<div class="cart-col-2">全选</div><!-- $page.site 主站 团购 抢购   style -->
+		<div class="cart-col-2" >全选</div><!-- $page.site 主站 团购 抢购   style -->
 		<div class="cart-col-3">商品信息</div>
 		<div class="cart-col-4">
 			<div class="cart-good-real-price">单价</div>
@@ -126,24 +127,25 @@
 	</div>
 </div>
 <div class="container">
+<c:forEach items="${cglist }" var="g">
 	<div class="cart-shop-header">
 		<div class="cart-col-1">
-			<input type="checkbox" class="jdcheckbox" >
+			<input type="checkbox" name="c1" class="jdcheckbox" >
 		</div>
-		<div class="cart-col-2"><span class="gouw_c_dianp">罗莱LOVO自营官方旗舰店 </span></div>
+		<div class="cart-col-2"><span class="gouw_c_dianp">${g.shop.name }</span></div>
 	</div>
 	<div class="cart-shop-goods dangq_honh">
 		<div class="cart-shop-good">
 			<div class="cart-col-1">
-				<input type="checkbox" class="jdcheckbox" >
+				<input  type="checkbox" name="c1" class="jdcheckbox" >
 			</div>
 			<div class="cart-col-2" style="height: 82px;">
-				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="images/xiangqtu_1.jpg" alt=""></a>
+				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="${g.image }" alt=""></a>
 			</div>
 			<div class="fl houj_c"> 
-				<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">ThinkPad X1 Carbon(20HRA007CD)14英寸笔记本电脑(i5-7200U 8G ...</a></div></div>
+				<div class="cart-dfsg"><div class="cart-good-name"><a href="goodsDetail" target="_blank">${g.type.name } ${g.name } ${g.size } ${g.color }</a></div></div>
 				<div class="cart-good-pro"></div>
-				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;9999.00</div><div class="red"></div></div>
+				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;${g.price }</div><div class="red"></div></div>
 				<div class="cart-col-5">
 					<div class="gui-count cart-count" >
 						<a href="#" gui-count-sub="" class="gui-count-btn gui-count-sub gui-count-disabled">-</a>
@@ -152,7 +154,7 @@
 					</div>
 				</div>
 				<div class="cart-col-6 ">
-				<div class="cart-good-amount">¥&nbsp;9999.00</div><!-- 重量展示(只展示全球百货的重量) --></div>
+				<div class="cart-good-amount">¥&nbsp;${g.price }</div><!-- 重量展示(只展示全球百货的重量) --></div>
 			</div>
 			<div class="cart-col-7">
 				<div class="cart-good-fun delfixed">
@@ -164,44 +166,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="cart-shop-header">
-		<div class="cart-col-1">
-			<input type="checkbox" class="jdcheckbox" >
-		</div>
-		<div class="cart-col-2"><span class="gouw_c_dianp">罗莱LOVO自营官方旗舰店 </span></div>
-	</div>
-	<div class="cart-shop-goods">
-		<div class="cart-shop-good">
-			<div class="cart-col-1">
-				<input type="checkbox" class="jdcheckbox" >
-			</div>
-			<div class="cart-col-2" style="height: 82px;">
-				<a href="shangp_xiangq.html" target="_blank" class="g-img"><img src="images/xiangqtu_1.jpg" alt=""></a>
-			</div>
-			<div class="fl houj_c"> 
-				<div class="cart-dfsg"><div class="cart-good-name"><a href="shangp_xiangq.html" target="_blank">ThinkPad X1 Carbon(20HRA007CD)14英寸笔记本电脑(i5-7200U 8G ...</a></div></div>
-				<div class="cart-good-pro"></div>
-				<div class="cart-col-4"><div class="cart-good-real-price "><!--主品-->¥&nbsp;9999.00</div><div class="red"></div></div>
-				<div class="cart-col-5">
-					<div class="gui-count cart-count" >
-						<a href="#" gui-count-sub="" class="gui-count-btn gui-count-sub gui-count-disabled">-</a>
-						<a href="#" gui-count-add="" class="gui-count-btn gui-count-add">+</a>
-						<div class="gui-count-input"><input dytest="" class="" type="text" value="1"></div>
-					</div>
-				</div>
-				<div class="cart-col-6 ">
-				<div class="cart-good-amount">¥&nbsp;9999.00</div><!-- 重量展示(只展示全球百货的重量) --></div>
-			</div>
-			<div class="cart-col-7">
-				<div class="cart-good-fun delfixed">
-					<a href="gouw_che.html">删除</a>
-				</div>
-				<div class="cart-good-fun">
-					<a href="gouw_che.html">移入收藏夹</a>
-				</div>
-			</div>
-		</div>
-	</div>
+</c:forEach>
 </div>
 <div class="jies_beij">
 	<div class="beij_center over_dis">
@@ -213,8 +178,8 @@
 			<a href="gouw_che.html">删除</a>
 		</div>
 		<div class="jies_ann_bei">
-			<p>已选 <em>1</em> 件商品 总计（不含运费）：<span>￥9999.00</span></p>
-			<a href="tij_dingd.html" class="order_btn">去结算</a>
+			<p>已选 <em>0</em> 件商品 总计（不含运费）：<span>￥0.00</span></p>
+			<a href="addOrder" class="order_btn">去结算</a>
 		</div>
 	</div>
 </div>
@@ -393,6 +358,21 @@ $(function(){
   tabs(".investment_title","on_d",".investment_con");
   
 })
+var time=0;
+function checkAll(){
+	$("input[name^='c']").attr("checked",true);
+	if(time==0){
+		$("input[name^='c']").attr("checked",true);
+		time++;
+		return;
+	}
+	if(time==1){
+		$("input[name^='c']").removeAttr("checked");
+	
+		return;
+	}
+	
+}
 </script>
 <script type="text/javascript">
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});

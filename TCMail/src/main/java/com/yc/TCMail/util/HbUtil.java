@@ -1,12 +1,12 @@
 package com.yc.TCMail.util;
 
-import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 @Component
@@ -15,22 +15,41 @@ public class HbUtil {
 	@Autowired
 	private EntityManagerFactory emf;
 	
+	private Session session;
+	
 	
 	public  Session getSession() {
-		return emf.unwrap(SessionFactory.class).openSession();
+		if(session==null) {
+			session=emf.unwrap(SessionFactory.class).openSession();
+		}
+		return session;
 	}
 
 	public void Before() {
-		emf.unwrap(SessionFactory.class).openSession().getSession().beginTransaction();
+		if(session==null) {
+			session=emf.unwrap(SessionFactory.class).openSession();
+		}
+		session.beginTransaction();
 	}
 	
 	public  void close() {
-		
-		emf.unwrap(SessionFactory.class).openSession().getSession().close();
+		session.close();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Criteria getCriteria(Class<?> cls ) {
-		return emf.unwrap(SessionFactory.class).openSession().getSession().createCriteria(cls);
+		if(session==null) {
+			session=emf.unwrap(SessionFactory.class).openSession();
+		}
+		return session.createCriteria(cls);
 	}
+	
+	public Transaction getTransaction() {
+		if(session==null) {
+			session=emf.unwrap(SessionFactory.class).openSession();
+		}
+		return (Transaction) session.getTransaction();
+	}
+	
 	
 }
