@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="shop",catalog="tcmail")
-
 public class Shop {
 	private Integer id;
 	private Integer uid;
@@ -14,30 +13,8 @@ public class Shop {
 	private String bustime;
 	private String type;
 	private User user;
-	
-	
-	
-
-	
-	
-	@Transient
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	private  String  describe;
    
-    private  String  describe;
-   
-    @Column(name="describe",length=500)
-	public String getDescribe() {
-		return describe;
-	}
-
-	public void setDescribe(String describe) {
-		this.describe = describe;
-	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
@@ -66,7 +43,7 @@ public class Shop {
     public void setBustime(String bustime) {
         this.bustime = bustime;
     }
-@Column(name="level",length=5)
+    @Column(name="level",length=5)
     public Integer getLevel() {
         return level;
     }
@@ -74,14 +51,14 @@ public class Shop {
     public void setLevel(Integer level) {
         this.level = level;
     }
-@Column(name="name",length=50)
+    @Column(name="name",length=50)
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-@Column(name="type",length=50)
+    @Column(name="type",length=50)
     public String getType() {
         return type;
     }
@@ -89,7 +66,7 @@ public class Shop {
     public void setType(String type) {
         this.type = type;
     }
-@Column(name="uid",length=11)
+    @Column(name="uid",length=11)
     public Integer getUid() {
         return uid;
     }
@@ -97,4 +74,22 @@ public class Shop {
     public void setUid(Integer uid) {
         this.uid = uid;
     }
+    
+    @Column(name="describe",length=500)
+   	public String getDescribe() {
+   		return describe;
+   	}
+
+   	public void setDescribe(String describe) {
+   		this.describe = describe;
+   	}
+   	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+   
+   	
 }

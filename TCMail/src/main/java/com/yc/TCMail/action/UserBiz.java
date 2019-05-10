@@ -66,6 +66,7 @@ public class UserBiz {
 		SimpleDateFormat  sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date  date=new Date();
 		user.setRegtime(sdf.format(date));
+		user.setType("普通用户");
 		return  uim.insertSelective(user);
 	}
 
@@ -128,6 +129,20 @@ public class UserBiz {
 		example.createCriteria()
 			.andIdEqualTo(id);
 		uim.updateByExampleSelective(u, example);
+	}
+
+	public int changeType(String phone,String email) {
+		UserExample  example=new UserExample();
+		example.createCriteria()
+					.andPhoneEqualTo(phone);
+		List<User> list=uim.selectByExample(example);
+		User u=list.get(0);
+		u.setType("商家管理员");
+		u.setEmail(email);
+		example.createCriteria()
+		.andIdEqualTo(u.getId());
+	uim.updateByExampleSelective(u, example);
+	return  u.getId();
 	}
 	
 }

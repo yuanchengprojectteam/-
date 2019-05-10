@@ -33,6 +33,10 @@ public class HbUtil {
 	}
 	
 	public  void close() {
+		if(session==null) {
+			session=emf.unwrap(SessionFactory.class).openSession();
+		}
+		session.getTransaction().commit();
 		session.close();
 	}
 	
