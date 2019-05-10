@@ -25,7 +25,6 @@
 			<!--侧边导航-->
 			
 				<%@ include file="PersonCenterLeft.jsp" %> 
-				
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="mt">

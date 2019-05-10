@@ -9,7 +9,7 @@
 <title>WangID通城——个人注册</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
-<script src="js/jquery-1.4.4.min.js" ></script>
+<script src="../../js/jquery-2.1.4.js" ></script>
 <!--<script src="js/index.js" ></script>  --> 
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
 <!-- 
@@ -68,7 +68,7 @@
 	                  	</div>
                 	</div>
                 	<div class="msg-weak err-tips"  style="display:none;" id="message3"><div>请输入密码</div></div>
-                	<div class="msg-weak err-tips"  style="display:none;" id="message4"><div>对不起，请以字母开头，长度在6-18之间，只能包含字符、数字和下划线</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message4"><div>请以字母开头，长度在6-18之间，只能包含字符、数字和下划线</div></div>
             	</div> 
             </div>
             <div class="reg-items" >

@@ -482,7 +482,7 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li>
-				<a href="#" title="Mistletoe">Mistletoe</a>
+				<a href="toshopGoodsShowStyle1?tid=1" title="Mistletoe">Mistletoe</a>
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">

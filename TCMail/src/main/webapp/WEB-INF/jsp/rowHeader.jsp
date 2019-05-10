@@ -54,7 +54,10 @@
 			</li>					
 		</ul>
 		<ul class="header-right">
-			<li class="denglu">Hi~<a class="red" href="tologin">请登录!</a> <a href="toregister">[免费注册]</a></li> 
+			<li class="denglu">Hi~
+			<a class="red" href="tologin" id="na">
+			
+			</a> <a href="toregister">[免费注册]</a></li> 
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
@@ -119,4 +122,14 @@
 		<a href="#">特步女鞋</a>
 		<a href="#">威士忌</a>
 	</div>
-</div>          
+</div>     
+<script type="text/javascript">
+window.onload=function(){
+	
+if('${sessionScope.loginedUser}'){
+			document.getElementById('na').innerHTML='${sessionScope.loginedUser.name}';
+	}else{
+			document.getElementById('na').innerHTML='请登录！';
+	}
+}
+			</script>     

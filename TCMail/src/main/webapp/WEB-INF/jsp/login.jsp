@@ -174,7 +174,6 @@ function  send(){
 	 for(var i=0;i<4;i++){
 	    code+=Math.floor(Math.random()*10);
 	 }
-	 alert(code);
 	 $.ajax({
 		 url:"send?phone="+str, 					//url地址
 		 data:"code="+code,   			 // 将uname=张三传递给后台

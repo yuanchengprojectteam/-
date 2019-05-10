@@ -38,9 +38,9 @@
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
-							<li><a href="ger_xinx.html">个人信息</a></li>
+							<li><a href="toPersonmessage">个人信息</a></li>
 							<li class="dangq_hongx"><a href="header">设置头像</a></li>
-							<li><a href="gengd_ger_xinx.html">更多个人信息</a></li>
+							<li><a href="toMoreInformation">更多个人信息</a></li>
 						</ul>
 					</div>
 					<div class="wd">
