@@ -217,7 +217,7 @@
 			dataType:"JSON",
 			data: fd,
 			success:function(data){
-				alert(data);
+				alert("评论成功。");
 			}
 		});
 		

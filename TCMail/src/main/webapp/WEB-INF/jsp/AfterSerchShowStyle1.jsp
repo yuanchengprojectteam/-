@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<<<<<<< HEAD
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -24,7 +23,7 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head>
 <body>
-<%@ include file="BeforeHeader.jsp" %>
+<%@ include file="../public/BeforeHeader.jsp" %>
 
 
 
@@ -478,7 +477,7 @@
         <c:forEach items="${hostRecommend }" var="h">
         	<li class="item asynPriceBox">
         		<p class="pic">
-        		<a target="_blank" href="#"><img src="${h.image }" alt=""></a>
+        			<a target="_blank" href="#"><img src="${h.image }" alt=""></a>
         		</p>
         		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑">${h.name } &nbsp&nbsp ${h.color} &nbsp&nbsp ${h.size }</a></p>
         		<p class="price asynPrice" >${h.price }</p>
@@ -490,7 +489,7 @@
     </div>
 </div>
 <div class="lujing_ziy">
-	<a href="#">服饰</a> > <a href="#">女装</a> 
+	<a href="#">服饰</a> > <a href="#">${typeid.name }</a> 
 </div>
 <div class="shangp_lieb_jvz">
 	<div class="selector">
@@ -535,13 +534,13 @@
 		          	<div class="sl-v-list">
 			            <ul class="J_valueList">
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">10-100</a>
+			                  	<a href="ScopePrice?low=10&top=100"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">10-100</a>
 			                </li>
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">100-500</a>
+			                  	<a href="ScopePrice?low=100&top=500"  rel='nofollow'><input type="checkbox"  class="checkbox yingc_df">100-500</a>
 			                </li>
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">500以上</a>
+			                  	<a href="ScopePrice?low=500&top=9999999"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">500以上</a>
 			                </li> 
 			            </ul>
 		            </div>
@@ -682,9 +681,9 @@
 			<div class="f_line">
 				<div class="f_sort">
 	                <a href="#" class="curr_1">综合排序<i></i></a>
-	                <a href="buyNum?tid=${typeid}" class="curr_2">销量<i></i></a>
-	                <a href="price?tid=${typeid}" class="curr_2">价格<i></i></a>
-	                <a href="commentNum?tid=${typeid}" class="curr_2">评论数<i></i></a>
+	                <a href="buyNum?tid=${typeid.id}" class="curr_2">销量<i></i></a>
+	                <a href="price?tid=${typeid.id}" class="curr_2">价格<i></i></a>
+	                <a href="commentNum?tid=${typeid.id}" class="curr_2">评论数<i></i></a>
 	                <a href="#" class="curr_2">上架时间<i></i></a>
 	          	</div>
 	          	<div class="f_pager" id="J_topPage"> 
@@ -736,7 +735,7 @@
 							</div>
 							<div class="lieb_text lieb_text_1">
 								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>${all.price }</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
+					              	<strong class="J_price"><em>¥</em><i>${all.price * 0.9 }</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">${all.price }</i></p></strong> 
 					            </div>
 							</div>
 							<div class="you_pingj you_pingj_1">
@@ -751,7 +750,8 @@
 									</div>
 								</div> 
 							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
+							<input type="hidden" id="collection" value="${all.id }"/>
+							<div class="p_focus p_focus_1"><a class="J_focus"  onclick="collectionGood()"><i></i>加入收藏</a></div>
 						</div>
 					</div>
 				</li> 
@@ -831,4 +831,27 @@
 
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
+	function collectionGood(){
+		var id = $("#collection").val();
+		alert(id);
+		$.ajax({
+			type:"post",
+			url:"collction",
+			cache:false,
+			dataType:"JSON",
+			data:{"id":id},
+			success:function(data){
+				alert("成功加入收藏。");
+			},
+			error:function(e){
+				alert("ajax错误");
+			}
+			
+		});
+		
+	}
+
+</script>
+
 </html>

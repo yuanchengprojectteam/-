@@ -19,4 +19,7 @@ public interface OrderBy {
 	
 	@Select("select * from goods where tid=${val} ORDER BY commnum DESC")
 	List<Goods> selectcommentOrderBy(@Param("val")int val);
+
+	@Select("select * from goods where tid=${tid} and price > ${low} and price < ${top}  ORDER BY price")
+	List<Goods> selectScopeOrderBy(@Param("tid")int tid,@Param("low")int low,@Param("top")int top);
 }
