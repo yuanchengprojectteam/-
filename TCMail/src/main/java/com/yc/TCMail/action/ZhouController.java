@@ -6,21 +6,24 @@ import java.util.List;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.yc.TCMail.bean.Car;
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
+
 import com.yc.TCMail.bean.Comment;
 import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.FavoriteExample;
@@ -37,6 +40,7 @@ import com.yc.TCMail.dao.GoodsmsgMapper;
 import com.yc.TCMail.dao.ShopMapper;
 import com.yc.TCMail.dao.UorderMapper;
 import com.yc.TCMail.util.HttpUtil;
+import com.yc.TCMail.util.OssUtil;
 
 @Controller
 @SessionAttributes(names={"favorite","Sendcode"})
@@ -62,11 +66,14 @@ public class ZhouController {
 	@Resource
 	UorderMapper um;
 	
+	@Autowired
+	OssUtil oss;
+	
 	
 	@GetMapping("center")
 	public String center(@SessionAttribute("loginedUser") User user,Model model) {	
 		//184行
-		String statu = "未评价";
+		String statu = "待评价";
 		UorderExample ue = new UorderExample();
 		ue.createCriteria().andOrderstatuEqualTo(statu).andUidEqualTo(user.getId());
 		int count = (int) um.countByExample(ue);
@@ -97,11 +104,12 @@ public class ZhouController {
 	
 	@RequestMapping("zhouAddCar")
 	public String zhouAddCar(Favorite f ,Model model) {
-		int gid = f.getGoodsid();
-		int uid = f.getUid();
+		Favorite f1 = fm.selectByPrimaryKey(f.getId());
+		int gid = f1.getGoodsid();
+		int uid = f1.getUid();
 		zm.addCar(gid, uid, cm);
-		List<Car> list = zm.queryAllCar(uid, cm, gm, sm);
-		model.addAttribute("carAll",list);
+		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
+		model.addAttribute("cglist",list);
 		return "Car";
 		//return "re....;queryCar?id="+f.getUid();
 	}
@@ -109,7 +117,7 @@ public class ZhouController {
 	@RequestMapping("queryCar")
 	public String queryCar(@SessionAttribute("loginedUser")User user ,Model model) {
 		//System.out.println("==============="+id);
-		List<Car> list = zm.queryAllCar(user.getId(), cm, gm, sm);
+		List<Goods> list = zm.queryAllCar(user.getId(), cm, gm, sm);
 		model.addAttribute("favoriteList",list);
 		return "Car";
 	}
@@ -124,7 +132,7 @@ public class ZhouController {
 	
 	@RequestMapping("commentAndShowOrder")
 	public String commentAndShowOrder(@SessionAttribute("loginedUser")User user, Model model) {	
-		String statu = "未评价";
+		String statu = "待评价";
 		UorderExample ue = new UorderExample();
 		ue.createCriteria().andOrderstatuEqualTo(statu).andUidEqualTo(user.getId());
 		List<Uorder> list = um.selectByExample(ue);
@@ -142,7 +150,9 @@ public class ZhouController {
 		/*for(Goods g : set) {
 			System.out.println("=================="+g.getName());
 		}*/
-		
+		for(Uorder u :list ) {
+			System.out.println("============="+u.getDetails().get(0).getGoods().getName());
+		}
 		model.addAttribute("orderGoods",list);
 		model.addAttribute("count",count);
 		
@@ -168,24 +178,24 @@ public class ZhouController {
 		
 		@RequestMapping("commentMsg")
 		@ResponseBody
-		public String commentMsg(@SessionAttribute("loginedUser")User user,@RequestParam("watti") String watti
+		public void commentMsg(@SessionAttribute("loginedUser")User user,@RequestParam("watti") String watti
 				,@RequestParam("gfit") String gfit
 				,@RequestParam("atti") String atti
 				,@RequestParam("speed") String speed
 				,@RequestParam("satisf") String satisf
 				,@RequestParam("msg") String msg
-				,@RequestParam("file") Part[] file) {
+				,@RequestParam("file") MultipartFile[] file
+				,@RequestParam("uoid") String uoid
+				,HttpServletResponse resp
+				,@RequestParam("gid")String gid) throws OSSException, ClientException, IOException {
+			
 			Comment comm = new Comment();
 			String img="";
-			for(Part p :file) {
+			for(MultipartFile p :file) {
 				if(p != null) {
-					try {
-						p.write("D:/image/"+p.getSubmittedFileName());
-						img = img+","+"D:/image/"+p.getSubmittedFileName();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					
+						/*p.write("D:/image/"+p.getSubmittedFileName());
+						img = img+","+"D:/image/"+p.getSubmittedFileName();*/
+						img = img+","+oss.upload(p, 2);		
 				}
 				
 			}
@@ -198,7 +208,10 @@ public class ZhouController {
 			comm.setImg(img);
 			comm.setCommenttime(zm.now());
 			comm.setUid(user.getId());
-			return zm.insertComment(comm);
+			zm.updateUorderStatu(uoid);
+			zm.insertComment(comm);
+			zm.updateCommnum(gid);
+			resp.getWriter().write("成功了！！");
 						
 		}
 		

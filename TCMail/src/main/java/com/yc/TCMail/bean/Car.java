@@ -1,8 +1,5 @@
 package com.yc.TCMail.bean;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,15 +10,16 @@ public class Car {
 	private Integer gid;
 	private Integer uid;
 	
-	private Goods goods;
+	private Goods good;
+	
 	
 	
 	@Transient
-	public Goods getGoods() {
-		return goods;
+	public Goods getGood() {
+		return good;
 	}
-	public void setGoods(Goods goods) {
-		this.goods = goods;
+	public void setGood(Goods good) {
+		this.good = good;
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

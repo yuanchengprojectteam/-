@@ -1,6 +1,7 @@
 package com.yc.TCMail.action;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,6 +22,7 @@ import com.yc.TCMail.bean.Point;
 import com.yc.TCMail.bean.PointExample;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.Uorder;
+import com.yc.TCMail.bean.UorderExample;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.bean.UserExample;
 import com.yc.TCMail.dao.CarMapper;
@@ -60,6 +62,9 @@ public class ZhouMethod {
 	@Resource
 	PointMapper pm;
 	
+	@Resource
+	GoodsMapper gm;
+	
 	
 	public  List<Favorite> selectAllFavorite(FavoriteExample fe,FavoriteMapper fm,GoodsMapper gm,Favorite f) {
 		fe.createCriteria().andUidEqualTo(f.getUid());
@@ -80,22 +85,24 @@ public class ZhouMethod {
 		cm.insert(car);	
 	}
 
-	public  List<Car> queryAllCar(int uid, CarMapper cm,GoodsMapper gm,ShopMapper sm) {
+	public  List<Goods> queryAllCar(int uid, CarMapper cm,GoodsMapper gm,ShopMapper sm) {
 		// TODO Auto-generated method stub
 		
 		CarExample ce = new CarExample();
 		ce.createCriteria().andUidEqualTo(uid);
 		List<Car> list = cm.selectByExample(ce);
+		List<Goods> list1 = new ArrayList<Goods>();
 		for(Car car : list) {
 			int gid = car.getGid();
 			Goods good = queryGoods(gid,gm);
 			int sid = good.getSid();
 			Shop shop = sm.selectByPrimaryKey(sid);
 			good.setShop(shop);
-			car.setGoods(good);
+			car.setGood(good);
+			list1.add(good);
 			//System.out.println(shop+":"+good);
 		}
-		return list;
+		return list1;
 	}
 
 	public Goods queryGoods(int gid,GoodsMapper gm) {
@@ -214,6 +221,29 @@ public class ZhouMethod {
 		ue.createCriteria().andIdEqualTo(uid);
 		userm.updateByExampleSelective(user, ue);
 		
+	}
+
+	public void updateUorderStatu(String uoid) {
+		
+		int id = Integer.parseInt(uoid);
+		Uorder uo = um.selectByPrimaryKey(id); 
+		uo.setOrderstatu("已评价");
+		UorderExample ue = new UorderExample();
+		ue.createCriteria().andIdEqualTo(id);
+		um.updateByExampleSelective(uo, ue);
+		
+	}
+
+	public void updateCommnum(String gid) {
+		// TODO Auto-generated method stub
+		int id = Integer.parseInt(gid);
+		Goods good = gm.selectByPrimaryKey(id);
+		int num = good.getCommnum();
+		num++;
+		good.setCommnum(num);
+		GoodsExample ge = new GoodsExample();
+		ge.createCriteria().andIdEqualTo(id);
+		gm.updateByExampleSelective(good, ge);
 	}
 
 	

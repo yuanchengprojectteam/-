@@ -175,7 +175,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="goods-number">${o.num }件</div>
+									<div class="goods-number">${d.num }件</div>
 								</td>
 								<td rowspan="1">
 									<div class="zhif_jine">

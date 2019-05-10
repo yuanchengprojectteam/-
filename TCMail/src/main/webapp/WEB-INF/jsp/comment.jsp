@@ -61,6 +61,7 @@
 		<div class="pingj_dingd_hao">
 			<h3>订单评价</h3>
 			<p><span><i>订单号：</i>${comm.uorder.id }</span><span>${comm.uorder.ordertime }</span></p>
+			<input type="hidden" name="uoid" value="${comm.uorder.id }">
 		</div>
 	</div>
 	<div class="beij_center">
@@ -70,6 +71,7 @@
 					<a href="shagnj_dianp.html" class="shop_logo" target="_blank"><img src="${comm.goods.shop.user.image }"></a>
 					<div class="dinam_he">
 						<p class="shop_mignc">${comm.goods.shop.name }</p>
+						<input type="hidden" name="gid" value="${comm.goods.id" />
 						<div class="shop_score_01">
 							<div class="sum">
 								<span class="tit s_diy">综合</span>
@@ -215,7 +217,7 @@
 			dataType:"JSON",
 			data: fd,
 			success:function(data){
-				alert("成功！！");
+				alert(data);
 			}
 		});
 		

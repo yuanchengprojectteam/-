@@ -63,7 +63,7 @@
                             </li>
                             <li>
                                 <div class="count_item">
-                                    <a href="wod_dingd.html">
+                                    <a href="commentAndShowOrder">
                                         <i class="count_icon count_icon04"></i> 待评价
                                         <em id="waitPay">${count}</em>
                                     </a>
@@ -82,7 +82,7 @@
 						</ul>
 						<ul>
 							<h3>管理中心</h3>
-							<li><a href="wod_shouc.html">我的收藏</a></li>
+							<li><a href="MyFavorite">我的收藏</a></li>
 							<li><a href="#">我的预约</a></li>
 							<li><a href="#">我的咨询</a></li>
 							<li><a href="#">投诉管理</a></li>

@@ -2,18 +2,17 @@
     pageEncoding="utf-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——收货地址${param.id}</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet" type="text/css" href="css/ziy.css">
+<link rel="stylesheet" type="text/css" href="../../css/index.css">
+<link rel="stylesheet" type="text/css" href="../../css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
- <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
+ <script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.SuperSlide.2.1.1.source.js"></script>
 <!--  <script type="text/javascript" src="js/select.js"></script> -->
 
 
@@ -28,6 +27,7 @@
 			<!--侧边导航-->
 			<jsp:include page="PersonCenterLeft.jsp" ></jsp:include>
 			<!--左边内容-->
+			
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
 					<div class="shand_piaot">我的收藏</div>
@@ -79,8 +79,8 @@
 													<a href="shagnj_dianp.html" class="btn_mix_shop">进入店铺</a>
 												</div>
 												<div class="col280">
-													<h2><a href="shangp_xiangq.html" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)" target="_blank">${f.good.name}${f.good.color } ) ${f.good.size}</a></h2>
-													<div class="price_box"><span>￥${f.good.price }</span></div>
+													<h2><a href="shangp_xiangq.html" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)" target="_blank">${f.good.name}${f.good.color } ${f.good.size}</a></h2>
+													<div class="price_box"><span>单价：￥${f.good.price }</span></div>
 													<div class="price_box"><span class="font_aide">￥${f.good.price }</span></div>
 													<div class="price_box">
 														<a href="zhouAddCar?id=${f.id }" class="button_grey">加入购物车</a>
@@ -98,6 +98,7 @@
 										</div>
 									</div>
 								</div>
+							
 							</ul>
 							<ul>
 								<div class="uc_overdueTable">
@@ -177,7 +178,7 @@
 		
 		var id = $("#id").val();
 		var uid = $("#uid").val();
-		//alert(id+","+uid);
+		alert(id+","+uid);
 		$.ajax({
 			type:"post",
 			url:"fdelect?id="+id,
@@ -187,7 +188,7 @@
 			success:function(data){
 				alert("取消成功！！");
 				location.href = "MyFavorite?uid="+data.uid;
-			}
+			},
 			error:function(e){
 				alert("ajax错误");
 			}
