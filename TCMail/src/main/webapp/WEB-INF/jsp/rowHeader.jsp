@@ -54,7 +54,8 @@
 			</li>					
 		</ul>
 		<ul class="header-right">
-			<li class="denglu">Hi~<a class="red" href="tologin" id="na">
+			<li class="denglu">Hi~
+			<a class="red" href="tologin" id="na">
 			
 			</a> <a href="toregister">[免费注册]</a></li> 
 			<li class="shu"></li>
@@ -121,7 +122,7 @@
 		<a href="#">特步女鞋</a>
 		<a href="#">威士忌</a>
 	</div>
-</div> 
+</div>     
 <script type="text/javascript">
 window.onload=function(){
 	
@@ -131,4 +132,4 @@ if('${sessionScope.loginedUser}'){
 			document.getElementById('na').innerHTML='请登录！';
 	}
 }
-			</script>            
+			</script>     

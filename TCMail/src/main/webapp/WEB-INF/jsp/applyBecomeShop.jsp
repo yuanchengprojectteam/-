@@ -8,6 +8,7 @@
 <title>WangID通城——个人注册</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
+<script src="../../js/jquery-2.1.4.js" ></script>
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  --> 
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
@@ -37,7 +38,7 @@
 			</ul>
 		</div>
 		<div class="zhuc_biaod zhuc_biaod_liuy">
-			<form action="#" method="post" class="messages">
+			<form action="shopregister" method="post" class="messages">
 				<h2>联系人信息</h2>
 			     <div class="messlist">
 			      <label><em>*</em> 联系人姓名</label>
@@ -60,7 +61,7 @@
 			     </div>
 			     <div class="messlist">
 			      <label><em>*</em> 联系邮箱</label>
-			      <input type="text" placeholder="邮箱" id="email" name="email" oninput="check1(this.value)" />
+			      <input type="text" placeholder="邮箱" id="email" name="email" oninput="check1(this.value)" value="${loginedUser.email }" />
 			      <div class="clears"></div>
 			      <div class="msg-box"> 
                 	<div class="msg-weak err-tips"  style="display:none;" id="message2"><div>邮箱不能为空</div></div>
@@ -81,18 +82,31 @@
             	</div> 
 			     </div>
 			     <div class="messlist textareas">
+			      <label><em>*</em> 商铺地址</label>
+			      <input type="text" placeholder="商铺地址" id="addr" name="addr" oninput="check6(this.value)"></input>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message5"><div>商铺地址不能为空</div></div>
+            	</div>
+            	<div class="clears"></div>
+			     </div>
+			     <div class="messlist textareas">
 			      <label><em>*</em> 详情内容</label>
-			      <textarea placeholder="详情内容"></textarea>
+			      <textarea placeholder="详情内容"  name="describe"></textarea>
 			      <div class="clears"></div>
 			     </div>
 			     <div class="messlist yzms">
 			      <label><em>*</em> 验证码</label>
-			      <input type="text" placeholder="验证码" />
-			      <img src="" width="64" height="27" class="yzmimg" />
+			      <input type="text" placeholder="验证码" id="rcode" name="code" oninput="check4(this.value)"/>
+			      <a onclick="send()">点击获取验证码</a>
 			      <div class="clears"></div>
+			      <div class="msg-box"> 
+                	<div class="msg-weak err-tips"  style="display:none;" id="message10"><div>验证码不能为空</div></div>
+                	<div class="msg-weak err-tips"  style="display:none;" id="message11"><div>验证码错误</div></div>
+                	
+            	</div>
 			     </div>
 			     <div class="messsub">
-			      <input class="reg-btn type="submit" x value="提交"/> 
+			      <input class="reg-btn" type="submit"  value="提交"/> 
 			     </div>
 			</form>	
 			<div class="fuw_teh_kuang">
@@ -171,6 +185,15 @@ function  check2(name){
 	}
 	message4.setAttribute('style','display:none;');
 }
+function  check6(addr){
+	var  addr=addr.trim();
+	var  message5=document.getElementById('message5');
+	if(addr.length==0){
+		message5.setAttribute('style','display:inline-block;');
+		return;
+	}
+	message5.setAttribute('style','display:none;');
+}
 function  check3(phone){
 	var  phone=phone.trim();
 	var  message7=document.getElementById('message7');
@@ -198,11 +221,58 @@ function  check3(phone){
 		message9.setAttribute('style','display:inline-block;');
    	 	return ; 
    	 }
+   	$.ajax({
+	   		 url:"checkPhone", 					//url地址
+	   		 data:"phone="+phone,   			 // 将uname=张三传递给后台
+	   		 method:"post",   				 //传输方式，get / post
+	   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
+		   		var e= document.getElementById("message7");
+  			 if(result=='yes'){
+	   		 	 e.innerHTML="请输入注册账号时的手机号";
+	   		 	e.setAttribute('style', 'display: inline-block;');
+  			 }else{
+  				e.setAttribute('style', 'display: none;');
+  			 }
+  			
+	   	    }
+	   	 });
 	message7.setAttribute('style','display:none;');
 	message8.setAttribute('style','display:none;');
 	message9.setAttribute('style','display:none;');
-	
-	
+}
+var  code='';
+function  send(){
+	code='';
+	 var str = document.getElementById('phone').value.trim(); 
+	 for(var i=0;i<4;i++){
+	    code+=Math.floor(Math.random()*10);
+	 }
+	 $.ajax({
+		 url:"send", 					//url地址
+		 data:"code="+code+"&phone="+str,   			 // 将uname=张三传递给后台
+		 method:"post",   				 //传输方式，get / post
+		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据	
+	      	 
+	    }
+	 });
+} 
+function  check4(rcode){
+	var code1=rcode.trim();
+	var message10=document.getElementById('message10');
+	var message11=document.getElementById('message11');
+	if(code1.length==0){
+		message10.setAttribute('style','display:inline-block;');
+		message11.setAttribute('style','display:none;');
+		return;
+	}
+	if(code1 != code){
+		message10.setAttribute('style','display:none;');
+		message11.setAttribute('style','display:inline-block;');
+		return;
+	}
+	message10.setAttribute('style','display:none;');
+	message11.setAttribute('style','display:none;');
+	code='';
 }
 </script>
 </html>

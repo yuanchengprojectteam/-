@@ -86,7 +86,7 @@
 						<div class="zhangh_dt"><span>账号设置</span><i>◇</i></div>
 						<div class="zhangh_dd">
 							<a href="toPersonmessage">个人信息</a>
-							<a href="toSecurity">账户安全</a>
+							<a href="UserSecurity">账户安全</a>
 							<a href="shouh_diz.html">收货地址</a>
 						</div>
 					</div> 

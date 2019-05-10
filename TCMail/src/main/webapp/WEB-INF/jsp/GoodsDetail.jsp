@@ -22,6 +22,7 @@
 <body>
 <!--侧边-->
 <jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+
 		<!--左边导航-->
 
 		<div class="subpage">
@@ -481,7 +482,7 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li>
-				<a href="#" title="Mistletoe">Mistletoe</a>
+				<a href="toshopGoodsShowStyle1" title="Mistletoe">Mistletoe</a>
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">

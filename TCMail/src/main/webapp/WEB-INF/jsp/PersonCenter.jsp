@@ -28,7 +28,6 @@
 			
 				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 				
-
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="mt">

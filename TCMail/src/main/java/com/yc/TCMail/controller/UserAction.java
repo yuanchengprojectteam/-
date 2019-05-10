@@ -120,7 +120,7 @@ public class UserAction {
 	@RequestMapping("PhoneUpdate")
 public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throws IOException {
 		uBiz.updatePhone(phone, id);
-		response.getWriter().write("yes".toCharArray());;
+		response.getWriter().write("yes".toCharArray());
 	}
 
 	@PostMapping("getphone")

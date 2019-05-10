@@ -5,6 +5,39 @@
 .navv_ziy{ 
 	border-bottom: solid 2px #e10601; 
 }
+.stepflex1 {
+    border-top: 5px solid #ccc;
+    text-align: center;
+    margin:80px auto 50px;
+    width: 500px; 
+
+}
+.stepflex1 dl {
+    float: left;
+    position: relative;
+    width:250px;
+    top: -5px;
+    border-top: 5px solid #ccc;
+}
+.stepflex1_2 dl{
+    width: 162px;
+}
+.stepflex1_2 dl.done {
+    border-top-color: #caecb6;
+}
+.stepflex1_2 dl.done .s-text {
+    color: #caecb6;
+}
+.stepflex1_2 dl.done .s-num {
+    background-position: -46px 0;
+}
+.stepflex1 dl.doing .s-text {
+    color: #7abd54;
+}
+.stepflex1 .s-text {
+    color: #a5a5a5;
+}
+
 .focus .focus-a .fouc_font_ziy{
 	background: url(../images/shangpfl.png) right 20px center no-repeat;
  	background-color:  #e10601;
