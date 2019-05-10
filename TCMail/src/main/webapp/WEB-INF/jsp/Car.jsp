@@ -378,4 +378,4 @@ function checkAll(){
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
 </script>
 
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>

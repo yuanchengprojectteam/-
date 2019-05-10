@@ -21,7 +21,7 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head> 
 <body>
-<%@ include file="BoforeHeader.jsp" %>
+<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
 
 
 		<!--左边导航-->
@@ -1243,5 +1243,4 @@
 	</ul>
 </div>
 
-<%@ include file="BoforeFoot.jsp" %>
-
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>

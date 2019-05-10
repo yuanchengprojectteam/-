@@ -21,12 +21,12 @@
 <body>
 <!--头部--> 
  
-<%@include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
-				<%@include flie="PersonCenterLeft.jsp"%> 
+				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
@@ -179,4 +179,4 @@
 <script type="text/javascript">jQuery(".slideTxtBox_shouc").slide();</script>
 
 
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>

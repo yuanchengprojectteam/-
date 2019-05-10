@@ -20,7 +20,7 @@
 <body>
 <!--头部-->
 
-<%@ include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <!--内容-->
 <div class="wod_tongc_zhongx">
 	<c:if test="${! empty OrderDetail}" >
@@ -350,8 +350,7 @@
 	
 	
 </div>
-<%@ include file="AfterFoot.jsp"%>
-
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 <script type="text/javascript">
 function receive(id){
 	if(confirm("请确认此操作!")){

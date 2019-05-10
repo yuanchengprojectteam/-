@@ -17,7 +17,7 @@
  
 </head> 
 <body>
-<%@ include file="BeforeHeader.jsp" %>
+<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
 
 		<!--左边导航-->
 
@@ -591,4 +591,4 @@
 	</div>
 </div>
 
-<%@ include file="BeforeFoot.jsp"%>
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>

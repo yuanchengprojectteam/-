@@ -17,7 +17,7 @@
  
 </head> 
 <body>
-<%@ include file="rowHeader.jsp" %>
+<jsp:include page="../public/rowHeader.jsp"></jsp:include>
 <!--店铺-->
 <div class="dianp_logo_beij">
 	<div class="dianp_logo_img">
@@ -275,4 +275,4 @@
 	</div>
 </div>
  
-<%@ include file="BeforeFoot.jsp"%>
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>

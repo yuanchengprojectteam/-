@@ -90,6 +90,7 @@ public class IndexController {
 	@RequestMapping("HelpCenter")
 	public String HelpCenter() {
 		return "HelpCenter";
+	}
 
 	@RequestMapping("security")
 	public String security(){
