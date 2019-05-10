@@ -104,7 +104,9 @@ public class ZhouController {
 	
 	@RequestMapping("zhouAddCar")
 	public String zhouAddCar(Favorite f ,Model model) {
+		System.out.println(f+"===============================");
 		Favorite f1 = fm.selectByPrimaryKey(f.getId());
+		System.out.println(f1+"=============");
 		int gid = f1.getGoodsid();
 		int uid = f1.getUid();
 		zm.addCar(gid, uid, cm);

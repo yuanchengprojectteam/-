@@ -61,6 +61,11 @@ public class Favorite {
 	public void setFtime(String ftime) {
 		this.ftime = ftime;
 	}
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", uid=" + uid + ", shopid=" + shopid + ", goodsid=" + goodsid + ", ftime="
+				+ ftime + ", good=" + good + "]";
+	}
 	
 	
 	
