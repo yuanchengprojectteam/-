@@ -1,16 +1,19 @@
 package com.yc.TCMail.bean;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="return",catalog="tcmail")
-public class Return {
+@Table(name="retgoods",catalog="tcmail")
+public class Retgoods {
 	private Integer id;
 	private Integer odetailid;
+	@NotEmpty(message="请选择您的退款原因!!")
 	private String reason;
 	private Integer money;
 	private String date;
 	private String statu;
+	@NotEmpty(message="问题描述,对您的退款进度会有所帮助哦!")
 	private  String  descr;
 	private  String  rimage;
 

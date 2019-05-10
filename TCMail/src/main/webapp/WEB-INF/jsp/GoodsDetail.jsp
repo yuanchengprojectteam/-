@@ -21,7 +21,7 @@
 </head>
 <body>
 <!--侧边-->
-<%@include file="BeforeHeader.jsp" %>
+<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
 
 		<!--左边导航-->
 
@@ -1649,8 +1649,7 @@
 	</ul>
 </div>
 
-<%@include file="BeforeFoot.jsp" %>
-
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
 <script type="text/javascript">
 		$(document).ready(function() {
 			/*

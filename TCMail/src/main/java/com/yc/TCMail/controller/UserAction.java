@@ -115,6 +115,12 @@ public class UserAction {
 		System.out.println("phone:" + phone);
 		HttpUtil.SMS(code, phone);
 	}
+	
+	@RequestMapping("PhoneUpdate")
+public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throws IOException {
+		uBiz.updatePhone(phone, id);
+		response.getWriter().write("yes".toCharArray());
+	}
 
 	@PostMapping("getphone")
 	public void getphone(String account, HttpServletResponse resp, HttpServletRequest request)

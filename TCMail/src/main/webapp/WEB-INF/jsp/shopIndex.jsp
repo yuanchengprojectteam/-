@@ -18,7 +18,7 @@
  
 </head> 
 <body>
-<%@ include file="rowHeader.jsp" %>
+<jsp:include page="../public/rowHeader.jsp"></jsp:include>
 				<p>智汇礼品官方旗舰店</p>
 				<div class="services-stars f_f1"> 
                     <span class="star"><i style="width:81.2819333333%">星星</i></span>
@@ -313,4 +313,4 @@ jQuery(".slideBox_dianp").slide({mainCell:".bd ul",autoPlay:true});
 	</div>
 </div>
 
-<%@ include file="BeforeFoot.jsp"%>
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>

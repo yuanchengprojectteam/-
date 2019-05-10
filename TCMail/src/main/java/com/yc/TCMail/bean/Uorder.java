@@ -24,12 +24,22 @@ public class Uorder {
 	private Address addr;
 	//private Goods goods;
 	private List<Orderdetail> details;
+	
+	private User user;
 	/*private Orderdetail details;*/
+	
 	
 	
 	@Column(name="visiable",length=11)
 	public String getVisiable() {
 		return visiable;
+	}
+	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public void setVisiable(String visiable) {
 		this.visiable = visiable;

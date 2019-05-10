@@ -4,21 +4,30 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="shop",catalog="tcmail")
+
 public class Shop {
-    private Integer id;
+	private Integer id;
+	private Integer uid;
+	private String name;
+	private String addr;
+	private Integer level;
+	private String bustime;
+	private String type;
+	private User user;
+	
+	
+	
 
-    private String addr;
-
-    private String bustime;
-
-    private Integer level;
-
-    private String name;
-
-    private String type;
-
-    private Integer uid;
-    
+	
+	
+	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+   
     private  String  describe;
    
     @Column(name="describe",length=500)
