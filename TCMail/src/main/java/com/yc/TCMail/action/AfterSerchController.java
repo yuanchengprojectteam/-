@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -55,7 +56,7 @@ public class AfterSerchController {
 		List<Goods> allGood = am.queryAllGoods(tid);
 		model.addAttribute("hostRecommend",hostGoods);
 		model.addAttribute("allGoods",allGood);
-		model.addAttribute("typeid",tid);
+		model.addAttribute("typeid",type);
 		return "AfterSerchShowStyle1";
 	}
 	
@@ -87,6 +88,24 @@ public class AfterSerchController {
 		model.addAttribute("allGoods",list);
 		return "AfterSerchShowStyle1";
 	}
+	
+	@RequestMapping("ScopePrice")
+	public String ScopePrice(@SessionAttribute("typeid") Gtype type,String low ,String top,Model model) {
+		int low1 = Integer.valueOf(low);
+		int top1 = Integer.valueOf(top);
+		List<Goods> list = ob.selectScopeOrderBy(type.getId(),low1,top1);
+		model.addAttribute("allGoods",list);
+		return "AfterSerchShowStyle1";
+	}
+	
+	@RequestMapping("collction")
+	@ResponseBody
+	public Goods collection(Goods good ) {
+		
+		System.out.println("===========================进入"+good.getId());
+		return good;
+	}
+	
 	
 	@RequestMapping("showStyle2")
 	public String showStyle2( ) {
