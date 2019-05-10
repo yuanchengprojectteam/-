@@ -20,11 +20,10 @@
 <body>
 <!--头部-->
 
-<%@ include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <!--内容-->
 <div class="wod_tongc_zhongx">
 	<c:if test="${! empty OrderDetail}" >
-	
 		<div class="beij_center D_sj">
 		<div class="order_state">
 			<div class="state_cont">
@@ -53,7 +52,7 @@
 					    <br>
 					    <span class="remain_time" style="display: none"><b></b></span>
 							<div class="state_btns">
-								<a href="pingj.html" class="btn_1">确认收货</a>
+								<a href="javascript:void(0)" class="btn_1">确认收货</a>
 							</div>
 						    <div class="state_bottom"> 
 						        <a class="btn_del" href="shengq_shouh.html"  style="display: inline;">
@@ -298,10 +297,24 @@
                             <td>${temp.goods.point}</td>
                             <td>
                             	<div class="p-btns">
-                            		<a href="shengq_shouh.html" target="_blank" class="link-btn mt10">申请售后</a><br>
-                            		<a class="#" href="pingj.html">评价</a>|
-                            		<a class="link-btn mt10" href="pingj_shaid.html" target="_blank">晒单</a><br>
-                            		<a href="tij_dingd.html" class="mt10 btn-again" target="_blank"><b></b>立即购买</a>
+                            	<c:choose>
+                            		<c:when test="${OrderDetail.paystatu == '待支付'}">
+                            			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1371490392&site=qq&menu=yes">
+									  <img border="0" src="http://wpa.qq.com/pa?p=2:1371490392:51" 
+									  alt="点击这里给我发消息" title="联系卖家"/>
+									  </a><br>
+                            			<a href="tij_dingd.html" class="mt10 btn-again" target="_blank"><b></b>立即购买</a>
+                            		</c:when>
+                            		<c:when test="${OrderDetail.orderstatu == '待收货'}">
+                            			<a href="toApplyService?id=${item.id}" target="_blank" class="link-btn mt10">退款/退货</a><br>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<a href="toApplyService?id=${item.id}" target="_blank" class="link-btn mt10">申请售后</a><br>
+	                            		<a class="#" href="pingj.html">评价晒单</a><br>
+	                            		<a href="tij_dingd.html" class="mt10 btn-again" target="_blank"><b></b>立即购买</a>
+                            		</c:otherwise>
+                            	</c:choose>
+                            		
                             	</div>
                             </td>
 							<td class="grap"></td>
@@ -337,4 +350,14 @@
 	
 	
 </div>
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
+<script type="text/javascript">
+function receive(id){
+	if(confirm("请确认此操作!")){
+		$.post("receiveGoods?id="+id+"",function(data){
+			alert(data);
+			window.location.reload();
+		});
+	}
+} 
+</script>

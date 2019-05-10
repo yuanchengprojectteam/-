@@ -19,24 +19,25 @@
 <body>
 <!--头部--> 
  
-<%@ include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <!---->
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
 			
-				<%@include flie="PersonCenterLeft.jsp"%> 
+
+				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			
 			<!--左边内容结束-->
 		</div>
 	</div>
 </div> 
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 var  code='';
-function  send(){
+function send(){
 	code='';
 	 var str = document.getElementById('phone').value.trim(); 
 	 for(var i=0;i<4;i++){
@@ -52,8 +53,8 @@ function  send(){
 	
 }
 function  updatePhone(){
-	var recode=document.getElementById("authCode").value.trim();
-	var str = document.getElementById('phone').value.trim(); 
+	var recode=document.getElementById("authCode").value;
+	var str = document.getElementById('phone').value; 
 	if(recode != code){
 		alert("验证码输入错误");
 	}else{
@@ -64,6 +65,8 @@ function  updatePhone(){
 			 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据	 	 
 				 $('#1').removeClass("normal doing").addClass("normal ");
 		    	$('#2').removeClass("normal ").addClass("normal doing");
+		    	$("#phone").val("");
+		    	$("#authCode").val("");
 			 }
 		 });
 	}

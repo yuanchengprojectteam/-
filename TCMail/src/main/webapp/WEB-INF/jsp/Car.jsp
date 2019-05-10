@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
+<<<<<<< HEAD
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+    pageEncoding="utf-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> refs/remotes/origin/master
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>
@@ -509,6 +514,7 @@ function checkAll(){
 	}
 	
 }
+<<<<<<< HEAD
 function deleteFromCar(obj){
 	
 	$.ajax({
@@ -550,9 +556,16 @@ function deleteFCar(){
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
+>>>>>>> refs/remotes/origin/master
 </script>
 	<script type="text/javascript">
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
 </script>
 
+<<<<<<< HEAD
 	<%@ include file="AfterFoot.jsp"%>
+=======
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
+>>>>>>> refs/remotes/origin/master

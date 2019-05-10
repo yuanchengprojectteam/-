@@ -5,22 +5,15 @@ import javax.persistence.*;
 @Entity
 @Table(name="shop",catalog="tcmail")
 public class Shop {
-    private Integer id;
-
-    private String addr;
-
-    private String bustime;
-
-    private Integer level;
-
-    private String name;
-
-    private String type;
-
-    private Integer uid;
-    
-    private  String  describe;
-   
+	private Integer id;
+	private Integer uid;
+	private String name;
+	private String addr;
+	private Integer level;
+	private String bustime;
+	private String type;
+	private User user;
+	private  String  describe;
    
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -90,5 +83,13 @@ public class Shop {
    	public void setDescribe(String describe) {
    		this.describe = describe;
    	}
+   	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+   
    	
 }
