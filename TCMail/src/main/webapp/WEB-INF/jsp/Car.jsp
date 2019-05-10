@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-<<<<<<< HEAD
-	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
     pageEncoding="utf-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> refs/remotes/origin/master
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>
 <head>
 <meta charset="utf-8">
 <title>WangID通城——购物车</title>
@@ -112,7 +106,7 @@
 
 		<div class="cart-login-tip fl" id="idnotlogin" act-not-login-info=""
 			style="display: none;">
-			您还没有登录！登录后购物车的商品将保存到您账号中。 <a class="cart-login-btn" href="dengl.html">
+			您还没有登录！登录后购物车的商品将保存到您账号中。 <a class="cart-login-btn" href="tologin">
 				立即登录 </a>
 		</div>
 	</div>
@@ -449,12 +443,14 @@
 	
 	$(document).ready(function(){
   		for(var i=0;i<$("input[id^='min_']").size();i++){//sub
-  			$("input[id^='min_']").eq(i).attr('disabled',true);
+  			$("input[id^='min_']").eq(i)  	  			var num=parseInt($(this).next().val());
+.attr('disabled',true);
   	  		$("input[id^='min_']").eq(i).click(function(){
   	  			$(this).next().val(parseInt($(this).next().val())-1);
   	  			
   	  			if($(this).next().val()==1){
-	  				$(this).attr('disabled',true);
+	  				$(this).attr('disabled',true);		  		var num=parseInt($(this).prev().val());
+
 	  			}
   	  		});
 	  		
