@@ -19,14 +19,14 @@
 <body>
 <!--头部--> 
  
-<%@include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <!---->
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
-			<jsp:include page="PersonCenterLeft.jsp" ></jsp:include>
-				<%-- <%@include flie="PersonCenterLeft.jsp"%>  --%>
+
+				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			<!--左边内容-->
 			
 			
@@ -82,4 +82,4 @@
 		</div>
 	</div>
 </div> 
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>

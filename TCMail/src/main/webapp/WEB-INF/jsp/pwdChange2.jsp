@@ -19,7 +19,7 @@
 <body>
 <!--头部--> 
  
-<%@ include file="AfterHeader.jsp" %>
+<%@ include file="../public/AfterHeader.jsp" %>
 <!---->
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
@@ -64,7 +64,7 @@
 		</div>
 	</div>
 </div> 
-<%@ include file="AfterFoot.jsp"%>
+<%@ include file="../public/AfterFoot.jsp"%>
 
 </body>
 <script type="text/javascript">

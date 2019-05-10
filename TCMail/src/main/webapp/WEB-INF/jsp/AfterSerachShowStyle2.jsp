@@ -21,6 +21,7 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head> 
 <body>
+<<<<<<< HEAD
 <%@ include file="BeforeHeader.jsp" %>
 
 
@@ -1243,5 +1244,6 @@
 	</ul>
 </div>
 
-<%@ include file="BeforeFoot.jsp" %>
-
+<jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
+</body>
+</html>

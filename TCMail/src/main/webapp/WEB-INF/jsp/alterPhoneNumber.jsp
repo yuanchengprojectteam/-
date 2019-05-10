@@ -19,51 +19,21 @@
 <body>
 <!--头部--> 
  
-<%@ include file="AfterHeader.jsp" %>
+<jsp:include page="../public/AfterHeader.jsp"></jsp:include>
 <!---->
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
 			
-		<jsp:include page="PersonCenterLeft.jsp"></jsp:include>
-		<div class="mod_main">
-				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">修改密码验证</div>
-					<div class="stepflex">
-					 	
-					 	<dl class="normal doing" id="1">
-                            <dt class="s-num">1</dt>
-                            <dd class="s-text">修改号码<s></s><b></b></dd>
-                        </dl> 
-					 	<dl class="normal " id="2">
-                            <dt class="s-num">2</dt>
-                            <dd class="s-text">完成<s></s><b></b></dd>
-                        </dl>
-					</div>
-					<div class="savebox">
-						<p>
-							<span class="letit">手机号码：</span>
-							<span class="hideMobile" id="" ><input class="itxt" id="phone" name="phone" type="text"></span>
-						</p>
-						<p>
-							<span class="letit">填写手机验证码：</span>
-							<span class="hideMobile"><input class="itxt" id="authCode" name="authCode" type="text"></span>
-							<span><a onclick="send()" class="btn_10">获取短信校验码</a></span>
-						</p>
-						<p>
-							<span class="letit"></span>
-							<span class="hideMobile"><a onclick="updatePhone()" class="xiay_b">下一步</a></span> 
-						</p>
-					</div>
-				</div>
-			</div>
+
+				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			
 			<!--左边内容结束-->
 		</div>
 	</div>
 </div> 
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 var  code='';

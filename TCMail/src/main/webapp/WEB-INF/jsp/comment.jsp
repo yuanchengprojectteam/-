@@ -53,7 +53,7 @@
 <body>
 <!--头部-->  
 
-<%@ include file="AfterHeader.jsp" %>
+<%@ include file="../public/AfterHeader.jsp" %>
 <!--内容-->
 <form action=""  id="formid">
 <div class="wod_tongc_zhongx">
@@ -71,7 +71,7 @@
 					<a href="shagnj_dianp.html" class="shop_logo" target="_blank"><img src="${comm.goods.shop.user.image }"></a>
 					<div class="dinam_he">
 						<p class="shop_mignc">${comm.goods.shop.name }</p>
-						<input type="hidden" name="gid" value="${comm.goods.id" />
+						<input type="hidden" name="gid" value="${comm.goods.id}" />
 						<div class="shop_score_01">
 							<div class="sum">
 								<span class="tit s_diy">综合</span>
@@ -202,7 +202,7 @@
 	</div>
 </div>
 </form>
-<%@ include file="AfterFoot.jsp"%>
+<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	function commentSavemsg(){
@@ -228,8 +228,6 @@
 
 
 </script>
-
-
 
 </html>
 

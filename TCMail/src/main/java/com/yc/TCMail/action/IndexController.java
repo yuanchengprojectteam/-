@@ -83,6 +83,15 @@ public class IndexController {
 		return "alterPhoneNumber";
 	}
 	
+	@RequestMapping("shopIntroduce")
+	public String toShopIntroduce() {
+		return "shopIntroduce";
+	}
+	@RequestMapping("HelpCenter")
+	public String HelpCenter() {
+		return "HelpCenter";
+	}
+
 	@RequestMapping("security")
 	public String security(){
 		return "UserSecurity";
@@ -102,5 +111,6 @@ public class IndexController {
 	@RequestMapping("goodsDetail")
 	public String goodsDetail() {
 		return "GoodsDetail";
+
 	}
 }
