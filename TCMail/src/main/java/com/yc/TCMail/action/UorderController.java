@@ -21,7 +21,7 @@ import com.yc.TCMail.imply.BizException;
 import com.yc.TCMail.imply.UorderBiz;
 
 @Controller
-@SessionAttributes("loginedUser")     //在请求方法完毕后 @SessionAttributes 再对应找 LoginedUser
+//@SessionAttributes("loginedUser")     //在请求方法完毕后 @SessionAttributes 再对应找 LoginedUser
 public class UorderController {
 	
 	@Resource
@@ -44,7 +44,7 @@ public class UorderController {
 	
 	
 	@RequestMapping("MyOrder")
-	public String toMyOrder(Model model ,@SessionAttribute("LoginedUser") User user) { 
+	public String toMyOrder(Model model ,@SessionAttribute("loginedUser") User user) { 
 	/*	User u = new User();
 		u.setAccount("吕球");
 		u.setId(1);
@@ -56,7 +56,7 @@ public class UorderController {
 	}
 	
 	@RequestMapping("OrderDetail")
-	public String toWaitPay(String tabCode,Uorder uorder,Model model,@SessionAttribute("LoginedUser") User user) {
+	public String toWaitPay(String tabCode,Uorder uorder,Model model,@SessionAttribute("loginedUser") User user) {
 		if("AllOrder".equals(tabCode)) {
 			model.addAttribute("OrderList", uoBiz.findAllOrder(user));
 		}else if("waitpay".equals(tabCode)) {
@@ -69,7 +69,7 @@ public class UorderController {
 		return "MyOrderList";
 	}
 	@RequestMapping("toDetail")
-	public String toOrderDetail(Integer orderid,Model model,@SessionAttribute("LoginedUser") User user) {
+	public String toOrderDetail(Integer orderid,Model model,@SessionAttribute("loginedUser") User user) {
 		model.addAttribute("OrderDetail", uoBiz.findById(user,orderid));
 		return "OrderDetail";
 	}

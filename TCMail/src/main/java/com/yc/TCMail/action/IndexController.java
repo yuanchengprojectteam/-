@@ -35,10 +35,7 @@ public class IndexController {
 		List<Gtype> list= gbiz.AllType();	
 		model.addAttribute("types", list);
 	}
-	@RequestMapping("index")
-	public String go() {
-		return "index";
-	}
+	
 	@RequestMapping("scodeShop")
 	public String gogo() {
 		return "scodeShop";

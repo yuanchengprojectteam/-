@@ -76,7 +76,7 @@
 					<div class="diy_top">
 						<ul>
 							<h3>订单中心</h3>
-							<li><a href="wod_dingd.html">我的订单</a></li>
+							<li><a href="MyOrder">我的订单</a></li>
 							<li><a href="shengq_shouh.html">退换货单</a></li>
 							<li><a href="pingj_shaid.html">评价晒单</a></li>
 						</ul>

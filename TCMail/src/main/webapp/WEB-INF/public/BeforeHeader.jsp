@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 
-<%@ include file="rowHeader.jsp" %>
+<jsp:include page="../public/rowHeader.jsp"></jsp:include>
 <!--轮播图上方导航栏  一栏-->
 <div id="navv">	
 	<div class="focus">

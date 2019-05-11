@@ -38,7 +38,7 @@ public class ReturnController {
 	
 	
 	@RequestMapping("toApplyService")
-	public String toApplyService(Orderdetail detail,@SessionAttribute("LoginedUser") User user,Model model) {
+	public String toApplyService(Orderdetail detail,@SessionAttribute("loginedUser") User user,Model model) {
 		model.addAttribute("IsRetGoods",retBiz.isRetGoods(detail));
 		model.addAttribute("RetGoodsList",retBiz.findGoods(detail));
 		return "applyAfterService";
