@@ -148,12 +148,12 @@
 						</p>
 						<p>
 							<span class="letit">填写手机验证码：</span>
-							<span class="hideMobile"><input class="itxt" name="authCode" type="text"></span>
+							<span class="hideMobile"><input class="itxt" oninput="changeColor(this)" name="authCode" type="text"></span>
 							<span><a onclick="getCode()" class="btn_10">获取短信校验码</a></span>
 						</p>
 						<p>
 							<span class="letit"></span>
-							<span class="hideMobile"><a onclick="f.submit()" class="xiay_b">下一步</a></span> 
+							<span class="hideMobile"><a onclick="f.submit()" id="btn" class="xiay_b">下一步</a></span> 
 						</p>
 					</div>
 				</form>
@@ -185,6 +185,13 @@
 			}
 			
 		});
+	}
+	
+	function changeColor(obj){
+		if(obj.value!=null&&obj.value.length==4){
+			$("#btn").css("background-color","red");
+			$("#btn").css("color","white");
+		}
 	}
 	/* function next(){
 		var code = $("#authCode").val();

@@ -76,14 +76,14 @@
 					<div class="diy_top">
 						<ul>
 							<h3>订单中心</h3>
-							<li><a href="wod_dingd.html">我的订单</a></li>
+							<li><a href="MyOrder">我的订单</a></li>
 							<li><a href="shengq_shouh.html">退换货单</a></li>
 							<li><a href="commentAndShowOrder">评价晒单</a></li>
 						</ul>
 						<ul>
 							<h3>管理中心</h3>
 							<li><a href="MyFavorite">我的收藏</a></li>
-							<li><a href="#">我的预约</a></li>
+							<li><a href="car">我的购物车</a></li>
 							<li><a href="#">我的咨询</a></li>
 							<li><a href="#">投诉管理</a></li>
 							<li><a href="MyScode">我的积分</a></li>

@@ -95,7 +95,7 @@ public class UserAction {
 			response.addCookie(cookie2);
 		}
 		if (errors.hasErrors()) {
-			return "login";
+			return "redirect: login";
 		}
 		try {
 			User dbui = uBiz.login(u);

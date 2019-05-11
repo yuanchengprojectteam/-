@@ -47,15 +47,15 @@
 					<div class="savebox">
 						<p>
 							<span class="letit">填写新密码：</span>
-							<span class="hideMobile"><input class="itxt" id="newpwd" name="pwd" type="password"></span>
+							<span class="hideMobile"><input class="itxt" id="newpwd"  name="pwd" type="password"></span>
 						</p>
 						<p>
 							<span class="letit">确认新密码：</span>
-							<span class="hideMobile"><input class="itxt" id="againpwd" type="password"></span>
+							<span class="hideMobile"><input class="itxt" oninput="changeColor(this)" id="againpwd" type="password"></span>
 						</p>
 						<p>
 							<span class="letit"></span>
-							<span class="hideMobile"><a onclick="chePwd()" class="xiay_b">确认修改</a></span> 
+							<span class="hideMobile"><a onclick="chePwd()" id="queren" class="xiay_b">确认修改</a></span> 
 						</p>
 					</div>
 				</div>
@@ -86,7 +86,13 @@
 			}
 		});
 	}
-
+	function changeColor(obj){
+		var newpwd= $("#newpwd").val();
+		if(newpwd!=null&&obj.value!=null&&newpwd.length>=6&&obj.value.length>=6){
+			$("#queren").css("background-color","red");
+			$("#queren").css("color","black");
+		}
+	}
 
 </script>
 
