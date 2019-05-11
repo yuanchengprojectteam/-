@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!--侧边-->
 <div class="jdm-toolbar-wrap J-wrap">                
 	<div class="jdm-toolbar J-toolbar">                    
@@ -54,15 +55,24 @@
 			</li>					
 		</ul>
 		<ul class="header-right">
-			<li class="denglu">Hi~<a class="red" href="tologin" id="na">
-			
-			</a> <a href="toregister">[免费注册]</a></li> 
+
+			<li class="denglu">Hi~ 
+			<c:choose>
+			<c:when test="${sessionScope.loginedUser != null}">
+				${sessionScope.loginedUser.account}
+			</c:when>
+			<c:otherwise>
+				<a class="red" href="tologin">请登录!</a> <a href="toregister">[免费注册]</a>
+			</c:otherwise>
+			</c:choose>
+			</li> 
+
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" href="shenq_ruz.html">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
+			<li class="denglu"><a class="ing_ps ps2" href="PersonCenter">个人中心</a></li>
 			<li class="shu"></li>
 			<li class="shouji bj">
 				<a class="ing_ps ps3" href="#">手机通城</a>
@@ -91,7 +101,7 @@
 <div class="toub_beij">
 	<div class="logo"><a href="./"><img src="./images/logo.png"></a></div>
 	<div class="search">
-		<input type="text" value="家电一折抢" class="text" id="textt">
+		<input type="text" value="" class="text" id="textt" placeholder="家电一折抢">
 		<button class="button">搜索</button>
 	</div>
 	<div class="right">

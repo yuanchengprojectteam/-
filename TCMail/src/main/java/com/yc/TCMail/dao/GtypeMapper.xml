@@ -11,6 +11,23 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
   </resultMap>
+  
+  <resultMap type="com.yc.TCMail.bean.Gtype" id="BaseResultMap1" extends="BaseResultMap">
+  	<collection property="childType" column="id" select="selectChildTypes"
+  	fetchType="lazy">
+  	</collection>
+  </resultMap>
+  
+  <select id="selectAllGtypes" resultMap="BaseResultMap1">
+  	select id,name,pid
+  	from gtype where pid is null
+  </select>
+  
+  <select id="selectChildTypes" resultMap="BaseResultMap" >
+  	select id,name,pid 
+  	from gtype where pid = #{id}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated

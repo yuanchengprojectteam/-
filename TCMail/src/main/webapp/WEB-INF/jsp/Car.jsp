@@ -170,7 +170,7 @@
 								<input id="min_${u.id}" name="" type="button" value="-" class="gui-count-btn gui-count-add"">
 								<input id="text_box_${g.car.id}" name="num" onchange="can(this)" type="text" value="${g.car.num }"
 									style="width: 48px; height: 20px; font-size: 12px; text-align: center; float: left" />
-								<input id="add_${g.car.id}" name=""   type="button" value="+"
+								<input id="add_${g.car.id}" name="" type="button" value="+"
 									 class="gui-count-btn gui-count-sub gui-count-disabled">
 								<input type="hidden" name="goods_${g.id }"  value="${g.id }">
 							</div>
@@ -443,8 +443,9 @@
 	
 	$(document).ready(function(){
   		for(var i=0;i<$("input[id^='min_']").size();i++){//sub
-  			$("input[id^='min_']").eq(i)  	  			var num=parseInt($(this).next().val());
-.attr('disabled',true);
+  			$("input[id^='min_']").eq(i).attr('disabled',true);
+  			var num=parseInt($(this).next().val());
+
   	  		$("input[id^='min_']").eq(i).click(function(){
   	  			$(this).next().val(parseInt($(this).next().val())-1);
   	  			
@@ -509,7 +510,10 @@ function checkAll(){
 		return;
 	}
 	
+
 }
+
+
 function deleteFromCar(obj){
 	
 	$.ajax({
@@ -547,5 +551,6 @@ function deleteFCar(){
 	<script type="text/javascript">
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
 </script>
+
 
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>

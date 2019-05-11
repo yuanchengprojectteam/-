@@ -121,8 +121,11 @@ public class ZhouController {
 	}
 	
 	@RequestMapping("zhouAddCar")
+
 	public String zhouAddCar(Favorite f , String num ,Model model) {
+
 		Favorite f1 = fm.selectByPrimaryKey(f.getId());
+		System.out.println(f1+"=============");
 		int gid = f1.getGoodsid();
 		int uid = f1.getUid();
 		int sid = f1.getShopid();

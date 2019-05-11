@@ -39,10 +39,7 @@ public class IndexController {
 		model.addAttribute("types", list);
 		model.addAttribute("goodsmsg", goods);
 	}
-	@RequestMapping("index")
-	public String go() {
-		return "index";
-	}
+	
 	@RequestMapping("scodeShop")
 	public String gogo() {
 		return "scodeShop";

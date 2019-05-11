@@ -23,8 +23,11 @@ public class carImply {
 	public List<Goods> selectCarGoods(Integer id, int ty) {
 		@SuppressWarnings("unchecked")
 		List<Car> goods = hb.getCriteria(Car.class).add(Restrictions.eq("uid", id)).list();
+		System.out.println(goods);
+		
 		List<Goods> gl = new ArrayList<Goods>();
 		for (Car g : goods) {
+			System.out.println(g);
 			Goods goodss = (Goods) hb.getCriteria(Goods.class).add(Restrictions.eqOrIsNull("id", g.getGid())).list()
 					.get(0);
 			Gtype type = (Gtype) hb.getCriteria(Gtype.class).add(Restrictions.eqOrIsNull("id", goodss.getTid())).list()
