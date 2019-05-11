@@ -77,11 +77,29 @@ public class ZhouMethod {
 		return set;
 	}
 
-	public  void addCar(int gid, int uid, CarMapper cm) {
+	public  void addCar(int gid, int uid,int num,int sid, CarMapper cm) {
 		// TODO Auto-generated method stub
 		Car car = new Car();
+		
+		CarExample ce = new CarExample();
+		ce.createCriteria().andUidEqualTo(uid).andGidEqualTo(gid);
+		List<Car> list = cm.selectByExample(ce);
+		if(list.size()>0) {
+			 car = list.get(0);
+			 //System.out.println("=============="+car);
+			 int i = car.getNum();
+			 i=i+num;
+			 car.setNum(i);
+			 CarExample ce1 = new CarExample(); 
+			 ce1.createCriteria().andIdEqualTo(car.getId());
+			 cm.updateByExampleSelective(car, ce1);
+			 return;
+		}
+		
 		car.setGid(gid);
 		car.setUid(uid);
+		car.setNum(num);
+		car.setSid(sid);
 		cm.insert(car);	
 	}
 
@@ -98,7 +116,8 @@ public class ZhouMethod {
 			int sid = good.getSid();
 			Shop shop = sm.selectByPrimaryKey(sid);
 			good.setShop(shop);
-			car.setGood(good);
+			good.setCar(car);
+			//car.setGood(good);
 			list1.add(good);
 			//System.out.println(shop+":"+good);
 		}

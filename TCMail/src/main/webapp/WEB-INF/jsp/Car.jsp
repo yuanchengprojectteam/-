@@ -510,7 +510,6 @@ function checkAll(){
 	}
 	
 }
-<<<<<<< HEAD
 function deleteFromCar(obj){
 	
 	$.ajax({
@@ -544,24 +543,9 @@ function deleteFCar(){
 	})
 }
 
-
-
-
-
-
-
-
-
-=======
->>>>>>> branch 'master' of https://github.com/yuanchengprojectteam/-.git
->>>>>>> refs/remotes/origin/master
 </script>
 	<script type="text/javascript">
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
 </script>
 
-<<<<<<< HEAD
-	<%@ include file="AfterFoot.jsp"%>
-=======
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>
->>>>>>> refs/remotes/origin/master

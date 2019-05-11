@@ -83,7 +83,7 @@
 													<div class="price_box"><span>单价：￥${f.good.price }</span></div>
 													<div class="price_box"><span class="font_aide">￥${f.good.price }</span></div>
 													<div class="price_box">
-														<a href="zhouAddCar?id=${f.id }" class="button_grey">加入购物车</a>
+														<a href="zhouAddCar?id=${f.id }&num=1" class="button_grey">加入购物车</a>
 														<input type="button" id="delects" class="button_grey" value="取消收藏"/>
 													</div>
 												</div>
