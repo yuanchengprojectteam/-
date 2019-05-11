@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,6 +23,7 @@
 <div class="wod_tongc_zhongx">
 	<div class="beij_center">
 		<div class="myGomeWeb">
+
 			<!--侧边导航-->
 			
 				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>

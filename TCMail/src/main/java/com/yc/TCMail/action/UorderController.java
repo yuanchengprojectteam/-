@@ -48,7 +48,7 @@ public class UorderController {
 	/*	User u = new User();
 		u.setAccount("吕球");
 		u.setId(1);
-		model.addAttribute("LoginedUser", u);
+		model.addAttribute("loginedUser", u);
 		//List<Uorder> ret = uoBiz.findAllOrder(user);
 */		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(user));
 	

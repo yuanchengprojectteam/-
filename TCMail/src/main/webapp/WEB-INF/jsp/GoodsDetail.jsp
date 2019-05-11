@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
 <head>
 <meta charset="utf-8">
 <title>WangID通城——商品详情页</title>
@@ -22,6 +21,7 @@
 <body>
 <!--侧边-->
 <jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+
 		<!--左边导航-->
 
 		<div class="subpage">
@@ -481,7 +481,7 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li>
-				<a href="#" title="Mistletoe">Mistletoe</a>
+				<a href="toshopGoodsShowStyle1" title="Mistletoe">Mistletoe</a>
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">

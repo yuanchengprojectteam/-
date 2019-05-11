@@ -55,6 +55,7 @@
 			</li>					
 		</ul>
 		<ul class="header-right">
+
 			<li class="denglu">Hi~ 
 			<c:choose>
 			<c:when test="${sessionScope.loginedUser != null}">
@@ -65,12 +66,13 @@
 			</c:otherwise>
 			</c:choose>
 			</li> 
+
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" href="shenq_ruz.html">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
+			<li class="denglu"><a class="ing_ps ps2" href="PersonCenter">个人中心</a></li>
 			<li class="shu"></li>
 			<li class="shouji bj">
 				<a class="ing_ps ps3" href="#">手机通城</a>
@@ -129,4 +131,14 @@
 		<a href="#">特步女鞋</a>
 		<a href="#">威士忌</a>
 	</div>
-</div>          
+</div> 
+<script type="text/javascript">
+window.onload=function(){
+	
+if('${sessionScope.loginedUser}'){
+			document.getElementById('na').innerHTML='${sessionScope.loginedUser.name}';
+	}else{
+			document.getElementById('na').innerHTML='请登录！';
+	}
+}
+			</script>            

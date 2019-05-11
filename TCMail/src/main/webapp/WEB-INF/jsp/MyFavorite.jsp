@@ -1,20 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
 <head> 
 <meta charset="utf-8">
-<title>WangID通城——收货地址</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet" type="text/css" href="css/ziy.css">
+<title>WangID通城——收货地址${param.id}</title>
+<link rel="stylesheet" type="text/css" href="../../css/index.css">
+<link rel="stylesheet" type="text/css" href="../../css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
- <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
+ <script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.SuperSlide.2.1.1.source.js"></script>
 <!--  <script type="text/javascript" src="js/select.js"></script> -->
- 
 
 
 </head>
@@ -26,8 +24,10 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
+
 				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			<!--左边内容-->
+			
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
 					<div class="shand_piaot">我的收藏</div>
@@ -65,44 +65,31 @@
 									</div>
 									<div class="diyig_s">
 										<ol>
+										<c:forEach items="${favorites }" var="f">
+										 
+										
 											<li>
+											    <input type="hidden" value="${f.uid }" id="uid"/>
+											    <input type="hidden" value="${f.id }" id="id"/>
 												<label><input type="checkbox" class="checkbox"></label>
 												<div class="overflow">
 													<div class="shouc_img">
-														<a href="shangp_xiangq.html"><img src="images/lieb_tupi1.jpg"></a>
+														<a href="shangp_xiangq.html"><img src="${f.good.image }"></a>
 													</div>
 													<a href="shagnj_dianp.html" class="btn_mix_shop">进入店铺</a>
 												</div>
 												<div class="col280">
-													<h2><a href="shangp_xiangq.html" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)" target="_blank">Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a></h2>
-													<div class="price_box"><span>￥79.00</span></div>
-													<div class="price_box"><span class="font_aide">收藏时间：2017-07-20</span></div>
+													<h2><a href="shangp_xiangq.html" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)" target="_blank">${f.good.name}${f.good.color } ${f.good.size}</a></h2>
+													<div class="price_box"><span>单价：￥${f.good.price }</span></div>
+													<div class="price_box"><span class="font_aide">￥${f.good.price }</span></div>
 													<div class="price_box">
-														<a href="#" class="button_grey">加入购物车</a>
-														<a href="#" class="button_grey">取消收藏</a>
+														<a href="zhouAddCar?id=${f.id }&num=1" class="button_grey">加入购物车</a>
+														<input type="button" id="delects" class="button_grey" value="取消收藏"/>
 													</div>
 												</div>
-												<div class="youh_d">有货</div>
+												<div class="youh_d">库存量：${f.good.num }</div>
 											</li>
-											<li>
-												<label><input type="checkbox" class="checkbox"></label>
-												<div class="overflow">
-													<div class="shouc_img">
-														<a href="shangp_xiangq.html"><img src="images/lieb_tupi1.jpg"></a>
-													</div>
-													<a href="shagnj_dianp.html" class="btn_mix_shop">进入店铺</a>
-												</div>
-												<div class="col280">
-													<h2><a href="shangp_xiangq.html" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)" target="_blank">Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a></h2>
-													<div class="price_box"><span>￥79.00</span></div>
-													<div class="price_box"><span class="font_aide">收藏时间：2017-07-20</span></div>
-													<div class="price_box">
-														<a href="#" class="button_grey">加入购物车</a>
-														<a href="#" class="button_grey">取消收藏</a>
-													</div>
-												</div>
-												<div class="youh_d">有货</div>
-											</li>
+											</c:forEach>
 										</ol>
 										<div class="gerzx_fany">
 											<a href="#" class="shangxy">上一页</a>
@@ -111,6 +98,7 @@
 										</div>
 									</div>
 								</div>
+							
 							</ul>
 							<ul>
 								<div class="uc_overdueTable">
@@ -180,3 +168,36 @@
 
 
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>
+
+ <script type="text/javascript">
+ 
+ 
+	 $("#delects").click(function(){
+		
+		var id = $("#id").val();
+		var uid = $("#uid").val();
+		alert(id+","+uid);
+		$.ajax({
+			type:"post",
+			url:"fdelect?id="+id,
+			cache:false,
+			data:{"uid":uid},
+			dataType:"JSON",
+			success:function(data){
+				alert("取消成功！！");
+				location.href = "MyFavorite?uid="+data.uid;
+			},
+			error:function(e){
+				alert("ajax错误");
+			}
+		});
+	});
+ 
+
+</script>
+
+
+</body>
+
+
+</html>

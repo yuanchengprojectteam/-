@@ -24,6 +24,17 @@ public class Orderdetail {
 	}
 	private Goods goods;
 	
+	private Uorder uorder;
+	
+	
+	
+	@Transient
+	public Uorder getUorder() {
+		return uorder;
+	}
+	public void setUorder(Uorder uorder) {
+		this.uorder = uorder;
+	}
 	@Id
 	@Column(name="id",nullable=false,unique=true)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

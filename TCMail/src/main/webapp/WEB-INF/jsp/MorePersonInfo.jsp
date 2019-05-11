@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——更多个人信息</title>
@@ -26,6 +25,7 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
+
 			<jsp:include page="PersonCenterLeft.jsp"></jsp:include> 
 			<!--左边内容-->
 			<div class="mod_main">

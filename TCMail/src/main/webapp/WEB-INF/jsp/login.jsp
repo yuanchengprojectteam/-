@@ -3,7 +3,6 @@
 <%@ taglib  uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
 <head>
 <meta charset="utf-8">
 <title>WangID通城——登录</title>
@@ -174,7 +173,6 @@ function  send(){
 	 for(var i=0;i<4;i++){
 	    code+=Math.floor(Math.random()*10);
 	 }
-	 alert(code);
 	 $.ajax({
 		 url:"send?phone="+str, 					//url地址
 		 data:"code="+code,   			 // 将uname=张三传递给后台

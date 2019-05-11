@@ -95,12 +95,13 @@ public class UserAction {
 			response.addCookie(cookie2);
 		}
 		if (errors.hasErrors()) {
-			return "login";
+			return "redirect: login";
 		}
 		try {
 			User dbui = uBiz.login(u);
 			model.addAttribute("loginedUser", dbui);
 			model.addAttribute("cglist",ci.selectCarGoods(dbui.getId(),0));
+			System.out.println(ci.selectCarGoods(dbui.getId(),0));
 			return "PersonCenter";
 		} catch (BizException e) {
 			e.printStackTrace();
@@ -114,6 +115,12 @@ public class UserAction {
 		System.out.println("code:" + code + "-------------");
 		System.out.println("phone:" + phone);
 		HttpUtil.SMS(code, phone);
+	}
+	
+	@RequestMapping("PhoneUpdate")
+public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throws IOException {
+		uBiz.updatePhone(phone, id);
+		response.getWriter().write("yes".toCharArray());
 	}
 
 	@PostMapping("getphone")

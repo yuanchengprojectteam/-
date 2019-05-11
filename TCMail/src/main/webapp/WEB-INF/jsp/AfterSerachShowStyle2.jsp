@@ -21,7 +21,8 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head> 
 <body>
-<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+<<<<<<< HEAD
+<%@ include file="BeforeHeader.jsp" %>
 
 
 		<!--左边导航-->
@@ -696,9 +697,9 @@
                     <a class="fp_prev disabled" href="#"> &lt; </a>
                     <a class="fp_next" href="#"> &gt; </a>
                 </div>
-                <div class="lieb_anniu_kuang">
-                	<a class="lieb_ann" href="shangp_lieb.html"></a>
-	          		<a class="lieb_ann lieb_er_abn" href="shangp_lieb_1.html"></a>
+                 <div class="lieb_anniu_kuang">
+                	<a class="lieb_ann lieb_er_abn_2" href="showStyle2"></a>
+	          		<a class="lieb_ann lieb_er_abn lieb_er_abn1" href="showStyle1"></a>
                 </div>
 			</div>
 			<div class="f_line_xia">
@@ -1244,3 +1245,5 @@
 </div>
 
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
+</body>
+</html>

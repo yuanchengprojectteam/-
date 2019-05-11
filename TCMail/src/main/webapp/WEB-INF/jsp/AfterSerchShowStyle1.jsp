@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
+
     pageEncoding="utf-8"%>
+    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>    
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——商品列表-详情</title>
@@ -21,7 +23,8 @@
 <script type="text/javascript" src="js/chengs/main.js"></script>
 </head>
 <body>
-<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+<%@ include file="../public/BeforeHeader.jsp" %>
+
 
 
 		<!--左边导航-->
@@ -84,7 +87,7 @@
 					<div class="font-right">
 						<div>
 							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
+								<img src="../../images/562f4971Na5379aba.jpg">
 							</a>
 							<a href="#">
 								<img src="./images/54d9eef9N5bb8d27f.jpg">
@@ -471,43 +474,22 @@
     <div class="hot-tj">
         <span class="icon_tj">热卖<br>推荐</span>
         <ul class="hot-list clearfix">
+        <c:forEach items="${hostRecommend }" var="h">
         	<li class="item asynPriceBox">
         		<p class="pic">
-        		<a target="_blank" href="#"><img src="images/lieb_tupi1.jpg" alt=""></a>
+        			<a target="_blank" href="#"><img src="${h.image }" alt=""></a>
         		</p>
-        		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑"> 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑 </a></p>
-        		<p class="price asynPrice" >¥3999.00</p>
+        		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑">${h.name } &nbsp&nbsp ${h.color} &nbsp&nbsp ${h.size }</a></p>
+        		<p class="price asynPrice" >${h.price }</p>
         		<p class="btn"><a class="buy" href="#" >立即抢购</a></p>
         	</li>
-        	<li class="item asynPriceBox">
-        		<p class="pic">
-        		<a target="_blank" href="#"><img src="images/lieb_tupi2.jpg" alt=""></a>
-        		</p>
-        		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑"> 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑 </a></p>
-        		<p class="price asynPrice" >¥3999.00</p>
-        		<p class="btn"><a class="buy" href="#" >立即抢购</a></p>
-        	</li>
-        	<li class="item asynPriceBox">
-        		<p class="pic">
-        		<a target="_blank" href="#"><img src="images/lieb_tupi3.jpg" alt=""></a>
-        		</p>
-        		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑"> 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑 </a></p>
-        		<p class="price asynPrice" >¥3999.00</p>
-        		<p class="btn"><a class="buy" href="#" >立即抢购</a></p>
-        	</li>	
-        	<li class="item asynPriceBox">
-        		<p class="pic">
-        		<a target="_blank" href="#"><img src="images/lieb_tupi1.jpg" alt=""></a>
-        		</p>
-        		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑"> 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑 </a></p>
-        		<p class="price asynPrice" >¥3999.00</p>
-        		<p class="btn"><a class="buy" href="#" >立即抢购</a></p>
-        	</li>	
+        </c:forEach>
+        	
         </ul>
     </div>
 </div>
 <div class="lujing_ziy">
-	<a href="#">服饰</a> > <a href="#">女装</a> 
+	<a href="#">服饰</a> > <a href="#">${typeid.name }</a> 
 </div>
 <div class="shangp_lieb_jvz">
 	<div class="selector">
@@ -552,13 +534,13 @@
 		          	<div class="sl-v-list">
 			            <ul class="J_valueList">
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">10-100</a>
+			                  	<a href="ScopePrice?low=10&top=100"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">10-100</a>
 			                </li>
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">100-500</a>
+			                  	<a href="ScopePrice?low=100&top=500"  rel='nofollow'><input type="checkbox"  class="checkbox yingc_df">100-500</a>
 			                </li>
 			                <li>
-			                  	<a href="#"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">500以上</a>
+			                  	<a href="ScopePrice?low=500&top=9999999"  rel='nofollow'><input type="checkbox" class="checkbox yingc_df">500以上</a>
 			                </li> 
 			            </ul>
 		            </div>
@@ -699,9 +681,9 @@
 			<div class="f_line">
 				<div class="f_sort">
 	                <a href="#" class="curr_1">综合排序<i></i></a>
-	                <a href="#" class="curr_2">销量<i></i></a>
-	                <a href="#" class="curr_2">价格<i></i></a>
-	                <a href="#" class="curr_2">评论数<i></i></a>
+	                <a href="buyNum?tid=${typeid.id}" class="curr_2">销量<i></i></a>
+	                <a href="price?tid=${typeid.id}" class="curr_2">价格<i></i></a>
+	                <a href="commentNum?tid=${typeid.id}" class="curr_2">评论数<i></i></a>
 	                <a href="#" class="curr_2">上架时间<i></i></a>
 	          	</div>
 	          	<div class="f_pager" id="J_topPage"> 
@@ -712,8 +694,8 @@
                     <a class="fp_next" href="#"> &gt; </a>
                 </div>
                 <div class="lieb_anniu_kuang">
-                	<a class="lieb_ann lieb_er_abn_2" href="shangp_lieb.html"></a>
-	          		<a class="lieb_ann lieb_er_abn lieb_er_abn1" href="shangp_lieb_1.html"></a>
+                	<a class="lieb_ann lieb_er_abn_2" href="showStyle2"></a>
+	          		<a class="lieb_ann lieb_er_abn lieb_er_abn1" href="showStyle1"></a>
                 </div>
 			</div>
 			<div class="f_line_xia">
@@ -740,24 +722,25 @@
 		</div>
 		<div class="shnagp_list_v1 shnagp_list_v1_lieb_er">
 			<ul>
+			<c:forEach items="${allGoods }" var="all">
 				<li>
 					<div class="lieb_neir_kuang lieb_neir_kuang_1">
 						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi3.jpg"></a> 
+							<a href="#"><img src="${all.image }"></a> 
 						</div>
 						<div class="lieb_er_kuang">
 							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
+								<a href="#">${all.name } &nbsp&nbsp ${all.color } &nbsp&nbsp ${all.size }</a>
+								<p><a class="lianpu_minc" href="#">${all.shop.name }</a><a class="mis" href="#">点我交谈</a></p>
 							</div>
 							<div class="lieb_text lieb_text_1">
 								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
+					              	<strong class="J_price"><em>¥</em><i>${all.price * 0.9 }</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">${all.price }</i></p></strong> 
 					            </div>
 							</div>
 							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
+								<p>"${all.commnum == null ? '未有评价'  :  '已有评价' }"</p>
+								<span><a href="#"><em>${all.commnum}</em></a> 人</span>
 							</div>
 							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
 								<div class="zuo_mingc"> 
@@ -767,196 +750,12 @@
 									</div>
 								</div> 
 							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
+							<input type="hidden" id="collection" value="${all.id }"/>
+							<div class="p_focus p_focus_1"><a class="J_focus"  onclick="collectionGood()"><i></i>加入收藏</a></div>
 						</div>
 					</div>
 				</li> 
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi1.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi2.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi3.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi1.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi3.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="lieb_neir_kuang lieb_neir_kuang_1">
-						<div class="lieb_img lieb_img_1">
-							<a href="#"><img src="images/lieb_tupi2.jpg"></a> 
-						</div>
-						<div class="lieb_er_kuang">
-							<div class="shangp_biaot_ shangp_biaot_1">
-								<a href="#">荣耀8青春版 全网通 标配版 3GB+32GB 流光金</a>
-								<p><a class="lianpu_minc" href="#">古竣服装专营店</a><a class="mis" href="#">点我交谈</a></p>
-							</div>
-							<div class="lieb_text lieb_text_1">
-								<div class="p_price">
-					              	<strong class="J_price"><em>¥</em><i>1099.00</i><p><em class="shangp_yuanj zuo_ji">¥</em><i class="shangp_yuanj">1099.00</i></p></strong> 
-					            </div>
-							</div>
-							<div class="you_pingj you_pingj_1">
-								<p>已有评价</p>
-								<span><a href="#"><em>100+</em></a> 人</span>
-							</div>
-							<div class="lieb_dianp_mingc lieb_dianp_mingc_1">
-								<div class="zuo_mingc"> 
-									<div class="p_icons">
-										<i class="icon_grou_1" data-tips="本地商品"><img src="images/bend.png"></i>
-										<i class="icon_grou_2" data-tips="商品特价出售">特价</i>
-									</div>
-								</div> 
-							</div>
-							<div class="p_focus p_focus_1"><a class="J_focus" href="#"><i></i>关注</a></div>
-						</div>
-					</div>
-				</li>
+		</c:forEach>
 			</ul>
 			<div class="jiaz_zhong"><a href="#">玩命加载中</a></div>
 			<div class="page clearfix">
@@ -1031,3 +830,28 @@
 </div>
 
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
+</body>
+<script type="text/javascript">
+	function collectionGood(){
+		var id = $("#collection").val();
+		alert(id);
+		$.ajax({
+			type:"post",
+			url:"collction",
+			cache:false,
+			dataType:"JSON",
+			data:{"id":id},
+			success:function(data){
+				alert("成功加入收藏。");
+			},
+			error:function(e){
+				alert("ajax错误");
+			}
+			
+		});
+		
+	}
+
+</script>
+
+</html>

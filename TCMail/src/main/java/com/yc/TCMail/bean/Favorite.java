@@ -1,8 +1,5 @@
 package com.yc.TCMail.bean;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +11,17 @@ public class Favorite {
 	private Integer goodsid;
 	private String ftime;
 	
+	private Goods good;
+	
+	
+	
+	@Transient
+	public Goods getGood() {
+		return good;
+	}
+	public void setGoods(Goods good) {
+		this.good = good;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
@@ -52,6 +60,11 @@ public class Favorite {
 	}
 	public void setFtime(String ftime) {
 		this.ftime = ftime;
+	}
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", uid=" + uid + ", shopid=" + shopid + ", goodsid=" + goodsid + ", ftime="
+				+ ftime + ", good=" + good + "]";
 	}
 	
 	

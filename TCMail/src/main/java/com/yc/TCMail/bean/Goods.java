@@ -21,6 +21,7 @@ public class Goods {
 	private String image;
 	private Shop shop;
 	private Gtype type;
+	private Car car;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -122,6 +123,16 @@ public class Goods {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	@Transient
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
 	@Override
 	public String toString() {
 		return "Goods [id=" + id + ", tid=" + tid + ", sid=" + sid + ", name=" + name + ", color=" + color + ", size="

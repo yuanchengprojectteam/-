@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.yc.TCMail.bean.Goods;
+import com.yc.TCMail.bean.Goodsmsg;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.imply.carImply;
@@ -25,7 +26,8 @@ public class IndexController {
 	
 	@Resource
 	private  GTypeBiz  gbiz;
-	
+	@Resource
+	private GoodsMsgBiz  gmBiz;
 	@Autowired
 	carImply ci;
 	
@@ -33,7 +35,9 @@ public class IndexController {
 	@ModelAttribute
 	public  void init(Model model){
 		List<Gtype> list= gbiz.AllType();	
+		List<Goodsmsg> goods=gmBiz.Allgoods();
 		model.addAttribute("types", list);
+		model.addAttribute("goodsmsg", goods);
 	}
 	
 	@RequestMapping("scodeShop")
@@ -96,7 +100,8 @@ public class IndexController {
 	
 	@RequestMapping("car")
 	public String car(@SessionAttribute("loginedUser") User user,Model model) {
-		model.addAttribute("cglist",ci.selectCarGoods(user.getId(),0));
+		model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
+		System.out.println("---"+ci.selectCarGoods(user.getId(),1));
 		return "Car";
 	}
 	
@@ -109,5 +114,13 @@ public class IndexController {
 	public String goodsDetail() {
 		return "GoodsDetail";
 
+	}
+	@RequestMapping("toshopGoodsShowStyle1")
+	public String  toshopGoodsShowStyle1() {
+		return  "shopGoodsShowStyle1";
+	}
+	@RequestMapping("toshopGoodsShowStyle2")
+	public String  toshopGoodsShowStyle2() {
+		return  "shopGoodsShowStyle2";
 	}
 }

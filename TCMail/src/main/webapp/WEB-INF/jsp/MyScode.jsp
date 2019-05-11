@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -25,6 +26,7 @@
 	<div class="beij_center">
 		<div class="myGomeWeb">
 			<!--侧边导航-->
+
 				<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include>
 			<!--左边内容-->
 			<div class="mod_main">
@@ -37,7 +39,7 @@
 					</div>
 					<div class="ger_zx_wod_jif">
 						<div class="bei_h">
-							<div class="qianq_d"><p>当前可用积分</p><h1>2500</h1></div>
+							<div class="qianq_d"><p>当前可用积分</p><h1>${PointNum}</h1></div>
 							<div class="qianq_d qianq_d_sda"><p>将要过期的积分</p><h1 class="color_hong">0</h1><span>您的积分将在每年年底过期！</span></div>
 							<div class="qianq_d"><a href="jifen_shangc.html" class="fanh_annniu">前往兑换超级礼品</a></div>
 						</div> 
@@ -56,38 +58,40 @@
 									<th>备注</th>
 								</tr>
 							</thead>
+						<c:forEach items="${pointGoods }" var="pg">
 							<tbody>
 								<tr class="sep-row"><td colspan="4"></td></tr>
 								<tr class="tr-th">
 									<td colspan="4">
 										<span class="gap"></span> 
-										<span class="number">订单号：<a href="#" target="_blank">62938990890</a></span> 
+										<span class="number">订单号：<a href="#" target="_blank">${pg.id }</a></span> 
 									</td>
 								</tr>
+								<c:forEach items="${pg.details }" var="pgd">
 								<tr class="tr-bd">
 									<td rowspan="1">
 										<div class="goods-item">
 											<div class="p-img">
 												<a target="_blank" href="#">
-													<img src="images/lieb_tupi3.jpg" alt="">
+													<img src="${pgd.goods.image }" alt="">
 												</a>
 											</div>
 											<div class="p-msg">
 												<div class="p-name">
-													<a target="_blank" href="#">红豆居家情侣睡衣男女春秋纯棉长袖条纹卡通家居服套装119 麻灰 170/92A</a>
+													<a target="_blank" href="#">${pgd.goods.name} ${pgd.goods.color} ${pgd.goods.size}</a>
 												</div>
 											</div>
 										</div>
-										<div class="goods-number">x1</div>
+										<div class="goods-number">${pgd.uorder.num}</div>
 									</td>
 									<td rowspan="1">
 										<div class="zhif_jine">
-											<h1 class="jif_jia">+15</h1>
+											<h1 class="jif_jia">+ ${pgd.goods.point}</h1>
 										</div>
 									</td>
 									<td rowspan="1">
 										<div class="txt_ren">
-											<span>2017/11/07</span> 
+											<span>${pgd.uorder.ordertime}</span> 
 										</div>
 									</td>
 									<td rowspan="1">
@@ -96,7 +100,11 @@
 										</div>
 									</td>
 								</tr>
+								</c:forEach>
 							</tbody>
+						</c:forEach>
+						
+						
 							<tbody>
 								<tr class="sep-row"><td colspan="4"></td></tr>
 								<tr class="tr-th">
