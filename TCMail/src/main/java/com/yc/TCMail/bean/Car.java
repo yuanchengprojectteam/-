@@ -60,5 +60,12 @@ public class Car {
 	public void setSid(Integer sid) {
 		this.sid = sid;
 	}
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", gid=" + gid + ", uid=" + uid + ", num=" + num + ", sid=" + sid + ", good=" + good
+				+ "]";
+	}
+	
+	
 	
 }

@@ -103,15 +103,18 @@ public class ZhouController {
 	}
 	
 	@RequestMapping("zhouAddCar")
-	public String zhouAddCar(Favorite f ,Model model) {
-		System.out.println(f+"===============================");
+
+	public String zhouAddCar(Favorite f , String num ,Model model) {
+
 		Favorite f1 = fm.selectByPrimaryKey(f.getId());
 		System.out.println(f1+"=============");
 		int gid = f1.getGoodsid();
 		int uid = f1.getUid();
-		zm.addCar(gid, uid, cm);
+		int sid = f1.getShopid();
+		zm.addCar(gid, uid,Integer.valueOf(num),sid, cm);
 		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
-		model.addAttribute("cglist",list);
+		//System.out.println("==================="+list.size());
+		model.addAttribute("cglistcar",list);
 		return "Car";
 		//return "re....;queryCar?id="+f.getUid();
 	}

@@ -510,7 +510,9 @@ function checkAll(){
 		return;
 	}
 	
+
 }
+
 
 function deleteFromCar(obj){
 	
@@ -545,14 +547,6 @@ function deleteFCar(){
 	})
 }
 
-
-
-
-
-
-
-
-
 </script>
 	<script type="text/javascript">
 jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
@@ -560,4 +554,3 @@ jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:t
 
 
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>
-
