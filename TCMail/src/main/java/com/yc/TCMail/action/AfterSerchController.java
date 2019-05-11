@@ -1,6 +1,7 @@
 package com.yc.TCMail.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,15 +13,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Jude;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.OrderBy;
 
 @Controller
-@SessionAttributes(names= {"hostRecommend","typeid"})
+@SessionAttributes(names= {"hostRecommend","typeid","loginedUser"})
 public class AfterSerchController {
 
 	
@@ -41,6 +44,8 @@ public class AfterSerchController {
 	public String showStyle1(String gtype,Model model) {
 		
 		//470行
+		User user = new User();
+		user.setId(3);
 		
 		Gtype type = am.queryGtype(gtype);
 		int tid = type.getId();
@@ -54,6 +59,8 @@ public class AfterSerchController {
 			hostGoods.add(good);
 		}
 		List<Goods> allGood = am.queryAllGoods(tid);
+		
+		model.addAttribute("loginedUser",user);
 		model.addAttribute("hostRecommend",hostGoods);
 		model.addAttribute("allGoods",allGood);
 		model.addAttribute("typeid",type);
@@ -100,10 +107,31 @@ public class AfterSerchController {
 	
 	@RequestMapping("collction")
 	@ResponseBody
-	public Goods collection(Goods good ) {
-		
+	public Jude collection(@SessionAttribute("loginedUser")User user, Goods good ) {
 		System.out.println("===========================进入"+good.getId());
-		return good;
+		Favorite fav = new Favorite();
+		int gid = good.getId();
+		Goods list = zm.queryGoods(gid, gm);
+		int sid = list.getSid();
+		int uid = user.getId();
+		String ftime = am.formatDate(new Date());
+		fav.setFtime(ftime);
+		fav.setGoodsid(gid);
+		fav.setShopid(sid);
+		fav.setUid(uid);
+		int count = am.addFavorite(fav);
+		Jude jude = new Jude();
+		jude.setCount(count);
+		System.out.println("=========收藏加入"+count+"条记录");
+		return jude;
+	}
+	
+	
+	@RequestMapping("lootbuy")
+	public String lootBuy() {
+		
+		
+		return "GoodsDetail";
 	}
 	
 	

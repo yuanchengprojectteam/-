@@ -84,7 +84,7 @@
 													<div class="price_box"><span class="font_aide">￥${f.good.price }</span></div>
 													<div class="price_box">
 														<a href="zhouAddCar?id=${f.id }&num=1" class="button_grey">加入购物车</a>
-														<input type="button" id="delects" class="button_grey" value="取消收藏"/>
+														<input type="button" onclick="delects()" class="button_grey" value="取消收藏"/>
 													</div>
 												</div>
 												<div class="youh_d">库存量：${f.good.num }</div>
@@ -100,6 +100,9 @@
 								</div>
 							
 							</ul>
+							
+							
+						
 							<ul>
 								<div class="uc_overdueTable">
 									<div class="list_thead">
@@ -110,43 +113,37 @@
 									</div>
 									<div class="diyig_s">
 										<ol>
+										<c:forEach items="${favoritesAndGoods }" var="fg">		
 											<li>
 												<label><input type="checkbox" class="checkbox"></label>
 												<div class="overflow">
 													<div class="shouc_img">
-														<a href="shangp_xiangq.html"><img src="images/dshg.jpg"></a>
+														<a href="shangp_xiangq.html"><img src="${fg.shop.user.image }"></a>
 													</div>
 													<a href="shagnj_dianp.html" class="btn_mix_shop">进入店铺</a>
 												</div>
 												<div class="col280">
-													<h2><a href="shangp_xiangq.html" title="Mistletoe女装旗舰店(白色 M)" target="_blank">Mistletoe女装旗舰店的撒个谎大卡时间</a></h2> 
-													<div class="price_box"><span class="font_aide">收藏时间：2017-07-20</span></div>
+													<h2><a href="shangp_xiangq.html" title="Mistletoe女装旗舰店(白色 M)" target="_blank">${fg.shop.name }</a></h2> 
+													<div class="price_box"><span class="font_aide">收藏时间：${fg.ftime }</span></div>
 													<div class="price_box">
-														<a href="#" class="button_grey">加入购物车</a>
 														<a href="#" class="button_grey">取消收藏</a>
 													</div>
 												</div>
 												<div class="bend_shangp_">
 													<h2>本店商品<a href="#">换一批</a></h2>
 													<div>
+													<c:forEach items="${fg.shop.good }" var="sg">
 														<div class="bengd_sp_neir">
-															<div class="bengd_sp_neir_img"><a href="shagnj_dianp.html"><img src="images/lieb_tupi1.jpg"></a></div>
-															<div class="price_box"><span>￥79.00</span></div>
-															<a href="#" class="button_grey neir_jiar">加入购物车</a>
+															<div class="bengd_sp_neir_img"><a href="shagnj_dianp.html"><img src="${sg.image }"></a></div>
+															<div class="price_box"><span>￥${sg.price}</span></div>
+															<a href="zhouAddCarShop?id=${fg.shop.id }&num=1&gid=${sg.id}" class="button_grey neir_jiar">加入购物车</a>
 														</div>
-														<div class="bengd_sp_neir">
-															<div class="bengd_sp_neir_img"><a href="shagnj_dianp.html"><img src="images/lieb_tupi1.jpg"></a></div>
-															<div class="price_box"><span>￥79.00</span></div>
-															<a href="#" class="button_grey neir_jiar">加入购物车</a>
-														</div>
-														<div class="bengd_sp_neir">
-															<div class="bengd_sp_neir_img"><a href="shagnj_dianp.html"><img src="images/lieb_tupi1.jpg"></a></div>
-															<div class="price_box"><span>￥79.00</span></div>
-															<a href="#" class="button_grey neir_jiar">加入购物车</a>
-														</div>
+													</c:forEach>
+														
 													</div>
 												</div>
 											</li> 
+									</c:forEach>	
 										</ol>
 										<div class="gerzx_fany">
 											<a href="#" class="shangxy">上一页</a>
@@ -156,6 +153,8 @@
 									</div>
 								</div>
 							</ul> 
+							
+							
 						</div>
 					</div> 
 				</div>
@@ -172,7 +171,7 @@
  <script type="text/javascript">
  
  
-	 $("#delects").click(function(){
+	 function delects(){
 		
 		var id = $("#id").val();
 		var uid = $("#uid").val();
@@ -191,7 +190,7 @@
 				alert("ajax错误");
 			}
 		});
-	});
+	};
  
 
 </script>

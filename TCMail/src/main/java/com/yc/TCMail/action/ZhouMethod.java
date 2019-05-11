@@ -3,6 +3,7 @@ package com.yc.TCMail.action;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -265,5 +266,30 @@ public class ZhouMethod {
 		gm.updateByExampleSelective(good, ge);
 	}
 
+	public Shop queryShopAndAllGoods(int sid) {
+		// TODO Auto-generated method stub
+		Shop shop = sm.selectByPrimaryKey(sid);
+		GoodsExample ge = new GoodsExample();
+		User user = userm.selectByPrimaryKey(shop.getUid());
+		shop.setUser(user);
+		ge.createCriteria().andSidEqualTo(sid);
+		List<Goods> set = gm.selectByExample(ge);
+		List<Goods> list = getRandomThreeGoods(set);
+		shop.setGood(list);
+		
+		return shop;
+	}
+
+	public static List<Goods> getRandomThreeGoods(List<Goods> set) {
+		Random r = new Random();
+		
+		List<Goods> list = new ArrayList<Goods>();
+		for(int i=0;i<3;i++) {
+			int num = set.size();
+			int count = r.nextInt(num);
+			list.add(set.get(count));
+		}
+		return list;
+	}
 	
 }

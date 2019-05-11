@@ -481,7 +481,7 @@
         		</p>
         		<p class="name"><a href="#" title=" 联想(lenovo) 小新潮5000 15.6英寸轻薄笔记本电脑">${h.name } &nbsp&nbsp ${h.color} &nbsp&nbsp ${h.size }</a></p>
         		<p class="price asynPrice" >${h.price }</p>
-        		<p class="btn"><a class="buy" href="#" >立即抢购</a></p>
+        		<p class="btn"><a class="buy" href="lootbuy?gid=${h.id }" >立即抢购</a></p>
         	</li>
         </c:forEach>
         	
@@ -750,8 +750,7 @@
 									</div>
 								</div> 
 							</div>
-							<input type="hidden" id="collection" value="${all.id }"/>
-							<div class="p_focus p_focus_1"><a class="J_focus"  onclick="collectionGood()"><i></i>加入收藏</a></div>
+							<div class="p_focus p_focus_1"><a class="J_focus"  value="${all.id }" onclick="collectionGood(this)"><i></i>加入收藏</a></div>
 						</div>
 					</div>
 				</li> 
@@ -832,9 +831,9 @@
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	function collectionGood(){
-		var id = $("#collection").val();
-		alert(id);
+	function collectionGood(e){
+		var id =$(e).attr("value");
+		//alert(id);
 		$.ajax({
 			type:"post",
 			url:"collction",
@@ -842,7 +841,11 @@
 			dataType:"JSON",
 			data:{"id":id},
 			success:function(data){
-				alert("成功加入收藏。");
+				if(data.count == 0){
+					alert("在您的收藏里已经有此商品了。");
+				}else{
+					alert("成功加入收藏。");
+				}	
 			},
 			error:function(e){
 				alert("ajax错误");

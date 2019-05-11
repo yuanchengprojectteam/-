@@ -12,9 +12,16 @@ public class Favorite {
 	private String ftime;
 	
 	private Goods good;
+	private Shop shop;
 	
 	
-	
+	@Transient
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 	@Transient
 	public Goods getGood() {
 		return good;
