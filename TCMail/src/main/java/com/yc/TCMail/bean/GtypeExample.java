@@ -383,6 +383,66 @@ public class GtypeExample {
             addCriterion("pid not between", value1, value2, "pid");
             return (Criteria) this;
         }
+        
+        public Criteria andSunidIsNull() {
+            addCriterion("sunid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidNotNull() {
+            addCriterion("sunid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidEqualTo(Integer value) {
+            addCriterion("sunid =", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidNotEqualTo(Integer value) {
+            addCriterion("sunid <>", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidGreaterThan(Integer value) {
+            addCriterion("sunid >", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sunid >=", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidLessThan(Integer value) {
+            addCriterion("sunid <", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidLessThanOrEqualTo(Integer value) {
+            addCriterion("sunid <=", value, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidIn(List<Integer> values) {
+            addCriterion("sunid in", values, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidNotIn(List<Integer> values) {
+            addCriterion("sunid not in", values, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidBetween(Integer value1, Integer value2) {
+            addCriterion("sunid between", value1, value2, "sunid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunidNotBetween(Integer value1, Integer value2) {
+            addCriterion("sunid not between", value1, value2, "sunid");
+            return (Criteria) this;
+        }
     }
 
     /**

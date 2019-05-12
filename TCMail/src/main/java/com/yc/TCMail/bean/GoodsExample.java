@@ -893,6 +893,65 @@ public class GoodsExample {
             addCriterion("tid not between", value1, value2, "tid");
             return (Criteria) this;
         }
+        public Criteria andRegtimeIsNull() {
+            addCriterion("regtime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeIsNotNull() {
+            addCriterion("regtime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeEqualTo(Integer value) {
+            addCriterion("regtime =", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeNotEqualTo(Integer value) {
+            addCriterion("regtime <>", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeGreaterThan(Integer value) {
+            addCriterion("regtime >", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("regtime >=", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeLessThan(Integer value) {
+            addCriterion("regtime <", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeLessThanOrEqualTo(Integer value) {
+            addCriterion("regtime <=", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeIn(List<Integer> values) {
+            addCriterion("regtime in", values, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeNotIn(List<Integer> values) {
+            addCriterion("regtime not in", values, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeBetween(Integer value1, Integer value2) {
+            addCriterion("regtime between", value1, value2, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeNotBetween(Integer value1, Integer value2) {
+            addCriterion("regtime not between", value1, value2, "regtime");
+            return (Criteria) this;
+        }
     }
 
     /**

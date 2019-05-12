@@ -128,8 +128,8 @@ public class AfterSerchController {
 	
 	
 	@RequestMapping("lootbuy")
-	public String lootBuy() {
-		
+	public String lootBuy(String gid) {
+		Goods good = am.queryGoods(gid);
 		
 		return "GoodsDetail";
 	}

@@ -23,7 +23,7 @@ import com.yc.TCMail.dao.GtypeMapper;
 public class AfterSerchMethod {
 
 	@Resource
-	GtypeMapper gm;
+	GtypeMapper gtym;
 	
 	@Resource
 	GoodsMapper goodm;
@@ -34,12 +34,16 @@ public class AfterSerchMethod {
 	@Resource
 	FavoriteMapper fm;
 	
+	@Resource
+	GoodsMapper gm;
+	
+	
 	
 	public Gtype queryGtype(String gtype) {
 		// TODO Auto-generated method stub
 		GtypeExample ge = new GtypeExample();
 		ge.createCriteria().andNameEqualTo(gtype);
-		List<Gtype> list = gm.selectByExample(ge);
+		List<Gtype> list = gtym.selectByExample(ge);
 		return list.get(0);
 	}
 
@@ -77,6 +81,19 @@ public class AfterSerchMethod {
 		}
 	
 		return fm.insert(fav);
+	}
+
+	public Goods queryGoods(String gid) {
+		// TODO Auto-generated method stub
+		int id = Integer.valueOf(gid);
+		Goods good = gm.selectByPrimaryKey(id);
+		
+		Shop shop = zm.queryIdShop(good.getSid());
+		good.setShop(shop);
+		
+		
+		return null;
+		
 	}
 
 }
