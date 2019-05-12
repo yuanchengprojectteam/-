@@ -49,7 +49,6 @@ public class ZhouController {
 	@Resource
 	FavoriteMapper fm ;
 	
-	@Resource
 	GoodsMapper gm ;
 	
 	@Resource
@@ -158,11 +157,11 @@ public class ZhouController {
 		return "Car";
 	}
 	
-	@GetMapping("index")
+	/*@GetMapping("index")
 	public String index() {	
 
 		return "index";
-	}
+	}*/
 	
 	
 	

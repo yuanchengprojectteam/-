@@ -1,6 +1,6 @@
 package com.yc.TCMail.bean;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,7 +11,24 @@ public class Gtype {
 	private String name;
 	private Integer pid;
 	private Integer sunid;
+	private List<Gtype> childType;
+	private Gtype superType;
 	
+	
+	@Transient
+	public Gtype getSuperType() {
+		return superType;
+	}
+	public void setSuperType(Gtype superType) {
+		this.superType = superType;
+	}
+	@Transient
+	public List<Gtype> getChildType() {
+		return childType;
+	}
+	public void setChildType(List<Gtype> childType) {
+		this.childType = childType;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)
@@ -46,5 +63,6 @@ public class Gtype {
 	public String toString() {
 		return String.format("Gtype [id=%s, name=%s, pid=%s, sunid=%s]", id, name, pid, sunid);
 	}
+
 	
 }

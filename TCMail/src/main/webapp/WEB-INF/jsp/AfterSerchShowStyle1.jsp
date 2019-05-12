@@ -489,7 +489,7 @@
     </div>
 </div>
 <div class="lujing_ziy">
-	<a href="#">服饰</a> > <a href="#">${typeid.name }</a> 
+	<a href="#">${typeid.name }</a> 
 </div>
 <div class="shangp_lieb_jvz">
 	<div class="selector">

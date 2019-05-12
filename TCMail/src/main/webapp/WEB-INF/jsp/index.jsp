@@ -41,7 +41,7 @@
 							<!-- <dt><a href="">大家电<i>></i></a></dt> -->							
 							<dd>
 								<c:forEach items="${types.childType}" var="ctype">
-									<a href="">${ctype.name}</a>
+									<a href="showStyle1?gtype=${ctype.name}">${ctype.name}</a>
 								</c:forEach>
 								<%-- <a href="">${types.childtype.}</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
 								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a> --%>

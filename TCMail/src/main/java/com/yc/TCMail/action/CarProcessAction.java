@@ -41,9 +41,10 @@ public class CarProcessAction {
 		}
 	}
 	
-	@PostMapping("addToFav")
-	public void addToFav(Goods goods,@SessionAttribute("loginedUser") User user,HttpServletResponse resp) throws IOException {
+	@RequestMapping("addToFav")
+	public void addToFav(Goods goods,String cid,@SessionAttribute("loginedUser") User user,HttpServletResponse resp) throws IOException {
 		
+		System.out.println(cid+"================");
 		Favorite fav=new Favorite();
 		fav.setGoodsid(goods.getId());
 		SimpleDateFormat sim= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -53,10 +54,12 @@ public class CarProcessAction {
 		System.out.println(good);
 		Shop shop=(Shop) hb.getCriteria(Shop.class).add(Restrictions.eqOrIsNull("id",good.getSid())).list().get(0);
 		fav.setShopid(shop.getId());
-		System.out.println("=================================="+fav);
+		hb.getSession().delete(hb.getCriteria(Car.class).add(Restrictions.eqOrIsNull("id",Integer.valueOf(cid))).list().get(0));
 		hb.getSession().beginTransaction();
 		hb.getSession().save(fav);
+		
 		hb.getTransaction().commit();
+		
 		resp.getWriter().write("add success!");
 	}
 	

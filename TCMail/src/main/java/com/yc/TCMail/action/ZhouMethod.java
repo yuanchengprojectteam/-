@@ -280,6 +280,19 @@ public class ZhouMethod {
 		return shop;
 	}
 
+	public Shop queryShopAndAllGoods1(int sid) {
+		// TODO Auto-generated method stub
+		Shop shop = sm.selectByPrimaryKey(sid);
+		GoodsExample ge = new GoodsExample();
+		User user = userm.selectByPrimaryKey(shop.getUid());
+		shop.setUser(user);
+		ge.createCriteria().andSidEqualTo(sid);
+		List<Goods> set = gm.selectByExample(ge);
+		//List<Goods> list = getRandomThreeGoods(set);
+		shop.setGood(set);
+		
+		return shop;
+	}
 	public static List<Goods> getRandomThreeGoods(List<Goods> set) {
 		Random r = new Random();
 		

@@ -23,7 +23,20 @@ public class Goods {
 	private Shop shop;
 	private Gtype type;
 	private Car car;
+	private List<Goodsmsg> listGmsg;
 	
+	
+	
+	
+	@Transient
+	public List<Goodsmsg> getListGmsg() {
+		return listGmsg;
+	}
+
+	public void setListGmsg(List<Goodsmsg> listGmsg) {
+		this.listGmsg = listGmsg;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

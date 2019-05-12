@@ -121,11 +121,11 @@
 			<!-- $page.site 主站 团购 抢购   style -->
 			<div class="cart-col-3">商品信息</div>
 			<div class="cart-col-4">
-				<div class="cart-good-real-price">小计</div>
+				<div class="cart-good-real-price">单价</div>
 			</div>
 			<div class="cart-col-5">数量</div>
 			<div class="cart-col-6">
-				<div class="cart-good-amount">单价</div>
+				<div class="cart-good-amount">小计</div>
 			</div>
 			<div class="cart-col-7">操作</div>
 		</div>
@@ -143,8 +143,8 @@
 			<div class="cart-shop-goods dangq_honh">
 				<div class="cart-shop-good">
 					<div class="cart-col-1">
-						<br /> <input type="checkbox" name="c1" value="${g.car.id }"
-							class="jdcheckbox">
+						<br /> <input type="checkbox" name="c${g.car.id }" id="checkbox${g.car.id }"
+							class="jdcheckbox" onclick="changenumber('${g.car.id }')"  >
 					</div>
 					<div class="cart-col-2" style="height: 82px;">
 						<a href="shangp_xiangq.html" target="_blank" class="g-img"><img
@@ -167,16 +167,16 @@
 						</div>
 						<div class="cart-col-5">
 							<div class="gui-count cart-count"">
-								<input id="min_${u.id}" name="" type="button" value="-" class="gui-count-btn gui-count-add"">
+								<input id="min_${u.id}" name=""  onclick="del(${g.car.id})"  type="button" value="-" class="gui-count-btn gui-count-add"">
 								<input id="text_box_${g.car.id}" name="num" onchange="can(this)" type="text" value="${g.car.num }"
 									style="width: 48px; height: 20px; font-size: 12px; text-align: center; float: left" />
-								<input id="add_${g.car.id}" name="" type="button" value="+"
+								<input id="add_${g.car.id}" name="" type="button" value="+" onclick="add(${g.car.id})"
 									 class="gui-count-btn gui-count-sub gui-count-disabled">
 								<input type="hidden" name="goods_${g.id }"  value="${g.id }">
 							</div>
 						</div>
 						<div class="cart-col-6 ">
-							<div class="cart-good-amount">¥&nbsp;${g.price }</div>
+							<div class="cart-good-amount" id="numgoods${g.car.id}" >¥&nbsp;${g.price }</div>
 							<!-- 重量展示(只展示全球百货的重量) -->
 						</div>
 					</div>
@@ -185,7 +185,7 @@
 							<a href="#" onclick="deleteFromCar('${g.car.id}')">删除</a>
 						</div>
 						<div class="cart-good-fun">
-							<a href="#" onclick="addToFav(${g.id})">移入收藏夹</a>
+							<a href="#" onclick="addToFav(${g.id},${g.car.id })">移入收藏夹</a>
 						</div>
 					</div>
 				</div>
@@ -203,7 +203,7 @@
 			</div>
 			<div class="jies_ann_bei">
 				<p>
-					已选 <em id="goodsnum">0</em> 件商品 总计（不含运费）：<span id="payMoney">￥0.00</span>
+					已选 <em id="allnumber">0</em> 件商品 总计（不含运费）：<span id="shouldPayMoney">￥0.00</span>
 				</p>
 				<a href="addOrder" class="order_btn">去结算</a>
 			</div>
@@ -439,43 +439,64 @@
 
 
 	<script type="text/javascript">
+	function changenumber(id){
+		var boolea=$("#checkbox"+id)[0].checked;
+		if(true==boolea){
+		
+			var s=$("#numgoods"+id).html().substring(7,$("#numgoods"+id).html().length);
+			alert(s);
+		}
+	}
+	
+	function add(id){
+		var num=parseInt($("#text_box_"+id).val());
+		$("#text_box_"+id).attr("disabled",false);
+		if(num<=0){
+			$("#text_box_"+id).attr("disabled",true);
+		}
+		$("#text_box_"+id).val(num+1);
+		var price=parseInt($("#thisgoods"+id).html());
+		$("#numgoods"+id).html("￥ "+((num+1)*price));
+		
+		var boolea=$("#checkbox"+id)[0].checked;
+		
+		if(true==boolea){
+			
+			var rownum= parseInt($("#allnumber").html());
+			$("#allnumber").html(rownum+num+1);
+			
+			/* var paymoney= parseInt($("#shouldPayMoney").html().substring(1,$("#shouldPayMoney").html().length)); */
+			
+			
+			
+			$("#shouldPayMoney").html("￥"+((num+1)*price));
+			
+		};
+	
+	}
+	
+	function del(id){
+		var textid="#text_box_"+id;
+		var num=parseInt($(textid).val());
+		$(textid).val(num-1);
+		var price=parseInt($("#thisgoods"+id).html());
+		$("#numgoods"+id).html("￥ "+((num-1)*price));
+		
+		var boolea=$("#checkbox"+id)[0].checked;
+		
+		if(true==boolea){
+			
+			var rownum= parseInt($("#allnumber").html());
+			$("#allnumber").html(rownum+num-1);
+			
+			$("#shouldPayMoney").html("￥"+((num-1)*price));
+		};
+	}
 	
 	
-	$(document).ready(function(){
-  		for(var i=0;i<$("input[id^='min_']").size();i++){//sub
-  			$("input[id^='min_']").eq(i).attr('disabled',true);
-  			var num=parseInt($(this).next().val());
-
-  	  		$("input[id^='min_']").eq(i).click(function(){
-  	  			$(this).next().val(parseInt($(this).next().val())-1);
-  	  			
-  	  			if($(this).next().val()==1){
-	  				$(this).attr('disabled',true);		  		var num=parseInt($(this).prev().val());
-
-	  			}
-  	  		});
-	  		
-	  	  	$("input[id^='add_']").eq(i).click(function(){
-		  		$(this).prev().val(parseInt($(this).prev().val())+1);
-		  		
-		  		
-		  		var id=$(this).next().val();
-		  		$.ajax({
-		  			url:"canAddNum?id="+id,
-		  			data:"num="+num,
-		  			type:"post",
-		  			success: function(data){
-		  				if("ok"==data){
-		  					$(this).prev().prev().attr('disabled',true);
-		  				}
-		  			}
-		  		})
-		  		if($(this).prev().val()>1){
-		  			$(this).prev().prev().attr('disabled',false);
-		  		}
-		  	});
-	  	 }
-  	})
+	function checkAll(){
+		
+	}
 
 $(function(){
 		
@@ -497,7 +518,7 @@ $(function(){
   tabs(".investment_title","on_d",".investment_con");
   
 })
-var time=0;
+ var time=0;
 function checkAll(){
 	if(time==0){
 		$("input[name^='c']").prop("checked",true);
@@ -511,7 +532,7 @@ function checkAll(){
 	}
 	
 
-}
+} 
 
 
 function deleteFromCar(obj){
@@ -525,9 +546,9 @@ function deleteFromCar(obj){
 		}
 	})
 }
-function addToFav(gid){
+function addToFav(gid,sid){
 	$.ajax({
-		url:"addToFav",
+		url:"addToFav?cid="+sid,
 		type:"POST",
 		data:"id="+gid,
 		success:function(data){

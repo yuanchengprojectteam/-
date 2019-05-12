@@ -22,6 +22,7 @@ import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.GtypeMapper;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
@@ -41,6 +42,14 @@ public class TcMailApplicationTests {
     RedisUtil ru;
     @Resource
     private  UserMapper  userMapper;
+    
+    @Resource
+    GtypeMapper  gm;
+    
+    @Test
+    public void querytype() {
+    	gm.selectByPrimaryKey(2);
+    }
 	
 	@Test
 	public void contextLoads() {

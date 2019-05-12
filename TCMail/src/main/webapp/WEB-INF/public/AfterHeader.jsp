@@ -32,7 +32,7 @@
 						<a href="shez_toux.html"><img src="images/toux.png"></a>
 					</div>
 					<div class="huiy_dengj"> 
-						<a class="tuic_" href="index">退出</a>
+						<a class="tuic_" href="tologin">退出</a>
 					</div>
 					<div class="toub_zil_daoh">
 						<a href="wod_dingd.html">待处理订单</a>
@@ -42,7 +42,7 @@
 				</div>
 				</li> 
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
+			<li class="denglu"><a class="ing_ps" href="MyFavorite">我的收藏</a></li>
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>
