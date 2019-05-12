@@ -10,6 +10,7 @@ public class Gtype {
 	private Integer id;
 	private String name;
 	private Integer pid;
+	private Integer sunid;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,4 +35,16 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
+	@Column(name="sunid",length=11)
+	public Integer getSunid() {
+		return sunid;
+	}
+	public void setSunid(Integer sunid) {
+		this.sunid = sunid;
+	}
+	@Override
+	public String toString() {
+		return String.format("Gtype [id=%s, name=%s, pid=%s, sunid=%s]", id, name, pid, sunid);
+	}
+	
 }

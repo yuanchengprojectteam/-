@@ -32,6 +32,8 @@ public class AliOssBaseUtil {
         
         if(ty==1) {
         	type="header";
+        }else if(ty==10){
+        	type="shopimg";
         }else {
         	type="img";
         }

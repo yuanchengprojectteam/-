@@ -26,7 +26,7 @@ public class AddressController {
 	private AddressBiz addrBiz;
 	
 	@RequestMapping("toAddrManager")
-	public String toAddrManager(Model model, @SessionAttribute("LoginedUser") User user) {
+	public String toAddrManager(Model model, @SessionAttribute("loginedUser") User user) {
 		model.addAttribute("AddrList", addrBiz.findAddrByUser(user));
 		return "addressManager";
 	}
@@ -39,7 +39,7 @@ public class AddressController {
 	
 	@ResponseBody
 	@PostMapping("addAddress")
-	public String addAddress(Address addr,@SessionAttribute("LoginedUser") User user) {   
+	public String addAddress(Address addr,@SessionAttribute("loginedUser") User user) {   
 		
 		try {
 			addr.setUid(user.getId());
