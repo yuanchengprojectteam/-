@@ -158,12 +158,12 @@ public class ZhouController {
 		return "Car";
 	}
 	
-	@GetMapping("index")
+	/*@GetMapping("index")
 	public String index() {	
 
 		return "index";
 	}
-	
+	*/
 	
 	
 	@RequestMapping("commentAndShowOrder")

@@ -20,7 +20,7 @@
   </resultMap>
   
   <select id="selectAllGtypes" resultMap="BaseResultMap1">
-  	select id,name,pid
+  	select id,name,pid,sunid
   	from gtype where pid is null
   </select>
   
