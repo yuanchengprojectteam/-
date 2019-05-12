@@ -19,10 +19,10 @@ public class Goods {
 	private Integer point;
 	private Integer commnum;
 	private String image;
+	private String regtime;
 	private Shop shop;
 	private Gtype type;
 	private Car car;
-	private String regtime;
 	
 	
 	@Column(name="regtime",length=20)
@@ -143,12 +143,14 @@ public class Goods {
 	public void setCar(Car car) {
 		this.car = car;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "Goods [id=" + id + ", tid=" + tid + ", sid=" + sid + ", name=" + name + ", color=" + color + ", size="
-				+ size + ", price=" + price + ", num=" + num + ", point=" + point + ", commnum=" + commnum + ", image="
-				+ image + "]";
+		return String.format(
+				"Goods [id=%s, tid=%s, sid=%s, name=%s, color=%s, size=%s, price=%s, num=%s, point=%s, commnum=%s, image=%s, regtime=%s, shop=%s, type=%s, car=%s]",
+				id, tid, sid, name, color, size, price, num, point, commnum, image, regtime, shop, type, car);
 	}
+	
 	
 }

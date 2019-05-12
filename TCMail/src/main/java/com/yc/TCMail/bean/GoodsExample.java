@@ -960,6 +960,7 @@ public class GoodsExample {
         }
 
         public Criteria andRegtimeNotBetween(String value1, String value2) {
+
             addCriterion("regtime not between", value1, value2, "regtime");
             return (Criteria) this;
         }

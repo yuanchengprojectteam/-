@@ -8,11 +8,12 @@ public class Goodsmsg {
 	private Integer id;
 	private Integer tid;
 	private Integer sid;
+	private Integer gid;
 	private String color;
 	private String size;
-	private Integer gid;
 	
 	
+
 	@Column(name="gid",length=11)
 	public Integer getGid() {
 		return gid;
@@ -20,6 +21,7 @@ public class Goodsmsg {
 	public void setGid(Integer gid) {
 		this.gid = gid;
 	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
@@ -56,6 +58,12 @@ public class Goodsmsg {
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	@Override
+	public String toString() {
+		return "Goodsmsg [id=" + id + ", tid=" + tid + ", sid=" + sid + ", gid=" + gid + ", color=" + color + ", size="
+				+ size + "]";
 	}
 	
 }

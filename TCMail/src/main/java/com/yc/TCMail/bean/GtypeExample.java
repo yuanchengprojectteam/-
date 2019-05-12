@@ -384,12 +384,14 @@ public class GtypeExample {
             return (Criteria) this;
         }
 
+
         public Criteria andSunidIsNull() {
             addCriterion("sunid is null");
             return (Criteria) this;
         }
 
         public Criteria andSunidIsNotNull() {
+
             addCriterion("sunid is not null");
             return (Criteria) this;
         }

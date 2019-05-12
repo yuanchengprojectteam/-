@@ -18,10 +18,14 @@
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
+
     <result column="regtime" jdbcType="VARCHAR" property="regtime" />
+
   </resultMap>
   
+
    <resultMap type="com.yc.TCMail.bean.Goods" id="BaseResultMap1" extends="BaseResultMap">
+
   	 <association property="shop" column="sid" select="com.yc.TCMail.dao.ShopMapper.selectShopByID" 
   	fetchType="lazy"></association>
   </resultMap>  
@@ -169,12 +173,20 @@
     </selectKey>
     insert into goods (color, commnum, image, 
       name, num, point, price, 
+<<<<<<< HEAD
       sid, size, tid, regtime
       )
+=======
+      sid, size, tid, regtime)
+>>>>>>> refs/remotes/origin/master
     values (#{color,jdbcType=VARCHAR}, #{commnum,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{point,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+<<<<<<< HEAD
       #{sid,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, #{regtime,jdbcType=VARCHAR}
       )
+=======
+      #{sid,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, #{regtime,jdbcType=VARCHAR})
+>>>>>>> refs/remotes/origin/master
   </insert>
   <insert id="insertSelective" parameterType="com.yc.TCMail.bean.Goods">
     <!--
@@ -253,7 +265,11 @@
         #{tid,jdbcType=INTEGER},
       </if>
       <if test="regtime != null">
+<<<<<<< HEAD
         #{regtime,jdbcType=VARCHAR},
+=======
+        #{tid,jdbcType=VARCHAR},
+>>>>>>> refs/remotes/origin/master
       </if>
     </trim>
   </insert>
@@ -310,7 +326,11 @@
         tid = #{record.tid,jdbcType=INTEGER},
       </if>
       <if test="record.regtime != null">
+<<<<<<< HEAD
         regtime = #{record.regtime,jdbcType=VARCHAR},
+=======
+        tid = #{record.regtime,jdbcType=VARCHAR},
+>>>>>>> refs/remotes/origin/master
       </if>
     </set>
     <if test="_parameter != null">
@@ -379,7 +399,11 @@
         tid = #{tid,jdbcType=INTEGER},
       </if>
       <if test="regtime != null">
+<<<<<<< HEAD
         regtime = #{regtime,jdbcType=VARCHAR},
+=======
+        tid = #{regtime,jdbcType=VARCHAR},
+>>>>>>> refs/remotes/origin/master
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

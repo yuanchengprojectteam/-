@@ -23,13 +23,6 @@ public class Gtype {
 	public void setGsonType(List<Gtype> gsonType) {
 		this.gsonType = gsonType;
 	}
-	@Column(name="sunid",length=11)
-	public Integer getSunid() {
-		return sunid;
-	}
-	public void setSunid(Integer sunid) {
-		this.sunid = sunid;
-	}
 	@Transient
 	public List<Gtype> getChildType() {
 		return childType;
@@ -60,11 +53,20 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
+
+	@Column(name="sunid",length=11)
+	public Integer getSunid() {
+		return sunid;
+	}
+	public void setSunid(Integer sunid) {
+		this.sunid = sunid;
+	}
 	@Override
 	public String toString() {
+
 		return "Gtype [id=" + id + ", name=" + name + ", pid=" + pid + ", sunid=" + sunid + ", childType=" + childType
 				+ "]";
+
+
 	}
-	
-	
 }
