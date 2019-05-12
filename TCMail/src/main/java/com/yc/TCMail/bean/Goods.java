@@ -22,7 +22,18 @@ public class Goods {
 	private Shop shop;
 	private Gtype type;
 	private Car car;
+	private String regtime;
 	
+	
+	@Column(name="regtime",length=20)
+	public String getRegtime() {
+		return regtime;
+	}
+
+	public void setRegtime(String regtime) {
+		this.regtime = regtime;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

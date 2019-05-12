@@ -127,11 +127,7 @@ public class ZhouController {
 		return "Car";
 	}
 	
-	@GetMapping("index")
-	public String index() {	
-
-		return "index";
-	}
+	
 	
 	
 	
