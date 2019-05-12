@@ -37,6 +37,15 @@ public class Goods {
 		this.listGmsg = listGmsg;
 	}
 
+	@Column(name="regtime",length=20)
+	public String getRegtime() {
+		return regtime;
+	}
+
+	public void setRegtime(String regtime) {
+		this.regtime = regtime;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
@@ -147,14 +156,6 @@ public class Goods {
 		this.car = car;
 	}
 	
-	@Column(name="regtime",length=50)
-	public String getRegtime() {
-		return regtime;
-	}
-
-	public void setRegtime(String regtime) {
-		this.regtime = regtime;
-	}
 
 	@Override
 	public String toString() {

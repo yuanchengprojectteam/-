@@ -62,7 +62,7 @@ public class AfterSerchController {
 		
 		for(int i=0;i<3;i++) {
 			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid, gm);
+			Goods good = zm.queryGoods(gid);
 			hostGoods.add(good);
 		}
 		List<Goods> allGood = am.queryAllGoods(tid);
@@ -82,7 +82,7 @@ public class AfterSerchController {
 		
 		for(int i=0;i<list.size();i++) {
 			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid, gm);
+			Goods good = zm.queryGoods(gid);
 			buyGoods.add(good);
 		}
 		model.addAttribute("allGoods",buyGoods);
@@ -118,7 +118,7 @@ public class AfterSerchController {
 		System.out.println("===========================进入"+good.getId());
 		Favorite fav = new Favorite();
 		int gid = good.getId();
-		Goods list = zm.queryGoods(gid, gm);
+		Goods list = zm.queryGoods(gid);
 		int sid = list.getSid();
 		int uid = user.getId();
 		String ftime = am.formatDate(new Date());

@@ -13,8 +13,15 @@ public class Gtype {
 	private Integer sunid;
 	private List<Gtype> childType;
 	private Gtype superType;
+	private List<Gtype> gsonType;
 	
-	
+	@Transient
+	public List<Gtype> getGsonType() {
+		return gsonType;
+	}
+	public void setGsonType(List<Gtype> gsonType) {
+		this.gsonType = gsonType;
+	}
 	@Transient
 	public Gtype getSuperType() {
 		return superType;
@@ -61,8 +68,10 @@ public class Gtype {
 	}
 	@Override
 	public String toString() {
-		return String.format("Gtype [id=%s, name=%s, pid=%s, sunid=%s]", id, name, pid, sunid);
-	}
 
-	
+		return "Gtype [id=" + id + ", name=" + name + ", pid=" + pid + ", sunid=" + sunid + ", childType=" + childType
+				+ "]";
+
+
+	}
 }

@@ -97,12 +97,15 @@
 		</ul>
 	</div>
 </div>
+
 <!--搜索栏-->
 <div class="toub_beij">
-	<div class="logo"><a href="./"><img src="./images/logo.png"></a></div>
+	<div class="logo"><a href="index"><img src="./images/logo.png"></a></div>
 	<div class="search">
-		<input type="text" value="" class="text" id="textt" placeholder="家电一折抢">
-		<button class="button">搜索</button>
+		<form action="query" method="post">
+		<input type="text" name="q" value="" class="text" id="textt" placeholder="小米">
+		<input type="submit" class="button" value="搜索">
+		</form>
 	</div>
 	<div class="right">
 		<i class="gw-left"></i>
@@ -132,6 +135,7 @@
 		<a href="#">威士忌</a>
 	</div>
 </div> 
+
 <script type="text/javascript">
 window.onload=function(){
 	

@@ -116,7 +116,7 @@ public class AfterSerchMethod {
 		
 		for(int i=0;i<3;i++) {
 			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid, gm);
+			Goods good = zm.queryGoods(gid);
 			hostGoods.add(good);
 		}
 		return hostGoods;
