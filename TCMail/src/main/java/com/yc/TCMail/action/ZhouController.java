@@ -2,6 +2,7 @@ package com.yc.TCMail.action;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -88,7 +89,24 @@ public class ZhouController {
 		f.setUid(user.getId());
 		FavoriteExample fe = new FavoriteExample();
 		List<Favorite> set = zm.selectAllFavorite(fe, fm, gm, f);
-		model.addAttribute("favorites",set);
+		List<Favorite> favorShop = new ArrayList<Favorite>();
+		List<Favorite> favor = new ArrayList<Favorite>();
+		for(Favorite fav : set) {
+			if(fav.getGoodsid() == null) {
+				Shop shop = zm.queryShopAndAllGoods(fav.getShopid());
+				/*System.out.println("==================="+shop.getUser().getImage());
+				System.out.println("==================="+shop.getGood().get(0));
+				System.out.println("==================="+shop.getName());*/
+				fav.setShop(shop);
+				
+				favorShop.add(fav);
+			}else {
+				favor.add(fav);
+			}
+		}
+		
+		model.addAttribute("favorites",favor);
+		model.addAttribute("favoritesAndGoods",favorShop);
 		//184行
 		return "MyFavorite";
 	}
@@ -112,6 +130,19 @@ public class ZhouController {
 		int uid = f1.getUid();
 		int sid = f1.getShopid();
 		zm.addCar(gid, uid,Integer.valueOf(num),sid, cm);
+		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
+		//System.out.println("==================="+list.size());
+		model.addAttribute("cglistcar",list);
+		return "Car";
+		//return "re....;queryCar?id="+f.getUid();
+	}
+	
+	@RequestMapping("zhouAddCarShop")
+	public String zhouAddCarShop(Shop s , String num ,String gid,Model model) {
+		Shop f1 = sm.selectByPrimaryKey(s.getId());
+		int uid = f1.getUid();
+		int sid = f1.getId();
+		zm.addCar(Integer.valueOf(gid), uid,Integer.valueOf(num),sid, cm);
 		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
 		//System.out.println("==================="+list.size());
 		model.addAttribute("cglistcar",list);

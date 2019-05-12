@@ -1,5 +1,7 @@
 package com.yc.TCMail.bean;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +16,20 @@ public class Shop {
 	private String type;
 	private User user;
 	private  String  describe;
-   
+	
+	private List<Goods> good;
+	
+	
+	
+	@Transient
+	public List<Goods> getGood() {
+		return good;
+	}
+
+	public void setGood(List<Goods> good) {
+		this.good = good;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",unique=true,nullable=false)

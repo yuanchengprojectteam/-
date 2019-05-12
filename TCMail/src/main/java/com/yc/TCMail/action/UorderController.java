@@ -21,7 +21,7 @@ import com.yc.TCMail.imply.BizException;
 import com.yc.TCMail.imply.UorderBiz;
 
 @Controller
-@SessionAttributes("loginedUser")     //在请求方法完毕后 @SessionAttributes 再对应找 loginedUser
+//@SessionAttributes("loginedUser")     //在请求方法完毕后 @SessionAttributes 再对应找 LoginedUser
 public class UorderController {
 	
 	@Resource
