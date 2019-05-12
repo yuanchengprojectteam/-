@@ -153,11 +153,9 @@
     insert into goodsmsg (color, sid, size, 
       tid, gid)
     values (#{color,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, 
-<<<<<<< HEAD
+
       #{tid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER})
-=======
-      #{tid,jdbcType=INTEGER}, # #{gid,jdbcType=INTEGER})
->>>>>>> refs/remotes/origin/master
+
   </insert>
   <insert id="insertSelective" parameterType="com.yc.TCMail.bean.Goodsmsg">
     <!--
@@ -199,11 +197,9 @@
       <if test="tid != null">
         #{tid,jdbcType=INTEGER},
       </if>
-<<<<<<< HEAD
+
       <if test="gid != null">
-=======
-       <if test="gid != null">
->>>>>>> refs/remotes/origin/master
+
         #{gid,jdbcType=INTEGER},
       </if>
     </trim>
@@ -243,11 +239,9 @@
         tid = #{record.tid,jdbcType=INTEGER},
       </if>
       <if test="record.gid != null">
-<<<<<<< HEAD
+
         gid = #{record.gid,jdbcType=INTEGER},
-=======
-        tid = #{record.gid,jdbcType=INTEGER},
->>>>>>> refs/remotes/origin/master
+
       </if>
     </set>
     <if test="_parameter != null">
@@ -266,11 +260,9 @@
       sid = #{record.sid,jdbcType=INTEGER},
       size = #{record.size,jdbcType=VARCHAR},
       tid = #{record.tid,jdbcType=INTEGER},
-<<<<<<< HEAD
+
       gid = #{record.gid,jdbcType=INTEGER}
-=======
-       gid = #{record.gid,jdbcType=INTEGER}
->>>>>>> refs/remotes/origin/master
+
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

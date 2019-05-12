@@ -175,15 +175,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-<<<<<<< HEAD
+
     insert into gtype (name, pid, sunid
       )
     values (#{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{sunid,jdbcType=INTEGER}
       )
-=======
-    insert into gtype (name, pid,sunid)
-    values (#{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, , #{sunid,jdbcType=INTEGER})
->>>>>>> refs/remotes/origin/master
+
   </insert>
   <insert id="insertSelective" parameterType="com.yc.TCMail.bean.Gtype">
     <!--
@@ -213,13 +210,10 @@
       <if test="pid != null">
         #{pid,jdbcType=INTEGER},
       </if>
-<<<<<<< HEAD
+
       <if test="sunid != null">
         #{sunid,jdbcType=INTEGER},
-=======
-      <if test="sun != null">
-        #{sun,jdbcType=INTEGER},
->>>>>>> refs/remotes/origin/master
+
       </if>
     </trim>
   </insert>
@@ -251,13 +245,10 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=INTEGER},
       </if>
-<<<<<<< HEAD
+
       <if test="record.sunid != null">
         sunid = #{record.sunid,jdbcType=INTEGER},
-=======
-       <if test="record.sunid != null">
-        pid = #{record.sunid,jdbcType=INTEGER},
->>>>>>> refs/remotes/origin/master
+
       </if>
     </set>
     <if test="_parameter != null">
@@ -274,11 +265,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=INTEGER},
-<<<<<<< HEAD
+
       sunid = #{record.sunid,jdbcType=INTEGER}
-=======
-       sunid = #{record.sunid,jdbcType=INTEGER}
->>>>>>> refs/remotes/origin/master
+
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
