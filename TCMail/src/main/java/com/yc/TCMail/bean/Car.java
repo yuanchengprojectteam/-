@@ -12,16 +12,16 @@ public class Car {
 	private Integer num;
 	private Integer sid;
 	
-	private Goods good;
+	private Goods goods;
 	
 	
 	
 	@Transient
-	public Goods getGood() {
-		return good;
+	public Goods getGoods() {
+		return goods;
 	}
-	public void setGood(Goods good) {
-		this.good = good;
+	public void setGoods(Goods good) {
+		this.goods = good;
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,7 +62,7 @@ public class Car {
 	}
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", gid=" + gid + ", uid=" + uid + ", num=" + num + ", sid=" + sid + ", good=" + good
+		return "Car [id=" + id + ", gid=" + gid + ", uid=" + uid + ", num=" + num + ", sid=" + sid + ", good=" + goods
 				+ "]";
 	}
 	

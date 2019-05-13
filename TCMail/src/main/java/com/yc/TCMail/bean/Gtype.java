@@ -16,6 +16,16 @@ public class Gtype {
 	private List<Gtype> childType;
 	private List<Gtype> gsonType;
 	
+	private List<Goods> goodsList;
+	
+	
+	@Transient
+	public List<Goods> getGoodsList() {
+		return goodsList;
+	}
+	public void setGoodsList(List<Goods> goodsList) {
+		this.goodsList = goodsList;
+	}
 	@Transient
 	public List<Gtype> getGsonType() {
 		return gsonType;

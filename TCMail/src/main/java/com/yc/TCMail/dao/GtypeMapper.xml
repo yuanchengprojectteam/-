@@ -25,17 +25,24 @@
   	</collection>
   </resultMap>
   
+  <resultMap type="com.yc.TCMail.bean.Gtype" id="BaseResultMap3" extends="BaseResultMap">
+  	<collection property="goodsList" column="id" select="com.yc.TCMail.dao.GoodsMapper.selectGoodsByTid"
+  	fetchType="lazy">
+  	</collection>
+  </resultMap>
+  
   <select id="selectAllGtypes" resultMap="BaseResultMap1">
   	select id,name,pid,sunid
   	from gtype where pid is null and sunid is null
   </select>
+  
   
   <select id="selectChildTypes" resultMap="BaseResultMap2" >
   	select id,name,pid,sunid 
   	from gtype where pid = #{id}
   </select>
   
-   <select id="selectGsonTypes" resultMap="BaseResultMap" >
+   <select id="selectGsonTypes" resultMap="BaseResultMap3" >
   	select id,name,pid,sunid 
   	from gtype where sunid = #{id}
   </select>

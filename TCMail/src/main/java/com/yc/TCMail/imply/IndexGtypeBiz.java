@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.TCMail.bean.Gtype;
-import com.yc.TCMail.bean.GtypeExample;
 import com.yc.TCMail.dao.GtypeMapper;
 
 @Service
@@ -18,10 +17,13 @@ public class IndexGtypeBiz {
 	@Resource
 	private GtypeMapper gtm;
 	
-	public List<Gtype> findAllGtype() {
-		
-		
+	public  List<Gtype> findAllGtype() {
+	
 		return gtm.selectAllGtypes();
 	}
+	
+	
+	
+	
 
 }

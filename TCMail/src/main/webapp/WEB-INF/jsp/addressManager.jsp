@@ -7,8 +7,8 @@
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——收货地址</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet" type="text/css" href="css/ziy.css">
+<link rel="stylesheet" type="text/css" href="../../css/index.css">
+<link rel="stylesheet" type="text/css" href="../../css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
@@ -17,7 +17,7 @@
 <!--  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
 <!--  <script type="text/javascript" src="js/select.js"></script> -->
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
- <script type="text/javascript" src="js/jquery.reveal.js"></script>
+ <script type="text/javascript" src="../../js/jquery.reveal.js"></script>
 
  <script type="text/javascript" src="js/chengs/jquery.js"></script>
 <script type="text/javascript" src="js/chengs/bootstrap.js"></script>

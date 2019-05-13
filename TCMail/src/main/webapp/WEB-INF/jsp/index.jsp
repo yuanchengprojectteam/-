@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html>  
 <head> 
 <meta charset="utf-8">
@@ -15,10 +15,8 @@
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
 </head>
 <body>
-
 <jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
-		
-			
+
 		<!--左边导航-->
 		<div class="dd-inner">
 		<c:forEach items="${GtypeList}" var="types">
@@ -48,18 +46,16 @@
 			</div>
 			</c:forEach>
 		</div>
-		
-		
 	</div>
 </div>
 
 <!--轮播图-->
 <div id="lunbo">
 	<ul id="one">
-		<li><a href=""><img src="../../images/banner.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner1.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner1.jpg"></a></li>
+		<li><a href=""><img src="./images/banner.jpg"></a></li>
+		<li><a href=""><img src="./images/banner1.jpg"></a></li>
+		<li><a href=""><img src="./images/banner.jpg"></a></li>
+		<li><a href=""><img src="./images/banner1.jpg"></a></li>
 	</ul>
 	<ul id="two">
 		<li class="on">1</li>
@@ -74,23 +70,26 @@
 	</div>
 </div>
 
-<!--内容一开始了-->
-<div class="bend_beij">
-
-	
-
 
 
 <!--层次-->
 <div class="chengc_jvz">
+<c:forEach items="${GtypeList}" var="types">
 	<div class="slideTxtBox">
 		<div class="hd">
 			<h1>
-				<p>办公家具</p>
+				${types.name}
 			</h1>
-			<ul><li>精品热卖</li><li>卧室家具</li><li>灯饰照明</li><li>五金工具</li><li>厨房卫浴</li><li>办公文教</li></ul>
+			<ul>
+			<c:forEach items="${types.childType}" var="ctype">
+			<li >${ctype.name}</li>
+			</c:forEach>
+			</ul>
 		</div>
+		
 		<div class="bd">
+		<c:forEach items="${types.childType}" var="ctype">
+		
 			<ul>
 				<div class="louc_tup_qieh">
 				  	<div class="js-silder ws-slider">
@@ -112,50 +111,29 @@
 				            <span class="silder-ctrl-next"></span>
 				        </div>
 				    </div>
-				    
 				</div>
 				<div class="you_lirb">
-					<div class="shang_buf">
-						<div class="you_shangp_lieb ">
-							<a href="#"><img  class="you_tup_k" src="images/yic_001.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_002.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb cnm">
-							<a href="#"><img  class="you_tup_k" src="images/yic_003.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
+					<c:forEach items="${ ctype.gsonType}" var="gtype">
+					<c:forEach items="${ gtype.goodsList}" var="temp">
+					<div class="you_shangp_lieb">
+						<a href="#"><img  class="you_tup_k" src="${temp.image}"></a>
+						<a href="#" class="_you_neir_biaot">${temp.name} ${temp.size } ${temp.color }</a>
+						<span>¥ ${temp.price }</span>
 					</div>
-					<div class="xia_buf">
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_004.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_003.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb cnm">
-							<a href="#"><img  class="you_tup_k" src="images/yic_005.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-					</div>
+					</c:forEach>
+					</c:forEach>
 				</div>
 			</ul>
+		</c:forEach>
 			
 			
 		</div>
 	</div>
+	
+	</c:forEach>
 </div>
+
+
 
 
 
@@ -166,6 +144,8 @@
 <script type="text/javascript">jQuery(".slideTxtBox2").slide();</script>
 <script type="text/javascript">jQuery(".slideTxtBox3").slide();</script>
 <script type="text/javascript">jQuery(".slideTxtBox4").slide();</script>
+
+
 
 
 
@@ -273,4 +253,17 @@
 		jQuery(".picScroll_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:2 ,trigger:"click"});
 		</script>
 
+
+
+
+
+
+
+ 
+
+
+
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
+
+</body>
+</html>

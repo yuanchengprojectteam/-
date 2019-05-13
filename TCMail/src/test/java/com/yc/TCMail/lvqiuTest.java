@@ -12,6 +12,7 @@ import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GtypeMapper;
 import com.yc.TCMail.dao.UorderMapper;
+import com.yc.TCMail.imply.IndexGtypeBiz;
 import com.yc.TCMail.imply.IndexInfoBiz;
 import com.yc.TCMail.imply.UorderBiz;
 
@@ -29,9 +30,14 @@ public class lvqiuTest {
 	
 	@Resource
 	private IndexInfoBiz iiBiz;
+	@Resource
+	private IndexGtypeBiz igBiz;
 	
-
-	
+	@Test
+	public void selectGtype1() {
+		
+		System.out.println(gtm.selectAllGtypes().get(0).getChildType().get(0).getGsonType().get(0).getGoodsList());
+	}
 	
 	@Test
 	public void selectGtype() {
@@ -42,7 +48,9 @@ public class lvqiuTest {
 	
 	@Test
 	public void select1() {
-		System.out.println(iiBiz.findWithQ("小米mix"));
+		User user = new User();
+		user.setId(1);
+		System.out.println(iiBiz.findCarByUser(user).get(0).getGoods().getName());
 	}
 	
 	@Test 
