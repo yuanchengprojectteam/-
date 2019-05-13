@@ -16,6 +16,7 @@ import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.imply.IndexGtypeBiz;
 import com.yc.TCMail.imply.IndexInfoBiz;
 
@@ -28,12 +29,16 @@ public class IndexInfoController {
 	@Resource
 	private IndexInfoBiz iiBiz;
 	
+	@Resource
+	private GoodsMapper gm;
+	
 	@RequestMapping("index")
 	public String toIndex(Model model,HttpServletRequest request) {  //,@SessionAttribute("loginedUser") User user
 		model.addAttribute("GtypeList", igBiz.findAllGtype());
 		List<Car> ret = iiBiz.findCarByUser((User)request.getSession().getAttribute("loginedUser"));
 		model.addAttribute("carList", ret);
 		model.addAttribute("carNum", ret.size());
+		model.addAttribute("newList", gm.selectWithTime());
 		return "index";
 	}
 	

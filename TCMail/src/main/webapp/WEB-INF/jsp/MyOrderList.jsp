@@ -32,7 +32,7 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">我的订单
+					<div class="shand_piaot"><a href="MyOrder" style="cursor:pointer;">我的订单</a>
 						<p class="dingd_huis_zhan" style="float: right;margin-right: 5%"><a href="#">订单回收站</a></p>
 					</div>
 					
@@ -78,9 +78,9 @@
 										<a href="#" target="_blank" >${temp.id}
 										</a>
 									</span>
-									<span class="wod_sc_delete_beij span_30"><a href="#" class="wod_dingd_delete"></a></span>
-									
-									
+									<span class="wod_sc_delete_beij span_30">
+									<a href="javascript:void(0)" class="wod_dingd_delete" id="${temp.id}" onclick="deteleOrder(id)"></a>
+									</span>
 								</td>
 							</tr>
 							
@@ -208,8 +208,20 @@
 				window.location.reload();
 			});
 		}
-	} 
- 
+} 
+ function deteleOrder(id){
+	 if(confirm("请确认此操作!")){
+		 $.ajax({
+			 type:"POST",
+			 url:"dateleOrder",
+			 data:"id="id,
+			 success: function(data){
+				 alert(data);
+			 }
+		 });
+	 }
+	 
+ }
 </script>
 
 

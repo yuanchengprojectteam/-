@@ -159,47 +159,15 @@
 			<a href="#">MORE+</a>
 		</div>
 		<div class="tes_shangp_neir_k">
-			<div class="tes_dat">
-				<a href="#">
-					<h1><img class="tes_dat_dongh" src="images/te_se_shangp_da.jpg"></h1>
-					<h2>苹果手机iPhone6(32G)全网</h2>
-					<span>¥ 4999 .00</span>
-				</a>
-			</div>
-			<div class="tes_xiaot_beij">
-				<div class="tes_xiaot_shang">
-					<div class="tes_xiaot_neir">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-					<div class="tes_xiaot_neir tes_xiaot_wubian_kuang">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao2.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
+			<c:forEach items="${newList}" var="temp">
+				<div class="tes_xiaot_neir">
+					<a href="#">
+						<h1><img class="tes_xiaot_dongh" src="${temp.image }"></h1>
+						<h2>${temp.name}</h2>
+						<span>¥ ${temp.price }</span>
+					</a>
 				</div>
-				<div class="tes_xiaot_shang tes_xiaot_xia">
-					<div class="tes_xiaot_neir">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao3.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-					<div class="tes_xiaot_neir tes_xiaot_wubian_kuang">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao4.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 
@@ -217,30 +185,13 @@
 				</div>
 				<div class="bd">
 					<ul class="picList">
+					<c:forEach items="${newList}" var="temp">
 						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
+							<div class="pic"><a href="#" target="_blank"><img src="${temp.image }" /></a></div>
+							<div class="title"><a href="#" target="_blank">${temp.name }</a><span>¥ ${temp.price }</span></div>
 						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
+					</c:forEach>
+						
 					</ul>
 				</div>
 			</div>
