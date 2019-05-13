@@ -23,7 +23,7 @@
 			<div class="fore-2">
 				<div class="item fore1">
 					 <h3>
-						<a class="da_zhu" href="#">${types.name}</a>
+						<a class="da_zhu" href="">${types.name}</a>
 						
 					</h3> 
 					<i>></i>
@@ -32,7 +32,7 @@
 					<div class="font-lefty">
 					<c:forEach items="${types.childType}" var="ctype">
 						<dl class="fore1">
-							<dt><a href="">${ctype.name}<i>></i></a></dt>
+							<dt><a href="showStyle1?gtype=${ctype.name}">${ctype.name}<i>></i></a></dt>
 								<dd>
 								<c:forEach items="${ ctype.gsonType}" var="gtype">	
 									<a href="">${gtype.name}</a>

@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.Goods;
+import com.yc.TCMail.bean.Goodsmsg;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.Jude;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
+import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.CarMapper;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.OrderBy;
 
@@ -30,6 +33,8 @@ public class AfterSerchController {
 	@Resource
 	OrderBy ob;
 	
+	@Resource
+	CarMapper cm;
 	
 	@Resource
 	AfterSerchMethod am;
@@ -49,13 +54,15 @@ public class AfterSerchController {
 		
 		Gtype type = am.queryGtype(gtype);
 		int tid = type.getId();
+		
+		
 		List<OrderdetailsOderBy> list = ob.selectOrderBy(tid);
 		//System.out.println("list===:"+list.get(0).getGnum());
 		List<Goods> hostGoods = new ArrayList<Goods>();
 		
 		for(int i=0;i<3;i++) {
 			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid, gm);
+			Goods good = zm.queryGoods(gid);
 			hostGoods.add(good);
 		}
 		List<Goods> allGood = am.queryAllGoods(tid);
@@ -75,7 +82,7 @@ public class AfterSerchController {
 		
 		for(int i=0;i<list.size();i++) {
 			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid, gm);
+			Goods good = zm.queryGoods(gid);
 			buyGoods.add(good);
 		}
 		model.addAttribute("allGoods",buyGoods);
@@ -111,7 +118,7 @@ public class AfterSerchController {
 		System.out.println("===========================进入"+good.getId());
 		Favorite fav = new Favorite();
 		int gid = good.getId();
-		Goods list = zm.queryGoods(gid, gm);
+		Goods list = zm.queryGoods(gid);
 		int sid = list.getSid();
 		int uid = user.getId();
 		String ftime = am.formatDate(new Date());
@@ -128,12 +135,40 @@ public class AfterSerchController {
 	
 	
 	@RequestMapping("lootbuy")
-	public String lootBuy() {
+	public String lootBuy(String gid,Model model) {
+		Goods good = am.queryGoods(gid);
+		System.out.println("==================="+good);
+		List<Goodsmsg> list = am.queryGoodmsgByGid(gid);
+		System.out.println("================"+good.getTid());
 		
+		
+		/*int id = good.getTid();
+		Gtype gtype = am.queryGtypeById(id);*/
+		
+		good.setListGmsg(list);
+		/*List<String> typeNameList = am.queryTypeNameList(gtype);*/
+		
+		List<Goods> hostGoods = am.HostGoods(good.getTid());
+		
+		model.addAttribute("goodMsg",good);
+		model.addAttribute("hostGoods",hostGoods);
+		
+		/*model.addAttribute("gtypeToUp",typeNameList);*/
 		
 		return "GoodsDetail";
 	}
 	
+	@RequestMapping("goodAddCar")
+	@ResponseBody
+	public Jude goodAddCar(@SessionAttribute("loginedUser")User user, String sid,String gid,String sum) {
+		int uid = user.getId();
+		int shopid = Integer.parseInt(sid);
+		zm.addCar(Integer.valueOf(gid), uid,Integer.valueOf(sum),shopid, cm);
+		Jude jude = new Jude();
+		jude.setCount(1);
+		
+		return jude;
+	}
 	
 	@RequestMapping("showStyle2")
 	public String showStyle2( ) {

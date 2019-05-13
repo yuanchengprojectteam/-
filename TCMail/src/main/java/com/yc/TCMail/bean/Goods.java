@@ -24,15 +24,29 @@ public class Goods {
 	private Shop shop;
 	private Gtype type;
 	private Car car;
+	private List<Goodsmsg> listGmsg;
 	
 	
+	
+	
+	@Transient
+	public List<Goodsmsg> getListGmsg() {
+		return listGmsg;
+	}
+
+	public void setListGmsg(List<Goodsmsg> listGmsg) {
+		this.listGmsg = listGmsg;
+	}
+
 	@Column(name="regtime",length=20)
 	public Date getRegtime() {
 		return regtime;
 	}
 
+
 	public void setRegtime(Date regtime) {
 		this.regtime = regtime;
+
 	}
 
 	@Id

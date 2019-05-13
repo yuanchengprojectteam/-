@@ -33,7 +33,8 @@
   
   <select id="selectAllGtypes" resultMap="BaseResultMap1">
   	select id,name,pid,sunid
-  	from gtype where pid is null and sunid is null
+  	from gtype 
+  	where pid is null and sunid is null
   </select>
   
   

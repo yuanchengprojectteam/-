@@ -29,6 +29,7 @@ import com.yc.TCMail.bean.Comment;
 import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.FavoriteExample;
 import com.yc.TCMail.bean.Goods;
+import com.yc.TCMail.bean.Jude;
 import com.yc.TCMail.bean.Orderdetail;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.Uorder;
@@ -130,7 +131,7 @@ public class ZhouController {
 		int uid = f1.getUid();
 		int sid = f1.getShopid();
 		zm.addCar(gid, uid,Integer.valueOf(num),sid, cm);
-		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
+		List<Goods> list = zm.queryAllCar(uid, cm,sm);
 		//System.out.println("==================="+list.size());
 		model.addAttribute("cglistcar",list);
 		return "Car";
@@ -143,7 +144,7 @@ public class ZhouController {
 		int uid = f1.getUid();
 		int sid = f1.getId();
 		zm.addCar(Integer.valueOf(gid), uid,Integer.valueOf(num),sid, cm);
-		List<Goods> list = zm.queryAllCar(uid, cm, gm, sm);
+		List<Goods> list = zm.queryAllCar(uid, cm,sm);
 		//System.out.println("==================="+list.size());
 		model.addAttribute("cglistcar",list);
 		return "Car";
@@ -153,12 +154,10 @@ public class ZhouController {
 	@RequestMapping("queryCar")
 	public String queryCar(@SessionAttribute("loginedUser")User user ,Model model) {
 		//System.out.println("==============="+id);
-		List<Goods> list = zm.queryAllCar(user.getId(), cm, gm, sm);
+		List<Goods> list = zm.queryAllCar(user.getId(), cm,sm);
 		model.addAttribute("favoriteList",list);
 		return "Car";
 	}
-	
-	
 	
 	
 	
@@ -196,7 +195,7 @@ public class ZhouController {
 		public String comment(int oid , Goods goods,Model model) {	
 			//System.out.println(oid+":"+goods.getId());
 			Orderdetail od = new Orderdetail();
-			Goods good = zm.queryGoods(goods.getId(), gm);
+			Goods good = zm.queryGoods(goods.getId());
 			Shop shop = zm.queryIdShop(good.getSid());
 			User user = zm.queryUser(shop.getUid());
 			shop.setUser(user);
@@ -210,7 +209,7 @@ public class ZhouController {
 		
 		@RequestMapping("commentMsg")
 		@ResponseBody
-		public void commentMsg(@SessionAttribute("loginedUser")User user,@RequestParam("watti") String watti
+		public Jude commentMsg(@SessionAttribute("loginedUser")User user,@RequestParam("watti") String watti
 				,@RequestParam("gfit") String gfit
 				,@RequestParam("atti") String atti
 				,@RequestParam("speed") String speed
@@ -243,7 +242,9 @@ public class ZhouController {
 			zm.updateUorderStatu(uoid);
 			zm.insertComment(comm);
 			zm.updateCommnum(gid);
-			resp.getWriter().write("成功了！！");
+			Jude jude = new Jude();
+			jude.setCount(1);
+			return jude;
 						
 		}
 		
