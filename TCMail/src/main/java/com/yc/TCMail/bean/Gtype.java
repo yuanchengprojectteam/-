@@ -1,7 +1,6 @@
 package com.yc.TCMail.bean;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -12,10 +11,34 @@ public class Gtype {
 	private String name;
 	private Integer pid;
 	private Integer sunid;
-	
 	private List<Gtype> childType;
+	private Gtype superType;
+	private List<Gtype> gsonType;
+	
+	private List<Goods> goodsList;
 	
 	
+	@Transient
+	public List<Goods> getGoodsList() {
+		return goodsList;
+	}
+	public void setGoodsList(List<Goods> goodsList) {
+		this.goodsList = goodsList;
+	}
+	@Transient
+	public List<Gtype> getGsonType() {
+		return gsonType;
+	}
+	public void setGsonType(List<Gtype> gsonType) {
+		this.gsonType = gsonType;
+	}
+	@Transient
+	public Gtype getSuperType() {
+		return superType;
+	}
+	public void setSuperType(Gtype superType) {
+		this.superType = superType;
+	}
 	@Transient
 	public List<Gtype> getChildType() {
 		return childType;
@@ -46,7 +69,6 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
-
 	@Column(name="sunid",length=11)
 	public Integer getSunid() {
 		return sunid;
@@ -56,8 +78,10 @@ public class Gtype {
 	}
 	@Override
 	public String toString() {
-		return String.format("Gtype [id=%s, name=%s, pid=%s, sunid=%s]", id, name, pid, sunid);
-	}
 
-	
+		return "Gtype [id=" + id + ", name=" + name + ", pid=" + pid + ", sunid=" + sunid + ", childType=" + childType
+				+ "]";
+
+
+	}
 }

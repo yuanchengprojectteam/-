@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -468,6 +470,7 @@
  <div class="breadcrumbs_container">
  	<div class="left_luj">
 	    <ul> 
+	 
 	        <li>
 				<a href="#" title="服饰鞋帽">服饰鞋帽</a>
 				<i class="icon-crumbs-right"></i>
@@ -485,7 +488,7 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">
-				<a href="#" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
+				<a href="#" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
 	        </li>
 	    </ul>
     </div>
@@ -498,7 +501,7 @@
             </a>
             <a class="btn-service hide customerService_show"><i></i>在线客服</a>
             <span class="services-score"><b class="star-gray"><i class="star-red" style="width:88.9059333333%"></i></b><em class="score">4.4</em>分</span>
-            <a class="name" title="Mistletoe女装旗舰店" href="#" target="_blank">Mistletoe女装旗舰店</a>
+            <a class="name" title="Mistletoe女装旗舰店" href="#" target="_blank">${goodMsg.shop.name }</a>
              
         </div>
 	</div>
@@ -509,7 +512,7 @@
 		<!---->
 		<div id="magnifier">
 		    <div class="small-box">
-		      	<img src="images/small_1.jpg" alt="#">
+		      	<img src="${goodMsg.image }" alt="#" align="top"/>
 		      	<span class="hover"></span>
 		    </div>
 		    <div class="thumbnail-box">
@@ -517,20 +520,14 @@
 		      	<a href="javascript:;" class="btn btn-next"></a>
 		      	<div class="list">
 		        	<ul class="wrapper">
-		          		<li class="item item-cur" data-src="images/small_1.jpg"><img src="images/thumbnail_1.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/small_2.jpg"><img src="images/thumbnail_2.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/leis_z_3.jpg"><img src="images/leis_z_3.jpg" alt="#"></li>
-			          	<li class="item item-cur" data-src="images/small_1.jpg"><img src="images/thumbnail_1.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/small_2.jpg"><img src="images/thumbnail_2.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/leis_z_3.jpg"><img src="images/leis_z_3.jpg" alt="#"></li>
-			          	<li class="item item-cur" data-src="images/small_1.jpg"><img src="images/thumbnail_1.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/small_2.jpg"><img src="images/thumbnail_2.jpg" alt="#"></li>
-			          	<li class="item" data-src="images/leis_z_3.jpg"><img src="images/leis_z_3.jpg" alt="#"></li>
+		          		<li class="item item-cur" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
+			          	<li class="item" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
+			          	<li class="item" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
 		        	</ul>
 		      	</div>
 		    </div>
 		    <div class="big-box">
-		      	<img src="images/big_1.jpg" alt="#">
+		      	<img src="${goodMsg.image }" alt="#">
 		    </div>
 		</div> 
 		<!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
@@ -558,24 +555,24 @@
 	<!--中-->
 	<div class="prd_firstscreen_center">
 		<div class="hgroup">
-        	<h1>Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</h1> 
+        	<h1>${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</h1> 
     	</div>
     	<div class="prd_price_1">  
             <div class="unitprice">
             	<p>
             		<label class="prd_price_left">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价</label>
-            		<span class="price xiangq_yuanj"><em>¥</em>79.00</span>  
+            		<span class="price xiangq_yuanj"><em>¥</em>${goodMsg.price }</span>  
             	</p>
                 <p>
             		<label class="prd_price_left">促&nbsp;销&nbsp;价</label>
-            		<span class="price"><em>¥</em>79.00</span>  
+            		<span class="price"><em>¥</em>${goodMsg.price }</span>  
             	</p>
             </div>
             <div class="prd_price_flr">
                 <div class="prd_price_line">|</div>
                 <div class="prd_price_lineright">
                     <p>好评度<em id="haocnt">98%</em></p>
-                    <p class="pincnt"><a href="#" class="reduce"><em>55</em>人评价</a></p>
+                    <p class="pincnt"><a href="#" class="reduce"><em>${goodMsg.commnum }</em>人评价</a></p>
                 </div>
             </div> 
         </div>
@@ -583,18 +580,22 @@
         <div class="prd_properties">
 	        <div class="prd_properties_1"> 
         		<label class="prd_price_left">服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务</label>
-        		<span>由<a href="#">Mistletoe女装旗舰店</a>发货并负责售后服务。</span>  
+        		<span>由<a href="#">${goodMsg.shop.name }</a>发货并负责售后服务。</span>  
 	        </div>
 	        <div class="prd-properties-2"> 
                 <div class="prd_properties_other">
                     <label class="prdLeft">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</label>
                     <div class="prdRight">
+                    <c:forEach items="${goodMsg.listGmsg }" var="gl">
                         <div class="prdcol">
-                            <a href="#" class="select" title="白色" data-alt="白色">
-                                <img src="images/xiangqtu_1.jpg" gome-src="images/xiangqtu_1.jpg" alt="白色">
-                                <span>白色</span><i></i>
+                            <a onclick="colorSelect(this)" class="" value="${gl.color }" data-alt="白色">
+                                <img src="${goodMsg.image }" gome-src="${goodMsg.image }" alt="白色">
+                                <span>${gl.color }色</span><i></i>
                             </a>
                         </div>
+                    </c:forEach>
+                   
+                    <input type="hidden" name="color" id="cor" />
                         <div class="prdcol prd-img-item">
                             <a href="#" title="紫色" data-alt="紫色">
                                 <img src="images/xiangqtu_1.jpg" gome-src="images/xiangqtu_1.jpg" alt="紫色">
@@ -603,28 +604,25 @@
                         </div>
                     </div>
                 </div>
+               
                 <div class="prd_properties_other" style="display:block">
                     <label class="prdLeft">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                     <div class="prdRight_1">
+                     <c:forEach items="${goodMsg.listGmsg }" var="siz">
                         <div class="prdmod">
-                            <a href="#" class="clicks" title="S" data-alt="S">S<i></i></a>
+                        <!-- select:选中 -->
+                            <a onclick="sizeSelect(this)" class="clicks" value="${siz.size }" title="${siz.size }" data-alt="${siz.size }">${siz.size }<i></i></a>
                         </div>
-                        <div class="prdmod">
-                            <a href="#" class="select" title="M" data-alt="M">M<i></i></a>
-                        </div>
-                        <div class="prdmod">
-                            <a href="#" class="clicks" title="L" data-alt="L">L<i></i></a>
-                        </div>
-                        <div class="prdmod">
-                            <a href="#" class="clicks ss" title="XL" data-alt="XL">XL<i></i></a>
-                        </div>
+                      </c:forEach>
+                      <input type="hidden" name="size" id="Goodsize" />
+                        
                     </div>
                 </div>   
 	        </div>
 	    </div>
 	    <div class="prd_properties_1 hou_jia"> 
     		<label class="prd_price_left">货&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源</label>
-    		<span>库存仅剩5件</span>  
+    		<span>库存仅剩${goodMsg.num }件</span>  
         </div>
 	    <style type="text/css">
 	    	.hou_jia{
@@ -636,14 +634,18 @@
 	    	}
 	    </style>
 	    <!---->
+	   
 	    <div class="prd_buttons">
 		    <div class="count-wrapper" id="btnCount">
-		        <input type="text" class="quantity" value="1">
-		        <a href="#" class="plus j-gACbtnA">+</a>
-		        <a href="#" class="minus j-gACbtn disab">-</a>
+		        <input type="text" id="sum" class="quantity" value="1">
+		        <a onclick="add()" class="plus j-gACbtnA">+</a>
+		        <a onclick="reduce()" class="minus j-gACbtn disab">-</a>
 		    </div>
+		   
+		    <input type="hidden" id="gid" name="goodId" value="${goodMsg.id }">
+		     <input type="hidden" id="sid" name="shopId" value="${goodMsg.shop.id }">
 		    <a href="#" class="btn-product btn-addcart">立即购买</a>
-		    <a href="jiar_rouw_c.html" class="btn-product">加入购物车</a>
+		    <a onclick="addCar()" class="btn-product">加入购物车</a>
 
 	    </div> 
         <!---->
@@ -781,47 +783,18 @@
 		            </h2> 
 		            <ul class="bend_shangp_lieb">
 		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi3.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
+		            		<c:forEach items="${goodMsg.shop.good }" var="g">
+		            
 		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi3.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
+		            		<a href="lootbuy?gid=${g.id }">
+		            			<img src="${g.image }">
+		            			<h3>￥${g.price }</h3>
+		            			<p>${g.name }</p>
 		            		</a>
 		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
+		           </c:forEach>
 		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi1.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
+		            	
 		            </ul>
 		        </div>
 		    </div>
@@ -834,48 +807,16 @@
 		                <a class="name" title="热门商品" href="#" target="_blank">热门商品</a> 
 		            </h2> 
 		            <ul class="bend_shangp_lieb">
+		            <c:forEach items="${hostGoods }" var="hg">
+		            
 		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi3.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
+		            		<a href="lootbuy?gid=${hg.id }">
+		            			<img src="${hg.image }">
+		            			<h3>￥${hg.price }</h3>
+		            			<p>${hg.name }</p>
 		            		</a>
 		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi3.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi1.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
-		            	<li>
-		            		<a href="#">
-		            			<img src="images/lieb_tupi2.jpg">
-		            			<h3>￥58.00</h3>
-		            			<p>茵珠麗YinZhuli 春秋季新款韩版居家服女针织棉长袖情</p>
-		            		</a>
-		            	</li>
+		           </c:forEach>
 		            </ul>
 		        </div>
 		    </div>
@@ -899,36 +840,21 @@
 							<li title="卿城">品牌： <a href="#" target="_blank">卿城</a> </li>
 						</ol>
 						<ol class="parameter2 p_parameter_list">
-							<li title="卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)">商品名称：卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)</li>
-    						<li title="11971841918">商品编号：11971841918</li>
-                      		<li title="依晴服饰内衣专营店">店铺： <a href="#" target="_blank">依晴服饰内衣专营店</a></li>
-                     		<li title="500.00g">商品毛重：500.00g</li>
-				            <li title="中国大陆">商品产地：中国大陆</li>
-				            <li title="F1751">货号：F1751</li>
-							<li title="套头">款型：套头</li>
-							<li title="卡通">风格：卡通</li>
-							<li title="中厚">厚度：中厚</li>
-							<li title="圆领">领型：圆领</li>
-							<li title="多色">颜色：多色</li>
-							<li title="棉质">材质：棉质</li>
-							<li title="卡通">图案：卡通</li>
-							<li title="情侣">人群：情侣</li>
-							<li title="秋季">季节：秋季</li>
-							<li title="长袖">袖长：长袖</li>
-							<li title="套头">衣门襟：套头</li>
-							<li title="长裤">裤长：长裤</li>
-							<li title="M，L，XL，XXL">尺码：M，L，XL，XXL</li>
-							<li title="其它">裙长：其它</li>
-							<li title="可外穿">是否可外穿：可外穿</li>
-							<li title="套装">款式：套装</li>
-							<li title="衣裤两件套">组合形式：衣裤两件套</li>
+							<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
+    						<li title="11971841918">商品编号：${goodMsg.id }</li>
+                      		<li title="依晴服饰内衣专营店">店铺： <a href="#" target="_blank">${goodMsg.shop.name }</a></li>
+                     		
+							<li title="M，L，XL，XXL">尺码：<c:forEach items="${goodMsg.listGmsg }" var="li">
+								${li.size }&nbsp&nbsp
+							</c:forEach></li>
+
 						</ol>
 					</div>
 					<div class="detail_content_wrap">
-						<img src="images/tu_001.jpg">
-						<img src="images/tu_002.jpg">
-						<img src="images/tu_003.jpg">
-						<img src="images/tu_004.jpg">
+						<img src="${goodMsg.image }">
+						<img src="${goodMsg.image }">
+						<img src="${goodMsg.image }">
+						<img src="${goodMsg.image }">
 					</div>
 					<div class="shouh_baoz">
 						<div class="mt">
@@ -1650,10 +1576,10 @@
 
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
 <script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			*   Examples - images
-			*/
+		/* $(document).ready(function() {
+			
+			  //Examples - images
+			
 
 			$("a#example1").fancybox();
 
@@ -1700,9 +1626,9 @@
 				}
 			});
 
-			/*
-			*   Examples - various
-			*/
+			
+			//  Examples - various
+			
 
 			$("#various1").fancybox({
 				'titlePosition'		: 'inside',
@@ -1727,5 +1653,90 @@
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none'
 			});
-		});
+		}); */
+		
+		function colorSelect(e){
+			var show="select";
+			var noShow="clicks";
+			var sign = $("#cor");
+			var value = $(e).attr("value");
+			//alert(value);
+			var flag = $(e).hasClass(show)
+			if(flag){
+				sign.val("")
+				$(e).removeClass(show).addClass(noShow);
+			}else{
+				sign.val(value)
+				$(e).removeClass(noShow).addClass(show);
+			}
+			
+		}
+		
+		function sizeSelect(f){
+			var show="select";
+			var noShow="clicks";
+			var sign = $("#Goodsize");
+			var value = $(f).attr("value");
+			//alert(value);
+			var flag = $(f).hasClass(show)
+			if(flag){
+				sign.val("")
+				$(f).removeClass(show).addClass(noShow);
+			}else{
+				sign.val("寸")
+				$(f).removeClass(noShow).addClass(show);
+			}
+		}
+		
+		function add(){
+			var sum = $("#sum").val();
+			sum++;
+			$("#sum").val(sum);
+		}
+		
+		function reduce(){
+			var sum = $("#sum").val();
+			if(sum==1){
+				alert("购买数量不能为'0'")
+				return;
+			}
+			sum--;
+			$("#sum").val(sum);
+		}
+		
+		
+		function addCar(){
+			var color = $("#cor").val();
+			var size = $("#Goodsize").val(); 
+			var sum = $("#sum").val();
+			var gid = $("#gid").val();
+			var sid = $("#sid").val();
+			var isEmail = /^[\u4e00-\u9fa5]+$/;  
+			//alert(isEmail.test(color));
+			 if(!isEmail.test(color)){
+				alert("颜色没有选择");
+				return;
+			}
+			
+			if(!isEmail.test(size)){
+				alert("尺寸没有选择");
+				return;
+			} 
+			$.ajax({
+				type:"post",
+				url:"goodAddCar",
+				cache:false,
+				data:{"sum":sum,"gid":gid,"sid":sid},
+				success:function(data){
+						alert("加入购物车成功！");	
+				},
+				error:function(e){
+					alert("ajax错误");
+				}
+				
+			});
+			
+		}
+		
+		
 </script>

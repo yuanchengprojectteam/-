@@ -1,5 +1,6 @@
 package com.yc.TCMail.bean;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -19,11 +20,35 @@ public class Goods {
 	private Integer point;
 	private Integer commnum;
 	private String image;
-	private String regtime;
+	private Date regtime;
 	private Shop shop;
 	private Gtype type;
 	private Car car;
+	private List<Goodsmsg> listGmsg;
 	
+	
+	
+	
+	@Transient
+	public List<Goodsmsg> getListGmsg() {
+		return listGmsg;
+	}
+
+	public void setListGmsg(List<Goodsmsg> listGmsg) {
+		this.listGmsg = listGmsg;
+	}
+
+	@Column(name="regtime",length=20)
+	public Date getRegtime() {
+		return regtime;
+	}
+
+
+	public void setRegtime(Date regtime) {
+		this.regtime = regtime;
+
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
@@ -134,14 +159,6 @@ public class Goods {
 		this.car = car;
 	}
 	
-	@Column(name="regtime",length=50)
-	public String getRegtime() {
-		return regtime;
-	}
-
-	public void setRegtime(String regtime) {
-		this.regtime = regtime;
-	}
 
 	@Override
 	public String toString() {

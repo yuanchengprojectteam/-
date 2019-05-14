@@ -46,9 +46,6 @@ public class ZhouMethod {
 	OrderdetailMapper odm;
 	
 	@Resource
-	GoodsMapper gmpp;
-	
-	@Resource
 	UserMapper userm;
 	
 	@Resource
@@ -104,7 +101,7 @@ public class ZhouMethod {
 		cm.insert(car);	
 	}
 
-	public  List<Goods> queryAllCar(int uid, CarMapper cm,GoodsMapper gm,ShopMapper sm) {
+	public  List<Goods> queryAllCar(int uid, CarMapper cm,ShopMapper sm) {
 		// TODO Auto-generated method stub
 		
 		CarExample ce = new CarExample();
@@ -113,7 +110,7 @@ public class ZhouMethod {
 		List<Goods> list1 = new ArrayList<Goods>();
 		for(Car car : list) {
 			int gid = car.getGid();
-			Goods good = queryGoods(gid,gm);
+			Goods good = queryGoods(gid);
 			int sid = good.getSid();
 			Shop shop = sm.selectByPrimaryKey(sid);
 			good.setShop(shop);
@@ -125,7 +122,7 @@ public class ZhouMethod {
 		return list1;
 	}
 
-	public Goods queryGoods(int gid,GoodsMapper gm) {
+	public Goods queryGoods(int gid) {
 		GoodsExample ge = new GoodsExample();
 		ge.createCriteria().andIdEqualTo(gid);
 		List<Goods> list = gm.selectByExample(ge);
@@ -146,7 +143,7 @@ public class ZhouMethod {
 			List<Orderdetail> orders = u.getDetails();
 			for(Orderdetail o : orders) {
 				int gid = o.getGid();
-				Goods goods = gmpp.selectByPrimaryKey(gid);
+				Goods goods = gm.selectByPrimaryKey(gid);
 				o.setGoods(goods);
 			}	
 		}	
@@ -280,6 +277,19 @@ public class ZhouMethod {
 		return shop;
 	}
 
+	public Shop queryShopAndAllGoods1(int sid) {
+		// TODO Auto-generated method stub
+		Shop shop = sm.selectByPrimaryKey(sid);
+		GoodsExample ge = new GoodsExample();
+		User user = userm.selectByPrimaryKey(shop.getUid());
+		shop.setUser(user);
+		ge.createCriteria().andSidEqualTo(sid);
+		List<Goods> set = gm.selectByExample(ge);
+		//List<Goods> list = getRandomThreeGoods(set);
+		shop.setGood(set);
+		
+		return shop;
+	}
 	public static List<Goods> getRandomThreeGoods(List<Goods> set) {
 		Random r = new Random();
 		
