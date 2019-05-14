@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yc.TCMail.bean.Orderdetail;
+import com.yc.TCMail.bean.Result;
 import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.imply.BizException;
@@ -28,30 +29,16 @@ public class UorderController {
 	private UorderBiz uoBiz;
 	
 	@ModelAttribute
-	public void init(Model model) {
-		User u = new User();
-		u.setAccount("zhangsan");
-		u.setId(1);
-		Uorder uorder = new Uorder();
-		uorder.setPaystatu("待支付");
-		uorder.setOrderstatu("待收货");
-		Uorder uorder1 = new Uorder();
-		uorder1.setOrderstatu("待评价");
-		model.addAttribute("waitpay",uoBiz.findUorderByPaystatu(uorder,u).size());
-		model.addAttribute("waitsend",uoBiz.findUorderByOrderstatu(uorder,u).size());
-		model.addAttribute("waitrate",uoBiz.findUorderByOrderstatu1(uorder1,u).size());
+	public void init(Model model,@SessionAttribute("loginedUser") User user) {
+		model.addAttribute("waitpay",uoBiz.findUorderBy("待支付",user.getId()).size());
+		model.addAttribute("waitsend",uoBiz.findUorderBy("待收货",user.getId()).size());
+		model.addAttribute("waitrate",uoBiz.findUorderBy("待评价",user.getId()).size());
 	}
 	
 	
 	@RequestMapping("MyOrder")
 	public String toMyOrder(Model model ,@SessionAttribute("loginedUser") User user) { 
-	/*	User u = new User();
-		u.setAccount("吕球");
-		u.setId(1);
-		model.addAttribute("loginedUser", u);
-		//List<Uorder> ret = uoBiz.findAllOrder(user);
-*/		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(user));
-	
+		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(user));
 		return "MyOrder";
 	}
 	
@@ -60,11 +47,11 @@ public class UorderController {
 		if("AllOrder".equals(tabCode)) {
 			model.addAttribute("OrderList", uoBiz.findAllOrder(user));
 		}else if("waitpay".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderByPaystatu(uorder,user));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待支付",user.getId()));
 		}else if("waitsend".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderByOrderstatu(uorder,user));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待收货",user.getId()));
 		}else if("waitrate".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderByOrderstatu1(uorder,user));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待评价",user.getId()));
 		}
 		return "MyOrderList";
 	}
@@ -85,7 +72,16 @@ public class UorderController {
 		}
 	}
 	
-	
-	
+	@PostMapping("dateleOrder")
+	@ResponseBody
+	public Result dateleOrder(Integer id){
+		try {
+			uoBiz.dateleOrder(id);
+			return Result.success("您的订单删除成功!!");
+		} catch (BizException e) {
+			e.printStackTrace();
+			return Result.success("系统繁忙,请稍后再试!!!");
+		}
+	}
 	
 }

@@ -62,24 +62,6 @@ public class ReturnController {
 			return e.getMessage();
 		}
 	}
-	/*@PostMapping("applyRet")
-	public String applyRet(@RequestParam("file") MultipartFile file,@Valid Retgoods ret ,Errors errors,Model model) throws Exception {
-		if(errors.hasErrors()) {
-			System.out.println("==================================");
-			return "applyAfterService?id=3";
-		}
-		String rimage = oss.upload(file, 0);
-		ret.setRimage(rimage);
-		ret.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		ret.setStatu("已申请");
-		try {
-			 model.addAttribute("handleRetMsg", retBiz.appleRet(ret)) ;
-		} catch (BizException e) {
-			e.printStackTrace();
-			 model.addAttribute("handleRetMsg", e.getMessage()) ;
-		}
-		
-		return "applyAfterServiceHandle";
-	}*/
+	
 	
 }

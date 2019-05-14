@@ -44,46 +44,20 @@ public class UorderBiz {
 	}
 	
 	public List<Uorder> findWaitSendOrder(User user) {
-		System.out.println(user.getId()+"=========");
 		UorderExample example = new UorderExample();
 		example.createCriteria().andOrderstatuEqualTo("待收货").andUidEqualTo(user.getId());
 		List<Uorder> list = uom.selectByExample(example);
-		//List<Uorder> list = uom.selectUorderByUser(user);
 		return list;
 	}
-
-	public List<Uorder> findUorderByPaystatu(Uorder uorder,User user){
-		UorderExample example = new UorderExample();
-		if("待支付".equals(uorder.getPaystatu())) {
-			example.createCriteria().andPaystatuEqualTo(uorder.getPaystatu()).andIdEqualTo(user.getId());
-			List<Uorder> ret = uom.selectByExample(example);
-			return ret;
-		}else{
-			return null;
-		}
-	}
-	public List<Uorder> findUorderByOrderstatu(Uorder uorder,User user){
-		UorderExample example = new UorderExample();
-		if("待收货".equals(uorder.getOrderstatu())) {
-			example.createCriteria().andOrderstatuEqualTo(uorder.getOrderstatu()).andUidEqualTo(user.getId());
-			List<Uorder> ret = uom.selectByExample(example);
-			return ret;
-		}else{
-			return null;
-		}
-		
-	}
 	
-	public List<Uorder> findUorderByOrderstatu1(Uorder uorder,User user){
+	public List<Uorder> findUorderBy(String statu,Integer uid) {
 		UorderExample example = new UorderExample();
-		if("待评价".equals(uorder.getOrderstatu())) {
-			example.createCriteria().andOrderstatuEqualTo(uorder.getOrderstatu()).andUidEqualTo(user.getId());
-			List<Uorder> ret = uom.selectByExample(example);
-			return ret;
-		}else{
-			return null;
+		if("待支付".equals(statu)) {
+			example.createCriteria().andPaystatuEqualTo(statu).andUidEqualTo(uid);
+		}else {
+			example.createCriteria().andOrderstatuEqualTo(statu).andUidEqualTo(uid);
 		}
-		
+		return uom.selectByExample(example);
 	}
 
 	public String updateWithOrderStatu(Uorder uorder) throws BizException {
@@ -96,5 +70,13 @@ public class UorderBiz {
 			throw new BizException("系统繁忙,请稍后再试!!!");
 		}
 		return "您的订单已收货!!!";
+	}
+
+	public void dateleOrder(Integer id) throws BizException{
+		UorderExample example = new UorderExample();
+		example.createCriteria().andIdEqualTo(id);
+		Uorder order = new Uorder();
+		order.setVisiable("1");
+		uom.updateByExampleSelective(order, example);
 	}
 }

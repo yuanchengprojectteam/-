@@ -14,18 +14,19 @@
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
-
     <result column="regtime" jdbcType="DATE" property="regtime" />
 
   </resultMap>
   
 
-  		 <resultMap type="com.yc.TCMail.bean.Goods" id="BaseResultMap1" extends="BaseResultMap">
-
-
+	<resultMap type="com.yc.TCMail.bean.Goods" id="BaseResultMap1" extends="BaseResultMap">
   	 <association property="shop" column="sid" select="com.yc.TCMail.dao.ShopMapper.selectShopByID" 
   	fetchType="lazy"></association>
   </resultMap>  
+  
+  <select id="selectWithTime" resultMap="BaseResultMap">
+  	select * from goods  order by regtime desc limit 6
+  </select>
   
   <select id="selectGoods" resultMap="BaseResultMap1">
   	select *

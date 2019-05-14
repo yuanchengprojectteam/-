@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface GoodsMapper {
 	
-
+	List<Goods> selectWithTime();
 	List<Goods> selectGoodsBySunId(@Param("id")Integer id);
 	Goods selectGoods(Integer id);
 	List<Goods> selectGoodsByTid(Integer id);

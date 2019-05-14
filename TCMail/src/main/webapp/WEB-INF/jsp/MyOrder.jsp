@@ -32,15 +32,15 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">我的订单</div>
+					<div class="shand_piaot"><a href="MyOrder" style="cursor:pointer;">我的订单</a></div>
 					
 					<div class="tab_trigger tab_trigger_wod_dd">
 					 	<p class="attrK">实物订单：</p>
 						<ul>
 							<li><a class="text_shaid" href="OrderDetail?tabCode=AllOrder" id="AllOrder">全部</a></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitpay&paystatu=待支付" id="waitpay">待支付</a><c:if test="${! empty waitpay}"><p class="sup">${waitpay}</p></c:if></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitsend&orderstatu=待收货" id="waitsend">待收货</a><c:if test="${! empty waitsend}"><p class="sup">${waitsend}</p></c:if></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitrate&orderstatu=待评价" id="waitrate">待评价</a><c:if test="${!empty waitrate}"><p class="sup">${waitrate}</p></c:if></li> 
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitpay" id="waitpay" >待支付</a><c:if test="${! empty waitpay}"><p class="sup">${waitpay}</p></c:if></li>
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitsend" id="waitsend">待收货</a><c:if test="${! empty waitsend}"><p class="sup">${waitsend}</p></c:if></li>
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitrate "id="waitrate">待评价</a><c:if test="${!empty waitrate}"><p class="sup">${waitrate}</p></c:if></li> 
 						</ul>
 					</div> 
 					

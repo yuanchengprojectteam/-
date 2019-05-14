@@ -59,7 +59,7 @@
 			<li class="denglu">Hi~ 
 			<c:choose>
 			<c:when test="${sessionScope.loginedUser != null}">
-				${sessionScope.loginedUser.account}
+				<a href="PersonCenter" style="cursor:pointer;">${sessionScope.loginedUser.account}</a>
 			</c:when>
 			<c:otherwise>
 				<a class="red" href="tologin">请登录!</a> <a href="toregister">[免费注册]</a>
@@ -119,7 +119,7 @@
 		</div>
 		<a href="gouw_che.html">我的购物车</a>
 		
-		 <div class="dorpdown-layer" style="width: 320px">
+		 <div class="dorpdown-layer" style="width: 340px">
 			<ul>
 			
 				
