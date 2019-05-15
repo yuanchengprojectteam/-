@@ -3,6 +3,11 @@
     pageEncoding="utf-8"%>
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<c:if test="${empty allGoods}">
+	<jsp:forward page="index.jsp"></jsp:forward>
+</c:if>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> 

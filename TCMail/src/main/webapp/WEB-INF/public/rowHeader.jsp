@@ -102,9 +102,9 @@
 <div class="toub_beij">
 	<div class="logo"><a href="index"><img src="./images/logo.png"></a></div>
 	<div class="search">
-		<form action="query" method="post">
-		<input type="text" name="q" value="" class="text" id="textt" placeholder="小米">
-		<input type="submit" class="button" value="搜索">
+		<form action="queryGoods" method="post">
+			<input type="text" name="msg" value="" class="text" id="textt" placeholder="小米">
+			<input type="submit" class="button" value="搜索">
 		</form>
 	</div>
 	<div class="right">

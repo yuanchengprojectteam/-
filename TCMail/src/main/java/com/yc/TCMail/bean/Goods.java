@@ -24,10 +24,19 @@ public class Goods {
 	private Gtype type;
 	private Car car;
 	private List<Goodsmsg> listGmsg;
+	private String sum;
 	
 	
-	
-	
+
+	@Transient
+	public String getSum() {
+		return sum;
+	}
+
+	public void setSum(String sum) {
+		this.sum = sum;
+	}
+
 	@Transient
 	public List<Goodsmsg> getListGmsg() {
 		return listGmsg;

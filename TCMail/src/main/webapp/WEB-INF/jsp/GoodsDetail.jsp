@@ -2,6 +2,13 @@
     pageEncoding="utf-8"%>
     
    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+   
+   <% 
+   		if(request.getSession().getAttribute("loginedUser") == null){
+   			request.getRequestDispatcher("login.jsp").forward(request, response);
+   		}
+   
+   %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -577,6 +584,7 @@
             </div> 
         </div>
         <!---->
+        <form action="addOrder" method="post" id="formId">
         <div class="prd_properties">
 	        <div class="prd_properties_1"> 
         		<label class="prd_price_left">服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务</label>
@@ -596,12 +604,7 @@
                     </c:forEach>
                    
                     <input type="hidden" name="color" id="cor" />
-                        <div class="prdcol prd-img-item">
-                            <a href="#" title="紫色" data-alt="紫色">
-                                <img src="images/xiangqtu_1.jpg" gome-src="images/xiangqtu_1.jpg" alt="紫色">
-                                <span>白色</span><i></i>
-                            </a>
-                        </div>
+              
                     </div>
                 </div>
                
@@ -637,17 +640,18 @@
 	   
 	    <div class="prd_buttons">
 		    <div class="count-wrapper" id="btnCount">
-		        <input type="text" id="sum" class="quantity" value="1">
+		        <input type="text" id="sum" name="sum" class="quantity" value="1">
 		        <a onclick="add()" class="plus j-gACbtnA">+</a>
 		        <a onclick="reduce()" class="minus j-gACbtn disab">-</a>
 		    </div>
 		   
 		    <input type="hidden" id="gid" name="goodId" value="${goodMsg.id }">
 		     <input type="hidden" id="sid" name="shopId" value="${goodMsg.shop.id }">
-		    <a href="#" class="btn-product btn-addcart">立即购买</a>
+		    <a onclick="formId.submit()" class="btn-product btn-addcart">立即购买</a>
 		    <a onclick="addCar()" class="btn-product">加入购物车</a>
 
 	    </div> 
+	    </form>
         <!---->
         <div class="prd-tips wenxintishi_wrap clearfix">
 	        <p>温馨提示</p>
@@ -1683,7 +1687,7 @@
 				sign.val("")
 				$(f).removeClass(show).addClass(noShow);
 			}else{
-				sign.val("寸")
+				sign.val(value+"寸")
 				$(f).removeClass(noShow).addClass(show);
 			}
 		}
@@ -1711,7 +1715,7 @@
 			var sum = $("#sum").val();
 			var gid = $("#gid").val();
 			var sid = $("#sid").val();
-			var isEmail = /^[\u4e00-\u9fa5]+$/;  
+			var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
 			//alert(isEmail.test(color));
 			 if(!isEmail.test(color)){
 				alert("颜色没有选择");

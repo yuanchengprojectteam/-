@@ -22,8 +22,17 @@ public class Address {
 	private String city;
 	private String district;
 	
+	private User user;
 	
 	
+	
+	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Transient
 	public String getProvince() {
 		return province;

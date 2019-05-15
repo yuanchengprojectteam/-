@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.yc.TCMail.bean.Address;
+import com.yc.TCMail.bean.AddressExample;
 import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.FavoriteExample;
 import com.yc.TCMail.bean.Goods;
@@ -19,6 +21,7 @@ import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.GtypeExample;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
 import com.yc.TCMail.bean.Shop;
+import com.yc.TCMail.dao.AddressMapper;
 import com.yc.TCMail.dao.FavoriteMapper;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.GoodsmsgMapper;
@@ -48,6 +51,9 @@ public class AfterSerchMethod {
 	
 	@Resource
 	GoodsMapper gm;
+	
+	@Resource
+	AddressMapper addrm;
 	
 	
 	
@@ -114,10 +120,13 @@ public class AfterSerchMethod {
 		//System.out.println("list===:"+list.get(0).getGnum());
 		List<Goods> hostGoods = new ArrayList<Goods>();
 		
-		for(int i=0;i<3;i++) {
-			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid);
-			hostGoods.add(good);
+		for(int i=0;i<list.size();i++) {
+			if(i<3) {
+				int gid = list.get(i).getGid();
+				Goods good = zm.queryGoods(gid);
+				hostGoods.add(good);
+			}
+			
 		}
 		return hostGoods;
 	}
@@ -177,6 +186,51 @@ public class AfterSerchMethod {
 		}
 		
 		return list1;
+	}
+
+	public List<Address> queryAllAboutUid(int uid) {
+		// TODO Auto-generated method stub
+		List<Address> list = new ArrayList<Address>();
+		AddressExample ae = new AddressExample();
+		ae.createCriteria().andUidEqualTo(uid);
+		List<Address> set = addrm.selectByExample(ae);
+		int temp = -1;
+		for(int i=0;i<set.size();i++) {
+			if(set.get(i).getLevel() == "1") {
+				list.add(set.get(i));
+				temp = i;
+			}
+			break;
+		}
+		for(int j=0;j<set.size();j++) {
+			
+			if(j != temp) {
+				list.add(set.get(j));
+			}
+		}
+		
+		return list;
+	}
+
+	public List<Gtype> queryLikeGtype(String msg) {
+		// TODO Auto-generated method stub
+		List<Gtype> gList = new ArrayList<Gtype>();
+		//ge.createCriteria().andNameLike("'%"+msg+"%'");
+		List<Gtype> list = ob.selectLike(msg);
+		if(list.size()>0) {
+			for(Gtype gty : list) {
+				gList.add(gty);
+				GtypeExample ge = new GtypeExample();
+				ge.createCriteria().andPidEqualTo(gty.getId());
+				List<Gtype> gtySon = gtym.selectByExample(ge);
+				if(gtySon.size() > 0) {
+					for(Gtype gtys : gtySon) {
+						gList.add(gtys);
+					}
+				}
+			}
+		}
+		return gList;
 	}
 
 }

@@ -105,10 +105,10 @@ public class IndexController {
 		return "Car";
 	}
 	
-	@RequestMapping("addOrder")
+	/*@RequestMapping("addOrder")
 	public String addOrder() {
 		return "addOrder";
-	}
+	}*/
 	
 	@RequestMapping("goodsDetail")
 	public String goodsDetail() {

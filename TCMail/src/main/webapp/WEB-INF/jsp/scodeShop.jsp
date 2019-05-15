@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:if test="${empty loginedUser }">
+	<jsp:forward page="login.jsp"></jsp:forward>
+
+</c:if>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -14,6 +21,14 @@
 
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
+ <script type="text/javascript">
+$(document).ready(function(){
+	if(!'${sessionScope.loginedUser}'){
+		$("#sx")[0].href = "tologin";
+	}
+});
+
+</script>
  
 </head> 
 <body>
@@ -331,4 +346,5 @@
 
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 </body>
+
 </html>

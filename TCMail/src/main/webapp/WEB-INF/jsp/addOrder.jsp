@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<html>   
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——提交订单——结算页</title>
@@ -121,51 +121,24 @@
 		<div class="step-tit">
             <h3>收货人信息</h3> 
             <div class="extra_r">
-            	<a href="shouh_diz.html" class="ftx-05 J_consignee_global">新增收货地址</a> 
+            	<a href="toAddrManager" class="ftx-05 J_consignee_global">新增收货地址</a> 
             </div>
         </div>
         <div class="jies_y_shouh_diz shiq_1">
         	<ul>
-        		<li class="cur">
+        	<!-- class="cur"为选中 -->
+        	<c:forEach items="${addr }" var="adr">
+        		<li class="${adr.level == '1' ? 'cur' : '' }" onclick="selectAddr(this)" >
         			<div class="dangq_xuanz_diz">当前地址</div>
-        			<span>艾丽西亚</span>
-        			<span>贵州省 贵阳市 云岩区 下合群路 达亨大厦16层</span>
-        			<span>182*****710</span>
+        			<span>${adr.name }</span>
+        			<span>${adr.recvaddr } &nbsp &nbsp ${adr.detailaddr } </span>
+        			<span>${adr.phone }</span>
         			<div class="bianji_yv_shanc">
         				<a href="#">设为默认</a>
         				<a href="#">编辑</a>
         			</div>
         		</li>
-        		<li>
-        			<div class="dangq_xuanz_diz">当前地址</div>
-        			<span>艾丽西亚</span>
-        			<span>贵州省 贵阳市 云岩区 下合群路 达亨大厦16层</span>
-        			<span>182*****710</span>
-        			<div class="bianji_yv_shanc">
-        				<a href="#">设为默认</a>
-        				<a href="#">编辑</a>
-        			</div>
-        		</li> 
-        		<li>
-        			<div class="dangq_xuanz_diz">当前地址</div>
-        			<span>艾丽西亚</span>
-        			<span>贵州省 贵阳市 云岩区 下合群路 达亨大厦16层</span>
-        			<span>182*****710</span>
-        			<div class="bianji_yv_shanc">
-        				<a href="#">设为默认</a>
-        				<a href="#">编辑</a>
-        			</div>
-        		</li>
-        		<li>
-        			<div class="dangq_xuanz_diz">当前地址</div>
-        			<span>艾丽西亚</span>
-        			<span>贵州省 贵阳市 云岩区 下合群路 达亨大厦16层</span>
-        			<span>182*****710</span>
-        			<div class="bianji_yv_shanc">
-        				<a href="#">设为默认</a>
-        				<a href="#">编辑</a>
-        			</div>
-        		</li>
+        	</c:forEach>
         	</ul>
         	<div class="addr-switch cur_e">
                 <p><span>更多地址</span><b></b></p>
@@ -173,9 +146,9 @@
             </div> 
         </div>
         <div class="jies_y_shouh_diz shiq_2">
-        	<ul>
-        		<li class="zhif_fangs cur"><div class="dangq_xuanz_diz">在线支付</div></li>
-        		<li class="zhif_fangs"><div class="dangq_xuanz_diz">货到付款</div></li>
+        	<ul id="zf">
+        		<li class="zhif_fangs cur" onclick="selectZff(this)"><div class="dangq_xuanz_diz">在线支付</div></li>
+        		<li class="zhif_fangs" onclick="selectZff(this)"><div class="dangq_xuanz_diz">货到付款</div></li>
         		<div class="addr-switch addr_switch_1 cur_e_1">
 	                <p><span>更多 >></span></p>
 	                <p><span>收起 <<</span></p>
@@ -196,9 +169,14 @@
                 </div>
                 <div>
                 	<div class="jies_y_shouh_diz jies_y_shouh_diz_kuaid">
-			        	<ul>
-			        		<li class="zhif_fangs cur"><div class="dangq_xuanz_diz">申通快递</div></li>
-			        		<li class="zhif_fangs"><div class="dangq_xuanz_diz">圆通快递</div></li> 
+			        	<ul id="zfc">
+			        	
+			        		<li class="zhif_fangs cur" onclick="selectZf(this)"><div class="dangq_xuanz_diz">申通快递</div></li>
+			        		<li class="zhif_fangs" onclick="selectZf(this)"><div class="dangq_xuanz_diz">圆通快递</div></li> 
+			        		<li class="zhif_fangs" onclick="selectZf(this)"><div class="dangq_xuanz_diz">中通快递</div></li> 
+			        		<li class="zhif_fangs" onclick="selectZf(this)"><div class="dangq_xuanz_diz">韵达快递</div></li> 
+			        		<li class="zhif_fangs" onclick="selectZf(this)"><div class="dangq_xuanz_diz">顺风快递</div></li> 
+			  
 			        	</ul>  
 			        </div>
                 </div>
@@ -211,23 +189,24 @@
                 </div>
         	</div>
         	<div class="goods_list">
+        	<c:forEach items="${lootBuyGoods}" var="lby">
         		<div class="goods_list_neik">
-        			<h4 class="vendor_name_h">商家：塔里服装旗舰店</h4>
+        			<h4 class="vendor_name_h">商家：${lby.shop.name }</h4>
         			<div class="goods_item">
-        				<div class="p_img"><a href="shangp_xiangq.html"><img src="images/lieb_tupi1.jpg"></a></div>
+        				<div class="p_img"><a href="shangp_xiangq.html"><img src="${lby.image }"></a></div>
         				<div class="goods_msg">
         					<div class="p_name">
-        						<a href="shangp_xiangq.html">探路者TOREAD 情侣款男士三合一套绒冲锋衣 TAWB91603 黑色 M</a>
+        						<a href="shangp_xiangq.html">${lby.name }&nbsp颜色:${lby.color }&nbsp尺寸:${lby.size }</a>
         					</div>
         					<div class="p_price">
-        						<span class="jq_price">￥ 529.00</span>
-        						<span>x1</span>
-        						<span>有货</span>
-        						<span>1.170kg</span>
+        						<span class="jq_price">￥ ${lby.price }</span>
+        						<span>x ${lby.sum }</span>
+        						<span>${lby.num > 0 ?'有货':'没存货' }</span>
         					</div>
         				</div>
         			</div>
         		</div>
+        		</c:forEach>
         	</div>
         </div>
         <div class="fap_beij">
@@ -247,7 +226,7 @@
 		<div class="qianq_mx">
 			<div class="jiaq_meih">
 				<span class="xiangq_leib"><em class="goumai_ges">1</em> 件商品，总商品金额：</span>
-				<em class="goum_zongj">￥529.00</em>
+				<em class="goum_zongj">￥${sumPrice } --%></em>
 			</div>
 			<div class="jiaq_meih">
 				<span class="xiangq_leib">返现：</span>
@@ -268,7 +247,7 @@
 			<div class="qianq_mx">
 				<div class="jiaq_meih">
 					<span class="xiangq_leib"> 应付总额：</span>
-					<em class="goum_zongj zhongf_jine">￥529.00</em>
+					<em class="goum_zongj zhongf_jine">￥${sumPrice } </em>
 				</div> 
 			</div>
 		</div>
@@ -316,7 +295,43 @@
 		)
 	})
 	//cur 
+	function selectAddr(e){
+		var flag = $(e).hasClass("cur")
+		$(".cur").removeClass("cur").addClass("");
+		if(flag){
+			$(e).removeClass("cur").addClass("");
+		}else{
+			$(e).addClass("cur");
+		}
+	}
+	//zhif_fangs cur
+	
+	function selectZf(a){
+		var show = "zhif_fangs"+" "+"cur";
+		var noshow = "zhif_fangs"+" ";
+		var flag = $(a).hasClass(show)
+		$("#zfc li").removeClass(show).addClass(noshow);
+		if(flag){
+			$(a).removeClass(show).addClass(noshow);
+		}else{
+			$(a).addClass(show);
+		}
+	}
+	//zhif_fangs cur
+	function selectZff(b){
+		var show = "zhif_fangs"+" "+"cur";
+		var noshow = "zhif_fangs"+" ";
+		var flag = $(b).hasClass(show)
+		
+		$("#zf li").removeClass(show).addClass(noshow);
+		if(flag){
+			$(b).removeClass(show).addClass(noshow);
+		}else{
+			$(b).addClass(show);
+		}
+	}
 </script>
+
 <jsp:include page="../public/AfterFoot.jsp"></jsp:include>
 
  
