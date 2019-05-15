@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -143,8 +143,9 @@
 			<div class="cart-shop-goods dangq_honh">
 				<div class="cart-shop-good">
 					<div class="cart-col-1">
-						<br /> <input type="checkbox" name="c${g.car.id }" id="checkbox${g.car.id }"
-							class="jdcheckbox" onclick="changenumber('${g.car.id }')"  >
+						<br /> <input type="checkbox" name="c${g.car.id }"
+							id="checkboxx${g.car.id }" class="jdcheckbox"
+							onclick="changenumber('${g.car.id }')">
 					</div>
 					<div class="cart-col-2" style="height: 82px;">
 						<a href="shangp_xiangq.html" target="_blank" class="g-img"><img
@@ -167,16 +168,20 @@
 						</div>
 						<div class="cart-col-5">
 							<div class="gui-count cart-count"">
-								<input id="min_${u.id}" name=""  onclick="del(${g.car.id})"  type="button" value="-" class="gui-count-btn gui-count-add"">
-								<input id="text_box_${g.car.id}" name="num" onchange="can(this)" type="text" value="${g.car.num }"
+								<input id="min_${g.car.id}" name="" onclick="del(${g.car.id})"
+									type="button" value="-" class="gui-count-btn gui-count-add"">
+								<input id="text_box_${g.car.id}" name="num" onchange="can(this)"
+									type="text" value="${g.car.num }"
 									style="width: 48px; height: 20px; font-size: 12px; text-align: center; float: left" />
-								<input id="add_${g.car.id}" name="" type="button" value="+" onclick="add(${g.car.id})"
-									 class="gui-count-btn gui-count-sub gui-count-disabled">
-								<input type="hidden" name="goods_${g.id }"  value="${g.id }">
+								<input id="add_${g.car.id}" name="" type="button" value="+"
+									onclick="add(${g.car.id})"
+									class="gui-count-btn gui-count-sub gui-count-disabled">
+								<input type="hidden" name="goods_${g.id }" value="${g.id }">
 							</div>
 						</div>
 						<div class="cart-col-6 ">
-							<div class="cart-good-amount" id="numgoods${g.car.id}" >¥&nbsp;${g.price }</div>
+							<div class="cart-good-amount" id="numgoods${g.car.id}">¥
+								${g.price }</div>
 							<!-- 重量展示(只展示全球百货的重量) -->
 						</div>
 					</div>
@@ -203,7 +208,8 @@
 			</div>
 			<div class="jies_ann_bei">
 				<p>
-					已选 <em id="allnumber">0</em> 件商品 总计（不含运费）：<span id="shouldPayMoney">￥0.00</span>
+					已选 <em id="allnumber">0</em> 件商品 总计（不含运费）：<span id="shouldPayMoney">￥
+						0.00</span>
 				</p>
 				<a href="addOrder" class="order_btn">去结算</a>
 			</div>
@@ -440,57 +446,73 @@
 
 	<script type="text/javascript">
 	function changenumber(id){
-		var boolea=$("#checkbox"+id)[0].checked;
-		if(true==boolea){
-		
-			var s=$("#numgoods"+id).html().substring(7,$("#numgoods"+id).html().length);
-			alert(s);
+		var boolea=$("#checkboxx"+id)[0].checked;
+		var oneMoney=parseInt($("#numgoods"+id).html().substring(2,$("#numgoods"+id).html().length));
+		var allMoney=parseInt($("#shouldPayMoney").html().substring(2,$("#shouldPayMoney").html().length));
+		if(boolea){
+			$("#shouldPayMoney").html("￥ "+(oneMoney+allMoney));
+		}else{
+			if(allMoney==0){
+				$("#shouldPayMoney").html("￥ "+0);
+			}
+			$("#shouldPayMoney").html("￥ "+(allMoney-oneMoney));
 		}
 	}
 	
 	function add(id){
 		var num=parseInt($("#text_box_"+id).val());
 		$("#text_box_"+id).attr("disabled",false);
-		if(num<=0){
-			$("#text_box_"+id).attr("disabled",true);
+		if(num==1){
+			$("#min_"+id).attr("disabled",false);
 		}
 		$("#text_box_"+id).val(num+1);
 		var price=parseInt($("#thisgoods"+id).html());
 		$("#numgoods"+id).html("￥ "+((num+1)*price));
 		
-		var boolea=$("#checkbox"+id)[0].checked;
+		 var boolea=$("#checkboxx"+id)[0].checked;
 		
-		if(true==boolea){
+		if(boolea){
 			
 			var rownum= parseInt($("#allnumber").html());
 			$("#allnumber").html(rownum+num+1);
 			
-			/* var paymoney= parseInt($("#shouldPayMoney").html().substring(1,$("#shouldPayMoney").html().length)); */
+			 var paymoney= parseInt($("#shouldPayMoney").html().substring(1,$("#shouldPayMoney").html().length)); 
 			
 			
+			$("#shouldPayMoney").html("￥ "+(paymoney+price));
 			
-			$("#shouldPayMoney").html("￥"+((num+1)*price));
-			
-		};
+		}; 
 	
 	}
 	
 	function del(id){
 		var textid="#text_box_"+id;
 		var num=parseInt($(textid).val());
+		if((num-1)==0){
+			$("#min_"+id).attr("disabled",true);
+		}
+			
+		
 		$(textid).val(num-1);
 		var price=parseInt($("#thisgoods"+id).html());
 		$("#numgoods"+id).html("￥ "+((num-1)*price));
 		
-		var boolea=$("#checkbox"+id)[0].checked;
+		var boolea=$("#checkboxx"+id)[0].checked;
 		
-		if(true==boolea){
+		 if(boolea){
+			 
+			 var paymoney= parseInt($("#shouldPayMoney").html().substring(1,$("#shouldPayMoney").html().length)); 
 			
-			var rownum= parseInt($("#allnumber").html());
-			$("#allnumber").html(rownum+num-1);
+			 
+			 var nowprice=paymoney-price;
+			 if(nowprice<0){
+				 $("#shouldPayMoney").html("￥ "+0);
+			 }else{
+				 $("#shouldPayMoney").html("￥ "+nowprice);
+			 }
+			 
 			
-			$("#shouldPayMoney").html("￥"+((num-1)*price));
-		};
+		}; 
 	}
 	
 	
@@ -574,4 +596,4 @@ jQuery(".picScroll_left_s").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:t
 </script>
 
 
-<jsp:include page="../public/AfterFoot.jsp"></jsp:include>
+	<jsp:include page="../public/AfterFoot.jsp"></jsp:include>

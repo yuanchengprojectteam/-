@@ -91,3 +91,22 @@ lximage:
     reasonable: true
     support-methods-arguments: true
     params: 
+    
+  #支付宝扫码支付配置
+pay:  
+   alipay:   
+     gatewayUrl: https://openapi.alipaydev.com/gateway.do 
+     appid: 2016100100638754
+     appPrivateKey:  MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDBV94GpgM9jcMQAbmx3U/pEl6QFpEnX+6nNs3SCQf26wwUJ+lJDEikYpyvryAAVVEIT0Tm8bniUfvNHd935/XRTOO3dCsngh1gUOrUAnbZiZJNUSCjN/xaej4enyl4oAJ1jPQ8jIVwx4t0RZPEfYeWiPQ08huq8fSdShl1tgQDcqRaMPA+40Civgp68mL2y3lqDAe3kWQAicWexszBmaBO64PqOoTtC5llmk9iLBTrgapGt6++4j3bDj7ZZ6fM4kc91EbzUtsYkq5T/ODhJjUMNOJ5v4vlXsajG+9TrIQD1ctX2+kNg0Kf57omlVtaf8UpCk9g+ey6PFdzHumhS8GTAgMBAAECggEBAKKYzZzTwofij3gHq24ci9ab3zDX+ayebersGP2ZILyUAW11/yeyj+jHEbRh18zP8zzExVJfWY8umU9v3v5M8hrZyev/Y0dvklrs0gAILoFVw9cH8iWxsKU6hsFj4xGRp1/KcZ/2IUauWeYnmVS2qO99L7rTHVeO8cPRjEXFE+z85vdBMrheZsLyVFAhm2ru9lZiaJI4x+/8mfZWsHAsxpz1jrQx/xCiJn+Vg7vkwxt//pbUuxWrCmUFlMe0Ejkh8D5XcP/5IfIsBuCD4jKSMu0W3uBazYVJwJhQpSzHFbQSH3OgO7jJqcLqrRcfSu+ArD2RZufHIwGAGZNql1Zh08kCgYEA6dEpwsIbNMefWRni1szU9uJDr1De0T5RmDV+hacobyulCSK05a8w0Uy2HZWslCqCpDmSyan6EXgEPu/ro44uPeQ/YfBwGTm3AocZdKa9F1eUrMbokUhLjOA+di8zDVrRToUAiwmdA8WUKKhfg2E2utlW1IUHZmcEomYLrm/eYHcCgYEA06+yDUvNFKkyYZHJEHNu4lZ4Nn2u5gJUXyvwjBM2u6lx91KMQO9EhnnsAXLn/QxlMhSdvmiFy6c9QG1uUI3QNdicKFKAkz+56YcVED1hp3TAQl+QZFpQSrNZq0zRexrHk9Sn6jEKbk1AY8i9UuoHYwIJV5Sw1qZdQXZFQdloKsUCgYA+1oy/n8UKCUAlBRT2n3P4qdSA8F4BpBrvqijHqKXwQq2G6AHv3IZlKZWkG86Wv1n+4s41Tm47daLGe1o7yYFZ9tal7qVh0iYCEubfd9RHyqzVRlvId8J+KOIAhyzUQP0ReiMsOrgtBFOOHboVp/G6g6CXWu0jMzqGnqAzEDOWfwKBgQDLJJRNxixsY2KB15GIQ/5pHmoGgN5SxHGLU3NoORgRRy6jFYia2AJ+uooNaePPJxIF2Vr32v5qzXcuWNXAYBcrVU+mMmZI6KLUxFkmWIFaXeQSzfqXE0RyK2MlzHZLGQvlhfIOADnuWBwupflplES6cr3cWkjJ9KURqRoVczlPsQKBgQDPa0iSgHfZeydsk99qXGaWa6+Y0yTQwe8N1PEa6p5JNkLPP5HXdceHgnSHXwhk03fXO60VHEEVfC67vAeTtqlH1JBXJI3fmROcmf1KNMmpWwdrvxfiQKBGxn/OmLJNFNGCrzI9ZDoGBKMR8SWRGENoqGre23wo871Rp16d8KXp6g==
+     alipayPublicKey:  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAynxt0EUXPBc6jfDok9RxMuRJ+y6Manqdv3qE8nBNjhlGsr5jabw1PoClEMNLt8M9hvzUfjKGPBAWn8j8knVjPcg/MolqxsWLhhcN/FXBx+Xl0n3OBXGpvTBbaj+xhLY/EADO+gZdCpQrxvpPYRHrIYLcvE93fmGFX9q+7ureFAbiQnGM0MKAsF/FVOAT1gQrX53RcM9b3ecVUmQ1bta3zJgcIgK7gSTeV4yy2vAM9rrMNQgQWnGCPhrjEO5Vl//5kLNKmVMmpQ1x+q0nTKtNRTccxxOHZjrlG46tjif2n0H8ZaMYQbVbLbqSziLrBXTKftwAVH610x+9fUwdu+DXYwIDAQAB
+     returnUrl:  http://47.102.133.31:8080/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp
+     notifyUrl:  http://47.102.133.31:8080/alipay.trade.page.pay-JAVA-UTF-8/notify_url.jsp
+
+  
+  
+  
+  
+  
+  
+  
+  
