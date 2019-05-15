@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yc.TCMail.bean.Orderdetail;
+import com.yc.TCMail.bean.PageBean;
 import com.yc.TCMail.bean.Result;
 import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
@@ -37,21 +38,22 @@ public class UorderController {
 	
 	
 	@RequestMapping("MyOrder")
-	public String toMyOrder(Model model ,@SessionAttribute("loginedUser") User user) { 
-		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(user));
+	public String toMyOrder(Model model ,@SessionAttribute("loginedUser") User user,PageBean pageData) { 
+		System.out.println(pageData.getCurrentPage());
+		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(pageData.getCurrentPage(),user));
 		return "MyOrder";
 	}
 	
 	@RequestMapping("OrderDetail")
-	public String toWaitPay(String tabCode,Uorder uorder,Model model,@SessionAttribute("loginedUser") User user) {
+	public String toWaitPay(String tabCode,Uorder uorder,Model model,@SessionAttribute("loginedUser") User user,PageBean pageData) {
 		if("AllOrder".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findAllOrder(user));
+			model.addAttribute("OrderList", uoBiz.findItemByPage(pageData.getCurrentPage(),user));
 		}else if("waitpay".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderBy("待支付",user.getId()));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待支付",user.getId(),pageData.getCurrentPage()));
 		}else if("waitsend".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderBy("待收货",user.getId()));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待收货",user.getId(),pageData.getCurrentPage()));
 		}else if("waitrate".equals(tabCode)) {
-			model.addAttribute("OrderList", uoBiz.findUorderBy("待评价",user.getId()));
+			model.addAttribute("OrderList", uoBiz.findUorderBy("待评价",user.getId(),pageData.getCurrentPage()));
 		}
 		return "MyOrderList";
 	}
@@ -63,12 +65,13 @@ public class UorderController {
 	
 	@PostMapping("receiveGoods")
 	@ResponseBody
-	public String receive(Uorder uorder,Model model) {
+	public Result receive(Uorder uorder,Model model) {
 		try {
-			return uoBiz.updateWithOrderStatu(uorder);
+			uoBiz.updateWithOrderStatu(uorder);
+			return Result.success("您的订单已收货!!!");
 		} catch (BizException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			return Result.failure("系统繁忙,请稍后再试") ;
 		}
 	}
 	
@@ -83,5 +86,12 @@ public class UorderController {
 			return Result.success("系统繁忙,请稍后再试!!!");
 		}
 	}
+	@RequestMapping("toRubbishCar")
+	public String toRubbishCar(@SessionAttribute("loginedUser") User user ,Model model) {
+		model.addAttribute("OrderList", uoBiz.selectOrderRubbish(user.getId()));
+		return "RubbishCar";
+	}
+	
+	
 	
 }

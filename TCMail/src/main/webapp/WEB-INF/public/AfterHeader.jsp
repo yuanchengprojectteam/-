@@ -21,7 +21,7 @@
 		<ul class="header-right">
 			<li class="denglu dengl_hou">
 				<div>
-					<a class="red">${loginedUser.name }</a>
+					<a class="red">${loginedUser.account }</a>
 					<i class="icon_plus_nickname"></i>
 					<i class="ci-leftll">
 						<s class="jt">◇</s>
@@ -87,7 +87,7 @@
 						<div class="zhangh_dd">
 							<a href="toPersonmessage">个人信息</a>
 							<a href="UserSecurity">账户安全</a>
-							<a href="shouh_diz.html">收货地址</a>
+							<a href="toAddrManager">收货地址</a>
 						</div>
 					</div> 
 				</li>

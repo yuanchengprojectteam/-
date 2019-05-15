@@ -1,5 +1,7 @@
 package com.yc.TCMail;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -9,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.PageBean;
+import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GtypeMapper;
 import com.yc.TCMail.dao.UorderMapper;
@@ -53,18 +57,30 @@ public class lvqiuTest {
 		System.out.println(iiBiz.findCarByUser(user).get(0).getGoods().getName());
 	}
 	
+	@Test
+	public void select2() {
+		User user = new User();
+		user.setId(1);
+		user.setAccount("吕球");
+		PageBean<Uorder> ret =uoBiz.findItemByPage(2,user);
+		//System.out.println(uoBiz.findAllOrder1(user));
+		System.out.println(ret.getItems().get(0));
+		System.out.println(ret.getCurrentPage());
+	}
+	
 	@Test 
 	public void selectFour() {
 		User u = new User();
 		u.setAccount("吕球");
 		
+		//getIsMore 1  有下一页
+		System.out.println(uoBiz.findItemByPage(3, u).getIsMore()+"getIsMore================");
+		System.out.println(uoBiz.findItemByPage(1, u).getTotalPage()+"getTotalPage================");
+		System.out.println(uoBiz.findItemByPage(1, u).getTotalNum()+"getTotalNum================");
+		//System.out.println(uoMapper.selectUorderByUser(u).get(0).getDetails().get(0).getGid());
+		//System.out.println(uoMapper.selectUorderByUser(u).get(0).getDetails().get(0).getGid()+"===========================");
+		//System.out.println(uoMapper.selectUorderByUser(u).get(0).getDetails().get(0).getGoods().getShop().getAddr());
 		
-		System.out.println(uoBiz.findAllOrder(u).get(0).getDetails().get(0));
-		
-		//System.out.println(uoMapper.selectUorderByUser(u)/*.get(0).getDetails().get(0).getGid()*/);
-		/*System.out.println(uoMapper.selectUorderByUser(u).get(0).getDetails().get(0).getGid()+"===========================");
-		System.out.println(uoMapper.selectUorderByUser(u).get(0).getDetails().get(0).getGoods().getShop().getAddr());
-		*/
 	}
 	
 	
