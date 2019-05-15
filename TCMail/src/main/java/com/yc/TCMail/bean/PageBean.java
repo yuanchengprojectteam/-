@@ -21,12 +21,43 @@ public class PageBean<T> {
     private Integer startIndex;
     // 分页结果
     private List<T> items;
+    
+    private Integer nextPage;
+    private Integer prePage;
+    
 
-    public PageBean() {
+
+	public Integer getNextPage() {
+		return nextPage;
+	}
+
+
+
+	public void setNextPage(Integer nextPage) {
+		this.nextPage = nextPage;
+	}
+
+
+
+	public Integer getPrePage() {
+		return prePage;
+	}
+
+
+
+	public void setPrePage(Integer prePage) {
+		this.prePage = prePage;
+	}
+
+
+
+	public PageBean() {
         super();
     }
-
-    public PageBean(Integer currentPage, Integer pageSize, Integer totalNum) {
+    
+   
+    
+	public PageBean(Integer currentPage, Integer pageSize, Integer totalNum) {
         super();
         this.currentPage = currentPage;
         this.pageSize = pageSize;
@@ -34,6 +65,8 @@ public class PageBean<T> {
         this.totalPage = (this.totalNum+this.pageSize-1)/this.pageSize;
         this.startIndex = (this.currentPage-1)*this.pageSize;
         this.isMore = this.currentPage >= this.totalPage?0:1;
+        this.prePage = currentPage - 1;
+        this.nextPage = currentPage+1;
     }
 
     public Integer getCurrentPage() {

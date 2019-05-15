@@ -7,8 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.yc.TCMail.bean.Address;
 import com.yc.TCMail.bean.AddressExample;
+import com.yc.TCMail.bean.PageBean;
+import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.AddressMapper;
 import com.yc.TCMail.imply.BizException;
@@ -19,11 +22,17 @@ public class AddressBiz {
 	
 	@Resource
 	private AddressMapper addrm;
+	private final Integer pageSize = 5;
 	
-	public List<Address> findAddrByUser(User user) {
+	public PageBean<Address> findAddrByUser(int currentPage,User user) {
 		AddressExample example = new AddressExample();
 		example.createCriteria().andUidEqualTo(user.getId());
-		return addrm.selectByExample(example);
+		PageHelper.startPage(currentPage, pageSize);
+		List<Address> ret = addrm.selectByExample(example);
+		int countNums = addrm.selectByExample(example).size();
+		PageBean<Address> pageData = new PageBean<Address>(currentPage,pageSize, countNums);
+	    pageData.setItems(ret);
+		return pageData;
 	}
 	public Address findAddrById(Address addr) {
 		Address ret = addrm.selectByPrimaryKey(addr.getId());
@@ -34,7 +43,7 @@ public class AddressBiz {
 		return ret;
 	}
 	
-	public String add(Address addr) throws BizException {
+	public void add(Address addr) throws BizException {
 		System.out.println("=========================================");
 		if("".equals(addr.getName()) && addr.getName().trim().isEmpty()) {
 			throw new BizException("收货人不能为空!!!");
@@ -48,16 +57,11 @@ public class AddressBiz {
 		if("".equals(addr.getPhone()) && addr.getPhone().trim().isEmpty()) {
 			throw new BizException("收货人电话不能为空!!!");
 		}
-		int count = addrm.insertSelective(addr);
-		System.out.println(count+"========更新==========");
-		if(count < 1) {
-			throw new BizException("系统繁忙,请稍后再试!");
-		}
-		return "新增地址成功!!!";
+		addrm.insertSelective(addr);
 	}
 	
 	
-	public String update(Address addr) throws BizException {
+	public void update(Address addr) throws BizException {
 		if("".equals(addr.getName()) && addr.getName().trim().isEmpty()) {
 			throw new BizException("收货人不能为空!!!");
 		}
@@ -70,14 +74,11 @@ public class AddressBiz {
 		if("".equals(addr.getPhone()) && addr.getPhone().trim().isEmpty()) {
 			throw new BizException("收货人电话不能为空!!!");
 		}
-		int count = addrm.updateByPrimaryKeySelective(addr);
-		if(count < 1) {
-			throw new BizException("系统繁忙,请稍后再试!");
-		}
-		return "地址更新成功!!!";
+		addrm.updateByPrimaryKeySelective(addr);
+		
 	}
 	
-	public String setLevel(Address addr) throws BizException {
+	public void setLevel(Address addr) throws BizException {
 		AddressExample example = new AddressExample();
 		example.createCriteria().andLevelEqualTo("1");
 		List<Address> ret = addrm.selectByExample(example);
@@ -92,10 +93,7 @@ public class AddressBiz {
 		example1.createCriteria().andIdEqualTo(addr.getId());
 		Address addr1 = new Address();
 		addr1.setLevel("1");
-		int coun = addrm.updateByExampleSelective(addr1, example1);
-		if(coun < 1 ) {
-			throw new BizException("系统繁忙,请稍后再试!!!");
-		}
-		return "设置成功";
+		addrm.updateByExampleSelective(addr1, example1);
+		
 	}
 }

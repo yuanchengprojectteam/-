@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.imply.IndexGtypeBiz;
 import com.yc.TCMail.imply.IndexInfoBiz;
+import com.yc.TCMail.imply.UorderBiz;
 
 @Controller
 public class IndexInfoController {
@@ -31,6 +33,9 @@ public class IndexInfoController {
 	
 	@Resource
 	private GoodsMapper gm;
+	
+	
+	
 	
 	@RequestMapping("index")
 	public String toIndex(Model model,HttpServletRequest request) {  //,@SessionAttribute("loginedUser") User user

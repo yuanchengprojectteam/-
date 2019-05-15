@@ -7,8 +7,8 @@
 <head> 
 <meta charset="utf-8">
 <title>WangID通城——我的订单</title>
-<link rel="stylesheet" type="text/css" href="../../css/index.css">
-<link rel="stylesheet" type="text/css" href="../../css/ziy.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/ziy.css">
 <!--  <script src="js/jquery-1.11.3.min.js" ></script>
 <script src="js/index.js" ></script>  -->
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
@@ -32,19 +32,19 @@
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot"><a href="MyOrder" style="cursor:pointer;">我的订单</a>
-						<p class="dingd_huis_zhan" style="float: right;margin-right: 5%"><a href="toRubbishCar">订单回收站</a></p>
+					<div class="shand_piaot"><a href="toRubbishCar" style="cursor:pointer;">订单回收站</a>
+						<p class="dingd_huis_zhan" style="float: right;margin-right: 5%"><a href="MyOrder">我的订单</a></p>
 					</div>
 					
-					<div class="tab_trigger tab_trigger_wod_dd">
+					<%-- <div class="tab_trigger tab_trigger_wod_dd">
 					 	<p class="attrK">实物订单：</p>
 						<ul>
 							<li><a class="text_shaid" href="OrderDetail?tabCode=AllOrder" id="AllOrder">全部</a></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitpay" id="waitpay">待支付</a><c:if test="${! empty waitpay}"><p class="sup">${waitpay}</p></c:if></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitsend" id="waitsend">待收货</a><c:if test="${! empty waitsend}"><p class="sup">${waitsend}</p></c:if></li>
-							<li><a class="text_shaid" href="OrderDetail?tabCode=waitrate" id="waitrate">待评价</a><c:if test="${!empty waitrate}"><p class="sup">${waitrate}</p></c:if></li> 
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitpay&paystatu=待支付" id="waitpay">待支付</a><c:if test="${! empty waitpay}"><p class="sup">${waitpay}</p></c:if></li>
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitsend&orderstatu=待收货" id="waitsend">待收货</a><c:if test="${! empty waitsend}"><p class="sup">${waitsend}</p></c:if></li>
+							<li><a class="text_shaid" href="OrderDetail?tabCode=waitrate&orderstatu=待评价" id="waitrate">待评价</a><c:if test="${!empty waitrate}"><p class="sup">${waitrate}</p></c:if></li> 
 						</ul>
-					</div> 
+					</div>  --%>
 					<br>
 					<!--************************************-->
 					<table class="order-tb order-tb_1">
@@ -66,7 +66,7 @@
 						</thead>
 						
 						
-						<c:forEach items="${OrderList.items}" var="temp">
+						<c:forEach items="${OrderList}" var="temp">
 						
  						<tbody>
 							<tr class="sep-row"><td colspan="3"></td></tr>
@@ -78,9 +78,7 @@
 										<a href="#" target="_blank" >${temp.id}
 										</a>
 									</span>
-									<span class="wod_sc_delete_beij span_30">
-									<a href="javascript:void(0)" class="wod_dingd_delete" id="${temp.id}" onclick="deteleOrder(id)"></a>
-									</span>
+									
 								</td>
 							</tr>
 							
@@ -150,27 +148,10 @@
 									</div>
 								</td> 
 								<td rowspan="1">
-								<%-- <c:forEach items="${temp.details}" var="item">  --%>
-									<c:choose>
-										<c:when test="${temp.paystatu == '待支付'}">
-											<div class="operate">
-											<a href="tij_dingd.html" target="_blank" class="btn-def">去付款</a>
-										</div>
-										</c:when>
-										<c:when test="${temp.orderstatu == '待评价' }">
-											<div class="operate">
-												<a href="tij_dingd.html" target="_blank" class="btn-def">评价晒单</a>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="operate">
-												<a href="javascript:void(0)" target="_blank" id="${temp.id}" class="btn-def"
-												onclick="receive(id)">确认收货</a>
-											</div>
-										</c:otherwise>
-											
-										</c:choose>
-									<%-- </c:forEach> --%>
+								
+									<div class="operate">
+									<a href="tij_dingd.html" target="_blank" class="btn-def">恢复</a>
+									</div>
 									
 								</td>
 							</tr> 
@@ -183,40 +164,9 @@
 						
 					
 					<div class="gerzx_fany">
-					
-					<!-- <span>每页</span>
-					<select onclick="page()" id="select">
-						<option value="3" selected="selected">3</option>
-						<option value="5" >5</option>
-						<option value="6" >6</option>
-					</select>
-					<span>订单</span> -->
-													
-					<div style="float: left;">
-						<c:choose>
-							<c:when test="${OrderList.isMore == 0}">
-								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是尾页了')" >下一页</a>
-							</c:when>
-							<c:otherwise>
-								<a href="OrderDetail?tabCode=${param.tabCode}&&currentPage=${OrderList.nextPage}" class="shangxy">下一页</a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-						<c:when test="${OrderList.currentPage == 1}">
-								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是首页了')" >上一页</a>
-						</c:when>
-						<c:otherwise>
-							<a href="OrderDetail?tabCode=${param.tabCode}&&currentPage=${OrderList.prePage}" class="shangxy" >上一页</a>
-						</c:otherwise>
-						</c:choose>
-						
-					</div>
-					<div style="float: right;margin-right: 10px">
-						第&nbsp;<span id="currentPage" style="color: black;">${OrderList.currentPage}</span>&nbsp;页
-					</div>
-					
-						
-						
+						<a href="#" class="shangxy">上一页</a>
+						<a href="#">1</a>
+						<a href="#" class="shangxy">上一页</a>
 					</div>
 				</div>
 			</div>
@@ -235,7 +185,7 @@
  function receive(id){
 		if(confirm("请确认此操作!")){
 			$.post("receiveGoods?id="+id+"",function(data){
-				alert(data.msg);
+				alert(data);
 				window.location.reload();
 			});
 		}
@@ -250,19 +200,6 @@
 	 }
 	 
  }
-/*  $(".shangxy").click("changePage",function(e){
-	 var operate = e.target.id;
-	 var currentPage = $("#currentPage").html();
-	 var pageSize = $("select option:selected").val(); 
-	 if(operate == 'add'){
-		var currentPage =  Number(currentPage) + 1;
-	 }else{
-		 var currentPage = Number(currentPage) - 1; 
-	 }
-	 $.post("pageOrder",function(){
-		 
-	 })
- } */
 </script>
 
 

@@ -41,7 +41,7 @@
                                 <div class="count_item">
                                     <a href="wod_dingd.html">
                                         <i class="count_icon count_icon01"></i> 待付款
-                                        <em id="waitPay">2</em>
+                                        <c:if test="${! empty waitpay}"><em id="waitPay">${waitpay}</em></c:if>
                                     </a>
                                 </div>
                             </li>
@@ -49,23 +49,16 @@
                                 <div class="count_item">
                                     <a href="wod_dingd.html">
                                         <i class="count_icon count_icon02"></i> 待收货
-                                        <em id="waitPay">4</em>
+                                        <c:if test="${! empty waitsend}"><em id="waitPay">${waitsend}</em></c:if>
                                     </a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="count_item">
-                                    <a href="wod_dingd.html">
-                                        <i class="count_icon count_icon03"></i> 待提货
-                                        <em id="waitPay">0</em>
-                                    </a>
-                                </div>
-                            </li>
+                            
                             <li>
                                 <div class="count_item">
                                     <a href="commentAndShowOrder">
                                         <i class="count_icon count_icon04"></i> 待评价
-                                        <em id="waitPay">${count}</em>
+                                        <c:if test="${!empty waitrate}"><em id="waitPay">${waitrate}</em></c:if>
                                     </a>
                                 </div>
                             </li>
@@ -77,7 +70,7 @@
 						<ul>
 							<h3>订单中心</h3>
 							<li><a href="MyOrder">我的订单</a></li>
-							<li><a href="shengq_shouh.html">退换货单</a></li>
+							
 							<li><a href="commentAndShowOrder">评价晒单</a></li>
 						</ul>
 						<ul>
@@ -94,7 +87,7 @@
 							<h3>账户设置</h3>
 							<li><a href="toPersonmessage">基本资料</a></li>
 							<li><a href="UserSecurity">账户安全</a></li>
-							<li><a href="shouh_diz.html">收货地址</a></li>
+							<li><a href="toAddrManager">收货地址</a></li>
 						</ul>
 					</div>
 				</div>

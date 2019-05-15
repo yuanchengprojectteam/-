@@ -63,7 +63,7 @@
 								<th colspan="5">我的物流</th>
 							</tr>
 						</thead>
-						<c:forEach items="${OrderList}" var="temp">
+						<c:forEach items="${OrderList.items}" var="temp">
 							<tbody>
 								<tr class="sep-row"><td colspan="4"></td></tr>
 								<tr class="tr-th">
@@ -103,10 +103,30 @@
 						</c:forEach> 
 					</table>
 					<div class="gerzx_fany">
-						<a href="#" class="shangxy" >上一页</a>
-						<a href="#">1</a>
-						<a href="#" class="shangxy">上一页</a>
+					<div style="float: left;">
+						<c:choose>
+							<c:when test="${OrderList.isMore == 0}">
+								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是尾页了')" >下一页</a>
+							</c:when>
+							<c:otherwise>
+								<a href="OrderDetail?tabCode=${param.tabCode}&&currentPage=${OrderList.nextPage}" class="shangxy">下一页</a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+						<c:when test="${OrderList.currentPage == 1}">
+								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是首页了')" >上一页</a>
+						</c:when>
+						<c:otherwise>
+							<a href="OrderDetail?tabCode=${param.tabCode}&&currentPage=${OrderList.prePage}" class="shangxy" >上一页</a>
+						</c:otherwise>
+						</c:choose>
+						
 					</div>
+					<div style="float: right;margin-right: 10px">
+						第&nbsp;<span id="currentPage" style="color: black;">${OrderList.currentPage}</span>&nbsp;页
+					</div>
+					</div>
+					
 				</div>
 			</div>
 			<!--左边内容结束-->

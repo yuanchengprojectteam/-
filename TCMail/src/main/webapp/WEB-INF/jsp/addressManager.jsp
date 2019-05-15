@@ -41,7 +41,7 @@
 				<div class="jib_xinx_kuang">
 					<div class="shand_piaot">收货地址</div>
 					<div class="shouh_diz_beij">
-					<c:forEach items="${AddrList}" var="temp">
+					<c:forEach items="${AddrList.items}" var="temp">
 						<div class="shouh_diz_kuang shouh_diz_kuang_mor">
 							<div class="item">
 								<span class="labal">收件人：</span>
@@ -76,6 +76,33 @@
 						
 						
 						<div class="xinz_shouh_dz_ann"><a href="#" data-reveal-id="myModal">新增收货地址</a></div>
+						<div class="gerzx_fany">
+						<div style="float: left;">
+						<c:choose>
+							<c:when test="${AddrList.isMore == 0}">
+								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是尾页了')" >下一页</a>
+							</c:when>
+							<c:otherwise>
+								<a href="toAddrManager?currentPage=${AddrList.nextPage}" class="shangxy">下一页</a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+						<c:when test="${AddrList.currentPage == 1}">
+								<a href="javascript:void(0)" class="shangxy" onclick="alert('已经是首页了')" >上一页</a>
+						</c:when>
+						<c:otherwise>
+							<a href="toAddrManager?currentPage=${AddrList.prePage}" class="shangxy" >上一页</a>
+						</c:otherwise>
+						</c:choose>
+						
+					</div>
+					<div style="float: right;margin-right: 10px">
+						第&nbsp;<span id="currentPage" style="color: black;">${AddrList.currentPage}</span>&nbsp;页
+					</div>
+					</div>
+						
+						
+					</div>
 					</div> 
 				</div>
 			</div>
@@ -179,7 +206,7 @@
 <script type="text/javascript">
 	function setlevel(id){
 		$.post("setLevel?id="+id+"",function(data){
-			alert(data);
+			
 			window.location.reload();   //页面刷新
 		});
 	}
@@ -197,7 +224,11 @@
 		};
 		//alert($("#level").val());
 		$.post("addAddress",data,function(data){
-			alert(data);
+			alert(data.msg);
+			 setInterval(function () {
+			        $("#close").trigger('click')
+			 }, 1500);
+			 window.location.reload();
 		}); 
 	}
 	function update(){
@@ -214,7 +245,7 @@
 			id: id
 		};
 		$.post("updateAddr",data,function(data){
-			alert(data);
+			alert(data.msg);
 		}); 
 	}
 	function edit(id){
