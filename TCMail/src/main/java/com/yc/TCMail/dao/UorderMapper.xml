@@ -34,19 +34,19 @@
   <select id="selectUorderByUser" resultMap="BaseResultMap">
 	select uorder.*
 	from uorder,user
-	where uorder.uid = user.id and user.account = #{account}
+	where uorder.uid = user.id and user.account = #{account} and visiable = 0
   </select>
   
   <select id="selectByOrderId" resultMap="BaseResultMap">
 	select uorder.*
 	from uorder,user
-	where uorder.uid = user.id and uorder.id = #{id}
+	where uorder.uid = user.id and uorder.id = #{id} and visiable = 0
   </select>
   
   <select id="selectWithReturn" resultMap="BaseResultMap1">
   	select uorder.*
 	from uorder,user
-	where uorder.uid = user.id and user.account = #{user.account} and uorder.id = #{id}
+	where uorder.uid = user.id and user.account = #{user.account} and uorder.id = #{id} and visiable = 0
   </select>
  
   <sql id="Example_Where_Clause">

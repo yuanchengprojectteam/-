@@ -12,7 +12,13 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
+    <association property="goods" column="gid" select="com.yc.TCMail.dao.GoodsMapper.selectGoods"
+    fetchType="lazy"></association>
   </resultMap>
+  
+  <select id="selectCarByUser" resultMap="BaseResultMap">
+  	select * from car where uid = #{user.id}
+  </select>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated

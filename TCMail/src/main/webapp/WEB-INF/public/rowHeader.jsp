@@ -59,7 +59,7 @@
 			<li class="denglu">Hi~ 
 			<c:choose>
 			<c:when test="${sessionScope.loginedUser != null}">
-				${sessionScope.loginedUser.account}
+				<a href="PersonCenter" style="cursor:pointer;">${sessionScope.loginedUser.account}</a>
 			</c:when>
 			<c:otherwise>
 				<a class="red" href="tologin">请登录!</a> <a href="toregister">[免费注册]</a>
@@ -107,22 +107,61 @@
 			<input type="submit" class="button" value="搜索">
 		</form>
 	</div>
-	<div class="right">
+	<div class="right" >
 		<i class="gw-left"></i>
 		<i class="gw-right"></i>
 		<div class="sc">
-			<i class="gw-count">0</i>
+		<c:if test="${!empty carList}">
+			<i class="gw-count">${carNum}</i>
+		</c:if>
+			<i class="gw-count"></i>
 			<i class="sd"></i>
 		</div>
 		<a href="gouw_che.html">我的购物车</a>
-		<div class="dorpdown-layer">
+		
+		 <div class="dorpdown-layer" style="width: 340px">
 			<ul>
-				<li class="meiyou">
-					<img src="./images/settleup-nogoods.png">
-					<span>购物车中还没有商品，赶紧选购吧！</span> 
-				</li>
+			
+				
+				<c:choose>
+					<c:when test="${sessionScope.loginedUser != null  }">
+					<c:choose>
+					<c:when test="${! empty carList}">
+						<c:forEach items="${carList}" var="temp">
+						<div class="smt"><h4 class="fl">最新加入的商品</h4></div>
+							<li class="meiyou">
+								<span><a href="#"><img src="./images/settleup-nogoods.png"></a></span>
+								<span style="width:150%;font-size:5px;"  ><a href="#" style="font-size:5px;margin-right:40px;" >
+								${temp.goods.name} ${temp.goods.size} ${temp.goods.color} ￥${temp.goods.price}</a></span>
+								<span><a href="#" style="width:100%;font-size:5px;">删除</a></span>
+							</li>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<li class="meiyou">
+						<img src="./images/settleup-nogoods.png">
+						<span>购物车中还没有商品，赶紧选购吧！</span> 
+						</li>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					</c:when>
+					<c:otherwise>
+						<li class="meiyou">
+						<span>亲，请先登录,才可以查看购物车消息哦</span> 
+						</li>
+					</c:otherwise>
+				</c:choose>
+				
+			
+			
+			
+			
+				
 			</ul>
 		</div>
+		
 	</div>
 	<div class="hotwords">
 		<a class="biaoti">热门搜索：</a>
@@ -137,12 +176,12 @@
 </div> 
 
 <script type="text/javascript">
-window.onload=function(){
-	
-if('${sessionScope.loginedUser}'){
-			document.getElementById('na').innerHTML='${sessionScope.loginedUser.name}';
+
+function show(){
+	if('${sessionScope.loginedUser}'){
+		document.getElementById('na').innerHTML='${sessionScope.loginedUser.name}';
 	}else{
 			document.getElementById('na').innerHTML='请登录！';
 	}
 }
-			</script>            
+</script>            

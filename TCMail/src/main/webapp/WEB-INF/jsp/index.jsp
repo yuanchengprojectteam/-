@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html>  
 <head> 
 <meta charset="utf-8">
@@ -15,10 +15,8 @@
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
 </head>
 <body>
-
 <jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
-		
-			
+
 		<!--左边导航-->
 		<div class="dd-inner">
 		<c:forEach items="${GtypeList}" var="types">
@@ -48,18 +46,16 @@
 			</div>
 			</c:forEach>
 		</div>
-		
-		
 	</div>
 </div>
 
 <!--轮播图-->
 <div id="lunbo">
 	<ul id="one">
-		<li><a href=""><img src="../../images/banner.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner1.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner.jpg"></a></li>
-		<li><a href=""><img src="../../images/banner1.jpg"></a></li>
+		<li><a href=""><img src="./images/banner.jpg"></a></li>
+		<li><a href=""><img src="./images/banner1.jpg"></a></li>
+		<li><a href=""><img src="./images/banner.jpg"></a></li>
+		<li><a href=""><img src="./images/banner1.jpg"></a></li>
 	</ul>
 	<ul id="two">
 		<li class="on">1</li>
@@ -74,23 +70,26 @@
 	</div>
 </div>
 
-<!--内容一开始了-->
-<div class="bend_beij">
-
-	
-
 
 
 <!--层次-->
 <div class="chengc_jvz">
+<c:forEach items="${GtypeList}" var="types">
 	<div class="slideTxtBox">
 		<div class="hd">
 			<h1>
-				<p>办公家具</p>
+				${types.name}
 			</h1>
-			<ul><li>精品热卖</li><li>卧室家具</li><li>灯饰照明</li><li>五金工具</li><li>厨房卫浴</li><li>办公文教</li></ul>
+			<ul>
+			<c:forEach items="${types.childType}" var="ctype">
+			<li >${ctype.name}</li>
+			</c:forEach>
+			</ul>
 		</div>
+		
 		<div class="bd">
+		<c:forEach items="${types.childType}" var="ctype">
+		
 			<ul>
 				<div class="louc_tup_qieh">
 				  	<div class="js-silder ws-slider">
@@ -112,50 +111,29 @@
 				            <span class="silder-ctrl-next"></span>
 				        </div>
 				    </div>
-				    
 				</div>
 				<div class="you_lirb">
-					<div class="shang_buf">
-						<div class="you_shangp_lieb ">
-							<a href="#"><img  class="you_tup_k" src="images/yic_001.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_002.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb cnm">
-							<a href="#"><img  class="you_tup_k" src="images/yic_003.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
+					<c:forEach items="${ ctype.gsonType}" var="gtype">
+					<c:forEach items="${ gtype.goodsList}" var="temp">
+					<div class="you_shangp_lieb">
+						<a href="#"><img  class="you_tup_k" src="${temp.image}"></a>
+						<a href="#" class="_you_neir_biaot">${temp.name} ${temp.size } ${temp.color }</a>
+						<span>¥ ${temp.price }</span>
 					</div>
-					<div class="xia_buf">
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_004.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb">
-							<a href="#"><img  class="you_tup_k" src="images/yic_003.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-						<div class="you_shangp_lieb cnm">
-							<a href="#"><img  class="you_tup_k" src="images/yic_005.jpg"></a>
-							<a href="#" class="_you_neir_biaot">林氏木业简约现代真皮转角客厅头层牛皮沙发家具2036</a>
-							<span>¥ 2599 .00</span>
-						</div>
-					</div>
+					</c:forEach>
+					</c:forEach>
 				</div>
 			</ul>
+		</c:forEach>
 			
 			
 		</div>
 	</div>
+	
+	</c:forEach>
 </div>
+
+
 
 
 
@@ -169,6 +147,8 @@
 
 
 
+
+
 <!--特色商品/ 热门商品-->
 
 <div class="tes_shnagp_beij">
@@ -179,47 +159,15 @@
 			<a href="#">MORE+</a>
 		</div>
 		<div class="tes_shangp_neir_k">
-			<div class="tes_dat">
-				<a href="#">
-					<h1><img class="tes_dat_dongh" src="images/te_se_shangp_da.jpg"></h1>
-					<h2>苹果手机iPhone6(32G)全网</h2>
-					<span>¥ 4999 .00</span>
-				</a>
-			</div>
-			<div class="tes_xiaot_beij">
-				<div class="tes_xiaot_shang">
-					<div class="tes_xiaot_neir">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-					<div class="tes_xiaot_neir tes_xiaot_wubian_kuang">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao2.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
+			<c:forEach items="${newList}" var="temp">
+				<div class="tes_xiaot_neir">
+					<a href="#">
+						<h1><img class="tes_xiaot_dongh" src="${temp.image }"></h1>
+						<h2>${temp.name}</h2>
+						<span>¥ ${temp.price }</span>
+					</a>
 				</div>
-				<div class="tes_xiaot_shang tes_xiaot_xia">
-					<div class="tes_xiaot_neir">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao3.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-					<div class="tes_xiaot_neir tes_xiaot_wubian_kuang">
-						<a href="#">
-							<h1><img class="tes_xiaot_dongh" src="images/tes_shangp_xiao4.jpg"></h1>
-							<h2>海尔(Haier) BCD452WDPF 452</h2>
-							<span>¥ 506 .00</span>
-						</a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 
@@ -237,30 +185,13 @@
 				</div>
 				<div class="bd">
 					<ul class="picList">
+					<c:forEach items="${newList}" var="temp">
 						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
+							<div class="pic"><a href="#" target="_blank"><img src="${temp.image }" /></a></div>
+							<div class="title"><a href="#" target="_blank">${temp.name }</a><span>¥ ${temp.price }</span></div>
 						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
+					</c:forEach>
+						
 					</ul>
 				</div>
 			</div>
@@ -273,4 +204,17 @@
 		jQuery(".picScroll_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:2 ,trigger:"click"});
 		</script>
 
+
+
+
+
+
+
+ 
+
+
+
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
+
+</body>
+</html>

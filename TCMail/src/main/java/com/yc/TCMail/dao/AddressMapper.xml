@@ -199,7 +199,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      #{id,jdbcType=INTEGER},
+      null,
       <if test="level != null">
         #{level,jdbcType=VARCHAR},
       </if>

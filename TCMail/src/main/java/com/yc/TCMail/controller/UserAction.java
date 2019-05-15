@@ -38,6 +38,7 @@ import com.yc.TCMail.action.UserBiz;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.UserMapper;
+import com.yc.TCMail.imply.UorderBiz;
 import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
@@ -68,7 +69,13 @@ public class UserAction {
 	private UserMapper uMapper;
 	private Cookie cookie1;
 	private Cookie cookie2;
+	
+	
+	@Resource
+	private UorderBiz uoBiz;
+	
 
+	
 	@ModelAttribute
 	public void init(Model model) {
 		List<Gtype> list = gbiz.AllType();
@@ -101,6 +108,10 @@ public class UserAction {
 			User dbui = uBiz.login(u);
 			model.addAttribute("loginedUser", dbui);
 			model.addAttribute("cglist",ci.selectCarGoods(dbui.getId(),0));
+			
+			model.addAttribute("waitpay",uoBiz.findUorderBy("待支付",dbui.getId()).size());
+			model.addAttribute("waitsend",uoBiz.findUorderBy("待收货",dbui.getId()).size());
+			model.addAttribute("waitrate",uoBiz.findUorderBy("待评价",dbui.getId()).size());
 			System.out.println(ci.selectCarGoods(dbui.getId(),0));
 			return "PersonCenter";
 		} catch (BizException e) {

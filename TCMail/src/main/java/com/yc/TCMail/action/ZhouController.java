@@ -159,7 +159,14 @@ public class ZhouController {
 		return "Car";
 	}
 	
-	
+
+	/*@GetMapping("index")
+	public String index() {	
+
+		return "index";
+	}
+	*/
+
 	
 	@RequestMapping("commentAndShowOrder")
 	public String commentAndShowOrder(@SessionAttribute("loginedUser")User user, Model model) {	
