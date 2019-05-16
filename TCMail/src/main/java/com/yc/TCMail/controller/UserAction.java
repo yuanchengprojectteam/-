@@ -177,7 +177,7 @@ public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throw
 
 	@PostMapping("register")
 	public void Register(String account, String pwd, String phone, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) throws ServletException, IOException, BizException {
 		int result = uBiz.addUser(account, pwd, phone);
 		request.getRequestDispatcher("tologin").forward(request, response);
 	}

@@ -491,11 +491,15 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li>
-				<a href="toshopGoodsShowStyle1" title="Mistletoe">Mistletoe</a>
+				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }">${shop.name }</a>
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">
-				<a href="#" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
+<%-- <<<<<<< HEAD
+				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
+======= --%>
+				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
+<!-- >>>>>>> refs/remotes/origin/master -->
 	        </li>
 	    </ul>
     </div>
@@ -503,12 +507,17 @@
         <div class="ly-stores shops-name">
             <a class="btn-collect ">
                 <i class="icon-collect"></i>
-                <span>收藏店铺</span>
+                <span  id="r" onclick="recivershop()">收藏店铺</span>
                 <i class="icon-arrow"></i>
             </a>
             <a class="btn-service hide customerService_show"><i></i>在线客服</a>
-            <span class="services-score"><b class="star-gray"><i class="star-red" style="width:88.9059333333%"></i></b><em class="score">4.4</em>分</span>
-            <a class="name" title="Mistletoe女装旗舰店" href="#" target="_blank">${goodMsg.shop.name }</a>
+            
+            <span class="services-score"><b class="star-gray"><i class="star-red" style="width:81.2819333333%" id="start"></i></b><em class="score">${shop.level }</em>分</span>
+<%-- <<<<<<< HEAD
+            <a class="name" title="${shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a>
+======= --%>
+            <a class="name" title="${goodMsg.shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a>
+<!-- >>>>>>> refs/remotes/origin/master -->
              
         </div>
 	</div>
@@ -562,7 +571,11 @@
 	<!--中-->
 	<div class="prd_firstscreen_center">
 		<div class="hgroup">
+<%-- <<<<<<< HEAD
+        	<h1>${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</h1> 
+======= --%>
         	<h1>${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</h1> 
+<!-- >>>>>>> refs/remotes/origin/master -->
     	</div>
     	<div class="prd_price_1">  
             <div class="unitprice">
@@ -588,7 +601,11 @@
         <div class="prd_properties">
 	        <div class="prd_properties_1"> 
         		<label class="prd_price_left">服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务</label>
-        		<span>由<a href="#">${goodMsg.shop.name }</a>发货并负责售后服务。</span>  
+<%-- <<<<<<< HEAD
+        		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${shop.name }</a>发货并负责售后服务。</span>  
+======= --%>
+        		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${goodMsg.shop.name }</a>发货并负责售后服务。</span>  
+<!-- >>>>>>> refs/remotes/origin/master -->
 	        </div>
 	        <div class="prd-properties-2"> 
                 <div class="prd_properties_other">
@@ -737,7 +754,7 @@
 			<div class="stores-infos">
 		        <div class="ly-stores">
 		            <h2 class="fix-storesname shops-name" id="store_live800_wrap">
-		                <a class="name" title="茂烨旗舰店" href="#" target="_blank">茂烨旗舰店</a> 
+		                <a class="name" title="${shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a> 
 		            </h2>
 		            <div class="services-wrapper">
 		                <div class="services-stars">
@@ -759,22 +776,22 @@
 		                </div>
 		            </div>
 		            <div class="btn-group">
-		                <a href="#" class="btn-product btn-enter" target="_blank"><i></i>进入店铺</a>
-		                <a href="#" class="btn-collect"><i class="sprite-enter"></i>收藏店铺</a>
+		                <a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" class="btn-product btn-enter" target="_blank"><i></i>进入店铺</a>
+		                <a href="#" class="btn-collect" onclick="recivershop()" id="r"><i class="sprite-enter"></i></a>
 		            </div>
 		        </div>
 		    </div>
 		    <!---->
 		    <div class="dianp_xiao_jiej">
 		    	<div class="shangj_diz">
-		    		<p>地址：<span>贵州省贵阳市云岩区大亨大厦16层</span></p>
-		    		<p>联系人：<span>潘中全</span></p>
-		    		<p>电话：<span>0852-8667011</span></p>
-		    		<p>营业时间：<span>09:00至18:00</span></p>
+		    		<p>地址：<span>${shop.addr }</span></p>
+		    		<span>电话：${ShopOwner.phone }</span>
+					<span>联系人：${ShopOwner.realname}</span>
+					<span>营业时间：09:00至18:00</span>
 		    	</div>
 		    	<div class="_xq_gogns_jianj">
 			    	<p>公司简介：</p>
-			    	<p class="_xq_gogns_jianj_neir">魅CO视觉，主张时尚个性的摄影理念，以独特和新锐的时尚触觉为客户提供性化的摄影服务。追逐时尚，同时更注重情感表达。用最丰<a href="#">[查看更多]</a></p>
+			    	<p class="_xq_gogns_jianj_neir">${shop.describe }<a href="#">[查看更多]</a></p>
 		    	</div>
 		    </div>
 	    </div>
@@ -844,14 +861,40 @@
 							<li title="卿城">品牌： <a href="#" target="_blank">卿城</a> </li>
 						</ol>
 						<ol class="parameter2 p_parameter_list">
+<%-- <<<<<<< HEAD
+							<li title="卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)">商品名称：卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)</li>
+    						<li title="11971841918">商品编号：11971841918</li>
+                      		<li title="${shop.name }">店铺： <a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a></li>
+                     		<li title="500.00g">商品毛重：500.00g</li>
+				            <li title="中国大陆">商品产地：中国大陆</li>
+				            <li title="F1751">货号：F1751</li>
+							<li title="套头">款型：套头</li>
+							<li title="卡通">风格：卡通</li>
+							<li title="中厚">厚度：中厚</li>
+							<li title="圆领">领型：圆领</li>
+							<li title="多色">颜色：多色</li>
+							<li title="棉质">材质：棉质</li>
+							<li title="卡通">图案：卡通</li>
+							<li title="情侣">人群：情侣</li>
+							<li title="秋季">季节：秋季</li>
+							<li title="长袖">袖长：长袖</li>
+							<li title="套头">衣门襟：套头</li>
+							<li title="长裤">裤长：长裤</li>
+							<li title="M，L，XL，XXL">尺码：M，L，XL，XXL</li>
+							<li title="其它">裙长：其它</li>
+							<li title="可外穿">是否可外穿：可外穿</li>
+							<li title="套装">款式：套装</li>
+							<li title="衣裤两件套">组合形式：衣裤两件套</li>
+======= --%>
 							<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
     						<li title="11971841918">商品编号：${goodMsg.id }</li>
-                      		<li title="依晴服饰内衣专营店">店铺： <a href="#" target="_blank">${goodMsg.shop.name }</a></li>
+                      		<li title="依晴服饰内衣专营店">店铺： <a href="toshopGoodsShowStyle1?id=${goodMsg.shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a></li>
                      		
 							<li title="M，L，XL，XXL">尺码：<c:forEach items="${goodMsg.listGmsg }" var="li">
 								${li.size }&nbsp&nbsp
 							</c:forEach></li>
 
+<!-- >>>>>>> refs/remotes/origin/master -->
 						</ol>
 					</div>
 					<div class="detail_content_wrap">
@@ -1658,6 +1701,46 @@
 				'transitionOut'		: 'none'
 			});
 		}); */
+		$(document).ready(function(){
+			if('${sessionScope.loginedUser}'){
+				$.ajax({
+					url:"haveReciver",
+					data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
+					type:"post",
+					success:function(result){
+						if(result=='yes'){
+			   				document.getElementById('r').innerHTML='已收藏';
+			   			 }else{
+			   				document.getElementById('r').innerHTML='加入收藏';
+			   			 }
+					}
+				});
+			}else{
+				document.getElementById('r').innerHTML='加入收藏';
+			}
+			
+		});
+		var  i=parseInt('${shop.level}');
+		document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
+		 function recivershop(){
+			if('${sessionScope.loginedUser}'){
+				$.ajax({
+					url:"reciver", 					//url地址
+			   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
+			   		 type:"post",   				 //传输方式，get / post
+			   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
+			   			 if(result=='yes'){
+			   				document.getElementById('r').innerHTML='已收藏';
+			   			 }else{
+			   				document.getElementById('r').innerHTML='收藏失败';
+			   			 }
+			   		 }
+			});
+			}else{
+				$("#r")[0].href="tologin";
+			}
+		}
+
 		
 		function colorSelect(e){
 			var show="select";

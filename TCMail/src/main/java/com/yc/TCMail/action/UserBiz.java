@@ -6,12 +6,18 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.TCMail.bean.Goods;
+import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.bean.UserExample;
 import com.yc.TCMail.dao.UserMapper;
+import com.yc.TCMail.util.HbUtil;
 
 
 
@@ -23,6 +29,9 @@ public class UserBiz {
 
 	@Resource
 	private  UserMapper   uim;
+	
+	@Autowired
+	HbUtil hbUtil;
 	
 	public  User  login(User  u) throws BizException {
 		UserExample  example=new UserExample();
@@ -57,9 +66,18 @@ public class UserBiz {
 		return uim.updateByPrimaryKey(u);
 	}
 
-	public int addUser(String account, String pwd, String phone) {
+	public int addUser(String account, String pwd, String phone) throws BizException {
 		UserExample  example=new UserExample();
 		User  user=new User();
+		if(account ==null) {
+			throw  new BizException("用户名不能为空");
+		}
+		if(pwd==null) {
+			throw  new BizException("密码不能为空");
+		}
+		if(phone==null) {
+			throw  new BizException("电话号码不能为空");
+		}
 		user.setAccount(account);
 		user.setPhone(phone);
 		user.setPwd(pwd);
@@ -67,6 +85,7 @@ public class UserBiz {
 		Date  date=new Date();
 		user.setRegtime(sdf.format(date));
 		user.setType("普通用户");
+		user.setImage("http://beijing.aliyuncs.com/UploadFile/header/h1.jpg");
 		return  uim.insertSelective(user);
 	}
 
@@ -75,7 +94,6 @@ public class UserBiz {
 		example.createCriteria()
 					.andPhoneEqualTo(phone);
 		List<User> list=uim.selectByExample(example);
-		
 		return  list;
 	}
 
@@ -144,5 +162,10 @@ public class UserBiz {
 	uim.updateByExampleSelective(u, example);
 	return  u.getId();
 	}
+
+	public User selectUser(Integer uid) {
+		return   uim.selectByPrimaryKey(uid);
+	}
+
 	
 }

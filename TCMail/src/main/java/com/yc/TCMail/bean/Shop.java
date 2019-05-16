@@ -105,6 +105,5 @@ public class Shop {
 	public void setUser(User user) {
 		this.user = user;
 	}
-   
-   	
+  
 }

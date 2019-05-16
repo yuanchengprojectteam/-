@@ -61,8 +61,8 @@
 							<tbody>
 								<tr>
 									<td width="15%"><span>手机验证</span></td>
-									<td width="18%"><span><em class="yanz_tub ${zhou.phone == null ? 'ico_gth' : 'ico_bright' }"></em>${zhou.phone == null ? "未验证" : "已验证" }</span></td>
-									<td width="47%"><p> 您验证的手机：${loginedUser.phone } </p></td>
+									<td width="18%"><span><em class="yanz_tub ${zhou.phone == null ? 'ico_gth' : 'ico_bright' }"></em>${zhou.phone == null ? '未验证' : '已验证' }</span></td>
+									<td width="47%"><p> 您验证的手机：${zhou.phone } </p></td>
 									<td width="20%"><span><a href="updatephone" class="verification">${zhou.phone == null ? '立即验证' : '修改' }</a></span></td>
 								</tr>
 							</tbody>

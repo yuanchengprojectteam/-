@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,10 +32,14 @@ public class IndexInfoController {
 	@Resource
 	private IndexInfoBiz iiBiz;
 	
+	@RequestMapping("ditu")
+	public String DiTu() {
+		
+		return "ditu";
+	}
+
 	@Resource
 	private GoodsMapper gm;
-	
-	
 	
 	
 	@RequestMapping("index")

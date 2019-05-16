@@ -26,7 +26,9 @@ public class TcMailApplication extends  SpringBootServletInitializer{
 	}
 	
 	
+
 	//配置mybatis的分页插件pageHelper
+
     @Bean
     public PageHelper pageHelper(){
         PageHelper pageHelper = new PageHelper();
@@ -41,12 +43,13 @@ public class TcMailApplication extends  SpringBootServletInitializer{
      }
         
         
+
 	/*    
 	 * //将 Spring项目部署到本地tomcat服务器上
 	 * 
 	 * @Override protected SpringApplicationBuilder
 	 * configure(SpringApplicationBuilder application) { return
 	 * application.sources(TcMailApplication.class); }
-	 */
-  
+	*/
+   
 }

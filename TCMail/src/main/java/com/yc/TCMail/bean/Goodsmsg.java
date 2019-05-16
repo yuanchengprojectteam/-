@@ -12,7 +12,6 @@ public class Goodsmsg {
 	private String color;
 	private String size;
 	
-	
 
 	@Column(name="gid",length=11)
 	public Integer getGid() {

@@ -9,6 +9,7 @@ public class Image {
 	private Integer id;
 	private Integer gid;
 	private String path;
+	private Integer sid;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,6 +33,14 @@ public class Image {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	@Column(name="sid",length=11)
+	public Integer getSid() {
+		return sid;
+	}
+	
+	public void setSid(Integer sid) {
+		this.sid = sid;
 	}
 	
 }

@@ -28,7 +28,6 @@ public class Goods {
 	private String sum;
 	
 	
-
 	@Transient
 	public String getSum() {
 		return sum;
@@ -47,16 +46,6 @@ public class Goods {
 		this.listGmsg = listGmsg;
 	}
 
-	@Column(name="regtime",length=20)
-	public Date getRegtime() {
-		return regtime;
-	}
-
-
-	public void setRegtime(Date regtime) {
-		this.regtime = regtime;
-
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -168,6 +157,15 @@ public class Goods {
 		this.car = car;
 	}
 	
+
+	@Column(name="regtime",length=50)
+	public Date getRegtime() {
+		return regtime;
+	}
+
+	public void setRegtime(Date regtime) {
+		this.regtime = regtime;
+	}
 
 	@Override
 	public String toString() {

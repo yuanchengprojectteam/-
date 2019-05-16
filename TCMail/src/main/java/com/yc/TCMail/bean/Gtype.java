@@ -69,6 +69,7 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
+
 	@Column(name="sunid",length=11)
 	public Integer getSunid() {
 		return sunid;

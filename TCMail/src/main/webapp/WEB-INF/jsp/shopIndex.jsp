@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html>   
@@ -19,26 +20,33 @@
 </head> 
 <body>
 <jsp:include page="../public/rowHeader.jsp"></jsp:include>
-				<p>智汇礼品官方旗舰店</p>
+				<div class="dianp_logo_beij">
+	<div class="dianp_logo_img">
+		<img src="images/dianp_logo_beij.jpg">
+	</div>
+	<div class="beij_center dianp_xianq_fud_beij">
+		<div class="dianp_mingx">
+			<div class="dianp_minc">
+				<p>${shop.name}</p>
 				<div class="services-stars f_f1"> 
-                    <span class="star"><i style="width:81.2819333333%">星星</i></span>
-                    <span class="score">4.0</span>分
+                    <span class="star"><i style="width:81.2819333333%" id="start">星星</i></span>
+                    <span class="score">${shop.level }</span>分
+                </div>
+                <div class="dianp_sc" >
+                	<a href="#" class="btn-collect" onclick="recivershop()" id="r"><i class="sprite-enter"></i></a>
                 </div>
                 <div class="dianp_sc">
-                	<a href="#" class="btn-collect"><i class="sprite-enter"></i>收藏店铺</a>
-                </div>
-                <div class="dianp_sc">
-                	<a href="#" class="btn-collect"><i class="sprite_3"></i>联系商家</a>
+                	<a href="http://wpa.qq.com/msgrd?v=3&uin=1371490392&site=qq&menu=yes " class="btn-collect"><i class="sprite_3"></i>联系商家</a>
                 </div>
                 <div class="jingr_guanw_anniu">
-                	<a href="#">进入官网</a>
+                	<a href="index">进入官网</a>
                 </div>
 			</div>
 			<div class="dianp_diz">
-				<div class="zuo_diz"><p>地址：贵州省贵阳市云岩区大亨大厦16层</p></div>
+				<div class="zuo_diz"><p>地址：${shop.addr }</p></div>
 				<div class="zuo_diz_2">
-					<span>电话：0852-8667011</span>
-					<span>联系人：潘中全</span>
+					<span>电话：${ShopOwner.phone }</span>
+					<span>联系人：${ShopOwner.realname}</span>
 					<span>营业时间：09:00至18:00</span>
 				</div>
 			</div>
@@ -46,94 +54,56 @@
 	</div>
 </div>
 
+
 <div class="dianp_daoh_beij">
 	<div class="beij_center">
 		<div class="dp_daoh_ul">
 			<ul>
-				<li class="dp_dh_li"><a href="shagnj_dianp.html" class="lin_color">首页</a></li>
+				<li class="dp_dh_li"><a href="shopIndex?id=${shop.id }" class="lin_color">首页</a></li>
 				<li class="dp_dh_li">
-					<a href="shagnj_lieb.html" class="lin_color">全部商品<i class="ci-leftll"><s class="jt">◇</s></i></a>
+					<a href="toshopGoodsShowStyle1?id=${shop.id }&oreason=commnum" class="lin_color">全部商品<i class="ci-leftll"><s class="jt">◇</s></i></a>
 					<div class="quanb_shangp_lieb">
+					<c:forEach items="${GTypes }" var="t">
+					<c:choose>
+						<c:when test="${t.pid==null }">
 						<dl>
-							<dt><a href="#">工艺礼品专区</a></dt>
+							<dt><a href="#">${t.name}</a></dt>
 							<dd>
 								<ul>
-									<li><a href="#">扇子</a></li>
-									<li><a href="#">刀剑</a></li>
-									<li><a href="#">香炉</a></li>
-									<li><a href="#">摆件</a></li>
-								</ul>
+							<c:forEach items="${GTypes }" var="tt">
+									<c:choose>
+										<c:when test="${tt.pid==t.id }">
+											<li><a href="#">${tt.name }</a></li>
+										</c:when>
+									</c:choose>
+							</c:forEach>
+							</ul>
 							</dd>
-						</dl>
-						<dl>
-							<dt><a href="#">美妆礼品</a></dt>
-							<dd>
-								<ul>
-									<li><a href="#">化妆镜</a></li>
-									<li><a href="#">指甲刀</a></li>
-									<li><a href="#">修脚刀</a></li>
-									<li><a href="#">梳子</a></li>
-									<li><a href="#">首饰盒</a></li>
-									<li><a href="#">掏耳朵工具</a></li>
-									<li><a href="#">美妆工具</a></li>
-								</ul>
-							</dd>
-						</dl>
-						<dl>
-							<dt><a href="#">礼品文具专区</a></dt>
-							<dd>
-								<ul>
-									<li><a href="#">日记本/笔记本</a></li>
-									<li><a href="#">同学录</a></li>
-									<li><a href="#">文房四宝</a></li>
-									<li><a href="#">笔类</a></li>
-								</ul>
-							</dd>
-						</dl>
-						<dl>
-							<dt><a href="#">礼盒专区</a></dt>
-							<dd>
-								<ul>
-									<li><a href="#">礼品盒</a></li> 
-								</ul>
-							</dd>
-						</dl>
-						<dl>
-							<dt><a href="#">婚庆节庆</a></dt>
-							<dd>
-								<ul>
-									<li><a href="#">婚房布置</a></li>
-									<li><a href="#">婚庆摆件</a></li>
-									<li><a href="#">喜糖盒</a></li>
-									<li><a href="#">手捧花</a></li>
-								</ul>
-							</dd>
-						</dl> 
-						<dl>
-							<dt><a href="#">情侣礼物专区</a></dt>
-							<dd>
-								<ul>
-									<li><a href="#">送女友/送老婆</a></li>
-									<li><a href="#">送男友/老公</a></li>
-									<li><a href="#">情侣专区</a></li> 
-								</ul>
-							</dd>
-						</dl>
-						<dl>
-							<dt><a href="#">教师节礼物</a></dt>
-							<dd>
-								<ul> 
-								<li></li>
-								</ul>
-							</dd>
-						</dl>
+							</dl>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${GTypes }" var="tt">
+								<c:forEach items="${alltype }" var="a">
+									<c:choose>
+										<c:when test="${tt.pid==a.id }">
+											<dl>
+											<dt><a href="#">${a.name}</a></dt>
+											<dd>
+												<ul>
+													<li><a href="#">${tt.name }</a></li>
+													</ul>
+												</dd>
+											</dl>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 					</div>
 				</li>
-				<li class="dp_dh_li"><a href="#" class="lin_color">分销商品</a></li>
-				<li class="dp_dh_li"><a href="#" class="lin_color">化妆镜</a></li>
-				<li class="dp_dh_li"><a href="#" class="lin_color">摆件</a></li>
-				<li class="dp_dh_li"><a href="#" class="lin_color">连衣裙</a></li>
-				<li class="dp_dh_li"><a href="shagnj_dianp_jies.html" class="lin_color">店铺简介</a></li>
+				<li class="dp_dh_li"><a href="shopintro?id=${shop.id }" class="lin_color">店铺介绍</a></li>
 			</ul>
 		</div>
 	</div>
@@ -143,13 +113,17 @@
 <div class="dianp_banner_brij">
 	<div class="slideBox_dianp">
 		<div class="hd">
-			<ul><li>1</li><li>2</li><li>3</li></ul>
+			<ul>
+				<c:forEach items="${shopImage }" var="i">
+						<li>${i.id}</li>
+					</c:forEach>
+			</ul>
 		</div>
 		<div class="bd">
 			<ul>
-				<li><a href="#" target="_blank"><img src="images/dianp_banner.jpg" /></a></li>
-				<li><a href="#" target="_blank"><img src="images/dianp_banner2.jpg" /></a></li>
-				<li><a href="#" target="_blank"><img src="images/dianp_banner.jpg" /></a></li>
+				<c:forEach items="${shopImage }" var="i">
+					<li><a href="#" target="_blank"><img src="${i.path }" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>  
 		<a class="prev" href="javascript:void(0)"></a>
@@ -173,36 +147,13 @@ jQuery(".slideBox_dianp").slide({mainCell:".bd ul",autoPlay:true});
 	</div>
 	<div class="jinp_tuij_lb">
 		<ul>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli1.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
+			<c:forEach items="${newgoods }" var="ng">
+				<li>
+				<a href="lootbuy?gid=${ng.id }" class="jngp_img"><img src="${ng.image }"></a>
+				<a href="lootbuy?gid=${ng.id }" class="jinp_biaot">${ng.name }</a>
+				<span>￥${ng.price}</span>
 			</li>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
-			</li>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli3.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
-			</li>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
-			</li>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli1.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
-			</li>
-			<li>
-				<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-				<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-				<span>￥139.00</span>
-			</li>
+			</c:forEach>
 		</ul>
 	</div>
 </div>
@@ -226,35 +177,16 @@ jQuery(".slideBox_dianp").slide({mainCell:".bd ul",autoPlay:true});
 			</div>
 			<div class="bd jinp_tuij_lb">
 				<ul class="picList">
-					<li>
-						<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-						<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-						<span>￥139.00</span>
-					</li>
-					<li>
-						<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-						<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-						<span>￥139.00</span>
-					</li>
-					<li>
-						<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-						<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-						<span>￥139.00</span>
-					</li>
-					<li>
-						<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-						<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-						<span>￥139.00</span>
-					</li>
-					<li>
-						<a href="#" class="jngp_img"><img src="images/dianp_anli2.jpg"></a>
-						<a href="#" class="jinp_biaot">思莱德SELECTED夏季新款纯棉撞色饰边翻领</a>
-						<span>￥139.00</span>
-					</li> 
+					<c:forEach items="${hotgoods }" var="hg">
+						<li>
+							<a href="lootbuy?gid=${hg.id }" class="jngp_img"><img src="${hg.image }"></a>
+							<a href="lootbuy?gid=${hg.id }" class="jinp_biaot">${hg.name }</a>
+							<span>￥${hg.price}</span>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
-		0000
 		<script type="text/javascript">
 		jQuery(".picScroll_left_dianp").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:3,scroll:1,trigger:"click"});
 		</script> 
@@ -272,45 +204,68 @@ jQuery(".slideBox_dianp").slide({mainCell:".bd ul",autoPlay:true});
 			<div class="zuoy_xian"></div>
 		</div>
 	</div>
-	<div class="dp_temai_zq">
-		<div class="temai_qian_img">
-			<a href="#"><img src="images/dianp_anli01.jpg"></a>
-			<div class="bianq_yv_q">
-				<a href="#">016春夏秋新款美容师工服工作服</a>
-				<span>￥108.00</span>
-			</div>
-		</div>
-		<div class="tmai_you_lieb">
-			<div class="temai_qian_img">
-				<a href="#"><img src="images/dianp_anli02.jpg"></a>
-				<div class="bianq_yv_q">
-					<a href="#">016春夏秋新款美容师工服工作服</a>
-					<span>￥108.00</span>
-				</div>
-			</div>
-			<div class="temai_qian_img">
-				<a href="#"><img src="images/dianp_anli01.jpg"></a>
-				<div class="bianq_yv_q">
-					<a href="#">016春夏秋新款美容师工服工作服</a>
-					<span>￥108.00</span>
-				</div>
-			</div>
-			<div class="temai_qian_img">
-				<a href="#"><img src="images/dianp_anli02.jpg"></a>
-				<div class="bianq_yv_q">
-					<a href="#">016春夏秋新款美容师工服工作服</a>
-					<span>￥108.00</span>
-				</div>
-			</div>
-			<div class="temai_qian_img">
-				<a href="#"><img src="images/dianp_anli01.jpg"></a>
-				<div class="bianq_yv_q">
-					<a href="#">016春夏秋新款美容师工服工作服</a>
-					<span>￥108.00</span>
-				</div>
-			</div> 
-		</div>
-	</div>
-</div>
 
+	<div class="dp_temai_zq">
+		<c:forEach items="${discountgoods }" var="dg" begin="0" end="0">
+					<div class="temai_qian_img">
+						<a href="lootbuy?gid=${dg.id }"><img src="${dg.image }" style="width: 391px;height: 499px;"></a>
+						<div class="bianq_yv_q">
+							<a href="lootbuy?gid=${dg.id }">${dg.name }</a>
+							<span>￥${dg.price }</span>
+						</div>
+					</div>
+		</c:forEach>
+		<div class="tmai_you_lieb">
+			<c:forEach items="${discountgoods }" var="dg" begin="1">
+					<div class="temai_qian_img">
+						<a href="lootbuy?gid=${dg.id }"><img src="${dg.image }" style="width: 388px;"></a>
+						<div class="bianq_yv_q">
+							<a href="lootbuy?gid=${dg.id }">${dg.name }</a>
+							<span>￥${dg.price }</span>
+						</div>
+					</div>
+			</c:forEach>
+		</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+if('${sessionScope.loginedUser}'){
+	$.ajax({
+		url:"haveReciver",
+		data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
+		type:"post",
+		success:function(result){
+			if(result=='yes'){
+   				document.getElementById('r').innerHTML='已收藏';
+   			 }else{
+   				document.getElementById('r').innerHTML='加入收藏';
+   			 }
+		}
+	});
+}else{
+	document.getElementById('r').innerHTML='加入收藏';
+}
+});
+var  i=parseInt('${shop.level}');
+document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
+function recivershop(){
+	if('${sessionScope.loginedUser}'){
+		$.ajax({
+			url:"reciver", 					//url地址
+	   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
+	   		 type:"post",   				 //传输方式，get / post
+	   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
+	   			 if(result=='yes'){
+	   				document.getElementById('r').innerHTML='已收藏';
+	   			 }else{
+	   				document.getElementById('r').innerHTML='收藏失败';
+	   			 }
+	   		 }
+	});
+	}else{
+		$("#r")[0].href="tologin";
+	}
+}
+
+</script>
 <jsp:include page="../public/BeforeFoot.jsp"></jsp:include>
