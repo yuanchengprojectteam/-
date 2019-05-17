@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.yc.TCMail.bean.Goods;
@@ -29,6 +30,7 @@ import com.yc.TCMail.bean.Image;
 import com.yc.TCMail.bean.PageBean;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.imply.UorderBiz;
 import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
 
@@ -54,6 +56,9 @@ public class IndexController {
 	@Resource
 	private  ImageBiz   iBiz;
 	
+	@Resource
+	private UorderBiz uoBiz;
+	
 	@ModelAttribute
 	public  void init(Model model){
 		List<Gtype> list= gbiz.AllType();	
@@ -62,6 +67,8 @@ public class IndexController {
 		model.addAttribute("goodsmsg", goods);
 		
 	}
+	
+	
 	
 	@RequestMapping("scodeShop")
 	public String gogo() {
@@ -84,8 +91,10 @@ public class IndexController {
 		return "PersonInfo";
 	}
 	@RequestMapping("PersonCenter")
-	public  String  goCenter(@SessionAttribute("loginedUser") User user,Model model) {
+	public  String  goCenter(@SessionAttribute("loginedUser") User user,Model model,PageBean pageData) {
 		model.addAttribute("cglist",ci.selectCarGoods(user.getId(),0));
+		model.addAttribute("OrderList", uoBiz.findWaitSendOrder(pageData.getCurrentPage(),user));
+		
 		return "PersonCenter";
 	}
 	@RequestMapping("toSecurity")
