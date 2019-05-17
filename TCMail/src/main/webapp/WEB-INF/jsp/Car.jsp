@@ -46,21 +46,21 @@
 			<ul class="header-right">
 				<li class="denglu dengl_hou">
 					<div>
-						<a class="red" href="dengl.html">Hi~山的那边是海</a> <i
+						<a class="red" href="tologin">Hi~ ${loginedUser.name }</a> <i
 							class="icon_plus_nickname"></i> <i class="ci-leftll"> <s
 							class="jt">◇</s>
 						</i>
 					</div>
 					<div class="dengl_hou_xial_k">
 						<div class="zuid_xiao_toux">
-							<a href="shez_toux.html"><img src="images/toux.png"></a>
+							<a href="header"><img src="images/toux.png"></a>
 						</div>
 						<div class="huiy_dengj">
-							<a class="tuic_" href="index.html">退出</a>
+							<a class="tuic_" href="tologin">退出</a>
 						</div>
 						<div class="toub_zil_daoh">
 							<a href="wod_dingd.html">待处理订单</a> <a href="wod_shouc.html">我的收藏</a>
-							<a href="ger_xinx.html">个人资料</a>
+							<a href="toPersonmessage">个人资料</a>
 						</div>
 					</div>
 				</li>
@@ -114,7 +114,7 @@
 	<div class="beij_center">
 		<div class="cart-main-header clearfix">
 			<div class="cart-col-1">
-				<input type="checkbox" id="up" onclick="checkAll()"
+				<input type="checkbox"  onclick="checkAll(this)"
 					class="jdcheckbox">
 			</div>
 			<div class="cart-col-2">全选</div>
@@ -130,6 +130,7 @@
 			<div class="cart-col-7">操作</div>
 		</div>
 	</div>
+<form action="nraaa" method="post" id="carForm">
 	<div class="container">
 		<c:forEach items="${cglistcar }" var="g">
 			<div class="cart-shop-header">
@@ -143,13 +144,15 @@
 			<div class="cart-shop-goods dangq_honh">
 				<div class="cart-shop-good">
 					<div class="cart-col-1">
-						<br /> <input type="checkbox" name="c${g.car.id }"
+						<br/> <input type="checkbox" name="checked"
 							id="checkboxx${g.car.id }" class="jdcheckbox"
 							onclick="changenumber('${g.car.id }')">
+							
 					</div>
+					<input type="hidden"  name="cid"  value="${g.car.id }">
 					<div class="cart-col-2" style="height: 82px;">
 						<a href="shangp_xiangq.html" target="_blank" class="g-img"><img
-							src="${g.image }" alt=""></a>
+							src="${g.image }" alt="商品图片"></a>
 					</div>
 					<div class="fl houj_c">
 						<div class="cart-dfsg">
@@ -167,7 +170,7 @@
 							<div class="red"></div>
 						</div>
 						<div class="cart-col-5">
-							<div class="gui-count cart-count"">
+							<div class="gui-count cart-count">
 								<input id="min_${g.car.id}" name="" onclick="del(${g.car.id})"
 									type="button" value="-" class="gui-count-btn gui-count-add"">
 								<input id="text_box_${g.car.id}" name="num" onchange="can(this)"
@@ -176,7 +179,7 @@
 								<input id="add_${g.car.id}" name="" type="button" value="+"
 									onclick="add(${g.car.id})"
 									class="gui-count-btn gui-count-sub gui-count-disabled">
-								<input type="hidden" name="goods_${g.id }" value="${g.id }">
+								
 							</div>
 						</div>
 						<div class="cart-col-6 ">
@@ -203,7 +206,7 @@
 				<input type="checkbox" class="jdcheckbox">
 			</div>
 			<div class="qianm_shanc_yvf">
-				<span onclick="checkAll()">全选</span> <a href="#"
+				<span onclick="checkAll(this)">全选</span> <a href="#"
 					onclick="deleteFCar()">删除</a>
 			</div>
 			<div class="jies_ann_bei">
@@ -211,10 +214,16 @@
 					已选 <em id="allnumber">0</em> 件商品 总计（不含运费）：<span id="shouldPayMoney">￥
 						0.00</span>
 				</p>
-				<a href="addOrder" class="order_btn">去结算</a>
+			
+				
+				<a href="#"  onclick="carForm.submit()"   class="order_btn">去结算</a>
+				
 			</div>
 		</div>
+		
 	</div>
+
+</form>
 
 	<div class="beij_center">
 		<div class="investment_f">
@@ -445,6 +454,7 @@
 
 
 	<script type="text/javascript">
+	
 	function changenumber(id){
 		var boolea=$("#checkboxx"+id)[0].checked;
 		var oneMoney=parseInt($("#numgoods"+id).html().substring(2,$("#numgoods"+id).html().length));
@@ -452,7 +462,7 @@
 		if(boolea){
 			$("#shouldPayMoney").html("￥ "+(oneMoney+allMoney));
 		}else{
-			if(allMoney==0){
+			if(allMoney<=0){
 				$("#shouldPayMoney").html("￥ "+0);
 			}
 			$("#shouldPayMoney").html("￥ "+(allMoney-oneMoney));
@@ -515,10 +525,6 @@
 		}; 
 	}
 	
-	
-	function checkAll(){
-		
-	}
 
 $(function(){
 		
@@ -540,20 +546,13 @@ $(function(){
   tabs(".investment_title","on_d",".investment_con");
   
 })
- var time=0;
-function checkAll(){
-	if(time==0){
-		$("input[name^='c']").prop("checked",true);
-		time++;
-		return;
-	}
-	if(time==1){
-		$("input[name^='c']").prop("checked",false);
-		time--;
-		return;
-	}
-	
 
+function checkAll(obj){
+	var bool=obj.checked;
+	var obj=$("input[name^='checked']");
+	for(var i=0;i<obj.size();i++){
+		obj[i].checked=bool;
+	}
 } 
 
 

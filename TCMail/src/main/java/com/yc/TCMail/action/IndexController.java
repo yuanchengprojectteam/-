@@ -63,6 +63,11 @@ public class IndexController {
 		
 	}
 	
+	@RequestMapping("newIndex")
+	public String newIndex() {
+		return "newIndex";
+	}
+	
 	@RequestMapping("scodeShop")
 	public String gogo() {
 		return "scodeShop";

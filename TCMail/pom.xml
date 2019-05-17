@@ -199,7 +199,11 @@
 		</dependency>
 
 		<!-- 支付宝扫码支付 -->
-		
+		<dependency>
+            <groupId>com.alipay.api</groupId>
+            <artifactId>k12-alipay-sdk</artifactId>
+            <version>0.0.1-beta</version>
+		</dependency>
 	</dependencies>
 
 	<build>
