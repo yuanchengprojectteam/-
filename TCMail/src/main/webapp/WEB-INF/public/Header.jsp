@@ -23,17 +23,17 @@
 			<ul class="header-right">
 				<li class="denglu dengl_hou">
 					<div>
-						<a class="red" href="dengl.html">Hi~山的那边是海</a> <i
+						<a class="red" href="dengl.html">Hi~${sessionScope.loginedUser.account }</a> <i
 							class="icon_plus_nickname"></i> <i class="ci-leftll"> <s
 							class="jt">◇</s>
 						</i>
 					</div>
 					<div class="dengl_hou_xial_k">
 						<div class="zuid_xiao_toux">
-							<a href="shez_toux.html"><img src="images/toux.png"></a>
+							<a href="shez_toux.html"><img src="${sessionScope.loginedUser.image }"></a>
 						</div>
 						<div class="huiy_dengj">
-							<a class="tuic_" href="index.html">退出</a>
+							<a class="tuic_" href="OutOfLogined">退出登录</a>
 						</div>
 						<div class="toub_zil_daoh">
 							<a href="wod_dingd.html">待处理订单</a> <a href="wod_shouc.html">我的收藏</a>

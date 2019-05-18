@@ -12,7 +12,7 @@
 							</div>
 						</div>
 						<div class="user_name_Level">
-							<p class="user_name" title="${SessionScope.loginedUser.name }">${sessionScope.loginedUser.name }</p>
+							<p class="user_name" title="${sessionScope.loginedUser.name }">${sessionScope.loginedUser.name }</p>
 							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
 						</div>
 					</div>
