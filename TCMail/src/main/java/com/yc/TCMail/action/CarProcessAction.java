@@ -9,16 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.Goods;
+import com.yc.TCMail.bean.Result;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.imply.BizException;
+import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
 
 @Controller
@@ -26,6 +31,27 @@ public class CarProcessAction {
 	
 	@Autowired
 	HbUtil hb;
+	@Autowired
+	carImply ci;
+	
+	@RequestMapping("car")
+	public String car(@SessionAttribute("loginedUser") User user,Model model) {
+		model.addAttribute("CarList", ci.selectCarByUser(user));
+		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
+		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
+		return "Car";
+	}
+	
+	@PostMapping("operateOfCar")
+	@ResponseBody
+	public Result operateOfCar(Integer operate,Integer id,Integer num) {
+		try {
+			return ci.operateCar(operate,id,num);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return Result.failure("系统繁忙,请稍后再试~");
+		}
+	}
 	
 	@PostMapping("delfromCar")
 	public void delFromCar(Car car,HttpServletResponse resp) {
