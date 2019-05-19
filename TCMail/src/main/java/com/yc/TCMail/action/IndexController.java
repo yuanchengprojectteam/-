@@ -168,12 +168,7 @@ public class IndexController {
 		return "UserSecurity";
 	}
 	
-	@RequestMapping("car")
-	public String car(@SessionAttribute("loginedUser") User user,Model model) {
-		model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
-		System.out.println("---"+ci.selectCarGoods(user.getId(),1));
-		return "Car";
-	}
+	
 	
 	/*@RequestMapping("addOrder")
 	public String addOrder() {

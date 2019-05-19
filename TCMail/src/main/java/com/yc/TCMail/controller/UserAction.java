@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aliyun.oss.ClientException;
@@ -129,6 +130,12 @@ public class UserAction {
 		System.out.println("phone:" + phone);
 		HttpUtil.SMS(code, phone);
 	}
+	@RequestMapping("OutOfLogined")
+	public String outOfLogined(SessionStatus sessionStatu) {
+		sessionStatu.setComplete();
+		return "redirect:index";
+	}
+	
 	
 	@RequestMapping("PhoneUpdate")
 public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throws IOException {
