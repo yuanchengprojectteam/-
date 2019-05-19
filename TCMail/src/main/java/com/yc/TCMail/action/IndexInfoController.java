@@ -42,7 +42,7 @@ public class IndexInfoController {
 	private GoodsMapper gm;
 	
 	
-	@RequestMapping("index")
+	@RequestMapping("newindex")
 	public String toIndex(Model model,HttpServletRequest request) {  //,@SessionAttribute("loginedUser") User user
 		model.addAttribute("GtypeList", igBiz.findAllGtype());
 		List<Car> ret = iiBiz.findCarByUser((User)request.getSession().getAttribute("loginedUser"));

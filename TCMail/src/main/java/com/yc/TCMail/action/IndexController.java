@@ -2,6 +2,7 @@ package com.yc.TCMail.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
+import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Goodsmsg;
 import com.yc.TCMail.bean.Gtype;
@@ -30,6 +32,9 @@ import com.yc.TCMail.bean.Image;
 import com.yc.TCMail.bean.PageBean;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.GoodsMapper;
+import com.yc.TCMail.imply.IndexImply;
+import com.yc.TCMail.imply.IndexInfoBiz;
 import com.yc.TCMail.imply.UorderBiz;
 import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
@@ -59,18 +64,46 @@ public class IndexController {
 	@Resource
 	private UorderBiz uoBiz;
 	
+	@Autowired
+	private IndexImply ib;
+	
+	@Resource
+	private IndexInfoBiz iiBiz;
+	@Resource
+	private GoodsMapper gm;
+	
 	@ModelAttribute
 	public  void init(Model model){
 		List<Gtype> list= gbiz.AllType();	
 		List<Goodsmsg> goods=gmBiz.Allgoods();
 		model.addAttribute("types", list);
 		model.addAttribute("goodsmsg", goods);
-		
 	}
 	
 
-	@RequestMapping("newIndex")
-	public String newIndex() {
+	@RequestMapping("index")
+	public String newIndex(Model model,HttpServletRequest req) {
+		
+		List<Gtype> oneType=ib.levelOneType();
+		List<Gtype> twoType=ib.levelTowType();
+		List<Gtype> threeType=ib.levelThreeTypeAndGoods();
+		List<Goods> hotGoods=ib.getHotGoods();
+		List<Goods> specialGoodsup=ib.getSpecialGoodsUp();
+		List<Goods> specialGoodsDown=ib.getSpecialGoodsDown();
+		User user=(User) req.getSession().getAttribute("loginedUser");
+		if(user != null) {
+			model.addAttribute("carGoods", ib.getCarGoodsList(user.getId()));
+		}
+		
+		System.out.println(oneType+"========================");
+		model.addAttribute("typeOne", oneType);
+		model.addAttribute("typeTwo", twoType);
+		model.addAttribute("typeThree", threeType);
+		model.addAttribute("specialGoodsUp", specialGoodsup);
+		model.addAttribute("specialGoodsDown", specialGoodsDown);
+		model.addAttribute("first", gm.getSpecialGoodsFirst());
+		model.addAttribute("hotGoods", hotGoods);
+		
 		return "newIndex";
 	}
 

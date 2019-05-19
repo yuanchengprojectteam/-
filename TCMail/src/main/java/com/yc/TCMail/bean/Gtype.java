@@ -14,7 +14,6 @@ public class Gtype {
 	private List<Gtype> childType;
 	private Gtype superType;
 	private List<Gtype> gsonType;
-	
 	private List<Goods> goodsList;
 	
 	

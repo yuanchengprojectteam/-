@@ -17,6 +17,7 @@ public class Comment {
 	private String commenttime;
 	private String img;
 	private Integer gid;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

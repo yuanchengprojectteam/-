@@ -1,5 +1,6 @@
 package com.yc.TCMail.dao;
 
+import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.GtypeExample;
 import java.util.List;
@@ -140,4 +141,14 @@ public interface GtypeMapper {
 >>>>>>> refs/remotes/origin/master
      */
     int updateByPrimaryKey(Gtype record);
+    
+    
+	Gtype selectThreeTypeWithGoods(@Param("id")int id);
+	
+	
+	List<Gtype> selectFourGtypeByPid(@Param("pid")int pid);
+	
+	List<Gtype> selectFourGtypeBySunid(@Param("sunid")int sunid);
+	
+	
 }

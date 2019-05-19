@@ -12,18 +12,46 @@
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="size" jdbcType="VARCHAR" property="size" />
-
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="regtime" jdbcType="DATE" property="regtime" />
-
-
   </resultMap>
   
 
 	<resultMap type="com.yc.TCMail.bean.Goods" id="BaseResultMap1" extends="BaseResultMap">
   	 <association property="shop" column="sid" select="com.yc.TCMail.dao.ShopMapper.selectShopByID" 
   	fetchType="lazy"></association>
-  </resultMap>  
+  </resultMap>
+  
+  
+   <select id="getSpecialGoodsFirst" resultMap="BaseResultMap">
+  	select H.id,H.sid,H.tid,H.size,H.num,H.name,H.price,H.image,H.commnum from 
+	(select * from goods left join (SELECT  gid,count(*) as count FROM `orderdetail` group by gid)
+	M on M.gid = goods.id ) H order by H.count asc limit 0,1
+  </select>
+  
+  
+  <select id="getSpecialGoodsUp" resultMap="BaseResultMap">
+  	select H.id,H.sid,H.tid,H.size,H.num,H.name,H.price,H.image,H.commnum from 
+	(select * from goods left join (SELECT  gid,count(*) as count FROM `orderdetail` group by gid)
+	M on M.gid = goods.id ) H order by H.count asc limit 1,2
+  </select>
+  
+   <select id="getSpecialGoodsDown" resultMap="BaseResultMap">
+  	select H.id,H.sid,H.tid,H.size,H.num,H.name,H.price,H.image,H.commnum from 
+	(select * from goods left join (SELECT  gid,count(*) as count FROM `orderdetail` group by gid)
+	M on M.gid = goods.id ) H order by H.count asc limit 3,2
+  </select>
+  
+  <select id="getHotGoods" resultMap="BaseResultMap" >
+  	select H.id,H.sid,H.tid,H.size,H.num,H.name,H.price,H.image,H.commnum from 
+	(select * from goods left join (SELECT  gid,count(*) as count FROM `orderdetail` group by gid)
+	M on M.gid = goods.id ) H order by H.count desc limit 6
+  </select>  
+  
+  <select id="selectGoodsByTidnew" resultMap="BaseResultMap">
+  		select * from goods where tid= #{id}
+  </select>
+  
   
   <select id="selectWithTime" resultMap="BaseResultMap">
   	select * from goods  order by regtime desc limit 6

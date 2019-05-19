@@ -27,7 +27,7 @@ input{}
 	margin:0 auto;
 }
 
-/*侧边栏*/
+/*渚ц竟鏍�*/
 .jdm-toolbar-wrap {
 position: fixed; 
 _position: absolute;
@@ -112,7 +112,7 @@ height: 35px;
 line-height: 35px;
 color: #fff;
 text-align: center;
-font-family: "微软雅黑";
+font-family: "寰蒋闆呴粦";
 position: absolute;
 z-index: 1;
 left: 35px;
@@ -147,7 +147,7 @@ _display: block;
 }
 .jdm-toolbar-tab:hover .tab-ico{background-color: #c81623;}
 
-/*顶部*/
+/*椤堕儴*/
 #header{clear:both;width:100%;height:35px;line-height:35px;background:#eee; border-bottom:solid 1px #dadada;}
 .header-box{width:1210px;margin:0 auto;}
 .header-box .huany{float: left; display: inline-block; margin: 0 5px; font-size: 14px;}
@@ -162,7 +162,7 @@ _display: block;
 	-webkit-transition: -webkit-transform .1s ease-in 0s;color:#6a6a6a;-moz-transition: -moz-transform .1s ease-in 0s;}
 #header li:hover .ci-right{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);}
 #header li:hover .ci-leftll{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);}
-/*地标*/
+/*鍦版爣*/
 .bj{border-left:1px solid #eee;border-right:1px solid #eee;}
 .bj .dib{ display:inline-block; padding-left: 22px; background: url(../images/toub_tub.png) no-repeat; background-position:0 -294px; display: list-item;  }
 .bj:hover{background:#fff;border-left:1px solid #ccc;border-right:1px solid #ccc;}
@@ -183,7 +183,7 @@ _display: block;
 .header-left li:hover .bj-1{display:block;}
 .header-left li .bj-1 a:hover {padding:2px 5px;background:#eee;}
 
-/*网站导航2级菜单*/
+/*缃戠珯瀵艰埅2绾ц彍鍗�*/
 .shouji1{width:282px;height:240px;border:1px solid #ccc;border-top:none;position:absolute;right:-1px;top:35px;display:none; z-index: 100;}
 .shouji:hover .shouji1{display:block;background:#fff; z-index: 100;}
 .shouji4{width:90px;height:90px;margin:10px;}
@@ -195,7 +195,7 @@ _display: block;
 .er p{height:22px;}
 
 
-/*-----logo栏----------------*/
+/*-----logo鏍�----------------*/
 .toub_beij {
 	width: 1210px;
 	margin: 0 auto;
@@ -412,7 +412,7 @@ _display: block;
 }
 
 
-/*轮播图上方 导航栏 横向一栏*/
+/*杞挱鍥句笂鏂� 瀵艰埅鏍� 妯悜涓�鏍�*/
 #navv{clear:both;position:relative;background:#fff;height:49px; border-top: solid 1px #dfdfdf;}
 .clear{clear:both;}
 .focus{width:1210px;margin:0 auto;height:49px;position:relative;}
@@ -428,7 +428,7 @@ position: absolute;
     border-right: solid 1px #dfdfdf;
     text-align: center;
  }
-.focus .focus-a .fouc-font a{color:#3c4042;font-size:20px; display: inline-block; line-height: 45px; font-family: "微软雅黑";}
+.focus .focus-a .fouc-font a{color:#3c4042;font-size:20px; display: inline-block; line-height: 45px; font-family: "寰蒋闆呴粦";}
 .focus .focus-b{width:900px;position:absolute;top:15px;left:290px;}
 .focus .focus-b ul li{float:left;padding:0 20px;}
 .focus .focus-b ul li a{color:#333;font-size:16px;}
@@ -437,7 +437,7 @@ position: absolute;
 .nav-img{height:10px;width:100%;position:absolute;top:40px;}
 
 
-/*轮播图左边当行蓝*/
+/*杞挱鍥惧乏杈瑰綋琛岃摑*/
 .dd-inner{
 	height:451px;
 	background:rgba(0,0,0,0.5);
@@ -510,7 +510,7 @@ position: absolute;
 .fore-7:hover .item{background:rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#5f000000,endColorstr=#5f000000);}
 
 
-/*轮播图*/
+/*杞挱鍥�*/
 #lunbo{clear:both;position:relative;overflow:hidden; }
 #one{height:451px; position: relative; margin-left: -960px; left: 50%;}
 #one li{float:left;width:0;}
@@ -533,7 +533,7 @@ position: absolute;
     overflow: hidden;
     text-align: center
 }          
-/*轮播图左右箭头*/
+/*杞挱鍥惧乏鍙崇澶�*/
 
 .slider-page{display:none;}
 .slider-page a{display:block;width:28px;height:62px;line-height:62px;background: rgba(0,0,0,.2);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#32000000, endColorstr=#32000000);color: #fff;text-align: center;font-size: 22px;font-weight: 400;margin-top: -31px;font-family: simsun;}
@@ -544,7 +544,7 @@ position: absolute;
 
 
 
-/*<!--内容一开始了-->*/
+/*<!--鍐呭涓�寮�濮嬩簡-->*/
 
 .bend_beij{
 	width: 1200px; 
@@ -568,7 +568,7 @@ position: absolute;
 .neir_biaot p{
 	float: left;
 	color: #3c4042;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 20px;
 	line-height: 40px;
 	margin-right: 10px;
@@ -615,7 +615,7 @@ position: absolute;
 
 .kuang_1 .jiank_meis_wenz p{
 	font-size: 18px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 }
 
 .dianq_qvy{
@@ -635,7 +635,7 @@ position: absolute;
 .dianq_qvy .shiq h2{
 	background: url(../images/t-107.png) left center no-repeat;
 	padding-left:20px; 
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	margin: 5px 0 10px 0;
 }
 .dianq_qvy .shiq ul{
@@ -717,7 +717,7 @@ position: absolute;
 .picScroll_left_1 .bd ul li .pic img{ width:291px; height:212px; display:block;  padding:2px;   }
 .picScroll_left_1 .bd ul li .pic a:hover img{ border-color:#999;  }
 .picScroll_left_1 .bd ul li .title{ line-height:24px;  overflow: hidden;text-align: left;position: relative; }
-.picScroll_left_1 .bd ul li .title a{color: #6e6e6e;font-size: 18px;line-height: 25px; margin-top: 5px; font-family: "微软雅黑"; display: inline-block;}
+.picScroll_left_1 .bd ul li .title a{color: #6e6e6e;font-size: 18px;line-height: 25px; margin-top: 5px; font-family: "寰蒋闆呴粦"; display: inline-block;}
 .picScroll_left_1 .bd ul li .title span{display: block; color: #939393;}
 .picScroll_left_1 .bd ul li .title p{
 	position: absolute;
@@ -776,12 +776,12 @@ padding: 5px 0 0 0;
 
 .toum_ .jiank_meis_wenz_1 p{
 	font-size: 18px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 }
 
 
 
-/*快速通道栏*/
+/*蹇�熼�氶亾鏍�*/
 .kuanjlan{
 	width: 1200px;
 	padding: 20px 0;
@@ -859,66 +859,66 @@ padding: 5px 0 0 0;
 
 
 
-/* 楼层*/
+/* 妤煎眰*/
 .chengc_jvz{
 	width: 1200px;
 	margin:30px auto;
 	
 }
 
-/*一层*/
+/*涓�灞�*/
 .slideTxtBox{  text-align:left;  }
 .slideTxtBox .hd{ height:30px; line-height:30px; border-bottom:1px solid #d42a8c;  position:relative; }
 .slideTxtBox .hd h1{height: 25px; padding-left:38px;background: url(../images/sanye_c.png)no-repeat;
-	background-position: 0 5px;font-family: "微软雅黑";color: #3c4042;font-size: 20px; float: left;
+	background-position: 0 5px;font-family: "寰蒋闆呴粦";color: #3c4042;font-size: 20px; float: left;
 }
 .slideTxtBox .hd h1 p{float: left;margin-right: 5px;}
 .slideTxtBox .hd h1 .yingw_{color: #aaa;text-transform: uppercase;}
 .slideTxtBox .hd ul{   position:absolute; right:0px; top:0px; height:32px;   }
-.slideTxtBox .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "微软雅黑";}
+.slideTxtBox .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "寰蒋闆呴粦";}
 .slideTxtBox .hd ul li.on{ height:30px;  background:#d42a8c; color: #fff; }
 .slideTxtBox .bd ul{ padding:20px 0;  zoom:1;   overflow: hidden;}
 .slideTxtBox .bd li{ height:24px; line-height:24px;   }
 .slideTxtBox .bd li .date{ float:right; color:#999;  }
 
-/*二层*/
+/*浜屽眰*/
 .slideTxtBox2{  text-align:left;  }
 .slideTxtBox2 .hd{ height:30px; line-height:30px; border-bottom:1px solid #6585d2;  position:relative; }
 .slideTxtBox2 .hd h1{height: 25px; padding-left:38px;background: url(../images/sanye_c.png)no-repeat;
-	background-position: 0 -25px;font-family: "微软雅黑";color: #3c4042;font-size: 20px; float: left;
+	background-position: 0 -25px;font-family: "寰蒋闆呴粦";color: #3c4042;font-size: 20px; float: left;
 }
 .slideTxtBox2 .hd h1 p{float: left;margin-right: 5px;}
 .slideTxtBox2 .hd h1 .yingw_{color: #aaa;text-transform: uppercase;}
 .slideTxtBox2 .hd ul{   position:absolute; right:0px; top:0px; height:32px;   }
-.slideTxtBox2 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "微软雅黑";}
+.slideTxtBox2 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "寰蒋闆呴粦";}
 .slideTxtBox2 .hd ul li.on{ height:30px;  background:#6585d2; color: #fff; }
 .slideTxtBox2 .bd ul{ padding:20px 0;  zoom:1;   overflow: hidden;}
 .slideTxtBox2 .bd li{ height:24px; line-height:24px;   }
 .slideTxtBox2 .bd li .date{ float:right; color:#999;  }
-/*三层*/
+/*涓夊眰*/
 .slideTxtBox3{  text-align:left;  }
 .slideTxtBox3 .hd{ height:30px; line-height:30px; border-bottom:1px solid #45b897;  position:relative; }
 .slideTxtBox3 .hd h1{height: 25px; padding-left:38px;background: url(../images/sanye_c.png)no-repeat;
-	background-position: 0 -50px;font-family: "微软雅黑";color: #3c4042;font-size: 20px; float: left;
+	background-position: 0 -50px;font-family: "寰蒋闆呴粦";color: #3c4042;font-size: 20px; float: left;
 }
 .slideTxtBox3 .hd h1 p{float: left;margin-right: 5px;}
 .slideTxtBox3 .hd h1 .yingw_{color: #aaa;text-transform: uppercase;}
 .slideTxtBox3 .hd ul{   position:absolute; right:0px; top:0px; height:32px;   }
-.slideTxtBox3 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "微软雅黑";}
+.slideTxtBox3 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "寰蒋闆呴粦";}
 .slideTxtBox3 .hd ul li.on{ height:30px;  background:#45b897; color: #fff; }
 .slideTxtBox3 .bd ul{ padding:20px 0;  zoom:1;   overflow: hidden;}
 .slideTxtBox3 .bd li{ height:24px; line-height:24px;   }
 .slideTxtBox3 .bd li .date{ float:right; color:#999;  }
-/*四层*/
+/*鍥涘眰*/
 .slideTxtBox4{  text-align:left;  }
 .slideTxtBox4 .hd{ height:30px; line-height:30px; border-bottom:1px solid #2587c5;  position:relative; }
 .slideTxtBox4 .hd h1{height: 25px; padding-left:38px;background: url(../images/sanye_c.png)no-repeat;
-	background-position: 0 -75px;font-family: "微软雅黑";color: #3c4042;font-size: 20px; float: left;
+	background-position: 0 -75px;font-family: "寰蒋闆呴粦";color: #3c4042;font-size: 20px; float: left;
 }
 .slideTxtBox4 .hd h1 p{float: left;margin-right: 5px;}
 .slideTxtBox4 .hd h1 .yingw_{color: #aaa;text-transform: uppercase;}
 .slideTxtBox4 .hd ul{   position:absolute; right:0px; top:0px; height:32px;   }
-.slideTxtBox4 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "微软雅黑";}
+.slideTxtBox4 .hd ul li{ float:left; padding:0 15px; cursor:pointer;  font-size: 16px; font-family: "寰蒋闆呴粦";}
 .slideTxtBox4 .hd ul li.on{ height:30px;  background:#2587c5; color: #fff; }
 .slideTxtBox4 .bd ul{ padding:20px 0;  zoom:1;   overflow: hidden;}
 .slideTxtBox4 .bd li{ height:24px; line-height:24px;   }
@@ -996,9 +996,9 @@ padding: 5px 0 0 0;
     background: #878787 ;
     border-radius: 4px;
     -moz-border-radius: 4px; /* Firefox */
-    -webkit-border-radius: 4px; /* Safari 和 Chrome */
-    border-radius: 4px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
-    behavior: url(ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+    -webkit-border-radius: 4px; /* Safari 鍜� Chrome */
+    border-radius: 4px; /* Opera 10.5+, 浠ュ強浣跨敤浜咺E-CSS3鐨処E娴忚鍣� */
+    behavior: url(ie-css3.htc); /* 閫氱煡IE娴忚鍣ㄨ皟鐢ㄨ剼鏈綔鐢ㄤ簬'box'绫� */
 }
 .current{
     background:#d42a8c;
@@ -1120,7 +1120,7 @@ padding: 5px 0 0 0;
 
 .you_shangp_lieb ._you_neir_biaot{
 	font-size: 14px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	line-height: 20px;
 }
 .you_shangp_lieb span{
@@ -1189,7 +1189,7 @@ padding: 5px 0 0 0;
 
 }*/
 
-/*广告图*/
+/*骞垮憡鍥�*/
 .guangg_tu{
 	width: 1200px;
 	height: 135px;
@@ -1200,7 +1200,7 @@ padding: 5px 0 0 0;
 
 
 
-/*特色商品/ 热门商品*/
+/*鐗硅壊鍟嗗搧/ 鐑棬鍟嗗搧*/
 
 .tes_shnagp_beij{
 	width: 1200px; 
@@ -1261,7 +1261,7 @@ padding: 5px 0 0 0;
 	font-size: 16px;
 	color: #e10601;
 	line-height: 25px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 }
 .tes_xiaot_beij{
 	width: 467px;
@@ -1298,7 +1298,7 @@ padding: 5px 0 0 0;
 	overflow: hidden;
 }
 .tes_xiaot_neir h1 .tes_xiaot_dongh{
-	width: 85px;
+	width: 90px;
 	height: 124px;
 	overflow: hidden;
 }
@@ -1328,7 +1328,7 @@ padding: 5px 0 0 0;
 	font-size: 16px;
 	color: #e10601;
 	line-height: 25px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 }
 
 
@@ -1404,7 +1404,7 @@ padding: 5px 0 0 0;
 	font-size: 18px;
 	color: #3c4042;
 	display: inline-block;
-	font-family:"微软雅黑";
+	font-family:"寰蒋闆呴粦";
 	margin: 0 40px;
 }
 .shangp_baoz  .beng1{
@@ -1435,7 +1435,7 @@ padding: 5px 0 0 0;
 .lieb_daoh h4{
 	color: #2c2e2f;
 	font-size: 16px;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	margin-bottom: 15px;
 }
 .lieb_daoh a{
@@ -1457,7 +1457,7 @@ padding: 5px 0 0 0;
 .kef_dianh p{
 	font-size: 16px;
 	color: #6a6a6a;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 }
 .kef_dianh span{
 	color: #e82b5b;
