@@ -5,7 +5,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="retgoods",catalog="tcmail")
-public class Retgoods {
+public class Retgoods  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer odetailid;
 	@NotEmpty(message="请选择您的退款原因!!")

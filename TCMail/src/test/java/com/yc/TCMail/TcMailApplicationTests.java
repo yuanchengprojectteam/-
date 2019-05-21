@@ -20,10 +20,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Orderdetail;
 import com.yc.TCMail.bean.Shop;
+import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.GtypeMapper;
+import com.yc.TCMail.dao.OrderdetailMapper;
+import com.yc.TCMail.dao.UorderMapper;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
@@ -47,12 +51,23 @@ public class TcMailApplicationTests {
     @Autowired
     private GtypeMapper gm;
     
+    @Resource
+    private UorderMapper uom;
+    
+    @Resource
+    private OrderdetailMapper odm;
+    
     @Autowired
     private GoodsMapper gom;
 	
 	@Test
 	public void contextLoads() {
-		
+		Uorder uorder = new Uorder();
+		uorder.setPaystatu("待支付");
+		Orderdetail od = new Orderdetail();
+		uom.insertUorder(uorder);
+		od.setOrderid(uorder.getId());
+		odm.insert(od);
 	}
 	
 	@Test 

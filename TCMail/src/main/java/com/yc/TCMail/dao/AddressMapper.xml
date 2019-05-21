@@ -16,6 +16,12 @@
     <result column="detailaddr" jdbcType="VARCHAR" property="detailaddr" />
   </resultMap>
   
+  <select id="selectAddrByUser" resultMap="BaseResultMap">
+  	select * 
+  	from address where uid = #{uid} 
+  </select>
+  
+  
   <select id="selectWithAddr" resultMap="BaseResultMap">
   	select * 
   	from address where id = #{id}
