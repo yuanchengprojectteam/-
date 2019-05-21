@@ -16,6 +16,8 @@ public class Comment {
 	private String msg;
 	private String commenttime;
 	private String img;
+	private Integer gid;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)
@@ -95,6 +97,19 @@ public class Comment {
 	}
 	public void setCommenttime(String commenttime) {
 		this.commenttime = commenttime;
+	}
+	@Column(name="gid",length=11)
+	public Integer getGid() {
+		return gid;
+	}
+	public void setGid(Integer gid) {
+		this.gid = gid;
+	}
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", uid=" + uid + ", gfit=" + gfit + ", atti=" + atti + ", speed=" + speed
+				+ ", watti=" + watti + ", satisf=" + satisf + ", see=" + see + ", msg=" + msg + ", commenttime="
+				+ commenttime + ", img=" + img + ", gid=" + gid + "]";
 	}
 	
 }

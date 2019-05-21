@@ -32,18 +32,7 @@
 			$("#"+arr[1]+"1").val(arr[0]);
 		}
 	}
-	
-	function getObjectURL(file) {  
-	     var url = null;  
-	     if (window.createObjcectURL != undefined) {  
-	         url = window.createOjcectURL(file);  
-	     } else if (window.URL != undefined) {  
-	         url = window.URL.createObjectURL(file);  
-	     } else if (window.webkitURL != undefined) {  
-	         url = window.webkitURL.createObjectURL(file);  
-	     }  
-	     return url;  
-	 }
+
 
 
 </script>
@@ -59,6 +48,7 @@
 	<div class="beij_center">
 		<div class="pingj_dingd_hao">
 			<h3>订单评价</h3>
+			<input type="hidden" name="oid" value="${comm.uorder.id }"/>
 			<p><span><i>订单号：</i>${comm.uorder.id }</span><span>${comm.uorder.ordertime }</span></p>
 			<input type="hidden" name="uoid" value="${comm.uorder.id }">
 		</div>
@@ -178,13 +168,40 @@
 								</div>
 							</div>
 							<div class="pinj_shangc_tup">
-								<span class="btn_upload" onclick="f.click()" ><input type="file" name="file" id="f"  style="display:none"/></span>
+								<!-- <span class="btn_upload" onclick="f.click()" ><input type="file" name="file" id="f"  onchange="cha(this)" style="display:none"/></span>
 								<span class="btn_upload" onclick="f1.click()" ><input type="file" name="file" id="f1"  style="display:none"/></span>
 								<span class="btn_upload" onclick="f2.click()" ><input type="file" name="file" id="f2"  style="display:none"/></span>
-								<span class="btn_upload" onclick="f3.click()" ><input type="file" name="file" id="f3"  style="display:none"/></span>
+								<span class="btn_upload" onclick="f3.click()" ><input type="file" name="file" id="f3"  style="display:none"/></span> -->
 								<!--手机传图-->
-								 <!-- <span class="btn_upload yiwei_beij"></span>  -->
-								<p>共<em>0</em>张,还能上传<em>9</em>张</p>
+								
+								<span class="btn_upload" onclick="f.click()">
+										<input type="file" style="display: none" name="file" id="f" onchange="cha(this)">
+							 			<div class="pinj_shangc_tup">
+											<img class="btn_upload" alt="" src="" onclick="file.click()" id="imgf" >
+										</div>
+								</span>
+								<span class="btn_upload" onclick="f1.click()">
+										<input type="file" style="display: none" name="file" id="f1" onchange="cha(this)">
+							 			<div class="pinj_shangc_tup">
+											<img class="btn_upload" alt="" src="" onclick="file.click()" id="imgf1" >
+										</div>
+								</span>
+								<span class="btn_upload" onclick="f2.click()">
+										<input type="file" style="display: none" name="file" id="f2" onchange="cha(this)">
+							 			<div class="pinj_shangc_tup">
+											<img class="btn_upload" alt="" src="" onclick="file.click()" id="imgf2" >
+										</div>
+								</span>
+								<span class="btn_upload" onclick="f3.click()">
+										<input type="file" style="display: none" name="file" id="f3" onchange="cha(this)">
+							 			<div class="pinj_shangc_tup">
+											<img class="btn_upload" alt="" src="" onclick="file.click()" id="imgf3" >
+										</div>
+								</span>
+								
+								
+								<!--  <!-- <span class="btn_upload yiwei_beij"></span> 
+								<p>共<em>0</em>张,还能上传<em>9</em>张</p> -->
 							</div>
 						</div>
 					</div>
@@ -222,6 +239,27 @@
 		
 		
 		
+	}
+	
+	//获取文件上传的真实路径
+	function getObjectURL(file) {
+		var url = null;  
+		var fileObj =file.files[0];
+		if (window.createObjcectURL != undefined) {  
+		    url = window.createOjcectURL(fileObj);  
+		} else if (window.URL != undefined) {  
+		    url = window.URL.createObjectURL(fileObj);  
+		} else if (window.webkitURL != undefined) {  
+		    url = window.webkitURL.createObjectURL(fileObj);  
+		}
+		return url;
+	}
+
+	
+	function cha(a){
+		var url = getObjectURL(a);
+		var id = $(a).attr('id');
+		$("#img"+id).attr('src',url);
 	}
 
 

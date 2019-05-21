@@ -494,7 +494,12 @@
     </div>
 </div>
 <div class="lujing_ziy">
-	<a href="#">${typeid.name }</a> 
+	<a href="#">
+	<c:forEach items="${typeName }" var="td">
+		${td.name }>>
+	</c:forEach>
+	
+	</a> 
 </div>
 <div class="shangp_lieb_jvz">
 	<div class="selector">
@@ -686,9 +691,9 @@
 			<div class="f_line">
 				<div class="f_sort">
 	                <a href="#" class="curr_1">综合排序<i></i></a>
-	                <a href="buyNum?tid=${typeid.id}" class="curr_2">销量<i></i></a>
-	                <a href="price?tid=${typeid.id}" class="curr_2">价格<i></i></a>
-	                <a href="commentNum?tid=${typeid.id}" class="curr_2">评论数<i></i></a>
+	                <a href="buyNum" class="curr_2">销量<i></i></a>
+	                <a href="price" class="curr_2">价格<i></i></a>
+	                <a href="commentNum" class="curr_2">评论数<i></i></a>
 	                <a href="#" class="curr_2">上架时间<i></i></a>
 	          	</div>
 	          	<div class="f_pager" id="J_topPage"> 

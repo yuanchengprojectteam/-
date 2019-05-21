@@ -527,9 +527,12 @@
 		      	<a href="javascript:;" class="btn btn-next"></a>
 		      	<div class="list">
 		        	<ul class="wrapper">
-		          		<li class="item item-cur" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
-			          	<li class="item" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
-			          	<li class="item" data-src="${goodMsg.image }"><img src="${goodMsg.image }" alt="#"></li>
+		        	<!-- class="item" class="item item-cur" -->
+		        	<c:forEach items="${ goodMsg.listGmsg}" var="lsmg">
+		        		<c:forEach items="${lsmg.image}" var="iag">
+		          		<li class="item item-cur" data-src="${iag.path }"><img src="${iag.path }" alt="#"></li>
+		          		</c:forEach>
+			         </c:forEach> 	
 		        	</ul>
 		      	</div>
 		    </div>
@@ -596,9 +599,14 @@
                     <div class="prdRight">
                     <c:forEach items="${goodMsg.listGmsg }" var="gl">
                         <div class="prdcol">
-                            <a onclick="colorSelect(this)" class="" value="${gl.color }" data-alt="白色">
-                                <img src="${goodMsg.image }" gome-src="${goodMsg.image }" alt="白色">
-                                <span>${gl.color }色</span><i></i>
+                            <a onclick="colorSelect(this)" class="" value="${gl.color }" data-alt="${gl.color }">
+                            	<c:forEach items="${gl.image }" var="limg" varStatus="i">
+                            		<c:if test="${i.index < 1 }">
+                               		 	<img src="${limg.path }" gome-src="${limg.path }" alt="${limg.path }">
+                               		 	 <span>${gl.color }色</span><i></i>
+                               		 </c:if>
+                                </c:forEach>
+                               
                             </a>
                         </div>
                     </c:forEach>

@@ -1,5 +1,7 @@
 package com.yc.TCMail.bean;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,13 +13,22 @@ public class Goodsmsg {
 	private Integer gid;
 	private String color;
 	private String size;
+	private List<Image> image;
 	
 	
-
+	
+	@Transient
+	public List<Image> getImage() {
+		return image;
+	}
+	public void setImage(List<Image> image) {
+		this.image = image;
+	}
 	@Column(name="gid",length=11)
 	public Integer getGid() {
 		return gid;
 	}
+	
 	public void setGid(Integer gid) {
 		this.gid = gid;
 	}
