@@ -7,7 +7,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="user",catalog="tcmail")
-public class User {
+public class User  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	@NotEmpty(message="用户名不能为空")

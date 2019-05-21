@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="uorder",catalog="tcmail")
-public class Uorder {
+public class Uorder  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
 	private Integer aid;
@@ -28,11 +29,34 @@ public class Uorder {
 	private User user;
 	/*private Orderdetail details;*/
 	
+	private List<Address> addrList;
 	
 	
+	@Transient
+	public List<Address> getAddrList() {
+		return addrList;
+	}
+
+	public void setAddrList(List<Address> addrList) {
+		this.addrList = addrList;
+	}
+
 	@Column(name="visiable",length=11)
 	public String getVisiable() {
 		return visiable;
+	}
+	
+	public Uorder() {}
+	
+	public Uorder(Integer id, Integer uid, String paystatu,
+			 String ordertime, Double totalprice,  String visiable) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.paystatu = paystatu;
+		this.ordertime = ordertime;
+		this.totalprice = totalprice;
+		this.visiable = visiable;
 	}
 	@Transient
 	public User getUser() {

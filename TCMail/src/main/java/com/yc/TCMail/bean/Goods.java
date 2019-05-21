@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="goods",catalog="tcmail")
-public class Goods {
+public class Goods  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer tid;
 	private Integer sid;

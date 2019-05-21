@@ -36,6 +36,13 @@
   	where id=#{id}
   </select>
   
+  <insert id="insertBatch" >
+  	 insert into orderdetail (id, orderid, gid, num) values 
+   		<foreach collection="detailList" item="detail"  open="(" close=")" separator="),(">
+   			null, #{detail.orderid}, #{detail.gid},#{detail.num}
+   		</foreach>
+  </insert>
+  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -173,7 +180,7 @@
     </selectKey>
     insert into orderdetail (id, orderid, gid, 
       num)
-    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+    values (null, #{orderid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
       #{num,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yc.TCMail.bean.Orderdetail">

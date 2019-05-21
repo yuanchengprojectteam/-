@@ -41,6 +41,7 @@ import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.UorderExample;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.imply.BizException;
+import com.yc.TCMail.imply.UorderBiz;
 import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.config.AlipayConfig;
 import com.yc.TCMail.dao.AddressMapper;
@@ -59,24 +60,10 @@ public class CarProcessAction {
 	@Autowired
 	carImply ci;
 	
-	@RequestMapping("car")
-	public String car(@SessionAttribute("loginedUser") User user,Model model) {
-		model.addAttribute("CarList", ci.selectCarByUser(user));
-		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
-		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
-		return "Car";
-	}
+	@Autowired
+	UorderBiz uoBiz;
 	
-	@PostMapping("operateOfCar")
-	@ResponseBody
-	public Result operateOfCar(Integer operate,Integer id,Integer num) {
-		try {
-			return ci.operateCar(operate,id,num);
-		} catch (BizException e) {
-			e.printStackTrace();
-			return Result.failure("系统繁忙,请稍后再试~");
-		}
-	}
+	
 	
 	@Autowired
 	CarMapper cm;
@@ -109,6 +96,25 @@ public class CarProcessAction {
 	@RequestMapping("fail")
 	public String fail() {
 		return "fail";
+	}
+	
+	@RequestMapping("car")
+	public String car(@SessionAttribute("loginedUser") User user,Model model) {
+		model.addAttribute("CarList", ci.selectCarByUser(user));
+		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
+		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
+		return "Car";
+	}
+	
+	@PostMapping("operateOfCar")
+	@ResponseBody
+	public Result operateOfCar(Integer operate,Integer id,Integer num) {
+		try {
+			return ci.operateCar(operate,id,num);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return Result.failure("系统繁忙,请稍后再试~");
+		}
 	}
 	
 	@RequestMapping("topayOrder")
@@ -166,6 +172,9 @@ public class CarProcessAction {
 	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,String oid,String aid) throws AlipayApiException, IOException {
 		 response.setContentType("text/html;charset=utf-8");
 		 
+		 System.out.println(oid+"oid================");
+	        System.out.println(aid);
+		 
 	        //获得初始化的AlipayClient
 	        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 	        //设置请求参数
@@ -182,6 +191,7 @@ public class CarProcessAction {
 	        uorder.setAid(Integer.valueOf(aid));
 	        um.updateByPrimaryKeySelective(uorder);
 	        String total_amount = new String(""+uorder.getTotalprice());
+	        
 	        //订单名称，必填
 	        String subject = new String("订单付款");
 	        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + order_number + "\","
@@ -278,20 +288,29 @@ public class CarProcessAction {
 	}
 	
 	@RequestMapping("nraaa")
-	public String JNJNJ(String[] cid,String[] num,String[] checked,@SessionAttribute("loginedUser") User user,Model model) throws IOException {
-		
-		int totalprice=0,allnum=0;
+	public String JNJNJ(String[] cid,Integer[] num,String[] checked,
+			@SessionAttribute("loginedUser") User user,Model model,Double totalprice,Integer totalNum) throws IOException {
+		Integer orderid = null;
+		try {
+			orderid = uoBiz.addOrderAndDetail(cid,num,checked,user,totalprice);
+		} catch (BizException e) {
+			e.printStackTrace();
+			model.addAttribute("failure", "系统繁忙,请稍后再试~");
+		}
+		model.addAttribute("newOrderList", uoBiz.findByUorderId(user, orderid));
+		model.addAttribute("totalNum", totalNum);
+		/*int totalprice=0,allnum=0;
 		List<Orderdetail> OrDetail=new ArrayList<Orderdetail>();
 		List<Shop> shopList=new ArrayList<Shop>();
 		List<Goods> goodsList=new ArrayList<Goods>();
 		List<Integer> numList=new ArrayList<Integer>();
-		for(int i=0;i<checked.length;i++) {
-			if("on".equals(checked[i])) {
+		for(int i = 0;i<cid.length;i++) {
+			if(cid[i].indexOf("cid") != -1) {
 				allnum+=Integer.valueOf(num[i]);
 				Orderdetail odetail=new Orderdetail();
-				odetail.setGid(cm.selectByPrimaryKey(Integer.valueOf(cid[i])).getGid());
+				odetail.setGid(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid());
 				odetail.setNum(Integer.valueOf(num[i]));
-				Goods g=gm.selectByPrimaryKey(Integer.valueOf(cm.selectByPrimaryKey(Integer.valueOf(cid[i])).getGid()));
+				Goods g=gm.selectByPrimaryKey(Integer.valueOf(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid()));
 				odetail.setGoods(g);
 				totalprice +=g.getPrice()*Integer.valueOf(num[i]);
 				OrDetail.add(odetail);
@@ -300,6 +319,7 @@ public class CarProcessAction {
 				numList.add(Integer.valueOf(num[i]));
 			}
 		}
+		
 		AddressExample ae=new AddressExample();
 		ae.createCriteria().andUidEqualTo(user.getId());
 		List<Address> addressList=am.selectByExample(ae);
@@ -324,13 +344,13 @@ public class CarProcessAction {
 			om.insert(OrDetail.get(i));
 		}
 		order.setId(key);
-		model.addAttribute("Allnum",allnum);
-		model.addAttribute("OrderDetail", OrDetail);
-		model.addAttribute("Uorder",order);
-		model.addAttribute("AddressList", addressList);
-		model.addAttribute("ShopList",shopList);
-		model.addAttribute("GoodsList",goodsList);
-		return "carToAddOrder";
+		model.addAttribute("Allnum",allnum);    //商品数量
+		model.addAttribute("OrderDetail", OrDetail);//订单详情
+		model.addAttribute("Uorder",order);//订单记录
+		model.addAttribute("AddressList", addressList);//地址信息
+		model.addAttribute("ShopList",shopList);//店铺信息
+		model.addAttribute("GoodsList",goodsList);//商品信息
+*/		return "carToAddOrder";
 	}
 	
 	@RequestMapping("addToFav")

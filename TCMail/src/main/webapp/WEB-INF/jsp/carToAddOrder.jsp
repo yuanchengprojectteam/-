@@ -41,7 +41,7 @@
 		<ul class="header-right">
 			<li class="denglu dengl_hou">
 				<div>
-					<a class="red" href="dengl.html">Hi~${sessionScope.loginedUser.name }</a>
+					<a class="red" href="PersonCenter">Hi~${sessionScope.loginedUser.name }</a>
 					<i class="icon_plus_nickname"></i>
 					<i class="ci-leftll">
 						<s class="jt">◇</s>
@@ -127,24 +127,42 @@
         </div>
         <div class="jies_y_shouh_diz shiq_1">
         	<ul>
-	        	<c:forEach items="${AddressList }" var="addr">
-	        		<li class="cur">
-	        			<div class="dangq_xuanz_diz">当前地址</div>
+        	<c:forEach items="${newOrderList.addrList}" var="addr">
+        		<c:choose >
+        	<c:when test="${addr.level == 1 }">
+        		<li class="cur">
+	        			<div class="dangq_xuanz_diz">默认收货地址</div>
+	        			<input type="hidden" id="dizhi${addr.id }" value="${addr.recvaddr } ${addr.detailaddr }">
+	        			<input type="hidden" id="dianhua${addr.id }" value="${addr.name }">
+	        			<span>${addr.name }</span>
+	        			<span>${addr.recvaddr } ${addr.detailaddr }</span>
+	        			<span>${addr.phone }</span>
+	        			<%-- <div class="bianji_yv_shanc">
+	        				<a href="#" onclick="addtodetail(${addr.id })" >设为默认</a>
+	        				<a href="#">编辑</a>
+	        			</div> --%>
+	        		</li>
+        	</c:when>
+        	<c:otherwise>
+        			<li>
 	        			<input type="hidden" id="dizhi${addr.id }" value="${addr.recvaddr } ${addr.detailaddr }">
 	        			<input type="hidden" id="dianhua${addr.id }" value="${addr.name }">
 	        			<span></span>
 	        			<span>${addr.recvaddr } ${addr.detailaddr }</span>
 	        			<span>${addr.phone }</span>
 	        			<div class="bianji_yv_shanc">
-	        				<a href="#" onclick="addtodetail(${addr.id })" >设为默认</a>
+	        				<a href="#" onclick="addtodetail(${addr.id })" >设为收货地址</a>
 	        				<a href="#">编辑</a>
 	        			</div>
 	        		</li>
-	        	</c:forEach>	
+        	</c:otherwise>
+        	</c:choose>
+        	</c:forEach>
+        	
         	</ul>
         	<div class="addr-switch cur_e">
                 <p><span>更多地址</span><b></b></p>
-                <p class="jiant_xiangs"><span>收起更多</span><b></b></p>
+                <p class="jiant_xiangs"><span>收起更多 </span><b></b></p>
             </div> 
         </div>
         <div class="jies_y_shouh_diz shiq_2">
@@ -152,12 +170,11 @@
         		<li class="zhif_fangs cur"><div class="dangq_xuanz_diz">在线支付</div></li>
         		<li class="zhif_fangs"><div class="dangq_xuanz_diz">货到付款</div></li>
         		<div class="addr-switch addr_switch_1 cur_e_1">
-	                <p><span>更多 >></span></p>
-	                <p><span>收起 <<</span></p>
+	                <p><span>更多 </span><b></b></p>
+	                <p><span>收起 </span><b></b></p>
 	            </div> 
         	</ul>  
         </div>
-        
         
         
  
@@ -186,21 +203,21 @@
                 </div>
                 <div class="maij_liuy">
                 	<p>给商家留言</p>
-                	<input type="text" name="msg" value="最多不能超过30字！">
+                	<input type="text" name="msg" value="" placeholder="最多不能超过30字！">
                 </div>
         	</div>
-        	
-     <c:forEach items="${GoodsList }" var="g">  
         	<div class="goods_list">
-        		<div class="goods_list_neik">
+        	<c:forEach items="${newOrderList.details}" var="detail">
         		
-        		<c:set var="f" value="0" />
+        		<div class="goods_list_neik">
+        		<h4 class="vendor_name_h">商家：${detail.goods.shop.name}</h4>
+        		<%-- <c:set var="f" value="0" />
         		<c:forEach items="${ShopList }" var="s">
         			<c:if test="${s.id == g.sid && f == 0 }">
         				<h4 class="vendor_name_h">商家：${s.name }</h4>
         				<c:set var="f" value="1" />
         			</c:if>
-        		</c:forEach>	
+        		</c:forEach>	 --%>
         			
         			
         			
@@ -208,30 +225,22 @@
         				<div class="p_img"><a href="#"><img src="images/lieb_tupi1.jpg"></a></div>
         				<div class="goods_msg">
         					<div class="p_name">
-        						<a href="goodsDetail?gid=${g.id }">${g.name } ${g.color }  ${g.size }</a>
+        						<a href="goodsDetail?gid=${detail.goods.id }">${detail.goods.name } ${detail.goods.color }  ${detail.goods.size }</a>
         					</div>
         					<div class="p_price">
-        						<span class="jq_price">￥ ${g.price }</span>
+        						<span class="jq_price">￥ ${detail.goods.price }</span>
         						
+        						<span>x${detail.num }</span>
         						
-        						
-        						<c:set var="d" value="0" />
-        						<c:forEach items="${OrderDetail }" var="od" >
-	        						<c:if test="${od.gid == g.id && d == 0 }">
-	        							<span>x${od.num }</span>
-	        							<c:set var="d" value="1" />
-	        						</c:if>
-        						</c:forEach>
-        						
-        						
-        						<span>有货</span>
-        						<span>1.170kg</span>
+        		
         					</div>
         				</div>
         			</div>
         		</div>
-        	</div>
-     </c:forEach> 
+        	
+        	</c:forEach>
+        	</div>	
+  
         </div>
         <div class="fap_beij">
 			<div class="step-tit">
@@ -256,8 +265,8 @@
 		
 		
 				<div class="jiaq_meih">
-					<span class="xiangq_leib"><em class="goumai_ges">${Allnum }</em> 件商品，总商品金额：</span>
-					<em class="goum_zongj">￥${Uorder.totalprice }</em>
+					<span class="xiangq_leib"><em class="goumai_ges">${totalNum}</em> 件商品，总商品金额：</span>
+					<em class="goum_zongj">￥${newOrderList.totalprice}</em>
 				</div>
 				<div class="jiaq_meih">
 					<span class="xiangq_leib">返现：</span>
@@ -278,25 +287,29 @@
 	</div>
 	
 	
-	
+	<form action="toPay" method="post" id="payFrom">
 	<div class="trade_foot_detail_com">
 		<div class="dsgs">
 			<div class="qianq_mx">
 				<div class="jiaq_meih">
 					<span class="xiangq_leib"> 应付总额：</span>
-					<em class="goum_zongj zhongf_jine">￥${Uorder.totalprice }</em>
+					<em class="goum_zongj zhongf_jine">￥${newOrderList.totalprice}</em>
 				</div> 
 			</div>
 		</div>
+		<input type="hidden" name="oid" value="${newOrderList.id }">
 		<div class="zuiz_diz">
-			<span id="jsdz">寄送至： </span>
-			<span id="shr"> 收货人：</span>
+		<c:forEach items="${newOrderList.addrList}" var="addr">
+			<c:if test="${addr.level == '1' }">
+				<span id="jsdz">寄送至：<span>${addr.recvaddr } ${addr.detailaddr }</span> </span>
+			<span id="shr"> 收货人：<span>${addr.name }</span></span>
+			<input type="hidden" name="aid" value="${addr.id }" id="addressid">
+			</c:if>
+		</c:forEach>
+			
 		</div>
 	</div>
-	
-	<form action="toPay" method="post" id="payFrom">
-		<input type="hidden" name="oid" value="${Uorder.id }">
-		<input type="hidden" name="aid" value="" id="addressid">
+		
 		<div class="tij_dingd_ann">
 			<a href="#" onclick="payFrom.submit()">提交订单</a>
 		</div>
@@ -304,11 +317,11 @@
 </div>
 
 <script type="text/javascript">
-	function addtodetail(id){
+	/* function addtodetail(id){
 		$("#jsdz").html("寄送至："+$("input[id^='dizhi"+id+"']")[0].value);
 		$("#addressid")[0].value=id;
 		$("#shr").html(" 收货人："+$("input[id^='dianhua"+id+"']")[0].value);
-	}
+	} */
 
 
 

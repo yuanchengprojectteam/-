@@ -5,7 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="image",catalog="tcmail")
-public class Image {
+public class Image  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer gid;
 	private String path;

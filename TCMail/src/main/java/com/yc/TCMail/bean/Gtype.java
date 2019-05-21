@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="gtype",catalog="tcmail")
-public class Gtype {
+public class Gtype  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Integer pid;

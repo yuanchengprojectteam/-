@@ -23,7 +23,7 @@
 			<ul class="header-right">
 				<li class="denglu dengl_hou">
 					<div>
-						<a class="red" href="dengl.html">Hi~${sessionScope.loginedUser.account }</a> <i
+						<a class="red" href="PersonCenter">Hi~${sessionScope.loginedUser.account }</a> <i
 							class="icon_plus_nickname"></i> <i class="ci-leftll"> <s
 							class="jt">◇</s>
 						</i>
