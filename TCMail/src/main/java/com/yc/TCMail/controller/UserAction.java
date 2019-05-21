@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aliyun.oss.ClientException;
@@ -36,10 +35,13 @@ import com.aliyun.oss.OSSException;
 import com.yc.TCMail.action.BizException;
 import com.yc.TCMail.action.GTypeBiz;
 import com.yc.TCMail.action.UserBiz;
+import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.PageBean;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.UserMapper;
+import com.yc.TCMail.imply.IndexInfoBiz;
 import com.yc.TCMail.imply.UorderBiz;
 import com.yc.TCMail.imply.carImply;
 import com.yc.TCMail.util.HbUtil;
@@ -47,7 +49,7 @@ import com.yc.TCMail.util.HttpUtil;
 import com.yc.TCMail.util.OssUtil;
 
 @Controller
-@SessionAttributes(names= {"loginedUser","waitpay","waitsend","waitrate"})
+@SessionAttributes(names= {"loginedUser","waitpay","waitsend","waitrate","carList","carNum","newList"})
 public class UserAction {
 	@Autowired
 	private EntityManagerFactory emf;
@@ -75,7 +77,10 @@ public class UserAction {
 	
 	@Resource
 	private UorderBiz uoBiz;
-	
+	@Resource
+	private IndexInfoBiz iiBiz;
+	@Resource
+	private GoodsMapper gm;
 
 	
 	@ModelAttribute
@@ -110,7 +115,12 @@ public class UserAction {
 			User dbui = uBiz.login(u);
 			model.addAttribute("loginedUser", dbui);
 			model.addAttribute("cglist",ci.selectCarGoods(dbui.getId(),0));
-			
+			List<Car> ret = iiBiz.findCarByUser(dbui);
+			System.out.println(dbui+"=======USER====+++++++++++++++++++++++++++++++++++++++++++++++===");
+			model.addAttribute("carList", ret);
+			model.addAttribute("carNum", ret.size());
+			model.addAttribute("newList", gm.selectWithTime());
+			System.out.println("==="+ret+"===");
 			model.addAttribute("waitpay",uoBiz.findUorderBy("待支付",dbui.getId()).size());
 			model.addAttribute("waitsend",uoBiz.findUorderBy("待收货",dbui.getId()).size());
 			model.addAttribute("waitrate",uoBiz.findUorderBy("待评价",dbui.getId()).size());
@@ -130,12 +140,6 @@ public class UserAction {
 		System.out.println("phone:" + phone);
 		HttpUtil.SMS(code, phone);
 	}
-	@RequestMapping("OutOfLogined")
-	public String outOfLogined(SessionStatus sessionStatu) {
-		sessionStatu.setComplete();
-		return "redirect:index";
-	}
-	
 	
 	@RequestMapping("PhoneUpdate")
 public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throws IOException {

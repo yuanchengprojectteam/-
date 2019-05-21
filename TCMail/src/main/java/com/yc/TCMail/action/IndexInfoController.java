@@ -42,7 +42,7 @@ public class IndexInfoController {
 	private GoodsMapper gm;
 	
 	
-	@RequestMapping("newindex")
+	/*@RequestMapping("index")
 	public String toIndex(Model model,HttpServletRequest request) {  //,@SessionAttribute("loginedUser") User user
 		model.addAttribute("GtypeList", igBiz.findAllGtype());
 		List<Car> ret = iiBiz.findCarByUser((User)request.getSession().getAttribute("loginedUser"));
@@ -50,7 +50,7 @@ public class IndexInfoController {
 		model.addAttribute("carNum", ret.size());
 		model.addAttribute("newList", gm.selectWithTime());
 		return "index";
-	}
+	}*/
 	
 	@PostMapping("query")
 	public String findWithQ(String q,Model model) {

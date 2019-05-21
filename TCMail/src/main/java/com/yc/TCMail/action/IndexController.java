@@ -81,6 +81,11 @@ public class IndexController {
 	}
 	
 
+	@RequestMapping("tologin")
+	public String go1(@ModelAttribute User u) {	
+		return "login";
+	}
+	
 	@RequestMapping("index")
 	public String newIndex(Model model,HttpServletRequest req) {
 		
@@ -95,7 +100,6 @@ public class IndexController {
 			model.addAttribute("carGoods", ib.getCarGoodsList(user.getId()));
 		}
 		
-		System.out.println(oneType+"========================");
 		model.addAttribute("typeOne", oneType);
 		model.addAttribute("typeTwo", twoType);
 		model.addAttribute("typeThree", threeType);
@@ -112,10 +116,7 @@ public class IndexController {
 	public String gogo() {
 		return "scodeShop";
 	}
-	@RequestMapping("tologin")
-	public String go1(@ModelAttribute User u) {
-		return "login";
-	}
+	
 	@RequestMapping("toregister")
 	public String  goRegister() {
 		return  "register";

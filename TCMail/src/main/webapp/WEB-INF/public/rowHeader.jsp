@@ -117,7 +117,7 @@
 			<i class="gw-count"></i>
 			<i class="sd"></i>
 		</div>
-		<a href="gouw_che.html">我的购物车</a>
+		<a href="car">我的购物车</a>
 		
 		 <div class="dorpdown-layer" style="width: 340px">
 			<ul>

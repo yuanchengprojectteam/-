@@ -35,6 +35,12 @@ public class UserBiz {
 	
 	public  User  login(User  u) throws BizException {
 		UserExample  example=new UserExample();
+		if(u.getAccount()==null) {
+			throw  new  BizException("用户名不能为空");
+		}
+		if(u.getPwd()==null) {
+			throw  new  BizException("密码不能为空！");
+		}
 		example.createCriteria()
 					.andAccountEqualTo(u.getAccount())
 					.andPwdEqualTo(u.getPwd());

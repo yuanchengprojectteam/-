@@ -3,16 +3,19 @@ package com.yc.TCMail.bean;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="user",catalog="tcmail")
 public class User {
 	private Integer id;
 	private String name;
+	@NotEmpty(message="用户名不能为空")
 	private String account;
 	private String realname;
 	private String sex;
 	private Integer age;
+	@NotEmpty(message="密码不能为空")
 	private String pwd;
 	private String email;
 	private String phone;
