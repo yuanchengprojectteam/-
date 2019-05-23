@@ -41,7 +41,12 @@ public class GoodsBiz {
 	
 	public List<Goods> selectGoodsBrowseRecord(User user) throws BizException{
 		List<Integer> goodsId = redis.get(user.getId());
-		return gMapper.selectBatch(goodsId);
+		if(goodsId.size() > 0) {
+			return gMapper.selectBatch(goodsId);
+		}else {
+			return null;
+		}
+		
 	}
 	
 	

@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -83,6 +84,9 @@ public class CarProcessAction {
 	@Autowired
 	OrderdetailMapper om;
 	
+	@Resource
+	GoodsBiz gBiz;
+	
 	@RequestMapping("notify")
 	public String Notify() {
 		return "notify_url";
@@ -101,6 +105,14 @@ public class CarProcessAction {
 	@RequestMapping("car")
 	public String car(@SessionAttribute("loginedUser") User user,Model model) {
 		model.addAttribute("CarList", ci.selectCarByUser(user));
+		try {
+			List<Goods> ret = gBiz.selectGoodsBrowseRecord(user);
+			if(ret != null) {
+				model.addAttribute("BrowseRecord",ret);
+			}
+		} catch (com.yc.TCMail.action.BizException e) {
+			e.printStackTrace();
+		}
 		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
 		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
 		return "Car";

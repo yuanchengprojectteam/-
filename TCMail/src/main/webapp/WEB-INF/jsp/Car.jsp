@@ -212,20 +212,22 @@
 					<div class="picScroll_left_s_dsl">
 						<div class="dfgc">
 							<ul class="picList">
-							
+							<c:forEach items="${BrowseRecord}" var="goods">
 								<li>
 									<div class="pic">
 										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/lieb_tupi3.jpg" /></a>
+											src="${goods.image }" /></a>
 									</div>
 									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
+										<a href="shangp_xiangq.html" target="_blank">${goods.name}</a>
 										<div class="jiage_gouw">
-											<span>¥2499.00</span>
+											<span>¥${goods.price}</span>
 										</div>
 										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
 									</div>
 								</li>
+							</c:forEach>
+								
 							
 							</ul>
 						</div>

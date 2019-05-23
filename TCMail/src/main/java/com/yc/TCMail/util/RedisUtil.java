@@ -16,7 +16,7 @@ public class RedisUtil {
 	private  StringRedisTemplate t;
 	
 	@Autowired
-	private  RedisTemplate<Integer, Integer> redisTemplate;
+	private  RedisTemplate redisTemplate;
 	
 	/*public  void set(String key,String value) {
 		t.opsForValue().set(key,value);
