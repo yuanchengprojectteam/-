@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	pay Success !!!
-	${result }
+			${result }
 </body>
 </html>
