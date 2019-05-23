@@ -35,8 +35,8 @@ public class GoodsBiz {
 	@Resource
 	private RedisUtil redis;
 	
-	public void addGoodsBrowseRecord(User user,Goods goods) throws BizException{
-		redis.setObject(user.getId(), goods.getId());
+	public void addGoodsBrowseRecord(User user,Integer id) throws BizException{
+		redis.setObject(user.getId(), id);
 	}
 	
 	public List<Goods> selectGoodsBrowseRecord(User user) throws BizException{

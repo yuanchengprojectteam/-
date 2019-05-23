@@ -44,8 +44,7 @@ public class TcMailApplicationTests {
     @Autowired
     HbUtil hb;
     
-    @Autowired
-    RedisUtil ru;
+    
     @Resource
     private  UserMapper  userMapper;
     
@@ -84,24 +83,24 @@ public class TcMailApplicationTests {
 	
 	@Test
 	public void  query() {
-		
+		redis.setObject(1, 2);
 		/*List<Integer> ret = new ArrayList<Integer>();
 		ret.add(9);
 		ret.add(2);*/
 		/*redisTemplate.opsForList().leftPush(2, 1);
 		redisTemplate.opsForList().leftPush(2, 2);
 		redisTemplate.opsForList().leftPush(2, 3);*/
-		Long  si = redisTemplate.opsForList().size(2);
+		/*Long  si = redisTemplate.opsForList().size(2);
 		for(Long i = (long) 0; i < si;i++) {
 			redisTemplate.opsForList().rightPop(2);
-		}
+		}*/
 	
 		
 		/*List<Integer> popValue = (List<Integer>) redisTemplate.opsForList().rightPopAndLeftPush(1,2);  
 		System.out.print("通过rightPopAndLeftPush(K sourceKey, K destinationKey)方法移除的元素是:" + popValue);*/  
 		/*List<Integer> list =  redisTemplate.opsForList().range(2,0,-1);  
 		System.out.println("剩余的元素是:" + list);  */
-		List<Integer> ret =  redisTemplate.opsForList().range(2,0,-1);
+		List<Integer> ret =  redisTemplate.opsForList().range(1,0,-1);
 		System.out.println(ret);
 		
 	}
