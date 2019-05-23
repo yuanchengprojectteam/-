@@ -20,6 +20,7 @@ import com.yc.TCMail.bean.Favorite;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Goodsmsg;
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Image;
 import com.yc.TCMail.bean.Jude;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
 import com.yc.TCMail.bean.Shop;
@@ -55,28 +56,38 @@ public class AfterSerchController {
 	public String showStyle1(String gtype,Model model) {
 		
 		//470行
-		/*User user = new User();
-		user.setId(3);*/
-		
-		Gtype type = am.queryGtype(gtype);
-		int tid = type.getId();
-		
+		List<Goods> hostGoods = new ArrayList<Goods>();
+		List<Gtype> type = am.querySunGtype(gtype);
+		String tid = "";
+		for(int i=0;i<type.size();i++) {
+			if(i>0) {
+				tid = tid+",";
+			}
+			tid = tid+type.get(i).getId();
+			
+		}
+		System.out.println("======================="+tid);
 		
 		List<OrderdetailsOderBy> list = ob.selectOrderBy(tid);
 		//System.out.println("list===:"+list.get(0).getGnum());
-		List<Goods> hostGoods = new ArrayList<Goods>();
 		
-		for(int i=0;i<3;i++) {
-			int gid = list.get(i).getGid();
-			Goods good = zm.queryGoods(gid);
-			hostGoods.add(good);
+		
+		for(int i=0;i<list.size();i++) {
+			if(i<3) {
+				int gid = list.get(i).getGid();
+				Goods good = zm.queryGoods(gid);
+				//System.out.println("host"+good);
+				hostGoods.add(good);
+			}
+			
 		}
-		List<Goods> allGood = am.queryAllGoods(tid);
+		List<Goods> allGood = ob.queryAllGoods(tid);
 		
 		//model.addAttribute("loginedUser",user);
 		model.addAttribute("hostRecommend",hostGoods);
 		model.addAttribute("allGoods",allGood);
-		model.addAttribute("typeid",type);
+		model.addAttribute("typeid",tid);
+		model.addAttribute("typeName",type);
 		return "AfterSerchShowStyle1";
 	}
 	
@@ -115,8 +126,8 @@ public class AfterSerchController {
 	
 	
 	@RequestMapping("buyNum")
-	public String buyNum(String tid ,Model model) {
-		List<OrderdetailsOderBy> list = ob.selectOrderBy(Integer.valueOf(tid));
+	public String buyNum(@SessionAttribute("typeid") String tid ,Model model) {
+		List<OrderdetailsOderBy> list = ob.selectOrderBy(tid);
 		//System.out.println("list===:"+list.get(0).getGnum());
 		List<Goods> buyGoods = new ArrayList<Goods>();
 		
@@ -130,24 +141,24 @@ public class AfterSerchController {
 	}
 	
 	@RequestMapping("price")
-	public String price(String tid ,Model model) {
-		List<Goods> list = ob.selectPriceOrderBy(Integer.valueOf(tid));
+	public String price(@SessionAttribute("typeid") String tid ,Model model) {
+		List<Goods> list = ob.selectPriceOrderBy(tid);
 		model.addAttribute("allGoods",list);
 		return "AfterSerchShowStyle1";
 	}
 	
 	@RequestMapping("commentNum")
-	public String commentNum(String tid ,Model model) {
-		List<Goods> list = ob.selectcommentOrderBy(Integer.valueOf(tid));
+	public String commentNum(@SessionAttribute("typeid")String tid,Model model) {
+		List<Goods> list = ob.selectcommentOrderBy(tid);
 		model.addAttribute("allGoods",list);
 		return "AfterSerchShowStyle1";
 	}
 	
 	@RequestMapping("ScopePrice")
-	public String ScopePrice(@SessionAttribute("typeid") Gtype type,String low ,String top,Model model) {
+	public String ScopePrice(@SessionAttribute("typeid")String tid,String low ,String top,Model model) {
 		int low1 = Integer.valueOf(low);
 		int top1 = Integer.valueOf(top);
-		List<Goods> list = ob.selectScopeOrderBy(type.getId(),low1,top1);
+		List<Goods> list = ob.selectScopeOrderBy(tid,low1,top1);
 		model.addAttribute("allGoods",list);
 		return "AfterSerchShowStyle1";
 	}
@@ -177,10 +188,14 @@ public class AfterSerchController {
 	@RequestMapping("lootbuy")
 	public String lootBuy(String gid,Model model) {
 		Goods good = am.queryGoods(gid);
-		System.out.println("==================="+good);
+		//System.out.println("==================="+good);
 		List<Goodsmsg> list = am.queryGoodmsgByGid(gid);
-		System.out.println("================"+good.getTid());
+		//System.out.println("================"+good.getTid());
 		
+		for( Goodsmsg gs : list) {
+			List<Image> image = am.queryImage(gs.getId());
+			gs.setImage(image);
+		}
 		
 		/*int id = good.getTid();
 		Gtype gtype = am.queryGtypeById(id);*/

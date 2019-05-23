@@ -76,33 +76,46 @@
 					</div></li>
 			</ul>
 			<ul class="header-right">
-				<li class="denglu">Hi~<a class="red" href="tologin">请登录!</a> <a
-					href="toregister">[免费注册]</a></li>
-				<li class="shu"></li>
-				<li class="denglu"><a class="ing_ps" href="#">我的收藏</a></li>
-				<li class="shu"></li>
-				<li class="denglu"><a class="ing_ps ps1" href="#">申请入驻</a></li>
-				<li class="shu"></li>
-				<li class="denglu"><a class="ing_ps ps2" href="#">个人中心</a></li>
-				<li class="shu"></li>
-				<li class="shouji bj"><a class="ing_ps ps3" href="#">手机通城</a> <i
-					class="ci-right "> <s class="jt">◇</s>
+
+			<li class="denglu">Hi~ 
+			<c:choose>
+			<c:when test="${sessionScope.loginedUser != null}">
+				<a href="PersonCenter" style="cursor:pointer;">${sessionScope.loginedUser.account}</a>
+			</c:when>
+			<c:otherwise>
+				<a class="red" href="tologin">请登录!</a> <a href="toregister">[免费注册]</a>
+			</c:otherwise>
+			</c:choose>
+			</li> 
+
+			<li class="shu"></li>
+			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
+			<li class="shu"></li>
+			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
+			<li class="shu"></li>
+			<li class="denglu"><a class="ing_ps ps2" href="PersonCenter">个人中心</a></li>
+			<li class="shu"></li>
+			<li class="shouji bj">
+				<a class="ing_ps ps3" href="#">手机通城</a>
+				<i class="ci-right ">
+					<s class="jt">◇</s>
 				</i>
-					<div class="shouji1">
+				<div class="shouji1">
+					<img src="images/mb_wangid.png" class="shouji4">
+					<div class="shouji2">
+						<p>通城客户端</p>
+						<p class="red">首次下单满79元，送79元</p>
+					</div>
+					<div class="yi">
 						<img src="images/mb_wangid.png" class="shouji4">
-						<div class="shouji2">
-							<p>通城客户端</p>
-							<p class="red">首次下单满79元，送79元</p>
+						<div class="er">
+							<p>通城微信公众号</p>
+							<p class="red">关注通城公众号的积分，换大礼</p>
 						</div>
-						<div class="yi">
-							<img src="images/mb_wangid.png" class="shouji4">
-							<div class="er">
-								<p>通城微信公众号</p>
-								<p class="red">关注通城公众号的积分，换大礼</p>
-							</div>
-						</div>
-					</div></li>
-			</ul>
+					</div>
+				</div>
+			</li> 
+		</ul>
 		</div>
 	</div>
 	<!--搜索栏-->
@@ -111,8 +124,10 @@
 			<a href="./"><img src="./images/logo.png"></a>
 		</div>
 		<div class="search">
-			<input type="text" value="家电一折抢" class="text" id="textt">
-			<button class="button">搜索</button>
+			<form action="queryGoods" method="post">
+				<input type="text" name="msg" value="" class="text" id="textt" placeholder="小米">
+				<input type="submit" class="button" value="搜索">
+			</form>
 		</div>
 		<div class="right">
 			<i class="gw-left"></i> <i class="gw-right"></i>
