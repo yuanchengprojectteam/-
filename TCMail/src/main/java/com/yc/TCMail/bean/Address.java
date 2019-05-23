@@ -5,7 +5,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="address",catalog="tcmail")
-public class Address {
+public class Address  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
 	//@NotEmpty(message="收货人不能为空!!!")

@@ -6,11 +6,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GoodsExample {
+
     protected String orderByClause;
+
 
     protected boolean distinct;
 
+
     protected List<Criteria> oredCriteria;
+
 
     public GoodsExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -20,31 +24,38 @@ public class GoodsExample {
         this.orderByClause = orderByClause;
     }
 
+
     public String getOrderByClause() {
         return orderByClause;
     }
+
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
     }
 
+
     public boolean isDistinct() {
         return distinct;
     }
+
 
     public List<Criteria> getOredCriteria() {
         return oredCriteria;
     }
 
+
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
     }
+
 
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
         return criteria;
     }
+
 
     public Criteria createCriteria() {
         Criteria criteria = createCriteriaInternal();
@@ -54,16 +65,19 @@ public class GoodsExample {
         return criteria;
     }
 
+
     protected Criteria createCriteriaInternal() {
         Criteria criteria = new Criteria();
         return criteria;
     }
+
 
     public void clear() {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
     }
+
 
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -832,6 +846,42 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
+
+        public Criteria andRegtimeEqualTo(Integer value) {
+            addCriterion("regtime =", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeNotEqualTo(Integer value) {
+            addCriterion("regtime <>", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeGreaterThan(Integer value) {
+            addCriterion("regtime >", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("regtime >=", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeLessThan(Integer value) {
+            addCriterion("regtime <", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeLessThanOrEqualTo(Integer value) {
+            addCriterion("regtime <=", value, "regtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegtimeBetween(Integer value1, Integer value2) {
+            addCriterion("regtime between", value1, value2, "regtime");
+            return (Criteria) this;
+        }
+
         public Criteria andRegtimeIsNull() {
             addCriterion("regtime is null");
             return (Criteria) this;
@@ -887,11 +937,26 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
+
+       /* public Criteria andRegtimeNotIn(List<String> values) {
+            addCriterion("regtime not in", values, "regtime");
+            return (Criteria) this;
+        }*/
+
+        public Criteria andRegtimeBetween(String value1, String value2) {
+            addCriterion("regtime between", value1, value2, "regtime");
+            return (Criteria) this;
+        }
+
+      /*  public Criteria andRegtimeNotBetween(String value1, String value2) {
+            addCriterion("regtime not between", value1, value2, "regtime");
+        }*/
         public Criteria andRegtimeNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("regtime not between", value1, value2, "regtime");
             return (Criteria) this;
         }
     }
+
 
     public static class Criteria extends GeneratedCriteria {
 
@@ -899,6 +964,7 @@ public class GoodsExample {
             super();
         }
     }
+
 
     public static class Criterion {
         private String condition;

@@ -9,7 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="totalreason",catalog="tcmail")
-public class Totalreason {
+public class Totalreason  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private  Integer  id;
 	private  Integer  tid;
 	private  String   reason;

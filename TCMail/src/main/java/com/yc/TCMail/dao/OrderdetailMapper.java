@@ -9,6 +9,7 @@ public interface OrderdetailMapper {
 	Orderdetail selectOrderidById(Integer id);
 	List<Orderdetail> selectWithGoods(Integer orderid);
 	Orderdetail selectByDetailId(Integer id);
+	void insertBatch(@Param("detailList")List<Orderdetail> detailList);
 	//@Param("orderid")Integer orderid,@Param("gid")Integer gid
 	/*Orderdetail selectWithGoods(Integer orderid);*/
    

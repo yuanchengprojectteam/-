@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="comment",catalog="tcmail")
-public class Comment {
+public class Comment  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
 	private Integer gfit;

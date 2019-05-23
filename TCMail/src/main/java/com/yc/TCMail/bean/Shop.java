@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="shop",catalog="tcmail")
-public class Shop {
+public class Shop  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
 	private String name;
@@ -105,6 +106,5 @@ public class Shop {
 	public void setUser(User user) {
 		this.user = user;
 	}
-   
-   	
+  
 }

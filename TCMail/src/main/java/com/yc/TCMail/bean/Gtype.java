@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="gtype",catalog="tcmail")
-public class Gtype {
+public class Gtype  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Integer pid;
@@ -14,7 +15,6 @@ public class Gtype {
 	private List<Gtype> childType;
 	private Gtype superType;
 	private List<Gtype> gsonType;
-	
 	private List<Goods> goodsList;
 	
 	
@@ -69,6 +69,7 @@ public class Gtype {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
+
 	@Column(name="sunid",length=11)
 	public Integer getSunid() {
 		return sunid;

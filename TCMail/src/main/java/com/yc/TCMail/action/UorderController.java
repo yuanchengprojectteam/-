@@ -29,12 +29,12 @@ public class UorderController {
 	@Resource
 	private UorderBiz uoBiz;
 	
-	@ModelAttribute
+	/*@ModelAttribute
 	public void init(Model model,@SessionAttribute("loginedUser") User user) {
 		model.addAttribute("waitpay",uoBiz.findUorderBy("待支付",user.getId()).size());
 		model.addAttribute("waitsend",uoBiz.findUorderBy("待收货",user.getId()).size());
 		model.addAttribute("waitrate",uoBiz.findUorderBy("待评价",user.getId()).size());
-	}
+	}*/
 	
 	
 	@RequestMapping("MyOrder")

@@ -5,10 +5,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="image",catalog="tcmail")
-public class Image {
+public class Image  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer gid;
 	private String path;
+	private Integer sid;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,6 +34,14 @@ public class Image {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	@Column(name="sid",length=11)
+	public Integer getSid() {
+		return sid;
+	}
+	
+	public void setSid(Integer sid) {
+		this.sid = sid;
 	}
 	
 }

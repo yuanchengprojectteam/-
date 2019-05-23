@@ -1,5 +1,8 @@
 package com.yc.TCMail.imply;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,11 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yc.TCMail.bean.Car;
+import com.yc.TCMail.bean.CarExample;
 import com.yc.TCMail.bean.Orderdetail;
 import com.yc.TCMail.bean.PageBean;
 import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.UorderExample;
 import com.yc.TCMail.bean.User;
+import com.yc.TCMail.dao.CarMapper;
 import com.yc.TCMail.dao.OrderdetailMapper;
 import com.yc.TCMail.dao.UorderMapper;
 
@@ -24,7 +30,11 @@ public class UorderBiz {
 	@Resource
 	private UorderMapper uom;
 	
+	@Resource
 	private OrderdetailMapper odm;
+	
+	@Resource
+	private CarMapper cm;
 	
 	private final Integer pageSize = 3;
 	public PageBean<Uorder> findItemByPage(int currentPage,User user) {
@@ -40,6 +50,9 @@ public class UorderBiz {
 	public Uorder findById(User user,Integer orderid) {
 		Uorder list = uom.selectByOrderId(orderid);
 		return list;
+	}
+	public Uorder findByUorderId(User user,Integer orderid) {
+		return  uom.selectByUorderId(orderid);
 	}
 	
 	/*public List<Uorder> findAllOrder(User user) {
@@ -106,5 +119,34 @@ public class UorderBiz {
 		UorderExample example = new UorderExample();
 		example.createCriteria().andUidEqualTo(uid).andVisiableEqualTo("1");
 		return uom.selectByExample(example);
+	}
+
+	public Integer addOrderAndDetail(String[] cid, Integer[] num, String[] checked, User user,Double totalprice) throws BizException{
+		
+		List<Car> carList = new ArrayList<Car>();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Uorder order = new Uorder(null,user.getId(),"待支付",sdf.format(new Date()),totalprice,"0");
+		uom.insertUorder(order);
+		List<Orderdetail> detailList = new ArrayList<Orderdetail>();
+		for(int i = 0;i<cid.length;i++) {
+			if(cid[i].indexOf("cid") != -1) {
+				CarExample example = new CarExample();
+				System.out.println(num[i]);
+				Orderdetail detail = new Orderdetail();
+				System.out.println(Integer.valueOf(cid[i].substring(3))+"=========cid==========");
+				example.createCriteria().andIdEqualTo(Integer.valueOf(cid[i].substring(3))).andUidEqualTo(user.getId());
+				List<Car> ret = cm.selectByExample(example);
+				carList.add(ret.get(0));
+				detail.setNum(num[i]);
+				detail.setOrderid(order.getId());
+				System.out.println(order.getId()+"=====================");
+				detail.setGid(ret.get(0).getGid());
+				detailList.add(detail);
+			}
+		}
+		System.out.println(detailList.get(0).getOrderid()+"=============");
+		System.out.println(detailList);
+		odm.insertBatch(detailList);
+		return order.getId();
 	}
 }

@@ -20,10 +20,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.yc.TCMail.bean.Car;
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Orderdetail;
 import com.yc.TCMail.bean.Shop;
+import com.yc.TCMail.bean.Uorder;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.GtypeMapper;
+import com.yc.TCMail.dao.OrderdetailMapper;
+import com.yc.TCMail.dao.UorderMapper;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HbUtil;
 import com.yc.TCMail.util.HttpUtil;
@@ -44,28 +48,26 @@ public class TcMailApplicationTests {
     @Resource
     private  UserMapper  userMapper;
     
-    @Resource
-    GtypeMapper  gm;
+    @Autowired
+    private GtypeMapper gm;
     
     @Resource
-    GoodsMapper  goodm;
+    private UorderMapper uom;
     
-    @Test
-    public void querytype() {
-    	gm.selectByPrimaryKey(2);
-    }
+    @Resource
+    private OrderdetailMapper odm;
     
-    @Test
-    public void queryGoods() {
-    	Goods good = goodm.selectByPrimaryKey(5);
-    	System.out.println(good);
-    }
+    @Autowired
+    private GoodsMapper gom;
 	
 	@Test
 	public void contextLoads() {
-		/*
-		 * ru.set("a", "value"); System.out.println("==============="+ru.get("a"));
-		 */
+		Uorder uorder = new Uorder();
+		uorder.setPaystatu("待支付");
+		Orderdetail od = new Orderdetail();
+		uom.insertUorder(uorder);
+		od.setOrderid(uorder.getId());
+		odm.insert(od);
 	}
 	
 	@Test 
@@ -75,32 +77,7 @@ public class TcMailApplicationTests {
 	
 	@Test
 	public void  query() {
-		/*Car car=hb.getSession().load(Car.class,2);
-		hb.getTransaction().begin();
-		hb.getSession().delete(car);
-		hb.getTransaction().commit();*/
-		
-		
-		List<Car> goods=hb.getCriteria(Car.class).add(Restrictions.eq("uid",1)).list();
-		List<Goods> gl=new ArrayList<Goods>();
-		for(Car g:goods) {
-			Goods goodss=(Goods) hb.getCriteria(Goods.class).add(Restrictions.eqOrIsNull("id",g.getGid())).list().get(0);
-			Gtype type=(Gtype)hb.getCriteria(Gtype.class).add(Restrictions.eqOrIsNull("id",goodss.getTid())).list().get(0);
-			Shop shop=(Shop) hb.getCriteria(Shop.class).add(Restrictions.eqOrIsNull("id",goodss.getSid())).list().get(0);
-			goodss.setType(type);
-			goodss.setShop(shop);
-			gl.add(goodss);
-		}
-		/*if(gl.size()>5) {
-			for(int i=5;i<gl.size();i++) {
-				gl.remove(i);
-			}
-		}*/
-			
-		System.out.println(gl);
 	
-		//查询所有
-		/*userMapper.selectByExample(null);*/
 		
 	}
 }

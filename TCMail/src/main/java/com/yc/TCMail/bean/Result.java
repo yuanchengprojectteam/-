@@ -1,5 +1,8 @@
 package com.yc.TCMail.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 public class Result implements java.io.Serializable{
 
 	
@@ -21,7 +24,7 @@ public class Result implements java.io.Serializable{
 		return new Result(0,msg,null);
 	}
 	public static Result failure(String msg, Object data) {
-		return new Result(0,msg,null);
+		return new Result(0,msg,data);
 	}
 
 	public Result(int code, String msg, Object data) {

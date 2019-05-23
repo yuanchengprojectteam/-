@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
@@ -51,7 +51,7 @@
 						<a href="shez_toux.html"><img src="images/toux.png"></a>
 					</div>
 					<div class="huiy_dengj"> 
-						<a class="tuic_" href="index.html">退出</a>
+						<a class="tuic_" href="tologin">退出</a>
 					</div>
 					<div class="toub_zil_daoh">
 						<a href="wod_dingd.html">待处理订单</a>
@@ -91,6 +91,7 @@
 	</div>
 </div>
 <!--提交订单——结算页-->
+ 
 <div class="beij_center">
 	<div class="dengl_logo">
 		<div>
@@ -113,7 +114,9 @@
 		</div>
 	</div>
 </div>
+
 <div class="beij_center">
+<form action="topayOrder" method="post"  id="toAddOrder111">
 	<div class="checkout-tit">
 		<span class="tit-txt">填写并核对订单信息</span>
 	</div>
@@ -128,10 +131,10 @@
         	<ul>
         	<!-- class="cur"为选中 -->
         	<c:forEach items="${addr }" var="adr">
-        		<li class="${adr.level == '1' ? 'cur' : '' }" onclick="selectAddr(this)" >
+        		<li class="${adr.level == '1' ? 'cur' : '' }" onclick="selectAddr(this,${adr.id})" >
         			<div class="dangq_xuanz_diz">当前地址</div>
         			<span>${adr.name }</span>
-        			<span>${adr.recvaddr } &nbsp &nbsp ${adr.detailaddr } </span>
+        			<span>${adr.recvaddr } &nbsp; &nbsp; ${adr.detailaddr } </span>
         			<span>${adr.phone }</span>
         			<div class="bianji_yv_shanc">
         				<a href="#">设为默认</a>
@@ -140,6 +143,7 @@
         		</li>
         	</c:forEach>
         	</ul>
+        	<input type="hidden" name="aid" id="selectedaddr" value="">
         	<div class="addr-switch cur_e">
                 <p><span>更多地址</span><b></b></p>
                 <p class="jiant_xiangs"><span>收起更多</span><b></b></p>
@@ -162,6 +166,10 @@
             	<a href="gouw_che.html" class="ftx-05 J_consignee_global">返回修改购物车</a> 
             </div>
         </div>
+        
+
+ <input type="hidden" name="sumPrice" value="${sumPrice }">
+	
         <div class="shopping_list">
         	<div class="dis_modes">
         		<div class="mode_item_tit">
@@ -180,18 +188,24 @@
 			        	</ul>  
 			        </div>
                 </div>
+                <input type="hidden" id="psfs" name="psfs" value="">
                 <div class="peis_shij">
                 	<p>配送时间： </p><span>工作日、双休日与节假日均可送货</span>
                 </div>
                 <div class="maij_liuy">
                 	<p>给商家留言</p>
-                	<input type="text" value="最多不能超过30字！">
+                	<input type="text" name="msg" value="最多不能超过30字！">
                 </div>
         	</div>
+       
         	<div class="goods_list">
         	<c:forEach items="${lootBuyGoods}" var="lby">
         		<div class="goods_list_neik">
         			<h4 class="vendor_name_h">商家：${lby.shop.name }</h4>
+        			<input type="hidden" name="gid" value="${lby.id }">
+        			<input type="hidden" name="num" value="${lby.sum }">
+        			<input type="hidden" name="sumprice" value="${sumPrice } ">
+        			<input type="hidden" id="selectedaddr"  name="aid" value="">
         			<div class="goods_item">
         				<div class="p_img"><a href="shangp_xiangq.html"><img src="${lby.image }"></a></div>
         				<div class="goods_msg">
@@ -209,6 +223,8 @@
         		</c:forEach>
         	</div>
         </div>
+        
+ 
         <div class="fap_beij">
 			<div class="step-tit">
 	            <h3>发票信息</h3>  
@@ -256,9 +272,12 @@
 			<span> 收货人：艾丽西亚 182****0710</span>
 		</div>
 	</div>
-	<div class="tij_dingd_ann">
-		<a href="dingd_xiangq.html">提交订单</a>
-	</div>
+	
+	
+		<div class="tij_dingd_ann">
+			<a href="#"  onclick="toAddOrder111.submit()"  >提交订单</a>
+		</div>
+</form>	
 </div>
 
 <script type="text/javascript">
@@ -295,7 +314,9 @@
 		)
 	})
 	//cur 
-	function selectAddr(e){
+	function selectAddr(e,id){
+		var aid=id+"";
+		$("#selectedaddr").val(aid);
 		var flag = $(e).hasClass("cur")
 		$(".cur").removeClass("cur").addClass("");
 		if(flag){
@@ -307,6 +328,7 @@
 	//zhif_fangs cur
 	
 	function selectZf(a){
+		$("#psfs").val(a.innerHTML.substring(a.innerHTML.length-10,a.innerHTML.length-6));
 		var show = "zhif_fangs"+" "+"cur";
 		var noshow = "zhif_fangs"+" ";
 		var flag = $(a).hasClass(show)

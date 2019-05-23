@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="goods",catalog="tcmail")
-public class Goods {
+public class Goods  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer tid;
 	private Integer sid;
@@ -28,7 +29,6 @@ public class Goods {
 	private String sum;
 	
 	
-
 	@Transient
 	public String getSum() {
 		return sum;
@@ -47,16 +47,6 @@ public class Goods {
 		this.listGmsg = listGmsg;
 	}
 
-	@Column(name="regtime",length=20)
-	public Date getRegtime() {
-		return regtime;
-	}
-
-
-	public void setRegtime(Date regtime) {
-		this.regtime = regtime;
-
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -168,6 +158,15 @@ public class Goods {
 		this.car = car;
 	}
 	
+
+	@Column(name="regtime",length=50)
+	public Date getRegtime() {
+		return regtime;
+	}
+
+	public void setRegtime(Date regtime) {
+		this.regtime = regtime;
+	}
 
 	@Override
 	public String toString() {

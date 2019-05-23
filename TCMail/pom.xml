@@ -72,7 +72,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-			<version>5.1.47</version>
+			<version>5.1.17</version>
 		</dependency>
 
 		<!-- jpa -->
@@ -199,7 +199,19 @@
 		</dependency>
 
 		<!-- 支付宝扫码支付 -->
-		
+		<dependency>
+			<groupId>com.alipay.api</groupId>
+			<artifactId>k12-alipay-sdk</artifactId>
+			<version>0.0.1-beta</version>
+		</dependency>
+
+		<!--webscoket -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

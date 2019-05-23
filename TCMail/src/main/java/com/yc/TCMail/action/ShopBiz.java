@@ -37,5 +37,9 @@ public class ShopBiz {
 		
 		return  sm.insertSelective(s);
 	}
+
+	public Shop select(int sid) {
+		return 	sm.selectByPrimaryKey(sid);
+	}
 	
 }

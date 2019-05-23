@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="goodsmsg",catalog="tcmail")
-public class Goodsmsg {
+public class Goodsmsg  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer tid;
 	private Integer sid;

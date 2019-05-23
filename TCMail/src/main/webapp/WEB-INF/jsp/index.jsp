@@ -35,7 +35,7 @@
 							<dt><a href="showStyle1?gtype=${ctype.name}">${ctype.name}<i>></i></a></dt>
 								<dd>
 								<c:forEach items="${ ctype.gsonType}" var="gtype">	
-									<a href="">${gtype.name}</a>
+									<a href="#">${gtype.name}</a>
 									</c:forEach>	
 								</dd>
 							</dl>	
@@ -116,8 +116,8 @@
 					<c:forEach items="${ ctype.gsonType}" var="gtype">
 					<c:forEach items="${ gtype.goodsList}" var="temp">
 					<div class="you_shangp_lieb">
-						<a href="#"><img  class="you_tup_k" src="${temp.image}"></a>
-						<a href="#" class="_you_neir_biaot">${temp.name} ${temp.size } ${temp.color }</a>
+						<a href="goodsDetail?id=${temp.sid}"><img  class="you_tup_k" src="${temp.image}"></a>
+						<a href="goodsDetail?id=${temp.sid}" class="_you_neir_biaot">${temp.name} ${temp.size } ${temp.color }</a>
 						<span>¥ ${temp.price }</span>
 					</div>
 					</c:forEach>
@@ -161,7 +161,7 @@
 		<div class="tes_shangp_neir_k">
 			<c:forEach items="${newList}" var="temp">
 				<div class="tes_xiaot_neir">
-					<a href="#">
+					<a href="goodsDetail?id=${temp.id}">
 						<h1><img class="tes_xiaot_dongh" src="${temp.image }"></h1>
 						<h2>${temp.name}</h2>
 						<span>¥ ${temp.price }</span>
@@ -187,8 +187,8 @@
 					<ul class="picList">
 					<c:forEach items="${newList}" var="temp">
 						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="${temp.image }" /></a></div>
-							<div class="title"><a href="#" target="_blank">${temp.name }</a><span>¥ ${temp.price }</span></div>
+							<div class="pic"><a href="goodsDetail?id=${temp.id}" target="_blank"><img src="${temp.image }" /></a></div>
+							<div class="title"><a href="goodsDetail?id=${temp.id}" target="_blank">${temp.name }</a><span>¥ ${temp.price }</span></div>
 						</li>
 					</c:forEach>
 						
@@ -203,14 +203,6 @@
 <script type="text/javascript">
 		jQuery(".picScroll_left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:2 ,trigger:"click"});
 		</script>
-
-
-
-
-
-
-
- 
 
 
 

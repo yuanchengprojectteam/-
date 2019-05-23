@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="car",catalog="tcmail")
-public class Car {
+public class Car  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private Integer gid;
@@ -13,9 +14,23 @@ public class Car {
 	private Integer sid;
 	
 	private Goods goods;
+	private Integer totalPrice;
+	/*private Integer checkedStatu;
 	
-	
-	
+	@Transient
+	public Integer getCheckedStatu() {
+		return checkedStatu;
+	}
+	public void setCheckedStatu(Integer checkedStatu) {
+		this.checkedStatu = checkedStatu;
+	}*/
+	@Transient
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	@Transient
 	public Goods getGoods() {
 		return goods;
