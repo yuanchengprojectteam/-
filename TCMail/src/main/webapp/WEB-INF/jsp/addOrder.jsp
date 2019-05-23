@@ -163,7 +163,7 @@
             <h3>送货清单</h3> 
             <div class="extra_r">
             	<a href="#" class="ftx-05 J_consignee_global">价格说明</a>
-            	<a href="gouw_che.html" class="ftx-05 J_consignee_global">返回修改购物车</a> 
+            	<a href="car" class="ftx-05 J_consignee_global">返回修改购物车</a> 
             </div>
         </div>
         
