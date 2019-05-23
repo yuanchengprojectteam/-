@@ -203,110 +203,7 @@
 									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
 								</div>
 							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/shangq_3.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/big_3.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/xiangqtu_1.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/lieb_tupi3.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/big_3.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/lieb_tupi1.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/lieb_tupi2.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
-							<li>
-								<div class="pic">
-									<a href="shangp_xiangq.html" target="_blank"><img
-										src="images/lieb_tupi3.jpg" /></a>
-								</div>
-								<div class="title">
-									<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-									<div class="jiage_gouw">
-										<span>¥2499.00</span>
-									</div>
-									<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-								</div>
-							</li>
+							
 						</ul>
 					</div>
 				</div>
@@ -315,6 +212,7 @@
 					<div class="picScroll_left_s_dsl">
 						<div class="dfgc">
 							<ul class="picList">
+							
 								<li>
 									<div class="pic">
 										<a href="shangp_xiangq.html" target="_blank"><img
@@ -328,71 +226,7 @@
 										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
 									</div>
 								</li>
-								<li>
-									<div class="pic">
-										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/big_3.jpg" /></a>
-									</div>
-									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-										<div class="jiage_gouw">
-											<span>¥2499.00</span>
-										</div>
-										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-									</div>
-								</li>
-								<li>
-									<div class="pic">
-										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/lieb_tupi1.jpg" /></a>
-									</div>
-									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-										<div class="jiage_gouw">
-											<span>¥2499.00</span>
-										</div>
-										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-									</div>
-								</li>
-								<li>
-									<div class="pic">
-										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/big_3.jpg" /></a>
-									</div>
-									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-										<div class="jiage_gouw">
-											<span>¥2499.00</span>
-										</div>
-										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-									</div>
-								</li>
-								<li>
-									<div class="pic">
-										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/shangq_3.jpg"></a>
-									</div>
-									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-										<div class="jiage_gouw">
-											<span>¥2499.00</span>
-										</div>
-										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-									</div>
-								</li>
-								<li>
-									<div class="pic">
-										<a href="shangp_xiangq.html" target="_blank"><img
-											src="images/shangq_3.jpg"></a>
-									</div>
-									<div class="title">
-										<a href="shangp_xiangq.html" target="_blank">喜芬妮春秋桑蚕丝长袖性感蕾丝花边女式睡衣家居服二</a>
-										<div class="jiage_gouw">
-											<span>¥2499.00</span>
-										</div>
-										<a href="gouw_che.html" class="cart_scroll_btn">加入购物车</a>
-									</div>
-								</li>
+							
 							</ul>
 						</div>
 					</div>

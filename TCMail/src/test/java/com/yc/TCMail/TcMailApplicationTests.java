@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -59,6 +60,12 @@ public class TcMailApplicationTests {
     
     @Autowired
     private GoodsMapper gom;
+    
+    @Resource
+	private  RedisTemplate<Integer, Integer> redisTemplate;
+    
+    @Resource
+    private RedisUtil redis;
 	
 	@Test
 	public void contextLoads() {
@@ -77,7 +84,32 @@ public class TcMailApplicationTests {
 	
 	@Test
 	public void  query() {
+		
+		/*List<Integer> ret = new ArrayList<Integer>();
+		ret.add(9);
+		ret.add(2);*/
+		/*redisTemplate.opsForList().leftPush(2, 1);
+		redisTemplate.opsForList().leftPush(2, 2);
+		redisTemplate.opsForList().leftPush(2, 3);*/
+		Long  si = redisTemplate.opsForList().size(2);
+		for(Long i = (long) 0; i < si;i++) {
+			redisTemplate.opsForList().rightPop(2);
+		}
 	
 		
+		/*List<Integer> popValue = (List<Integer>) redisTemplate.opsForList().rightPopAndLeftPush(1,2);  
+		System.out.print("通过rightPopAndLeftPush(K sourceKey, K destinationKey)方法移除的元素是:" + popValue);*/  
+		/*List<Integer> list =  redisTemplate.opsForList().range(2,0,-1);  
+		System.out.println("剩余的元素是:" + list);  */
+		List<Integer> ret =  redisTemplate.opsForList().range(2,0,-1);
+		System.out.println(ret);
+		
 	}
+	/*@Test
+	public void  query1() {
+		List<Integer> ret = new ArrayList<Integer>();
+		ret.add(3);
+		redis.setObject(1, ret);
+	}*/
+	
 }
