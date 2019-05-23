@@ -224,19 +224,34 @@ public class ZhouController {
 				,@RequestParam("msg") String msg
 				,@RequestParam("file") MultipartFile[] file
 				,@RequestParam("uoid") String uoid
-				,HttpServletResponse resp
-				,@RequestParam("gid")String gid) throws OSSException, ClientException, IOException {
+				,@RequestParam("gid")String gid
+				,@RequestParam("oid")String oid) throws OSSException, ClientException, IOException{
+			System.out.println("====================="+oid);
 			
 			Comment comm = new Comment();
 			String img="";
-			for(MultipartFile p :file) {
+			/*for(MultipartFile p :file) {
 				if(p != null) {
-						/*p.write("D:/image/"+p.getSubmittedFileName());
-						img = img+","+"D:/image/"+p.getSubmittedFileName();*/
+						p.write("D:/image/"+p.getSubmittedFileName());
+						img = img+","+"D:/image/"+p.getSubmittedFileName();
 						img = img+","+oss.upload(p, 2);		
 				}
 				
-			}
+			}*/
+			for(int i=0,j=0;i<file.length;i++) {
+				
+					//System.out.println(file[i]);
+					if(j==0) {
+						img = oss.upload(file[i], 2);
+					}else {
+						String s = oss.upload(file[i], 2);
+						if(!"upload have problem!".equals(s)) {
+							img = img +","+s;
+						}	
+					}
+					j++;
+				}
+			
 			comm.setAtti(Integer.valueOf(atti));
 			comm.setGfit(Integer.valueOf(gfit));
 			comm.setMsg(msg);
@@ -246,6 +261,7 @@ public class ZhouController {
 			comm.setImg(img);
 			comm.setCommenttime(zm.now());
 			comm.setUid(user.getId());
+			comm.setGid(Integer.parseInt(oid));
 			zm.updateUorderStatu(uoid);
 			zm.insertComment(comm);
 			zm.updateCommnum(gid);

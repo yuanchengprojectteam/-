@@ -209,10 +209,12 @@ public class CarProcessAction {
 		
 		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
 
+
 		if(signVerified) {
 			Uorder o=new Uorder();
 			o.setPaystatu("已支付");
 			um.updateByPrimaryKeySelective(o);
+
 		}
 		return "PersonCenter";
 }

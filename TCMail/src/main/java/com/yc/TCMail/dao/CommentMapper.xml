@@ -159,10 +159,10 @@
 
     insert into comment (atti, commenttime, gfit, 
       img, msg, satisf, see, 
-      speed, uid, watti)
+      speed, uid, watti,gid)
     values (#{atti,jdbcType=INTEGER}, #{commenttime,jdbcType=VARCHAR}, #{gfit,jdbcType=INTEGER}, 
       #{img,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, #{satisf,jdbcType=INTEGER}, #{see,jdbcType=VARCHAR}, 
-      #{speed,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{watti,jdbcType=INTEGER})
+      #{speed,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{watti,jdbcType=INTEGER},#{gid,jdbcType=INTEGER})
 
   </insert>
   <insert id="insertSelective" parameterType="com.yc.TCMail.bean.Comment">

@@ -19,6 +19,8 @@ import com.yc.TCMail.bean.Goodsmsg;
 import com.yc.TCMail.bean.GoodsmsgExample;
 import com.yc.TCMail.bean.Gtype;
 import com.yc.TCMail.bean.GtypeExample;
+import com.yc.TCMail.bean.Image;
+import com.yc.TCMail.bean.ImageExample;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.dao.AddressMapper;
@@ -26,6 +28,7 @@ import com.yc.TCMail.dao.FavoriteMapper;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.GoodsmsgMapper;
 import com.yc.TCMail.dao.GtypeMapper;
+import com.yc.TCMail.dao.ImageMapper;
 import com.yc.TCMail.dao.OrderBy;
 
 @Service
@@ -55,6 +58,8 @@ public class AfterSerchMethod {
 	@Resource
 	AddressMapper addrm;
 	
+	@Resource
+	ImageMapper im;
 	
 	
 	public Gtype queryGtype(String gtype) {
@@ -63,6 +68,22 @@ public class AfterSerchMethod {
 		ge.createCriteria().andNameEqualTo(gtype);
 		List<Gtype> list = gtym.selectByExample(ge);
 		return list.get(0);
+	}
+	
+	public List<Gtype> querySunGtype(String gtype){
+		GtypeExample ge = new GtypeExample();
+		List<Gtype> set = new ArrayList<Gtype>();
+		ge.createCriteria().andNameEqualTo(gtype);
+		List<Gtype> list = gtym.selectByExample(ge);
+		Gtype gty = list.get(0);
+		set.add(gty);
+		ge = new GtypeExample();
+		ge.createCriteria().andPidEqualTo(gty.getId());
+		List<Gtype> listSun = gtym.selectByExample(ge);
+		for(Gtype g : listSun) {
+			set.add(g);
+		}
+		return set;
 	}
 
 	public List<Goods> queryAllGoods(int tid) {
@@ -116,7 +137,7 @@ public class AfterSerchMethod {
 	}
 	
 	public List<Goods> HostGoods(int tid){
-		List<OrderdetailsOderBy> list = ob.selectOrderBy(tid);
+		List<OrderdetailsOderBy> list = ob.selectOrderBy(""+tid);
 		//System.out.println("list===:"+list.get(0).getGnum());
 		List<Goods> hostGoods = new ArrayList<Goods>();
 		
@@ -231,6 +252,16 @@ public class AfterSerchMethod {
 			}
 		}
 		return gList;
+	}
+
+	public List<Image> queryImage(int gid) {
+		// TODO Auto-generated method stub
+		ImageExample ie = new ImageExample();
+		ie.createCriteria().andGidEqualTo(gid);
+		List<Image> image = im.selectByExample(ie);
+		//System.out.println("立即购买：=========="+image.get(0).getPath());
+		
+		return image;
 	}
 
 }
