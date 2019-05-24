@@ -25,7 +25,136 @@
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
 <script type="text/javascript" src="houl/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	if('${sessionScope.loginedUser}'){
+		$.ajax({
+			url:"haveReciver",
+			data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
+			type:"post",
+			success:function(result){
+				if(result=='yes'){
+	   				document.getElementById('r').innerHTML='已收藏';
+	   			 }else{
+	   				document.getElementById('r').innerHTML='加入收藏';
+	   			 }
+			}
+		});
+	}else{
+		document.getElementById('r').innerHTML='加入收藏';
+	}
+	
+});
+var  i=parseInt('${shop.level}');
+document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
+ function recivershop(){
+	if('${sessionScope.loginedUser}'){
+		$.ajax({
+			url:"reciver", 					//url地址
+	   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
+	   		 type:"post",   				 //传输方式，get / post
+	   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
+	   			 if(result=='yes'){
+	   				document.getElementById('r').innerHTML='已收藏';
+	   			 }else{
+	   				document.getElementById('r').innerHTML='收藏失败';
+	   			 }
+	   		 }
+	});
+	}else{
+		$("#r")[0].href="tologin";
+	}
+}
 
+
+function colorSelect(e){
+	var show="select";
+	var noShow="clicks";
+	var sign = $("#cor");
+	var value = $(e).attr("value");
+	//alert(value);
+	var flag = $(e).hasClass(show)
+	if(flag){
+		sign.val("")
+		$(e).removeClass(show).addClass(noShow);
+	}else{
+		sign.val(value)
+		$(e).removeClass(noShow).addClass(show);
+	}
+	
+}
+
+function sizeSelect(f){
+	var show="select";
+	var noShow="clicks";
+	var sign = $("#Goodsize");
+	var value = $(f).attr("value");
+	//alert(value);
+	var flag = $(f).hasClass(show)
+	if(flag){
+		sign.val("")
+		$(f).removeClass(show).addClass(noShow);
+	}else{
+		sign.val(value+"寸")
+		$(f).removeClass(noShow).addClass(show);
+	}
+}
+
+function add(){
+	var sum = $("#sum").val();
+	sum++;
+	$("#sum").val(sum);
+}
+
+function reduce(){
+	var sum = $("#sum").val();
+	if(sum==1){
+		alert("购买数量不能为'0'")
+		return;
+	}
+	sum--;
+	$("#sum").val(sum);
+}
+
+
+function addCar(){
+	var color = $("#cor").val();
+	var size = $("#Goodsize").val(); 
+	var sum = $("#sum").val();
+	var gid = $("#gid").val();
+	var sid = $("#sid").val();
+	alert(gid+":"+color+":"+size+":"+sid);
+	var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
+	//alert(isEmail.test(color));
+	 if(!isEmail.test(color)){
+		alert("颜色没有选择");
+		return;
+	}
+	
+	if(!isEmail.test(size)){
+		alert("尺寸没有选择");
+		return;
+	} 
+	$.ajax({
+		type:"post",
+		url:"goodAddCar",
+		cache:false,
+		data:{"sum":sum,"gid":gid,"sid":sid},
+		success:function(data){
+				alert("加入购物车成功！");	
+		},
+		error:function(e){
+			alert("ajax错误");
+		}
+		
+	});
+	
+}
+
+
+</script>
+
+</script>
 </head>
 <body>
 <!--侧边-->
@@ -81,8 +210,14 @@
 	        </li>
 	        <li class="active">
 
+<<<<<<< HEAD
 				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
 
+=======
+				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
+
+				
+>>>>>>> refs/remotes/origin/master
 	        </li>
 	    </ul>
     </div>
@@ -96,9 +231,15 @@
             <a class="btn-service hide customerService_show"><i></i>在线客服</a>
             
             <span class="services-score"><b class="star-gray"><i class="star-red" style="width:81.2819333333%" id="start"></i></b><em class="score">${shop.level }</em>分</span>
+<<<<<<< HEAD
 
 
             <a class="name" title="${goodMsg.shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a>
+=======
+
+            <a class="name" title="${shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a>
+
+>>>>>>> refs/remotes/origin/master
 
              
         </div>
@@ -119,11 +260,11 @@
 		      	<div class="list">
 		        	<ul class="wrapper">
 		        	<!-- class="item" class="item item-cur" -->
-		        	<c:forEach items="${ goodMsg.listGmsg}" var="lsmg">
-		        		<c:forEach items="${lsmg.image}" var="iag">
-		          		<li class="item item-cur" data-src="${iag.path }"><img src="${iag.path }" alt="#"></li>
-		          		</c:forEach>
-			         </c:forEach> 	
+		   
+		        		
+		          		<li class="item item-cur" data-src="${goodMsg.images}"><img src="${goodMsg.images}" alt="#"></li>
+		          		
+			      
 		        	</ul>
 		      	</div>
 		    </div>
@@ -156,11 +297,8 @@
 	<!--中-->
 	<div class="prd_firstscreen_center">
 		<div class="hgroup">
-<%-- <<<<<<< HEAD
-        	<h1>${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</h1> 
-======= --%>
+
         	<h1>${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</h1> 
-<!-- >>>>>>> refs/remotes/origin/master -->
     	</div>
     	<div class="prd_price_1">  
             <div class="unitprice">
@@ -186,26 +324,19 @@
         <div class="prd_properties">
 	        <div class="prd_properties_1"> 
         		<label class="prd_price_left">服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务</label>
-<%-- <<<<<<< HEAD
         		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${shop.name }</a>发货并负责售后服务。</span>  
-======= --%>
-        		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${goodMsg.shop.name }</a>发货并负责售后服务。</span>  
-<!-- >>>>>>> refs/remotes/origin/master -->
+
 	        </div>
 	        <div class="prd-properties-2"> 
                 <div class="prd_properties_other">
                     <label class="prdLeft">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</label>
                     <div class="prdRight">
-                    <c:forEach items="${goodMsg.listGmsg }" var="gl">
+                    <c:forEach items="${AllTS}" var="gl">
                         <div class="prdcol">
                             <a onclick="colorSelect(this)" class="" value="${gl.color }" data-alt="${gl.color }">
-                            	<c:forEach items="${gl.image }" var="limg" varStatus="i">
-                            		<c:if test="${i.index < 1 }">
-                               		 	<img src="${limg.path }" gome-src="${limg.path }" alt="${limg.path }">
-                               		 	 <span>${gl.color }色</span><i></i>
-                               		 </c:if>
-                                </c:forEach>
-                               
+                        	 	<img src="${gl.image }" gome-src="${gl.image }" alt="${gl.image }">
+                                <span>${gl.color }</span><i></i>
+                            
                             </a>
                         </div>
                     </c:forEach>
@@ -218,7 +349,7 @@
                 <div class="prd_properties_other" style="display:block">
                     <label class="prdLeft">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                     <div class="prdRight_1">
-                     <c:forEach items="${goodMsg.listGmsg }" var="siz">
+                     <c:forEach items="${AllTS}" var="siz">
                         <div class="prdmod">
                         <!-- select:选中 -->
                             <a onclick="sizeSelect(this)" class="clicks" value="${siz.size }" title="${siz.size }" data-alt="${siz.size }">${siz.size }<i></i></a>
@@ -451,40 +582,14 @@
 							<li title="卿城">品牌： <a href="#" target="_blank">卿城</a> </li>
 						</ol>
 						<ol class="parameter2 p_parameter_list">
-<%-- <<<<<<< HEAD
-							<li title="卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)">商品名称：卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)</li>
-    						<li title="11971841918">商品编号：11971841918</li>
-                      		<li title="${shop.name }">店铺： <a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a></li>
-                     		<li title="500.00g">商品毛重：500.00g</li>
-				            <li title="中国大陆">商品产地：中国大陆</li>
-				            <li title="F1751">货号：F1751</li>
-							<li title="套头">款型：套头</li>
-							<li title="卡通">风格：卡通</li>
-							<li title="中厚">厚度：中厚</li>
-							<li title="圆领">领型：圆领</li>
-							<li title="多色">颜色：多色</li>
-							<li title="棉质">材质：棉质</li>
-							<li title="卡通">图案：卡通</li>
-							<li title="情侣">人群：情侣</li>
-							<li title="秋季">季节：秋季</li>
-							<li title="长袖">袖长：长袖</li>
-							<li title="套头">衣门襟：套头</li>
-							<li title="长裤">裤长：长裤</li>
-							<li title="M，L，XL，XXL">尺码：M，L，XL，XXL</li>
-							<li title="其它">裙长：其它</li>
-							<li title="可外穿">是否可外穿：可外穿</li>
-							<li title="套装">款式：套装</li>
-							<li title="衣裤两件套">组合形式：衣裤两件套</li>
-======= --%>
-							<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
+		<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
     						<li title="11971841918">商品编号：${goodMsg.id }</li>
                       		<li title="依晴服饰内衣专营店">店铺： <a href="toshopGoodsShowStyle1?id=${goodMsg.shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a></li>
                      		
-							<li title="M，L，XL，XXL">尺码：<c:forEach items="${goodMsg.listGmsg }" var="li">
+							<li title="M，L，XL，XXL">尺码：<c:forEach items="${ AllTS}" var="li">
 								${li.size }&nbsp&nbsp
 							</c:forEach></li>
 
-<!-- >>>>>>> refs/remotes/origin/master -->
 						</ol>
 					</div>
 					<div class="detail_content_wrap">
@@ -1291,129 +1396,4 @@
 				'transitionOut'		: 'none'
 			});
 		}); */
-		$(document).ready(function(){
-			if('${sessionScope.loginedUser}'){
-				$.ajax({
-					url:"haveReciver",
-					data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
-					type:"post",
-					success:function(result){
-						if(result=='yes'){
-			   				document.getElementById('r').innerHTML='已收藏';
-			   			 }else{
-			   				document.getElementById('r').innerHTML='加入收藏';
-			   			 }
-					}
-				});
-			}else{
-				document.getElementById('r').innerHTML='加入收藏';
-			}
-			
-		});
-		var  i=parseInt('${shop.level}');
-		document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
-		 function recivershop(){
-			if('${sessionScope.loginedUser}'){
-				$.ajax({
-					url:"reciver", 					//url地址
-			   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
-			   		 type:"post",   				 //传输方式，get / post
-			   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
-			   			 if(result=='yes'){
-			   				document.getElementById('r').innerHTML='已收藏';
-			   			 }else{
-			   				document.getElementById('r').innerHTML='收藏失败';
-			   			 }
-			   		 }
-			});
-			}else{
-				$("#r")[0].href="tologin";
-			}
-		}
-
-		
-		function colorSelect(e){
-			var show="select";
-			var noShow="clicks";
-			var sign = $("#cor");
-			var value = $(e).attr("value");
-			//alert(value);
-			var flag = $(e).hasClass(show)
-			if(flag){
-				sign.val("")
-				$(e).removeClass(show).addClass(noShow);
-			}else{
-				sign.val(value)
-				$(e).removeClass(noShow).addClass(show);
-			}
-			
-		}
-		
-		function sizeSelect(f){
-			var show="select";
-			var noShow="clicks";
-			var sign = $("#Goodsize");
-			var value = $(f).attr("value");
-			//alert(value);
-			var flag = $(f).hasClass(show)
-			if(flag){
-				sign.val("")
-				$(f).removeClass(show).addClass(noShow);
-			}else{
-				sign.val(value+"寸")
-				$(f).removeClass(noShow).addClass(show);
-			}
-		}
-		
-		function add(){
-			var sum = $("#sum").val();
-			sum++;
-			$("#sum").val(sum);
-		}
-		
-		function reduce(){
-			var sum = $("#sum").val();
-			if(sum==1){
-				alert("购买数量不能为'0'")
-				return;
-			}
-			sum--;
-			$("#sum").val(sum);
-		}
-		
-		
-		function addCar(){
-			var color = $("#cor").val();
-			var size = $("#Goodsize").val(); 
-			var sum = $("#sum").val();
-			var gid = $("#gid").val();
-			var sid = $("#sid").val();
-			var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
-			//alert(isEmail.test(color));
-			 if(!isEmail.test(color)){
-				alert("颜色没有选择");
-				return;
-			}
-			
-			if(!isEmail.test(size)){
-				alert("尺寸没有选择");
-				return;
-			} 
-			$.ajax({
-				type:"post",
-				url:"goodAddCar",
-				cache:false,
-				data:{"sum":sum,"gid":gid,"sid":sid},
-				success:function(data){
-						alert("加入购物车成功！");	
-				},
-				error:function(e){
-					alert("ajax错误");
-				}
-				
-			});
-			
-		}
-		
-		
-</script>
+		</script>

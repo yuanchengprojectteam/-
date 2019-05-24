@@ -58,6 +58,7 @@ public class AddressBiz {
 			throw new BizException("收货人电话不能为空!!!");
 		}
 		addrm.insertSelective(addr);
+		addrm.insert(addr);
 	}
 	
 	

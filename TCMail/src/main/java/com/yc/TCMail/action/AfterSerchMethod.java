@@ -30,6 +30,7 @@ import com.yc.TCMail.dao.GoodsmsgMapper;
 import com.yc.TCMail.dao.GtypeMapper;
 import com.yc.TCMail.dao.ImageMapper;
 import com.yc.TCMail.dao.OrderBy;
+import com.yc.TCMail.dao.ShopMapper;
 
 @Service
 public class AfterSerchMethod {
@@ -60,6 +61,9 @@ public class AfterSerchMethod {
 	
 	@Resource
 	ImageMapper im;
+	
+	@Resource
+	ShopMapper sm;
 	
 	
 	public Gtype queryGtype(String gtype) {
@@ -92,7 +96,8 @@ public class AfterSerchMethod {
 		ge.createCriteria().andTidEqualTo(tid);
 		List<Goods> list = goodm.selectByExample(ge);
 		for(Goods g : list) {
-			Shop shop = zm.queryIdShop(g.getSid());
+			System.out.println("这是Sid："+g.getSid());
+			Shop shop = sm.selectByPrimaryKey(g.getSid());
 			g.setShop(shop);
 		}
 		return list;
@@ -262,6 +267,21 @@ public class AfterSerchMethod {
 		//System.out.println("立即购买：=========="+image.get(0).getPath());
 		
 		return image;
+	}
+
+	public List<Goods> queryGoodsByTid(int tid) {
+		// TODO Auto-generated method stub
+		
+		GoodsExample ge = new GoodsExample();
+		ge.createCriteria().andTidEqualTo(tid);
+		
+		
+		return gm.selectByExample(ge);
+	}
+
+	public Shop queryShop(int sid) {
+		// TODO Auto-generated method stub
+		return sm.selectByPrimaryKey(sid);
 	}
 
 }
