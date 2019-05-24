@@ -255,7 +255,11 @@ public class ZhouMethod {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(gid);
 		Goods good = gm.selectByPrimaryKey(id);
-		int num = good.getCommnum();
+		int num = 0;
+		
+		 if( good.getCommnum() != null) {
+			 num =  good.getCommnum();
+		 }
 		num++;
 		good.setCommnum(num);
 		GoodsExample ge = new GoodsExample();

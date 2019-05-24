@@ -26,9 +26,9 @@ public class GoodsMsgBiz {
 		return gm.selectByExample(example);
 	}
 
-	public int selectSid(String id) {
+	public int selectSid(Integer id) {
 		GoodsmsgExample example=new GoodsmsgExample();
-		example.createCriteria().andIdEqualTo(Integer.valueOf(id));
+		example.createCriteria().andIdEqualTo(id);
 		List<Goodsmsg> list= gm.selectByExample(example);
 		return  list.get(0).getSid();
 	}

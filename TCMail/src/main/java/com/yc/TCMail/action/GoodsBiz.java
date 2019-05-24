@@ -14,9 +14,11 @@ import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.GoodsExample;
 import com.yc.TCMail.bean.OrderdetailsOderBy;
 import com.yc.TCMail.bean.PageBean;
+import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.OrderBy;
 import com.yc.TCMail.dao.OrderdetailMapper;
+import com.yc.TCMail.util.RedisUtil;
 
 @Service
 //抛出业务异常（编译期异常）时，回滚
@@ -29,6 +31,23 @@ public class GoodsBiz {
 	private  OrderdetailMapper  oMapper;
 	@Resource
 	private  OrderBy  ob;
+	
+	@Resource
+	private RedisUtil redis;
+	
+	public void addGoodsBrowseRecord(User user,Integer id) throws BizException{
+		redis.setObject(user.getId(), id);
+	}
+	
+	public List<Goods> selectGoodsBrowseRecord(User user) throws BizException{
+		List<Integer> goodsId = redis.get(user.getId());
+		if(goodsId.size() > 0) {
+			return gMapper.selectBatch(goodsId);
+		}else {
+			return null;
+		}
+		
+	}
 	
 	
 	public List<Goods> selectShopGoods(Integer id,String  oreason) {
