@@ -127,26 +127,21 @@ public Integer addOrderAndDetail(String[] cid, Integer[] num, String[] checked, 
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Uorder order = new Uorder(null,user.getId(),"待支付",sdf.format(new Date()),totalprice,"0");
 		uom.insertUorder(order);
-
 		List<Orderdetail> detailList = new ArrayList<Orderdetail>();
 		for(int i = 0;i<cid.length;i++) {
 			if(cid[i].indexOf("cid") != -1) {
 				CarExample example = new CarExample();
 				System.out.println(num[i]);
 				Orderdetail detail = new Orderdetail();
-				System.out.println(Integer.valueOf(cid[i].substring(3))+"=========cid==========");
 				example.createCriteria().andIdEqualTo(Integer.valueOf(cid[i].substring(3))).andUidEqualTo(user.getId());
 				List<Car> ret = cm.selectByExample(example);
 				carList.add(ret.get(0));
 				detail.setNum(num[i]);
 				detail.setOrderid(order.getId());
-				System.out.println(order.getId()+"=====================");
 				detail.setGid(ret.get(0).getGid());
 				detailList.add(detail);
 			}
 		}
-		System.out.println(detailList.get(0).getOrderid()+"=============");
-		System.out.println(detailList);
 		odm.insertBatch(detailList);
 		return order.getId();
 	}
