@@ -19,20 +19,7 @@
 	<jsp:include page="../public/rowHeader.jsp"/>
 
 	<!--轮播图上方导航栏  一栏-->
-	<div id="navv">
-			<div class="focus">
-		<div class="focus-a">
-			<div class="fouc-font"><a href="">全部商品分类</a> </div>
-		</div>
-		<div class="focus-b">
-			<ul>
-				<li><a href="#">商城首页</a></li>
-				<c:forEach items="${typeOne }" var="to">
-					<li><a href="#">${to.name }</a></li>
-				</c:forEach>
-				
-			</ul>
-		</div>
+	
 
 
 		<!--左边导航-->

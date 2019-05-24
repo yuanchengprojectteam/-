@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +29,7 @@ import com.yc.TCMail.bean.User;
 import com.yc.TCMail.dao.CarMapper;
 import com.yc.TCMail.dao.GoodsMapper;
 import com.yc.TCMail.dao.OrderBy;
+import com.yc.TCMail.imply.IndexImply;
 
 @Controller
 @SessionAttributes(names= {"hostRecommend","typeid","loginedUser"})
@@ -52,7 +54,8 @@ public class AfterSerchController {
 	@Resource
 	private  GoodsBiz  gsBiz;
 	
-	
+	@Autowired
+	private IndexImply ib;
 	
 	
 	@RequestMapping("showStyle1")
@@ -211,10 +214,25 @@ public class AfterSerchController {
 		model.addAttribute("goodMsg",good);
 		model.addAttribute("hostGoods",hostGoods);
 		
+		
+		
+		
+		
+		
+		List<Gtype> oneType=ib.levelOneType();
+		List<Gtype> twoType=ib.levelTowType();
+		List<Gtype> threeType=ib.levelThreeTypeAndGoods();
+		User user=(User) request.getSession().getAttribute("loginedUser");
+		if(user != null) {
+			model.addAttribute("carGoods", ib.getCarGoodsList(user.getId()));
+		}
+		
+		model.addAttribute("typeOne", oneType);
+		model.addAttribute("typeTwo", twoType);
+		model.addAttribute("typeThree", threeType);
+		
 		/*model.addAttribute("gtypeToUp",typeNameList);*/
 		
-		User user=(User) request.getSession().getAttribute("loginedUser");
-		System.out.println("==================="+user+"==================");
 		if(user != null) {
 			try {
 				gsBiz.addGoodsBrowseRecord(user, gid);

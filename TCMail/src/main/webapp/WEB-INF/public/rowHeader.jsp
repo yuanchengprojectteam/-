@@ -167,6 +167,22 @@
 				href="#">特步女鞋</a> <a href="#">威士忌</a>
 		</div>
 	</div>
+	
+	<div id="navv">
+			<div class="focus">
+		<div class="focus-a">
+			<div class="fouc-font"><a href="">全部商品分类</a> </div>
+		</div>
+		<div class="focus-b">
+			<ul>
+				<li><a href="#">商城首页</a></li>
+				<c:forEach items="${typeOne }" var="to">
+					<li><a href="queryGoods?msg=${to.name }">${to.name }</a></li>
+				</c:forEach>
+				
+			</ul>
+		</div>
+		
 
 
 <script type="text/javascript">
