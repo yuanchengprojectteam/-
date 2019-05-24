@@ -124,9 +124,9 @@ function addCar(){
 	var gid = $("#gid").val();
 	var sid = $("#sid").val();
 	alert(gid+":"+color+":"+size+":"+sid);
-	var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
+	//var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
 	//alert(isEmail.test(color));
-	 if(!isEmail.test(color)){
+	/*  if(!isEmail.test(color)){
 		alert("颜色没有选择");
 		return;
 	}
@@ -134,7 +134,7 @@ function addCar(){
 	if(!isEmail.test(size)){
 		alert("尺寸没有选择");
 		return;
-	} 
+	}  */
 	$.ajax({
 		type:"post",
 		url:"goodAddCar",
@@ -210,14 +210,12 @@ function addCar(){
 	        </li>
 	        <li class="active">
 
-<<<<<<< HEAD
+
 				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
 
-=======
-				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
 
 				
->>>>>>> refs/remotes/origin/master
+
 	        </li>
 	    </ul>
     </div>

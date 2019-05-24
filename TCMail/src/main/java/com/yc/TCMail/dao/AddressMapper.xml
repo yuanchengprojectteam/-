@@ -165,7 +165,7 @@
     insert into address (id, level, name, 
       phone, uid, recvaddr, 
       detailaddr)
-    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+    values (null, #{level,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{recvaddr,jdbcType=VARCHAR}, 
       #{detailaddr,jdbcType=VARCHAR})
   </insert>

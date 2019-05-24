@@ -66,6 +66,7 @@ public class IndexImply {
 			gde.createCriteria().andTidEqualTo(gt.getId());
 			gt.setGoodsList(gom.selectByExample(gde));
 		}
+		System.out.println();
 		return tmp;
 	}
 
@@ -93,7 +94,6 @@ public class IndexImply {
 			ge.createCriteria().andIdEqualTo(car.getGid());
 			tmp.add(gom.selectByExample(ge).get(0));
 		}
-		System.out.println("++++++++++++++++++++++++++CARCARCAR+++++++++++++++++++++++++++++"+tmp);
 		return tmp;
 	}
 

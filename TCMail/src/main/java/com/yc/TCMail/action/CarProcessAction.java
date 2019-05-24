@@ -118,7 +118,7 @@ public class CarProcessAction {
 	public String test(Model model,String aid,String[] gid,String[] num,String sumprice,@SessionAttribute("loginedUser") User user) throws AlipayApiException{
 		Uorder order=new Uorder();
 		order.setAid(Integer.valueOf(aid.substring(0,aid.length()-1)));
-		order.setOrderstatu("待支付");
+		order.setPaystatu("待支付");
 		order.setPaytype("支付宝");
 		order.setTotalprice((double)Integer.valueOf(sumprice.substring(0, sumprice.length()-3)));
 		order.setUid(user.getId());

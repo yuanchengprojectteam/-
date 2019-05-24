@@ -55,28 +55,5 @@ public class TcMailApplication extends  SpringBootServletInitializer implements 
 		registry.addInterceptor(filter).excludePathPatterns("/","/index","/login","/tologin","/css/**","/js/**","/houl/**","/images/**","/pie/**","/goodsDetail","/lootbuy","/queryGoods","/toregister","/toapplybecomeshop","/toshopGoodsShowStyle1","/toshopGoodsShowStyle2","/shopIndex","/shopintro");
 		
 	}
-        
-        
-
-	/*    
-	 * //将 Spring项目部署到本地tomcat服务器上
-	 * 
-	 * @Override protected SpringApplicationBuilder
-	 * configure(SpringApplicationBuilder application) { return
-	 * application.sources(TcMailApplication.class); }
-	*/
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

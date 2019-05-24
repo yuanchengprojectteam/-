@@ -246,6 +246,7 @@
 		};
 		$.post("updateAddr",data,function(data){
 			alert(data.msg);
+			window.location.reload();
 		}); 
 	}
 	function edit(id){

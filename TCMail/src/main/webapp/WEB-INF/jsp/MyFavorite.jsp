@@ -13,7 +13,32 @@
  <script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.SuperSlide.2.1.1.source.js"></script>
 <!--  <script type="text/javascript" src="js/select.js"></script> -->
+<script type="text/javascript">
+function delects(){
+	
+	var id = $("#id").val();
+	var uid = $("#uid").val();
+	alert(id+","+uid);
+	$.ajax({
+		type:"post",
+		url:"fdelect?id="+id,
+		cache:false,
+		data:{"uid":uid},
+		dataType:"JSON",
+		success:function(data){
+			alert("取消成功！！");
+			location.href = "MyFavorite?uid="+data.uid;
+		},
+		error:function(e){
+			alert("ajax错误");
+		}
+	});
+};
 
+if('${msg}'){
+	alert('${msg}');
+}
+</script>
 
 </head>
 <body>
@@ -30,7 +55,8 @@
 			
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
-					<div class="shand_piaot">我的收藏</div>
+				
+					<div class="shand_piaot">我的收藏 </div>
 					<div class="slideTxtBox_shouc">
 						<div class="hd">  
 							<ul><li>商品</li><li>店铺</li></ul>
@@ -171,27 +197,8 @@
  <script type="text/javascript">
  
  
-	 function delects(){
-		
-		var id = $("#id").val();
-		var uid = $("#uid").val();
-		alert(id+","+uid);
-		$.ajax({
-			type:"post",
-			url:"fdelect?id="+id,
-			cache:false,
-			data:{"uid":uid},
-			dataType:"JSON",
-			success:function(data){
-				alert("取消成功！！");
-				location.href = "MyFavorite?uid="+data.uid;
-			},
-			error:function(e){
-				alert("ajax错误");
-			}
-		});
-	};
- 
+	
+	
 
 </script>
 
