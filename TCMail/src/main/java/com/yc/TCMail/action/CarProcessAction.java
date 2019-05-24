@@ -19,6 +19,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,6 +65,8 @@ public class CarProcessAction {
 	@Autowired
 	UorderBiz uoBiz;
 	
+	private AlipayClient alipayClient;
+	private AlipayTradePagePayRequest alipayRequest;
 	
 	
 	@Autowired
@@ -100,6 +103,31 @@ public class CarProcessAction {
 	@RequestMapping("fail")
 	public String fail() {
 		return "fail";
+	}
+	
+	
+	@ModelAttribute
+	public void init() {
+		 alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+		 alipayRequest = new AlipayTradePagePayRequest();
+		alipayRequest.setReturnUrl(AlipayConfig.return_url);
+		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+	}
+	
+	@RequestMapping("aaatest")
+	public String test(Model model) throws AlipayApiException{
+		
+		alipayRequest.setBizContent("{\"out_trade_no\":\""+ 1123123112 +"\"," 
+				+ "\"total_amount\":\""+ 111 +"\"," 
+				+ "\"subject\":\""+ 111 +"\"," 
+				+ "\"body\":\""+ "body" +"\"," 
+				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+		
+		String result = alipayClient.pageExecute(alipayRequest).getBody();
+		
+		model.addAttribute("result", result);
+		
+		return "success";
 	}
 	
 	@RequestMapping("car")
@@ -150,56 +178,35 @@ public class CarProcessAction {
 			od.setNum(Integer.valueOf(num[i]));
 			om.insert(od);
 		}
-		 
-		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-		AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-		alipayRequest.setReturnUrl(AlipayConfig.return_url);
-		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-		alipayRequest.setBizContent("{\"out_trade_no\":\""+ o.getId() +"\"," 
-				+ "\"total_amount\":\""+ sumprice +"\"," 
-				+ "\"subject\":\""+ "payOrder" +"\"," 
-				+ "\"body\":\""+ "" +"\"," 
-				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-		String result = alipayClient.pageExecute(alipayRequest).getBody();
+		System.out.println(o.getId()+"==========================="+sumprice);
 		
+		String out_trade_no=new String(o.getId()+"");
+		alipayRequest.setBizContent("{\"out_trade_no\":\""+out_trade_no  +"\"," 
+				+ "\"total_amount\":\""+ sumprice +"\"," 
+				+ "\"subject\":\""+ "PayOrder" +"\"," 
+				+ "\"body\":\""+ "body" +"\"," 
+				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+		
+		
+		String result = alipayClient.pageExecute(alipayRequest).getBody();
         model.addAttribute("result",result);
-        
-        System.out.println(result);
-        
 		return "success";
 	}
 	
 	@RequestMapping("toPay")
 	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,String oid,String aid) throws AlipayApiException, IOException {
 		 response.setContentType("text/html;charset=utf-8");
-		 
-		 System.out.println(oid+"oid================");
-	        System.out.println(aid);
-		 
-	        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-	        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
-	        aliPayRequest.setReturnUrl(AlipayConfig.return_url);
-	        aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
-	        //商户订单号，后台可以写一个工具类生成一个订单号，必填
-	        String order_number = new String(oid);
-	       
-	        //付款金额，从前台获取，必填
-	        Uorder uorder=um.selectByPrimaryKey(Integer.valueOf(oid));
-	        
+		 Uorder uorder=um.selectByPrimaryKey(Integer.valueOf(oid));
 	        uorder.setAid(Integer.valueOf(aid));
 	        um.updateByPrimaryKeySelective(uorder);
-	        String total_amount = new String(""+uorder.getTotalprice());
 	        
-	        //订单名称，必填
-	        String subject = new String("OrderToPay");
-	        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + order_number + "\","
-	                + "\"total_amount\":\"" + total_amount + "\","
-	                + "\"subject\":\"" + subject + "\","
+	        alipayRequest.setBizContent("{\"out_trade_no\":\"" + oid + "\","
+	                + "\"total_amount\":\"" + uorder.getTotalprice() + "\","
+	                + "\"subject\":\"" + "OrderToPay" + "\","
 	                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-	        String result = alipayClient.pageExecute(aliPayRequest).getBody();
+	        String result = alipayClient.pageExecute(alipayRequest).getBody();
 	        model.addAttribute("result",result);
-			return "PersonInfo";
-	
+			return "success";
 	}
 	
 	
