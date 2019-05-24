@@ -49,6 +49,9 @@ public class AfterSerchController {
 	@Resource
 	GoodsMapper gm;
 	
+	@Resource
+	private  GoodsBiz  gsBiz;
+	
 	
 	
 	
@@ -186,7 +189,7 @@ public class AfterSerchController {
 	
 	
 	@RequestMapping("lootbuy")
-	public String lootBuy(String gid,Model model) {
+	public String lootBuy(String gid,Model model,HttpServletRequest request) {
 		Goods good = am.queryGoods(gid);
 		
 		List<Goods> allGoods = new ArrayList<Goods>();
@@ -206,6 +209,17 @@ public class AfterSerchController {
 		model.addAttribute("hostGoods",hostGoods);
 		model.addAttribute("AllTS",allGoods);
 		model.addAttribute("shop",shop);
+		
+		User user=(User) request.getSession().getAttribute("loginedUser");
+		System.out.println("==================="+user+"==================");
+		if(user != null) {
+			try {
+				gsBiz.addGoodsBrowseRecord(user, Integer.parseInt(gid));
+			} catch (BizException e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+		}
 		
 		return "GoodsDetail";
 	}

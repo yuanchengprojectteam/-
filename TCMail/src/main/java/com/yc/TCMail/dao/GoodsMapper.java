@@ -19,6 +19,8 @@ public interface GoodsMapper {
 	List<Goods> getHotGoods();
 
 	Goods selectGoods();
+	
+	List<Goods> selectBatch(List<Integer> goodsid);
 
 
 

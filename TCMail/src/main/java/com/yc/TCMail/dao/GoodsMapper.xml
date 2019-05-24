@@ -73,6 +73,13 @@
   	select goods.* from gtype,goods where gtype.id = goods.tid and gtype.sunid = #{id}
   </select>
   
+  <select id="selectBatch" resultMap="BaseResultMap">
+  	select * from goods where id in 
+  	<foreach collection="list" item="goodsid" open="(" close=")" separator="," >
+  		#{goodsid}
+  	</foreach>
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

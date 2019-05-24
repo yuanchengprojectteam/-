@@ -204,7 +204,6 @@ function change()
         }  else{
         	$('#fm').form('submit',{
     			success:function(data){
-    				alert(str);
     				str='';
     				str1='';
     				$('#changePwd').window('close');

@@ -108,7 +108,7 @@ public class IndexController {
 		model.addAttribute("first", gm.getSpecialGoodsFirst());
 		model.addAttribute("hotGoods", hotGoods);
 		
-		return "newIndex";
+		return "index";
 	}
 
 	
@@ -177,11 +177,13 @@ public class IndexController {
 	}*/
 	
 	@RequestMapping("goodsDetail")
-	public String goodsDetail(String id,Model model) {
+	public String goodsDetail(Integer id,Model model) {
 		System.out.println("sid========"+id);
 		int sid=gmBiz.selectSid(id);
 		Shop   shop=sBiz.select(sid);
 		model.addAttribute("shop",shop);
+		
+		
 		return "GoodsDetail";
 
 	}
