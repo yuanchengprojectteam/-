@@ -114,12 +114,31 @@ public class CarProcessAction {
 		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 	}
 	
-	@RequestMapping("aaatest")
-	public String test(Model model) throws AlipayApiException{
+	@RequestMapping("topayOrder")
+	public String test(Model model,String aid,String[] gid,String[] num,String sumprice,@SessionAttribute("loginedUser") User user) throws AlipayApiException{
+		Uorder order=new Uorder();
+		order.setAid(Integer.valueOf(aid.substring(0,aid.length()-1)));
+		order.setOrderstatu("待支付");
+		order.setPaytype("支付宝");
+		order.setTotalprice((double)Integer.valueOf(sumprice.substring(0, sumprice.length()-3)));
+		order.setUid(user.getId());
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		order.setOrdertime(sdf.format(new Date()));
+		um.insert(order);
+		UorderExample ue=new UorderExample();
+		ue.createCriteria().andUidEqualTo(user.getId()).andOrdertimeEqualTo(order.getOrdertime()).andTotalpriceEqualTo(order.getTotalprice());
+		Uorder o=(Uorder) um.selectByExample(ue).get(0);
+		for(int i=0;i<gid.length;i++) {
+			Orderdetail od=new Orderdetail();
+			od.setGid(Integer.valueOf(gid[i]));
+			od.setOrderid(o.getId());
+			od.setNum(Integer.valueOf(num[i]));
+			om.insert(od);
+		}
 		
-		alipayRequest.setBizContent("{\"out_trade_no\":\""+ 1123123112 +"\"," 
-				+ "\"total_amount\":\""+ 111 +"\"," 
-				+ "\"subject\":\""+ 111 +"\"," 
+		alipayRequest.setBizContent("{\"out_trade_no\":\""+o.getId() +"\"," 
+				+ "\"total_amount\":\""+ o.getTotalprice() +"\"," 
+				+ "\"subject\":\""+ "PayOrder" +"\"," 
 				+ "\"body\":\""+ "body" +"\"," 
 				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 		
@@ -141,8 +160,6 @@ public class CarProcessAction {
 		} catch (com.yc.TCMail.action.BizException e) {
 			e.printStackTrace();
 		}
-		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
-		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
 		return "Car";
 	}
 	
@@ -157,44 +174,8 @@ public class CarProcessAction {
 		}
 	}
 	
-	@RequestMapping("topayOrder")
-	public String topayOrder(Model model,String aid,String[] gid,String[] num,String sumprice,@SessionAttribute("loginedUser") User user,HttpServletResponse response) throws AlipayApiException, IOException {
-		Uorder order=new Uorder();
-		order.setAid(Integer.valueOf(aid.substring(0,aid.length()-1)));
-		order.setOrderstatu("待支付");
-		order.setPaytype("支付宝");
-		order.setTotalprice((double)Integer.valueOf(sumprice.substring(0, sumprice.length()-3)));
-		order.setUid(user.getId());
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		order.setOrdertime(sdf.format(new Date()));
-		um.insert(order);
-		UorderExample ue=new UorderExample();
-		ue.createCriteria().andUidEqualTo(user.getId()).andOrdertimeEqualTo(order.getOrdertime()).andTotalpriceEqualTo(order.getTotalprice());
-		Uorder o=(Uorder) um.selectByExample(ue).get(0);
-		for(int i=0;i<gid.length;i++) {
-			Orderdetail od=new Orderdetail();
-			od.setGid(Integer.valueOf(gid[i]));
-			od.setOrderid(o.getId());
-			od.setNum(Integer.valueOf(num[i]));
-			om.insert(od);
-		}
-		System.out.println(o.getId()+"==========================="+sumprice);
-		
-		String out_trade_no=new String(o.getId()+"");
-		alipayRequest.setBizContent("{\"out_trade_no\":\""+out_trade_no  +"\"," 
-				+ "\"total_amount\":\""+ sumprice +"\"," 
-				+ "\"subject\":\""+ "PayOrder" +"\"," 
-				+ "\"body\":\""+ "body" +"\"," 
-				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-		
-		
-		String result = alipayClient.pageExecute(alipayRequest).getBody();
-        model.addAttribute("result",result);
-		return "success";
-	}
-	
 	@RequestMapping("toPay")
-	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,String oid,String aid) throws AlipayApiException, IOException {
+	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,int oid,int aid) throws AlipayApiException, IOException {
 		 response.setContentType("text/html;charset=utf-8");
 		 Uorder uorder=um.selectByPrimaryKey(Integer.valueOf(oid));
 	        uorder.setAid(Integer.valueOf(aid));

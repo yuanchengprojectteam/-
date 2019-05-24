@@ -108,7 +108,7 @@ public class IndexController {
 		model.addAttribute("first", gm.getSpecialGoodsFirst());
 		model.addAttribute("hotGoods", hotGoods);
 		
-		return "newIndex";
+		return "index";
 	}
 
 	

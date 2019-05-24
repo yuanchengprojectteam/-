@@ -52,7 +52,7 @@ public class TcMailApplication extends  SpringBootServletInitializer implements 
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(filter).excludePathPatterns("/","/index","/login","/tologin","/css/**","/js/**","/houl/**","/images/**","/pie/**","/goodsDetail","/toregister","/toapplybecomeshop","/toshopGoodsShowStyle1","/toshopGoodsShowStyle2","/shopIndex","/shopintro");
+		registry.addInterceptor(filter).excludePathPatterns("/","/index","/login","/tologin","/css/**","/js/**","/houl/**","/images/**","/pie/**","/goodsDetail","/lootbuy","/queryGoods","/toregister","/toapplybecomeshop","/toshopGoodsShowStyle1","/toshopGoodsShowStyle2","/shopIndex","/shopintro");
 		
 	}
         

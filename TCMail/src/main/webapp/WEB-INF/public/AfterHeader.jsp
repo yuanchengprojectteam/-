@@ -156,6 +156,3 @@
 </div>
 
 
-<script type="text/javascript">
-alert('${carNum}');
-</script>
