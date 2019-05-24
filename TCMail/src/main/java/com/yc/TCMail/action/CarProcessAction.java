@@ -249,58 +249,9 @@ public class CarProcessAction {
 		}
 		model.addAttribute("newOrderList", uoBiz.findByUorderId(user, orderid));
 		model.addAttribute("totalNum", totalNum);
-		/*int totalprice=0,allnum=0;
-		List<Orderdetail> OrDetail=new ArrayList<Orderdetail>();
-		List<Shop> shopList=new ArrayList<Shop>();
-		List<Goods> goodsList=new ArrayList<Goods>();
-		List<Integer> numList=new ArrayList<Integer>();
-		for(int i = 0;i<cid.length;i++) {
-			if(cid[i].indexOf("cid") != -1) {
-				allnum+=Integer.valueOf(num[i]);
-				Orderdetail odetail=new Orderdetail();
-				odetail.setGid(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid());
-				odetail.setNum(Integer.valueOf(num[i]));
-				Goods g=gm.selectByPrimaryKey(Integer.valueOf(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid()));
-				odetail.setGoods(g);
-				totalprice +=g.getPrice()*Integer.valueOf(num[i]);
-				OrDetail.add(odetail);
-				shopList.add(sm.selectByPrimaryKey(g.getSid()));
-				goodsList.add(g);
-				numList.add(Integer.valueOf(num[i]));
-			}
-		}
-		
-		AddressExample ae=new AddressExample();
-		ae.createCriteria().andUidEqualTo(user.getId());
-		List<Address> addressList=am.selectByExample(ae);
-		Uorder order=new Uorder();
-		order.setTotalprice((double) totalprice);
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		order.setOrdertime(sdf.format(new Date()));
-		order.setUid(user.getId());
-		order.setPaystatu("待支付");
-		order.setTotalprice((double)totalprice);
-		um.insert(order);
-		UorderExample ue=new UorderExample();
-		ue.createCriteria().andPaystatuEqualTo(order.getPaystatu()).andOrdertimeEqualTo(order.getOrdertime()).andUidEqualTo(order.getUid());
-		Uorder uorder= um.selectByExample(ue).get(0);
-		System.out.println(uorder+"==========================================================================================");
-		int key=uorder.getId();
-		for(int i=0;i<OrDetail.size();i++) {
-			OrDetail.get(i).setGid(goodsList.get(i).getId());
-			OrDetail.get(i).setNum(Integer.valueOf(numList.get(i)));
-			OrDetail.get(i).setOrderid(key);
-			System.out.println("=================================================="+OrDetail.get(i));
-			om.insert(OrDetail.get(i));
-		}
-		order.setId(key);
-		model.addAttribute("Allnum",allnum);    //商品数量
-		model.addAttribute("OrderDetail", OrDetail);//订单详情
-		model.addAttribute("Uorder",order);//订单记录
-		model.addAttribute("AddressList", addressList);//地址信息
-		model.addAttribute("ShopList",shopList);//店铺信息
-		model.addAttribute("GoodsList",goodsList);//商品信息
-*/		return "carToAddOrder";
+		AddressExample example=new AddressExample();
+		example.createCriteria().andUidEqualTo(user.getId()).andLevelEqualTo("1");
+		return "carToAddOrder";
 	}
 	
 	@RequestMapping("addToFav")

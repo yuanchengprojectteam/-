@@ -13,6 +13,7 @@ import com.yc.TCMail.bean.ShopExample;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.bean.UserExample;
 import com.yc.TCMail.dao.ShopMapper;
+import com.yc.TCMail.dao.UserMapper;
 
 @Service
 //抛出业务异常（编译期异常）时，回滚
@@ -21,6 +22,7 @@ public class ShopBiz {
 
 	@Resource
 	 ShopMapper   sm;
+	
 
 	public int addShop(String addr, String name, String type, String describe,int uid) {
 		ShopExample  example=new ShopExample();
