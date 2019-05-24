@@ -83,7 +83,6 @@ public class AfterSerchController {
 		}
 		List<Goods> allGood = ob.queryAllGoods(tid);
 		
-		//model.addAttribute("loginedUser",user);
 		model.addAttribute("hostRecommend",hostGoods);
 		model.addAttribute("allGoods",allGood);
 		model.addAttribute("typeid",tid);
@@ -97,6 +96,7 @@ public class AfterSerchController {
 		List<Goods> hostGood = new ArrayList<Goods>();
 		List<Gtype> gtype = am.queryLikeGtype(msg);
 		for(Gtype g : gtype) {
+			//System.out.println("这是TYpeid"+g.getId());
 			List<Goods> Good = am.queryAllGoods(g.getId());
 			for(Goods gos : Good) {
 				allGood.add(gos);
@@ -188,27 +188,24 @@ public class AfterSerchController {
 	@RequestMapping("lootbuy")
 	public String lootBuy(String gid,Model model) {
 		Goods good = am.queryGoods(gid);
-		//System.out.println("==================="+good);
-		List<Goodsmsg> list = am.queryGoodmsgByGid(gid);
-		//System.out.println("================"+good.getTid());
 		
-		for( Goodsmsg gs : list) {
-			List<Image> image = am.queryImage(gs.getId());
-			gs.setImage(image);
-		}
+		List<Goods> allGoods = new ArrayList<Goods>();
 		
-		/*int id = good.getTid();
-		Gtype gtype = am.queryGtypeById(id);*/
-		
-		good.setListGmsg(list);
-		/*List<String> typeNameList = am.queryTypeNameList(gtype);*/
+		int tid = good.getTid();
+		allGoods = am.queryGoodsByTid(tid);
+	
+		List<Image> image = am.queryImage(good.getId());
+		good.setImages(image);
 		
 		List<Goods> hostGoods = am.HostGoods(good.getTid());
 		
+		int sid = good.getSid();
+		Shop shop = am.queryShop(sid);
+		
 		model.addAttribute("goodMsg",good);
 		model.addAttribute("hostGoods",hostGoods);
-		
-		/*model.addAttribute("gtypeToUp",typeNameList);*/
+		model.addAttribute("AllTS",allGoods);
+		model.addAttribute("shop",shop);
 		
 		return "GoodsDetail";
 	}

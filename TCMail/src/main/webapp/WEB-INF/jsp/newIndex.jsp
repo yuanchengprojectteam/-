@@ -210,7 +210,7 @@
 						<a class="da_zhu" href="#">${to.name }</a>
 						<p>
 							<c:forEach items="${to.childType }"  var="ct">
-								<a href="#">${ct.name }</a>
+								<a href="showStyle1">${ct.name }</a>
 							</c:forEach>		
 						</p>
 					</h3>
@@ -228,7 +228,7 @@
 										
 										<dd>
 											<c:forEach items="${tt.childType }" var="ttc">		
-												<a href="#">${ttc.name }</a>
+												<a href="showStyle1">${ttc.name }</a>
 											</c:forEach>	
 										</dd>
 										

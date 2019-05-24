@@ -25,10 +25,20 @@ public class Goods  implements java.io.Serializable{
 	private Shop shop;
 	private Gtype type;
 	private Car car;
-	private List<Goodsmsg> listGmsg;
 	private String sum;
 	
+	private List<Image> images;
 	
+	
+	@Transient
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
 	@Transient
 	public String getSum() {
 		return sum;
@@ -37,16 +47,6 @@ public class Goods  implements java.io.Serializable{
 	public void setSum(String sum) {
 		this.sum = sum;
 	}
-
-	@Transient
-	public List<Goodsmsg> getListGmsg() {
-		return listGmsg;
-	}
-
-	public void setListGmsg(List<Goodsmsg> listGmsg) {
-		this.listGmsg = listGmsg;
-	}
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
