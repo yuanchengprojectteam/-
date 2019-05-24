@@ -30,14 +30,14 @@
 				</div>
 				<div class="dengl_hou_xial_k">
 					<div class="zuid_xiao_toux">
-						<a href="shez_toux.html"><img src="images/toux.png"></a>
+						<a href="PersonCenter"><img src="images/toux.png"></a>
 					</div>
 					<div class="huiy_dengj"> 
 						<a class="tuic_" href="tologin">退出</a>
 					</div>
 					<div class="toub_zil_daoh">
-						<a href="wod_dingd.html">待处理订单</a>
-						<a href="wod_shouc.html">我的收藏</a>
+						<a href="OrderDetail?tabCode=waitpay">待处理订单</a>
+						<a href="MyFavorite">我的收藏</a>
 						<a href="toPersonmessage">个人资料</a> 
 					</div>
 				</div>
@@ -157,5 +157,4 @@
 
 
 <script type="text/javascript">
-alert('${carNum}');
 </script>

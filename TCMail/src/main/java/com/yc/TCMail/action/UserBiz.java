@@ -13,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.TCMail.bean.Goods;
 import com.yc.TCMail.bean.Gtype;
+import com.yc.TCMail.bean.Point;
 import com.yc.TCMail.bean.Shop;
 import com.yc.TCMail.bean.User;
 import com.yc.TCMail.bean.UserExample;
+import com.yc.TCMail.dao.PointMapper;
 import com.yc.TCMail.dao.UserMapper;
 import com.yc.TCMail.util.HbUtil;
 
@@ -29,7 +31,8 @@ public class UserBiz {
 
 	@Resource
 	private  UserMapper   uim;
-	
+	@Resource
+	private  PointMapper  pim;
 	@Autowired
 	HbUtil hbUtil;
 	
@@ -92,7 +95,14 @@ public class UserBiz {
 		user.setRegtime(sdf.format(date));
 		user.setType("普通用户");
 		user.setImage("http://beijing.aliyuncs.com/UploadFile/header/h1.jpg");
-		return  uim.insertSelective(user);
+		uim.insertSelective(user);
+		example.createCriteria().andAccountEqualTo(account);
+		List<User> list=uim.selectByExample(example);
+		Point  p=new Point();
+		p.setUid(list.get(0).getId());
+		p.setNum(0);
+		pim.insertSelective(p);
+		return  1;
 	}
 
 	public List<User> checkphone(String phone) throws BizException {
@@ -112,7 +122,7 @@ public class UserBiz {
 		return  list;
 	}
 
-	public User updateUser(String realname, String account, String name, String sex, String age, String email, String id) {
+	public User updateUser(String realname, String account, String name, String sex, int age, String email, String id) {
 		UserExample  example=new UserExample();
 		User u= new User();
 		u.setAccount(account);
@@ -120,7 +130,7 @@ public class UserBiz {
 		u.setName(name);
 		u.setSex(sex);
 		u.setEmail(email);
-		u.setAge(Integer.valueOf(age));
+		u.setAge(age);
 		
 		example.createCriteria()
 			.andIdEqualTo(Integer.valueOf(id));
@@ -161,7 +171,7 @@ public class UserBiz {
 					.andPhoneEqualTo(phone);
 		List<User> list=uim.selectByExample(example);
 		User u=list.get(0);
-		u.setType("商家管理员");
+		u.setType("管理员");
 		u.setEmail(email);
 		example.createCriteria()
 		.andIdEqualTo(u.getId());

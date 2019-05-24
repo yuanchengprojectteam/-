@@ -59,8 +59,8 @@
 	where uorder.uid = user.id and user.account = #{user.account} and uorder.id = #{id} and visiable = 0
   </select>
   
-  
-  <insert id="insertUorder" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+   
+  <insert id="insertUorder"  keyColumn="id"  keyProperty="id"  useGeneratedKeys="true">
   	insert into uorder values(null,null,null,#{paystatu},#{paytype},#{tcomp},#{uid},#{totalprice},null,#{visiable},#{ordertime})
   </insert>
  

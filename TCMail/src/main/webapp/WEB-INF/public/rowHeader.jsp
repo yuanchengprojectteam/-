@@ -68,7 +68,7 @@
 			</li> 
 
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
+			<li class="denglu"><a class="ing_ps" href="MyFavorite">我的收藏</a></li>
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps ps1" href="toapplybecomeshop">申请入驻</a></li>
 			<li class="shu"></li>

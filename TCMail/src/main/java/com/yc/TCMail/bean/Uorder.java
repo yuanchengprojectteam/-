@@ -46,7 +46,7 @@ public class Uorder  implements java.io.Serializable{
 		return visiable;
 	}
 	
-	public Uorder() {}
+	/*public Uorder() {}
 	
 	public Uorder(Integer id, Integer uid, String paystatu,
 			 String ordertime, Double totalprice,  String visiable) {
@@ -57,7 +57,7 @@ public class Uorder  implements java.io.Serializable{
 		this.ordertime = ordertime;
 		this.totalprice = totalprice;
 		this.visiable = visiable;
-	}
+	}*/
 	@Transient
 	public User getUser() {
 		return user;

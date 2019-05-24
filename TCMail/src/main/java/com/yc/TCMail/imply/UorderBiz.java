@@ -125,8 +125,19 @@ public class UorderBiz {
 		
 		List<Car> carList = new ArrayList<Car>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Uorder order = new Uorder(null,user.getId(),"待支付",sdf.format(new Date()),totalprice,"0");
-		uom.insertUorder(order);
+		Uorder order = new Uorder();
+		order.setUid(user.getId());
+		order.setOrderstatu("待支付");
+		String time=sdf.format(new Date());
+		order.setOrdertime(time);
+		order.setTotalprice(totalprice);
+		order.setVisiable("0");
+		System.out.println(user.getId()+"================");
+		uom.insertSelective(order);
+		UorderExample  example1=new UorderExample();
+		example1.createCriteria().andUidEqualTo(user.getId()).andTotalpriceEqualTo(totalprice).andOrderstatuEqualTo("待支付").andVisiableEqualTo("0").andOrdertimeEqualTo(time);
+		List<Uorder> orderlist=uom.selectByExample(example1);
+		System.out.println("------------------------");
 		List<Orderdetail> detailList = new ArrayList<Orderdetail>();
 		for(int i = 0;i<cid.length;i++) {
 			if(cid[i].indexOf("cid") != -1) {
@@ -138,7 +149,7 @@ public class UorderBiz {
 				List<Car> ret = cm.selectByExample(example);
 				carList.add(ret.get(0));
 				detail.setNum(num[i]);
-				detail.setOrderid(order.getId());
+				detail.setOrderid(orderlist.get(0).getId());
 				System.out.println(order.getId()+"=====================");
 				detail.setGid(ret.get(0).getGid());
 				detailList.add(detail);
@@ -147,6 +158,6 @@ public class UorderBiz {
 		System.out.println(detailList.get(0).getOrderid()+"=============");
 		System.out.println(detailList);
 		odm.insertBatch(detailList);
-		return order.getId();
+		return orderlist.get(0).getId();
 	}
 }

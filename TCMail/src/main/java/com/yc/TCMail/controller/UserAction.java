@@ -196,7 +196,7 @@ public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throw
 	}
 
 	@RequestMapping("saveUser")
-	public String saveUser(String id, String realname, String account, String name, String sex, String age,
+	public String saveUser(String id, @RequestParam(defaultValue="")String realname, String account, @RequestParam(defaultValue="")String name,@RequestParam(defaultValue="保密") String sex,@RequestParam(defaultValue="0") int age,
 			String email, Model model, HttpServletResponse response) {
 		String[] str = sex.split(",");
 		sex = str[0];
@@ -224,12 +224,16 @@ public void PhoneUpdate(String phone,int id,	HttpServletResponse response) throw
 	}
 
 	@RequestMapping("saveMoreInformation")
-	public String saveMoreInformation(int id, String marry, String familynum, String income, String edu, String job,
-			String[] favorite, Model model) {
+	public String saveMoreInformation(int id, @RequestParam(defaultValue="保密")String marry,@RequestParam(defaultValue="") String familynum,@RequestParam(defaultValue="") String income,@RequestParam(defaultValue="") String edu,@RequestParam(defaultValue="") String job,
+			@RequestParam(defaultValue="")	String[] favorite, Model model) {
+		
 		String fav = "";
-		for (String s : favorite) {
-			fav = fav + s + ",";
+		if(favorite.length!=0) {
+			for (String s : favorite) {
+				fav = fav + s + ",";
+			}
 		}
+		
 		System.out.println("marrayInformation=====" + marry);
 		User user = uBiz.updateUserMore(id, marry, familynum, income, edu, job, fav);
 		model.addAttribute("loginedUser", user);

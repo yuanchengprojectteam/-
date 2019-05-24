@@ -26,17 +26,18 @@
 		<div class="myGomeWeb">
 			<!--侧边导航-->
 
-			<jsp:include page="PersonCenterLeft.jsp"></jsp:include> 
+			<jsp:include page="../public/PersonCenterLeft.jsp"></jsp:include> 
 			<!--左边内容-->
 			<div class="mod_main">
 				<div class="jib_xinx_kuang">
 					<div class="wt">
 						<ul>
-							<li class="dangq_hongx"><a href="toPersonmessage">个人信息</a></li>
+							<li ><a href="toPersonmessage">个人信息</a></li>
 							<li><a href="header">设置头像</a></li>
-							<li><a href="toMoreInformation">更多个人信息</a></li>
+							<li class="dangq_hongx"><a href="toMoreInformation">更多个人信息</a></li>
 						</ul>
 					</div>
+					
 					<div class="wd">
 					<form  action="saveMoreInformation" method="post">
 					<input type="hidden" name="id" value="${loginedUser.id }">
@@ -146,11 +147,14 @@
 	 var marryvalue=document.getElementById("marrayInformation").value;
 	 if(""==marryvalue){
 	 	document.getElementById("unknow").checked=true;
-	 }else if("未婚"== marryvalue){
+	 }
+	 if("未婚"== marryvalue){
 	 	document.getElementById("notmarry").checked=true;
-	 }else if("已婚" == sexvalue){
+	 }
+	 if("已婚" == marryvalue){
 	 	document.getElementById("married").checked=true;
-	 }else{
+	 }
+	 if("保密" == marryvalue){
 	 	document.getElementById("unknow").checked=true;
 	 }
 
