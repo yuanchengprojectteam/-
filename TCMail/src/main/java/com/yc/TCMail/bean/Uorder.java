@@ -31,6 +31,18 @@ public class Uorder  implements java.io.Serializable{
 	
 	private List<Address> addrList;
 	
+	public Uorder() {}
+	
+	public Uorder(Integer id, Integer uid, String paystatu,
+			 String ordertime, Double totalprice,  String visiable) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.paystatu = paystatu;
+		this.ordertime = ordertime;
+		this.totalprice = totalprice;
+		this.visiable = visiable;
+	}
 	
 	@Transient
 	public List<Address> getAddrList() {
