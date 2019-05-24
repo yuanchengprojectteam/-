@@ -151,7 +151,7 @@
 									</div>
 									<div
 										style="display: inline-block; width: 30px; height: 70px; align-content: center;">
-										<a href="lootbuy?gid=${cg.id }" style="font-size: 13px;">购买</a>
+										<a href="#" style="font-size: 13px;">购买</a>
 									</div> <!-- <span>购买</span> -->
 								</li>
 							</c:forEach>
@@ -210,7 +210,7 @@
 						<a class="da_zhu" href="#">${to.name }</a>
 						<p>
 							<c:forEach items="${to.childType }"  var="ct">
-								<a href="#">${ct.name }</a>
+								<a href="showStyle1">${ct.name }</a>
 							</c:forEach>		
 						</p>
 					</h3>
@@ -228,7 +228,7 @@
 										
 										<dd>
 											<c:forEach items="${tt.childType }" var="ttc">		
-												<a href="#">${ttc.name }</a>
+												<a href="showStyle1">${ttc.name }</a>
 											</c:forEach>	
 										</dd>
 										
@@ -381,8 +381,8 @@
 									<c:forEach items="${th.goodsList }" var="gl">
 									
 										<div class="you_shangp_lieb ">
-											<a href="lootbuy?gid=${gl.id }"><img class="you_tup_k" src="${gl.image }" width=80px height=80px></a>
-											<a href="lootbuy?gid=${gl.id }" class="_you_neir_biaot">${gl.name } ${gl.color } ${gl.size } </a>
+											<a href="#"><img class="you_tup_k" src="${gl.image }" width=80px height=80px></a>
+											<a href="#" class="_you_neir_biaot">${gl.name } ${gl.color } ${gl.size } </a>
 											<span>¥ ${gl.price }</span>
 										</div>
 									</c:forEach>
@@ -451,7 +451,7 @@
 			</div>
 			<div class="tes_shangp_neir_k">
 				<div class="tes_dat">
-					<a href="lootbuy?gid=${first.id }">
+					<a href="#">
 						<h1>
 							<img class="tes_dat_dongh" src="${first.image }">
 						</h1>
@@ -462,7 +462,7 @@
 					<div class="tes_xiaot_shang">
 						<c:forEach items="${specialGoodsUp }" var="up">
 								<div class="tes_xiaot_neir">
-									<a href="lootbuy?gid=${up.id }">
+									<a href="#">
 										<h1>
 											<img class="tes_xiaot_dongh" src="${up.image }"   >
 										</h1>
@@ -474,7 +474,7 @@
 					<div class="tes_xiaot_shang tes_xiaot_xia">
 						<c:forEach items="${specialGoodsDown }" var="sd">
 							<div class="tes_xiaot_neir">
-								<a href="lootbuy?gid=${sd.id }">
+								<a href="#">
 									<h1>
 										<img class="tes_xiaot_dongh" src="${sd.image }">
 									</h1>
@@ -504,11 +504,11 @@
 							<c:forEach items="${hotGoods }" var="hg">
 									<li>
 										<div class="pic">
-											<a href="lootbuy?gid=${hg.id }" target="_blank"><img
+											<a href="#" target="_blank"><img
 												src="${hg.image }" /></a>
 										</div>
 										<div class="title">
-											<a href="lootbuy?gid=${hg.id }" target="_blank">${hg.name }</a><span>¥
+											<a href="#" target="_blank">${hg.name }</a><span>¥
 												${hg.price }</span>
 										</div>
 									</li>

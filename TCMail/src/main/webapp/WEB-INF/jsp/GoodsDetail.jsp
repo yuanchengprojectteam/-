@@ -25,431 +25,145 @@
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script>
 <script type="text/javascript" src="houl/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	if('${sessionScope.loginedUser}'){
+		$.ajax({
+			url:"haveReciver",
+			data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
+			type:"post",
+			success:function(result){
+				if(result=='yes'){
+	   				document.getElementById('r').innerHTML='已收藏';
+	   			 }else{
+	   				document.getElementById('r').innerHTML='加入收藏';
+	   			 }
+			}
+		});
+	}else{
+		document.getElementById('r').innerHTML='加入收藏';
+	}
+	
+});
+var  i=parseInt('${shop.level}');
+document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
+ function recivershop(){
+	if('${sessionScope.loginedUser}'){
+		$.ajax({
+			url:"reciver", 					//url地址
+	   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
+	   		 type:"post",   				 //传输方式，get / post
+	   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
+	   			 if(result=='yes'){
+	   				document.getElementById('r').innerHTML='已收藏';
+	   			 }else{
+	   				document.getElementById('r').innerHTML='收藏失败';
+	   			 }
+	   		 }
+	});
+	}else{
+		$("#r")[0].href="tologin";
+	}
+}
 
+
+function colorSelect(e){
+	var show="select";
+	var noShow="clicks";
+	var sign = $("#cor");
+	var value = $(e).attr("value");
+	//alert(value);
+	var flag = $(e).hasClass(show)
+	if(flag){
+		sign.val("")
+		$(e).removeClass(show).addClass(noShow);
+	}else{
+		sign.val(value)
+		$(e).removeClass(noShow).addClass(show);
+	}
+	
+}
+
+function sizeSelect(f){
+	var show="select";
+	var noShow="clicks";
+	var sign = $("#Goodsize");
+	var value = $(f).attr("value");
+	//alert(value);
+	var flag = $(f).hasClass(show)
+	if(flag){
+		sign.val("")
+		$(f).removeClass(show).addClass(noShow);
+	}else{
+		sign.val(value+"寸")
+		$(f).removeClass(noShow).addClass(show);
+	}
+}
+
+function add(){
+	var sum = $("#sum").val();
+	sum++;
+	$("#sum").val(sum);
+}
+
+function reduce(){
+	var sum = $("#sum").val();
+	if(sum==1){
+		alert("购买数量不能为'0'")
+		return;
+	}
+	sum--;
+	$("#sum").val(sum);
+}
+
+
+function addCar(){
+	var color = $("#cor").val();
+	var size = $("#Goodsize").val(); 
+	var sum = $("#sum").val();
+	var gid = $("#gid").val();
+	var sid = $("#sid").val();
+	alert(gid+":"+color+":"+size+":"+sid);
+	var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
+	//alert(isEmail.test(color));
+	 if(!isEmail.test(color)){
+		alert("颜色没有选择");
+		return;
+	}
+	
+	if(!isEmail.test(size)){
+		alert("尺寸没有选择");
+		return;
+	} 
+	$.ajax({
+		type:"post",
+		url:"goodAddCar",
+		cache:false,
+		data:{"sum":sum,"gid":gid,"sid":sid},
+		success:function(data){
+				alert("加入购物车成功！");	
+		},
+		error:function(e){
+			alert("ajax错误");
+		}
+		
+	});
+	
+}
+
+
+</script>
+
+</script>
 </head>
 <body>
 <!--侧边-->
-<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+<jsp:include page="../public/rowHeader.jsp"></jsp:include>
 
 		<!--左边导航-->
 
-		<div class="subpage">
-		<h2></h2>
-		<div class="prosul dd-inner dd_inner_ziy" id="proinfo">
-			<div class="font-item">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">办公家具</a>
-						<p>
-							<a href="#">五金</a>
-							<a href="#">家具</a>
-							<a href="#">家装</a>
-							<a href="#">厨具</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="#">大家电<i>></i></a></dt>							
-							<dd>
-								<a href="#">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="#">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-						<dl class="fore1">
-							<dt><a href="#">生活电器<i>></i></a></dt>							
-							<dd>
-								<a href="#">取暖电器</a><a href="">净化器</a><a href="">扫地机器人</a><a href="">吸尘器</a><a href="">加湿器</a><a href="">挂烫机/熨斗</a><a href="">电风扇</a>
-								<a href="#">冷风扇</a><a href="">插座</a><a href="">电话机</a><a href="">净水器</a><a href="">饮水机</a>
-								<a href="#">除湿机</a><a href="">干衣机清洁机</a><a href="">收录/音机</a><a href="">生活电器配件</a><a href="">其它生活电器</a>
-							</dd>
-						</dl>  
-						<dl class="fore1">
-							<dt><a href="#">厨房电器<i>></i></a></dt>							
-							<dd>
-								<a href="#">电压力锅</a><a href="">豆浆机</a><a href="">面包机</a><a href="">咖啡机</a><a href="">微波炉料理/榨汁机</a><a href="">电烤箱</a><a href="">电磁炉</a>
-								<a href="#">电饼铛/烧烤盘</a><a href="">煮蛋器酸奶机</a><a href="">电水壶/热水瓶</a><a href="">电炖锅</a><a href="">多用途锅</a><a href="">果蔬解毒机</a><a href="#">养生壶/煎药壶</a><a href="">其它厨房电器</a>
-							</dd>
-						</dl>
-						<dl class="fore1">
-							<dt><a href="#">个护健康<i>></i></a></dt>							
-							<dd>
-								<a href="#">剃须刀剃/脱毛器</a><a href="">口腔护理</a><a href="">电吹风</a><a href="">美容器</a><a href="">理发器卷/直发器</a><a href="">按摩椅</a><a href="">按摩器</a>
-								<a href="#">足浴盆</a><a href="">血压计</a><a href="">健康秤/厨房秤</a><a href="">血糖仪</a><a href="">体温计</a><a href="">计步器/脂肪检测仪</a><a href="">脂肪检测仪其它健康电器</a>
-							</dd>
-						</dl>
-						<dl class="fore1">
-							<dt><a href="">五金家装<i>></i></a></dt>						
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a><a href="">烟机/灶具</a>
-								<a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-					<div class="font-righty">
-						<a href="#">
-							<img src="./images/5673a854N10856704.jpg">
-						</a>
-						<a href="#">
-							<img src="./images/56a0376aN7de1bdcf.jpg">
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="fore-2">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">电脑数码</a>
-						<p>
-							<a href="#">手机</a>
-							<a href="#">电脑</a>
-							<a href="#">办公</a>
-							<a href="#">钟表</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">电脑数码<i>></i></a></dt>							
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fore-3">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">服饰鞋帽</a>
-						<p>
-							<a href="#">男装</a>
-							<a href="#">女装</a>
-							<a href="#">童装</a>
-							<a href="#">内衣</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">服饰鞋帽<i>></i></a></dt>							
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fore-4">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">汽车用品</a>
-						<p>
-							<a href="#">汽车配件</a>
-							<a href="#">礼品</a>
-							<a href="#">家政服务</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">汽车用品<i>></i></a></dt>							
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fore-5">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">食品保健</a>
-						<p>
-							<a href="#">美食</a>
-							<a href="#">酒类</a>
-							<a href="#">生鲜</a>
-							<a href="#">特产</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">食品保健<i>></i></a></dt>							
-							<dd>
-								<a href="">食品保健</a><a href="">食品保健</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/食品保健</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fore-6">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">美酒鲜花</a>
-						<p>
-							<a href="#">手机</a>
-							<a href="#">电脑</a>
-							<a href="#">办公</a>
-							<a href="#">钟表</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">美酒鲜花<i>></i></a></dt>							
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fore-7">
-				<div class="item fore1">
-					<h3>
-						<a class="da_zhu" href="#">图书</a>
-						<p>
-							<a href="#">图书</a>
-							<a href="#">图书</a>
-							<a href="#">办公</a>
-							<a href="#">电子书</a>
-						</p>
-					</h3>
-					<i>></i>
-				</div>
-				<div class="font-item1">
-					<div class="font-lefty">
-						<dl class="fore1">
-							<dt><a href="">图书<i>></i></a></dt>							
-							<dd>
-								<a href="">平板电视</a><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a><a href="">家庭影院</a><a href="">DVD</a><a href="">迷你音响</a>
-								<a href="">烟机/灶具</a><a href="">热水器</a><a href="">消毒具/洗碗柜</a><a href="">冰柜/冰吧</a><a href="">酒柜</a><a href="">家电配件</a>
-							</dd>
-						</dl>
-					</div>
-					<div class="font-right">
-						<div>
-							<a href="#">
-								<img src="./images/562f4971Na5379aba.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9eef9N5bb8d27f.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef02N99d26435.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef10Nd206a236.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef28N00328d44.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef34N7cc61f4c.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef3eN99aef1f0.jpg">
-							</a>
-							<a href="#">
-								<img src="./images/54d9ef4cN4fe57f9b.jpg">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!---->
-		</div>
-		</div>
+		
 		<!--左边导航结束-->
-	</div>
-</div>
  <script type="text/javascript">
 	(function(){ 
 		var $subblock = $(".subpage"), $head=$subblock.find('h2'), $ul = $("#proinfo"), $lis = $ul.find("li"), inter=false; 
@@ -495,11 +209,15 @@
 				<i class="icon-crumbs-right"></i>
 	        </li>
 	        <li class="active">
-<%-- <<<<<<< HEAD
-				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
-======= --%>
+
+<<<<<<< HEAD
 				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="Mistletoe碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</a>
-<!-- >>>>>>> refs/remotes/origin/master -->
+
+=======
+				<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" title="${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)">${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</a>
+
+				
+>>>>>>> refs/remotes/origin/master
 	        </li>
 	    </ul>
     </div>
@@ -513,11 +231,16 @@
             <a class="btn-service hide customerService_show"><i></i>在线客服</a>
             
             <span class="services-score"><b class="star-gray"><i class="star-red" style="width:81.2819333333%" id="start"></i></b><em class="score">${shop.level }</em>分</span>
-<%-- <<<<<<< HEAD
-            <a class="name" title="${shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a>
-======= --%>
+<<<<<<< HEAD
+
+
             <a class="name" title="${goodMsg.shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a>
-<!-- >>>>>>> refs/remotes/origin/master -->
+=======
+
+            <a class="name" title="${shop.name }" href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a>
+
+>>>>>>> refs/remotes/origin/master
+
              
         </div>
 	</div>
@@ -537,11 +260,11 @@
 		      	<div class="list">
 		        	<ul class="wrapper">
 		        	<!-- class="item" class="item item-cur" -->
-		        	<c:forEach items="${ goodMsg.listGmsg}" var="lsmg">
-		        		<c:forEach items="${lsmg.image}" var="iag">
-		          		<li class="item item-cur" data-src="${iag.path }"><img src="${iag.path }" alt="#"></li>
-		          		</c:forEach>
-			         </c:forEach> 	
+		   
+		        		
+		          		<li class="item item-cur" data-src="${goodMsg.images}"><img src="${goodMsg.images}" alt="#"></li>
+		          		
+			      
 		        	</ul>
 		      	</div>
 		    </div>
@@ -574,11 +297,8 @@
 	<!--中-->
 	<div class="prd_firstscreen_center">
 		<div class="hgroup">
-<%-- <<<<<<< HEAD
-        	<h1>${shop.name }碎花夏季新款女装韩版印花连衣裙F6641(白色 M)</h1> 
-======= --%>
+
         	<h1>${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</h1> 
-<!-- >>>>>>> refs/remotes/origin/master -->
     	</div>
     	<div class="prd_price_1">  
             <div class="unitprice">
@@ -604,26 +324,19 @@
         <div class="prd_properties">
 	        <div class="prd_properties_1"> 
         		<label class="prd_price_left">服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务</label>
-<%-- <<<<<<< HEAD
         		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${shop.name }</a>发货并负责售后服务。</span>  
-======= --%>
-        		<span>由<a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum">${goodMsg.shop.name }</a>发货并负责售后服务。</span>  
-<!-- >>>>>>> refs/remotes/origin/master -->
+
 	        </div>
 	        <div class="prd-properties-2"> 
                 <div class="prd_properties_other">
                     <label class="prdLeft">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</label>
                     <div class="prdRight">
-                    <c:forEach items="${goodMsg.listGmsg }" var="gl">
+                    <c:forEach items="${AllTS}" var="gl">
                         <div class="prdcol">
                             <a onclick="colorSelect(this)" class="" value="${gl.color }" data-alt="${gl.color }">
-                            	<c:forEach items="${gl.image }" var="limg" varStatus="i">
-                            		<c:if test="${i.index < 1 }">
-                               		 	<img src="${limg.path }" gome-src="${limg.path }" alt="${limg.path }">
-                               		 	 <span>${gl.color }色</span><i></i>
-                               		 </c:if>
-                                </c:forEach>
-                               
+                        	 	<img src="${gl.image }" gome-src="${gl.image }" alt="${gl.image }">
+                                <span>${gl.color }</span><i></i>
+                            
                             </a>
                         </div>
                     </c:forEach>
@@ -636,7 +349,7 @@
                 <div class="prd_properties_other" style="display:block">
                     <label class="prdLeft">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                     <div class="prdRight_1">
-                     <c:forEach items="${goodMsg.listGmsg }" var="siz">
+                     <c:forEach items="${AllTS}" var="siz">
                         <div class="prdmod">
                         <!-- select:选中 -->
                             <a onclick="sizeSelect(this)" class="clicks" value="${siz.size }" title="${siz.size }" data-alt="${siz.size }">${siz.size }<i></i></a>
@@ -869,40 +582,14 @@
 							<li title="卿城">品牌： <a href="#" target="_blank">卿城</a> </li>
 						</ol>
 						<ol class="parameter2 p_parameter_list">
-<%-- <<<<<<< HEAD
-							<li title="卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)">商品名称：卿城睡衣女五角星情侣款秋季棉质长袖家居服套装 五角星情侣款 165/88A(女L)</li>
-    						<li title="11971841918">商品编号：11971841918</li>
-                      		<li title="${shop.name }">店铺： <a href="toshopGoodsShowStyle1?id=${shop.id}&oreason=commnum" target="_blank">${shop.name }</a></li>
-                     		<li title="500.00g">商品毛重：500.00g</li>
-				            <li title="中国大陆">商品产地：中国大陆</li>
-				            <li title="F1751">货号：F1751</li>
-							<li title="套头">款型：套头</li>
-							<li title="卡通">风格：卡通</li>
-							<li title="中厚">厚度：中厚</li>
-							<li title="圆领">领型：圆领</li>
-							<li title="多色">颜色：多色</li>
-							<li title="棉质">材质：棉质</li>
-							<li title="卡通">图案：卡通</li>
-							<li title="情侣">人群：情侣</li>
-							<li title="秋季">季节：秋季</li>
-							<li title="长袖">袖长：长袖</li>
-							<li title="套头">衣门襟：套头</li>
-							<li title="长裤">裤长：长裤</li>
-							<li title="M，L，XL，XXL">尺码：M，L，XL，XXL</li>
-							<li title="其它">裙长：其它</li>
-							<li title="可外穿">是否可外穿：可外穿</li>
-							<li title="套装">款式：套装</li>
-							<li title="衣裤两件套">组合形式：衣裤两件套</li>
-======= --%>
-							<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
+		<li title="${goodMsg.name }&nbsp">商品名称：${goodMsg.name }(${goodMsg.color }&nbsp&nbsp${goodMsg.size })</li>
     						<li title="11971841918">商品编号：${goodMsg.id }</li>
                       		<li title="依晴服饰内衣专营店">店铺： <a href="toshopGoodsShowStyle1?id=${goodMsg.shop.id}&oreason=commnum" target="_blank">${goodMsg.shop.name }</a></li>
                      		
-							<li title="M，L，XL，XXL">尺码：<c:forEach items="${goodMsg.listGmsg }" var="li">
+							<li title="M，L，XL，XXL">尺码：<c:forEach items="${ AllTS}" var="li">
 								${li.size }&nbsp&nbsp
 							</c:forEach></li>
 
-<!-- >>>>>>> refs/remotes/origin/master -->
 						</ol>
 					</div>
 					<div class="detail_content_wrap">
@@ -1709,129 +1396,4 @@
 				'transitionOut'		: 'none'
 			});
 		}); */
-		$(document).ready(function(){
-			if('${sessionScope.loginedUser}'){
-				$.ajax({
-					url:"haveReciver",
-					data:"sid="+${shop.id}+"&uid="+'${sessionScope.loginedUser.id}',
-					type:"post",
-					success:function(result){
-						if(result=='yes'){
-			   				document.getElementById('r').innerHTML='已收藏';
-			   			 }else{
-			   				document.getElementById('r').innerHTML='加入收藏';
-			   			 }
-					}
-				});
-			}else{
-				document.getElementById('r').innerHTML='加入收藏';
-			}
-			
-		});
-		var  i=parseInt('${shop.level}');
-		document.getElementById('start').setAttribute('style','width:'+(i*20)+'%');
-		 function recivershop(){
-			if('${sessionScope.loginedUser}'){
-				$.ajax({
-					url:"reciver", 					//url地址
-			   		 data:"id="+${shop.id}+"&userid="+'${sessionScope.loginedUser.id}',   			 // 将uname=张三传递给后台
-			   		 type:"post",   				 //传输方式，get / post
-			   		 success:function(result){ //success为服务器响应成功后传回的数据。  result为后台传回来的数据
-			   			 if(result=='yes'){
-			   				document.getElementById('r').innerHTML='已收藏';
-			   			 }else{
-			   				document.getElementById('r').innerHTML='收藏失败';
-			   			 }
-			   		 }
-			});
-			}else{
-				$("#r")[0].href="tologin";
-			}
-		}
-
-		
-		function colorSelect(e){
-			var show="select";
-			var noShow="clicks";
-			var sign = $("#cor");
-			var value = $(e).attr("value");
-			//alert(value);
-			var flag = $(e).hasClass(show)
-			if(flag){
-				sign.val("")
-				$(e).removeClass(show).addClass(noShow);
-			}else{
-				sign.val(value)
-				$(e).removeClass(noShow).addClass(show);
-			}
-			
-		}
-		
-		function sizeSelect(f){
-			var show="select";
-			var noShow="clicks";
-			var sign = $("#Goodsize");
-			var value = $(f).attr("value");
-			//alert(value);
-			var flag = $(f).hasClass(show)
-			if(flag){
-				sign.val("")
-				$(f).removeClass(show).addClass(noShow);
-			}else{
-				sign.val(value+"寸")
-				$(f).removeClass(noShow).addClass(show);
-			}
-		}
-		
-		function add(){
-			var sum = $("#sum").val();
-			sum++;
-			$("#sum").val(sum);
-		}
-		
-		function reduce(){
-			var sum = $("#sum").val();
-			if(sum==1){
-				alert("购买数量不能为'0'")
-				return;
-			}
-			sum--;
-			$("#sum").val(sum);
-		}
-		
-		
-		function addCar(){
-			var color = $("#cor").val();
-			var size = $("#Goodsize").val(); 
-			var sum = $("#sum").val();
-			var gid = $("#gid").val();
-			var sid = $("#sid").val();
-			var isEmail = /^[A-Za-z0-9\u4e00-\u9fa5.]+$/;  
-			//alert(isEmail.test(color));
-			 if(!isEmail.test(color)){
-				alert("颜色没有选择");
-				return;
-			}
-			
-			if(!isEmail.test(size)){
-				alert("尺寸没有选择");
-				return;
-			} 
-			$.ajax({
-				type:"post",
-				url:"goodAddCar",
-				cache:false,
-				data:{"sum":sum,"gid":gid,"sid":sid},
-				success:function(data){
-						alert("加入购物车成功！");	
-				},
-				error:function(e){
-					alert("ajax错误");
-				}
-				
-			});
-			
-		}
-		
-		
-</script>
+		</script>

@@ -137,10 +137,10 @@
 	        			<span>${addr.name }</span>
 	        			<span>${addr.recvaddr } ${addr.detailaddr }</span>
 	        			<span>${addr.phone }</span>
-	        			<%-- <div class="bianji_yv_shanc">
+	        		    <div class="bianji_yv_shanc">
 	        				<a href="#" onclick="addtodetail(${addr.id })" >设为默认</a>
 	        				<a href="#">编辑</a>
-	        			</div> --%>
+	        			</div> 
 	        		</li>
         	</c:when>
         	<c:otherwise>
@@ -302,8 +302,8 @@
 		<c:forEach items="${newOrderList.addrList}" var="addr">
 			<c:if test="${addr.level == '1' }">
 				<span id="jsdz">寄送至：<span>${addr.recvaddr } ${addr.detailaddr }</span> </span>
-			<span id="shr"> 收货人：<span>${addr.name }</span></span>
-			<input type="hidden" name="aid" value="${addr.id }" id="addressid">
+				<span id="shr"> 收货人：<span>${addr.name }</span></span>
+				<input type="hidden" name="aid" value="${addr.id }" id="addressid">
 			</c:if>
 		</c:forEach>
 			
@@ -317,11 +317,11 @@
 </div>
 
 <script type="text/javascript">
-	/* function addtodetail(id){
+	 function addtodetail(id){
 		$("#jsdz").html("寄送至："+$("input[id^='dizhi"+id+"']")[0].value);
 		$("#addressid")[0].value=id;
 		$("#shr").html(" 收货人："+$("input[id^='dianhua"+id+"']")[0].value);
-	} */
+	} 
 
 
 

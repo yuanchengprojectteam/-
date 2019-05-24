@@ -19,6 +19,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,6 +65,8 @@ public class CarProcessAction {
 	@Autowired
 	UorderBiz uoBiz;
 	
+	private AlipayClient alipayClient;
+	private AlipayTradePagePayRequest alipayRequest;
 	
 	
 	@Autowired
@@ -102,35 +105,17 @@ public class CarProcessAction {
 		return "fail";
 	}
 	
-	@RequestMapping("car")
-	public String car(@SessionAttribute("loginedUser") User user,Model model) {
-		model.addAttribute("CarList", ci.selectCarByUser(user));
-		try {
-			List<Goods> ret = gBiz.selectGoodsBrowseRecord(user);
-			if(ret != null) {
-				model.addAttribute("BrowseRecord",ret);
-			}
-		} catch (com.yc.TCMail.action.BizException e) {
-			e.printStackTrace();
-		}
-		/*model.addAttribute("cglistcar",ci.selectCarGoods(user.getId(),1));
-		System.out.println("---"+ci.selectCarGoods(user.getId(),1));*/
-		return "Car";
-	}
 	
-	@PostMapping("operateOfCar")
-	@ResponseBody
-	public Result operateOfCar(Integer operate,Integer id,Integer num) {
-		try {
-			return ci.operateCar(operate,id,num);
-		} catch (BizException e) {
-			e.printStackTrace();
-			return Result.failure("系统繁忙,请稍后再试~");
-		}
+	@ModelAttribute
+	public void init() {
+		 alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+		 alipayRequest = new AlipayTradePagePayRequest();
+		alipayRequest.setReturnUrl(AlipayConfig.return_url);
+		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 	}
 	
 	@RequestMapping("topayOrder")
-	public String topayOrder(Model model,String aid,String[] gid,String[] num,String sumprice,@SessionAttribute("loginedUser") User user,HttpServletResponse response) throws AlipayApiException, IOException {
+	public String test(Model model,String aid,String[] gid,String[] num,String sumprice,@SessionAttribute("loginedUser") User user) throws AlipayApiException{
 		Uorder order=new Uorder();
 		order.setAid(Integer.valueOf(aid.substring(0,aid.length()-1)));
 		order.setOrderstatu("待支付");
@@ -150,56 +135,59 @@ public class CarProcessAction {
 			od.setNum(Integer.valueOf(num[i]));
 			om.insert(od);
 		}
-		 
-		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-		AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-		alipayRequest.setReturnUrl(AlipayConfig.return_url);
-		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-		alipayRequest.setBizContent("{\"out_trade_no\":\""+ o.getId() +"\"," 
-				+ "\"total_amount\":\""+ sumprice +"\"," 
-				+ "\"subject\":\""+ "payOrder" +"\"," 
-				+ "\"body\":\""+ "" +"\"," 
+		
+		alipayRequest.setBizContent("{\"out_trade_no\":\""+o.getId() +"\"," 
+				+ "\"total_amount\":\""+ o.getTotalprice() +"\"," 
+				+ "\"subject\":\""+ "PayOrder" +"\"," 
+				+ "\"body\":\""+ "body" +"\"," 
 				+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+		
 		String result = alipayClient.pageExecute(alipayRequest).getBody();
 		
-        model.addAttribute("result",result);
-        
-        System.out.println(result);
-        
+		model.addAttribute("result", result);
+		
 		return "success";
 	}
 	
+	@RequestMapping("car")
+	public String car(@SessionAttribute("loginedUser") User user,Model model) {
+		model.addAttribute("CarList", ci.selectCarByUser(user));
+		try {
+			List<Goods> ret = gBiz.selectGoodsBrowseRecord(user);
+			if(ret != null) {
+				model.addAttribute("BrowseRecord",ret);
+			}
+		} catch (com.yc.TCMail.action.BizException e) {
+			e.printStackTrace();
+		}
+		return "Car";
+	}
+	
+	@PostMapping("operateOfCar")
+	@ResponseBody
+	public Result operateOfCar(Integer operate,Integer id,Integer num) {
+		try {
+			return ci.operateCar(operate,id,num);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return Result.failure("系统繁忙,请稍后再试~");
+		}
+	}
+	
 	@RequestMapping("toPay")
-	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,String oid,String aid) throws AlipayApiException, IOException {
+	public String toPay(Model model,HttpServletResponse response, HttpServletRequest request,int oid,int aid) throws AlipayApiException, IOException {
 		 response.setContentType("text/html;charset=utf-8");
-		 
-		 System.out.println(oid+"oid================");
-	        System.out.println(aid);
-		 
-	        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-	        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
-	        aliPayRequest.setReturnUrl(AlipayConfig.return_url);
-	        aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
-	        //商户订单号，后台可以写一个工具类生成一个订单号，必填
-	        String order_number = new String(oid);
-	       
-	        //付款金额，从前台获取，必填
-	        Uorder uorder=um.selectByPrimaryKey(Integer.valueOf(oid));
-	        
+		 Uorder uorder=um.selectByPrimaryKey(Integer.valueOf(oid));
 	        uorder.setAid(Integer.valueOf(aid));
 	        um.updateByPrimaryKeySelective(uorder);
-	        String total_amount = new String(""+uorder.getTotalprice());
 	        
-	        //订单名称，必填
-	        String subject = new String("OrderToPay");
-	        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + order_number + "\","
-	                + "\"total_amount\":\"" + total_amount + "\","
-	                + "\"subject\":\"" + subject + "\","
+	        alipayRequest.setBizContent("{\"out_trade_no\":\"" + oid + "\","
+	                + "\"total_amount\":\"" + uorder.getTotalprice() + "\","
+	                + "\"subject\":\"" + "OrderToPay" + "\","
 	                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-	        String result = alipayClient.pageExecute(aliPayRequest).getBody();
+	        String result = alipayClient.pageExecute(alipayRequest).getBody();
 	        model.addAttribute("result",result);
-			return "PersonInfo";
-	
+			return "success";
 	}
 	
 	
@@ -261,58 +249,9 @@ public class CarProcessAction {
 		}
 		model.addAttribute("newOrderList", uoBiz.findByUorderId(user, orderid));
 		model.addAttribute("totalNum", totalNum);
-		/*int totalprice=0,allnum=0;
-		List<Orderdetail> OrDetail=new ArrayList<Orderdetail>();
-		List<Shop> shopList=new ArrayList<Shop>();
-		List<Goods> goodsList=new ArrayList<Goods>();
-		List<Integer> numList=new ArrayList<Integer>();
-		for(int i = 0;i<cid.length;i++) {
-			if(cid[i].indexOf("cid") != -1) {
-				allnum+=Integer.valueOf(num[i]);
-				Orderdetail odetail=new Orderdetail();
-				odetail.setGid(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid());
-				odetail.setNum(Integer.valueOf(num[i]));
-				Goods g=gm.selectByPrimaryKey(Integer.valueOf(cm.selectByPrimaryKey(Integer.valueOf(cid[i].substring(3))).getGid()));
-				odetail.setGoods(g);
-				totalprice +=g.getPrice()*Integer.valueOf(num[i]);
-				OrDetail.add(odetail);
-				shopList.add(sm.selectByPrimaryKey(g.getSid()));
-				goodsList.add(g);
-				numList.add(Integer.valueOf(num[i]));
-			}
-		}
-		
-		AddressExample ae=new AddressExample();
-		ae.createCriteria().andUidEqualTo(user.getId());
-		List<Address> addressList=am.selectByExample(ae);
-		Uorder order=new Uorder();
-		order.setTotalprice((double) totalprice);
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		order.setOrdertime(sdf.format(new Date()));
-		order.setUid(user.getId());
-		order.setPaystatu("待支付");
-		order.setTotalprice((double)totalprice);
-		um.insert(order);
-		UorderExample ue=new UorderExample();
-		ue.createCriteria().andPaystatuEqualTo(order.getPaystatu()).andOrdertimeEqualTo(order.getOrdertime()).andUidEqualTo(order.getUid());
-		Uorder uorder= um.selectByExample(ue).get(0);
-		System.out.println(uorder+"==========================================================================================");
-		int key=uorder.getId();
-		for(int i=0;i<OrDetail.size();i++) {
-			OrDetail.get(i).setGid(goodsList.get(i).getId());
-			OrDetail.get(i).setNum(Integer.valueOf(numList.get(i)));
-			OrDetail.get(i).setOrderid(key);
-			System.out.println("=================================================="+OrDetail.get(i));
-			om.insert(OrDetail.get(i));
-		}
-		order.setId(key);
-		model.addAttribute("Allnum",allnum);    //商品数量
-		model.addAttribute("OrderDetail", OrDetail);//订单详情
-		model.addAttribute("Uorder",order);//订单记录
-		model.addAttribute("AddressList", addressList);//地址信息
-		model.addAttribute("ShopList",shopList);//店铺信息
-		model.addAttribute("GoodsList",goodsList);//商品信息
-*/		return "carToAddOrder";
+		AddressExample example=new AddressExample();
+		example.createCriteria().andUidEqualTo(user.getId()).andLevelEqualTo("1");
+		return "carToAddOrder";
 	}
 	
 	@RequestMapping("addToFav")

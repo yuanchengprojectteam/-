@@ -30,19 +30,19 @@
 					</div>
 					<div class="dengl_hou_xial_k">
 						<div class="zuid_xiao_toux">
-							<a href="shez_toux.html"><img src="${sessionScope.loginedUser.image }"></a>
+							<a href="PersonCenter"><img src="${sessionScope.loginedUser.image }"></a>
 						</div>
 						<div class="huiy_dengj">
-							<a class="tuic_" href="OutOfLogined">退出登录</a>
+							<a class="tuic_" href="tologin">退出登录</a>
 						</div>
 						<div class="toub_zil_daoh">
-							<a href="wod_dingd.html">待处理订单</a> <a href="wod_shouc.html">我的收藏</a>
-							<a href="ger_xinx.html">个人资料</a>
+							<a href="OrderDetail?tabCode=waitpay">待处理订单</a> <a href="MyFavorite">我的收藏</a>
+							<a href="toPersonmessage">个人资料</a>
 						</div>
 					</div>
 				</li>
 				<li class="shu"></li>
-				<li class="denglu"><a class="ing_ps" href="wod_shouc.html">我的收藏</a></li>
+				<li class="denglu"><a class="ing_ps" href="MyFavorite">我的收藏</a></li>
 				<li class="shu"></li>
 				<li class="denglu"><a class="ing_ps ps1"
 					href="toapplybecomeshop">申请入驻</a></li>

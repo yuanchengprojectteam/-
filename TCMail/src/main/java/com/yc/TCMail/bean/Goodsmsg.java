@@ -14,17 +14,7 @@ public class Goodsmsg  implements java.io.Serializable{
 	private Integer gid;
 	private String color;
 	private String size;
-	private List<Image> image;
 	
-	
-	
-	@Transient
-	public List<Image> getImage() {
-		return image;
-	}
-	public void setImage(List<Image> image) {
-		this.image = image;
-	}
 	@Column(name="gid",length=11)
 	public Integer getGid() {
 		return gid;

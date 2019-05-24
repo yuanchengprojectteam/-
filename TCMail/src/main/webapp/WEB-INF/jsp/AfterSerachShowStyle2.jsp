@@ -22,7 +22,7 @@
 </head> 
 <body>
 
-<jsp:include page="../public/BeforeHeader.jsp"></jsp:include>
+<jsp:include page="../public/rowHeader.jsp"></jsp:include>
 
 
 		<div class="subpage" id="id_a">
